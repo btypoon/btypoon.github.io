@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My note</title>
+    <!-- syntax highlight -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      pre {
+        white-space: pre-line;
+      }
+
+      .codeblock.language-bash {
+        font-family: 'Courier New';
+        font-size: 1em;
+      }
+
+      .blockquote {
+        font-size: 1.2em;
+        background: #121FCF;
+        background: linear-gradient(to right, #121FCF 0%, #CF1512 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <h2>Linux management guide on EdUHK PHYs cluster system</h2>
+        <p class="lead">A user guide for complete beginner.</p>
+        <hr>
+      </section>
+      <section>
+        <h3>Booting Sequence</h3>
+        <p> For some reason, the computer <em>"slave4"</em> require special steps in order to boot successfully.
+        <ol>
+          <li>Press f11 to go into its BIOS while booting</li>
+          <li>Change the booting mode to UEFT</li>
+          <li>Save and reboot</li>
+        </ol>
+        </p>
+      </section>
+      <section>
+        <h3>Cluster architecture</h3>
+        <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
+      </section>
+      <section>
+        <h3>Connect to the server</h3>
+        <p> To connect to the cluster, use the following ip address: <code class='inlineCode'>phys.eduhk.hk</code>
+        </p>
+        <pre><code class="codeblock language-bash">" login as: username username@phys.eduhk.hk's password:password welcome to ubuntu 16.04.2 lts (gnu/linux 4.8.0-36-generic x86_64) * documentation: https://help.ubuntu.com * management:
+            https://landscape.canonical.com * support: https://ubuntu.com/advantage 234 packages can be updated. 5 updates are security updates. *** system restart required *** last login: wed jul 5 20:10:38 2023 from 172.18.124.154
+            username@bill01:~$ " </code>
+        </pre>
+        <p> To get administrative privileges, use the following account: <br>
+        <ul>
+          <li>username: bill</li>
+          <li>username:btypoon</li>
+          <li>password: billyeung</li>
+        </ul> A shortcut to connect the ip with a specific user is to enter <code class="inlineCode">username@ip</code>
+        </p>
+      </section>
+      <section>
+        <h3 id="/etc/hosts">/etc/hosts</h3>
+        <p>To see the local hosts name and their corresponding local ip address read the file in /etc/hosts</p>
+        <p>The files should be the same across all machines. Use <code class="inlineCode">sudo nano /etc/hosts</code> to edit it if needed. </p>
+        <p>As of 30/6/2023 this file in master:</p>
+        <pre> <code class="codeblock language-bash">######################################################### #127.0.0.1 localhost
+          #127.0.1.1 bill03
+          192.168.1.143 master
+          192.168.1.104 bill01
+          192.168.1.102 slave1
+          192.168.1.224 slave2
+          192.168.1.12 slave3
+          192.168.1.100 slave4
+          192.168.1.103 slave5
+          #175.159.131.248 bill-workstation
+          #202.45.51.232 master
+          #202.45.51.231 slave1
+          # the following lines are desirable for ipv6 capable hosts ::1 ip6-localhost ip6-loopback fe00::0 ip6-localnet
+            ff00::0 ip6-mcastprefix ff02::1 ip6-allnodes ff02::2 ip6-allrouters ######################################################### </code>
+        </pre>
+      </section>
+      <section>
+        <h3 id="adduser">Adding new user</h3>
+        <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to <a
+            href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html</a>, <code class="inlineCode">sudo adduser username group</code> can also be used. </p>
+        <figure class='text-center'>
+          <blockquote class='blockquote' cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">
+            <p style='font-style:italic'>If called with two non-option arguments, adduser will add an existing user to an existing group. </p>
+          </blockquote>
+          <figcapion class="blockquote-footer"> <em>ubuntu manual adduser</em> </figcapion>
+        </figure>
+        <p>As of 30/6/2023, the file in /etc/passwd read:</p>
+        <p>
+        <pre>
+          <code class="codeblock language-bash">######################################################### root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin
+            sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+            mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+            www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:mailing list manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:gnats
+            bug-reporting system (admin):/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin systemd-timesync:x:100:102:systemd time synchronization,,,:/run/systemd:/bin/false systemd-network:x:101:103:systemd
+            network management,,,:/run/systemd/netif:/bin/false systemd-resolve:x:102:104:systemd resolver,,,:/run/systemd/resolve:/bin/false systemd-bus-proxy:x:103:105:systemd bus proxy,,,:/run/systemd:/bin/false
+            syslog:x:104:108::/home/syslog:/bin/false _apt:x:105:65534::/nonexistent:/bin/false messagebus:x:106:110::/var/run/dbus:/bin/false uuidd:x:107:111::/run/uuidd:/bin/false lightdm:x:108:114:light display manager:/var/lib/lightdm:/bin/false
+            whoopsie:x:109:116::/nonexistent:/bin/false avahi-autoipd:x:110:119:avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false avahi:x:111:120:avahi mdns daemon,,,:/var/run/avahi-daemon:/bin/false
+            dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false speech-dispatcher:x:114:29:speech dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+            hplip:x:115:7:hplip system user,,,:/var/run/hplip:/bin/false kernoops:x:116:65534:kernel oops tracking daemon,,,:/:/bin/false pulse:x:117:124:pulseaudio daemon,,,:/var/run/pulse:/bin/false rtkit:x:118:126:realtimekit,,,:/proc:/bin/false
+            saned:x:119:127::/var/lib/saned:/bin/false usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false bill:x:1000:1000:bill01,,,:/home/bill:/bin/bash postfix:x:121:129::/var/spool/postfix:/bin/false
+            sgeadmin:x:122:131::/var/lib/gridengine:/bin/false sshd:x:123:65534::/var/run/sshd:/usr/sbin/nologin hadoopuser:x:1001:1001:,,,:/home/hadoopuser:/bin/bash testuser:x:1002:1002:,,,:/home/testuser:/bin/bash
+            jacky:x:1003:1003:,,,:/home/jacky:/bin/bash takshing:x:1004:1004:,,,:/home/takshing:/bin/bash cheong:x:1005:1005:,,,:/home/cheong:/bin/bash lim:x:1006:1006:,,,:/home/lim:/bin/bash curtis:x:1007:1007:,,,:/home/curtis:/bin/bash
+            statd:x:1008:1008:,,,:/home/statd:/bin/bash bil:x:1009:1009:,,,:/home/bil:/bin/bash kcchoi:x:1010:1010:,,,:/home/kcchoi:/bin/bash roy:x:1011:1011:,,,:/home/roy:/bin/bash leo:x:1012:1012:,,,:/home/leo:/bin/bash
+            intern:x:1013:1013:,,,:/home/intern:/bin/bash william:x:1014:1014:,,,:/home/william:/bin/bash brian:x:1015:1015:,,,:/home/brian:/bin/bash paul:x:1016:1016:,,,:/home/paul:/bin/bash btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash ~
+            ######################################################### </code>
+        </pre>
+        </p>
+      </section>
+      <section>
+        <h3 id="Long-format-listing">Long format listing ls -l</h3>
+        <p> Using "ls -l" to list long format of files. The columns coorespond to:
+        <ol>
+          <li>The file type.</li>
+          <li>The file permissions.</li>
+          <li>Number of hard links to the file.</li>
+          <li>File owner.</li>
+          <li>File group.</li>
+          <li>File size.</li>
+          <li>Date and Time.</li>
+          <li>File name.</li>
+        </ol>
+        </p>
+      </section>
+      <section>
+        <h3 id="/etc/groups">/etc/groups</h3>
+        <p>To view all groups is to visit <code class="inlineCode">/etc/groups</code>. To change the uid or gid of a user, use: <code class="inlineCode">sudo usermod -u uid -g gid username</code> To change the gid or group name of a group, use <code
+            class="inlineCode">sudo groupmod -g gid -n new_groupName old_groupName</code>
+        </p>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src='addNavBar.js'></script>
+    <script src='addHeader.js'></script>
+    <script src='addFooter.js'></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+
+</html>

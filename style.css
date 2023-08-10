@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Muli', Arial;
+  min-width: 0;
+  margin: 0;
+  transition: .15s;
+  background-color: #fff;
+}
+
+main {
+  font-size: 18px;
+  line-height: 42px;
+  max-width: 688px;
+  margin: auto;
+  padding: 5px 18px;
+}
+
+.inlineCode {
+  font-family: 'Courier New';
+  font-weight: bold;
+  padding-right: 4px;
+  padding-left: 4px;
+  color: crimson;
+  background-color: whitesmoke;
+}
+
+kbd {
+  font-size: .85em;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
+  padding: 2px 4px;
+  white-space: nowrap;
+  color: #333;
+  border: 1px solid #b4b4b4;
+  border-radius: 3px;
+  background-color: #eee;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+}
+
+table {
+  border-collapse: collapse;
+  width: 72%;
+  margin: 10px 0px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.tableDiv {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+tr {
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+tr:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+tr.header {
+  background-color: rgb(241, 244, 235);
+}
+
+th,
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

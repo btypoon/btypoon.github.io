@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <br />
+    <style type="text/css">
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .ft10 {
+        font-size: 23px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft11 {
+        font-size: 15px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft12 {
+        font-size: 9px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft13 {
+        font-size: 19px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft14 {
+        font-size: 12px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft15 {
+        font-size: 6px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft16 {
+        font-size: 12px;
+        line-height: 17px;
+        font-family: Times;
+        color: #000000;
+      }
+    </style>
+  </head>
+
+  <body bgcolor="#A0A0A0" vlink="blue" link="blue">
+    <div id="page1-div" style="position:relative;width:918px;height:1188px;">
+      <img width="918" height="1188" src="target001.png" alt="background image" />
+      <p style="position:absolute;top:247px;left:275px;white-space:nowrap" class="ft10">Notes&#160;to&#160;Multi-armed&#160;bandit&#160;paper</p>
+      <p style="position:absolute;top:305px;left:427px;white-space:nowrap" class="ft11">btypoon</p>
+      <p style="position:absolute;top:299px;left:490px;white-space:nowrap" class="ft12">∗</p>
+      <p style="position:absolute;top:349px;left:422px;white-space:nowrap" class="ft11">Aug-2023</p>
+      <p style="position:absolute;top:418px;left:201px;white-space:nowrap" class="ft13">Contents</p>
+      <p style="position:absolute;top:455px;left:201px;white-space:nowrap" class="ft14">1</p>
+      <p style="position:absolute;top:455px;left:223px;white-space:nowrap" class="ft14">Game&#160;Rule&#160;and&#160;Symbols&#160;definition</p>
+      <p style="position:absolute;top:455px;left:708px;white-space:nowrap" class="ft14">2</p>
+      <p style="position:absolute;top:488px;left:201px;white-space:nowrap" class="ft14">2</p>
+      <p style="position:absolute;top:488px;left:223px;white-space:nowrap" class="ft14">Balance&#160;between&#160;exploration&#160;and&#160;exploitation&#160;modes</p>
+      <p style="position:absolute;top:488px;left:708px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:506px;left:223px;white-space:nowrap" class="ft14">2.1</p>
+      <p style="position:absolute;top:506px;left:257px;white-space:nowrap" class="ft14">Method&#160;1:&#160;Pull&#160;all&#160;slot&#160;machines&#160;once&#160;intially&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:506px;left:709px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:524px;left:223px;white-space:nowrap" class="ft14">2.2</p>
+      <p style="position:absolute;top:524px;left:257px;white-space:nowrap" class="ft14">Method&#160;2:&#160;Pull&#160;all&#160;slot&#160;machines&#160;m&#160;times&#160;intially&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:524px;left:709px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:542px;left:223px;white-space:nowrap" class="ft14">2.3</p>
+      <p style="position:absolute;top:542px;left:257px;white-space:nowrap" class="ft14">
+        Method&#160;3:&#160;Simulated&#160;annealling&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:542px;left:709px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:560px;left:257px;white-space:nowrap" class="ft14">2.3.1</p>
+      <p style="position:absolute;top:560px;left:305px;white-space:nowrap" class="ft14">
+        ϵ-greedy&#160;algorithm&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:560px;left:709px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:578px;left:257px;white-space:nowrap" class="ft14">2.3.2</p>
+      <p style="position:absolute;top:578px;left:305px;white-space:nowrap" class="ft14">
+        Softmax&#160;algorithm&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:578px;left:709px;white-space:nowrap" class="ft14">4</p>
+      <p style="position:absolute;top:596px;left:223px;white-space:nowrap" class="ft14">2.4</p>
+      <p style="position:absolute;top:596px;left:257px;white-space:nowrap" class="ft14">Method&#160;4:&#160;Upper&#160;confidence&#160;bound&#160;algorithm&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.&#160;.</p>
+      <p style="position:absolute;top:596px;left:709px;white-space:nowrap" class="ft14">5</p>
+      <p style="position:absolute;top:629px;left:201px;white-space:nowrap" class="ft14">3</p>
+      <p style="position:absolute;top:629px;left:223px;white-space:nowrap" class="ft16">Combination&#160;of&#160;simulated&#160;annealling&#160;and&#160;Upper&#160;confidence&#160;bound<br />algorithm</p>
+      <p style="position:absolute;top:647px;left:708px;white-space:nowrap" class="ft14">5</p>
+      <p style="position:absolute;top:996px;left:217px;white-space:nowrap" class="ft15">∗</p>
+      <p style="position:absolute;top:1001px;left:224px;white-space:nowrap" class="ft12">eduhk</p>
+      <p style="position:absolute;top:1044px;left:455px;white-space:nowrap" class="ft14">1</p>
+    </div>
+  </body>
+
+</html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <br />
+    <style type="text/css">
+      <!--
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .ft20 {
+        font-size: 19px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft21 {
+        font-size: 12px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft22 {
+        font-size: 8px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft23 {
+        font-size: 5px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft24 {
+        font-size: 12px;
+        line-height: 17px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft25 {
+        font-size: 12px;
+        line-height: 26px;
+        font-family: Times;
+        color: #000000;
+      }
+      -->
+    </style>
+  </head>
+
+  <body bgcolor="#A0A0A0" vlink="blue" link="blue">
+    <div id="page2-div" style="position:relative;width:918px;height:1188px;">
+      <img width="918" height="1188" src="target002.png" alt="background image" />
+      <p style="position:absolute;top:187px;left:201px;white-space:nowrap" class="ft20">1</p>
+      <p style="position:absolute;top:187px;left:237px;white-space:nowrap" class="ft20">Game&#160;Rule&#160;and&#160;Symbols&#160;definition</p>
+      <p style="position:absolute;top:221px;left:223px;white-space:nowrap" class="ft21">•&#160;Let&#160;there&#160;be&#160;in&#160;total&#160;K&#160;slot&#160;machines.&#160;Subscript&#160;k&#160;define&#160;the&#160;k-th&#160;machine</p>
+      <p style="position:absolute;top:242px;left:238px;white-space:nowrap" class="ft21">from&#160;the&#160;set&#160;of&#160;K&#160;machines.</p>
+      <p style="position:absolute;top:273px;left:426px;white-space:nowrap" class="ft21">k&#160;∈&#160;{1,&#160;2,&#160;...,&#160;K}</p>
+      <p style="position:absolute;top:309px;left:223px;white-space:nowrap" class="ft21">•&#160;Let&#160;the&#160;game&#160;to&#160;be&#160;round&#160;based.&#160;In&#160;each&#160;round,&#160;the&#160;player&#160;can&#160;only&#160;choose</p>
+      <p style="position:absolute;top:331px;left:238px;white-space:nowrap" class="ft24">
+        to&#160;play&#160;one&#160;slot&#160;machines.&#160;Define&#160;the&#160;concept&#160;of&#160;time&#160;t&#160;to&#160;be&#160;the&#160;decrete<br />round&#160;number&#160;in&#160;the&#160;set&#160;of&#160;T&#160;total&#160;rounds</p>
+      <p style="position:absolute;top:380px;left:429px;white-space:nowrap" class="ft21">t&#160;∈&#160;{1,&#160;2,&#160;...,&#160;T&#160;}</p>
+      <p style="position:absolute;top:416px;left:223px;white-space:nowrap" class="ft21">•&#160;Define&#160;the&#160;chosen&#160;k-th&#160;slot&#160;machine&#160;at&#160;time&#160;t&#160;to&#160;be</p>
+      <p style="position:absolute;top:451px;left:391px;white-space:nowrap" class="ft21">a</p>
+      <p style="position:absolute;top:448px;left:399px;white-space:nowrap" class="ft22">t</p>
+      <p style="position:absolute;top:450px;left:409px;white-space:nowrap" class="ft21">∈&#160;{1,&#160;2,&#160;...,&#160;K}&#160;at&#160;time&#160;t</p>
+      <p style="position:absolute;top:487px;left:223px;white-space:nowrap" class="ft21">•&#160;Let&#160;the&#160;variable&#160;x&#160;be&#160;the&#160;reward&#160;of&#160;slot&#160;machine.&#160;Define&#160;P</p>
+      <p style="position:absolute;top:496px;left:624px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:491px;left:631px;white-space:nowrap" class="ft21">(x)&#160;to&#160;be&#160;the</p>
+      <p style="position:absolute;top:509px;left:238px;white-space:nowrap" class="ft21">probability&#160;density&#160;function&#160;of&#160;the&#160;rewards&#160;x&#160;of&#160;k-th&#160;machine.</p>
+      <p style="position:absolute;top:540px;left:290px;white-space:nowrap" class="ft21">Probability&#160;of&#160;getting&#160;x</p>
+      <p style="position:absolute;top:545px;left:445px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:540px;left:457px;white-space:nowrap" class="ft21">from&#160;k-th&#160;machine&#160;=&#160;P</p>
+      <p style="position:absolute;top:545px;left:613px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:540px;left:620px;white-space:nowrap" class="ft21">(x</p>
+      <p style="position:absolute;top:545px;left:634px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:540px;left:642px;white-space:nowrap" class="ft21">)dx</p>
+      <p style="position:absolute;top:576px;left:223px;white-space:nowrap" class="ft21">•&#160;Define&#160;expected&#160;value&#160;of&#160;reward&#160;of&#160;k-th&#160;machine&#160;as</p>
+      <p style="position:absolute;top:617px;left:406px;white-space:nowrap" class="ft21">⟨x⟩</p>
+      <p style="position:absolute;top:623px;left:426px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:618px;left:438px;white-space:nowrap" class="ft21">=</p>
+      <p style="position:absolute;top:607px;left:453px;white-space:nowrap" class="ft21">Z</p>
+      <p style="position:absolute;top:604px;left:468px;white-space:nowrap" class="ft22">∞</p>
+      <p style="position:absolute;top:634px;left:462px;white-space:nowrap" class="ft22">−∞</p>
+      <p style="position:absolute;top:618px;left:486px;white-space:nowrap" class="ft21">xP</p>
+      <p style="position:absolute;top:623px;left:504px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:618px;left:512px;white-space:nowrap" class="ft21">(x)dx</p>
+      <p style="position:absolute;top:664px;left:223px;white-space:nowrap" class="ft25">
+        •&#160;The&#160;true&#160;values&#160;of&#160;⟨x⟩&#160;are&#160;unknown&#160;for&#160;all&#160;machines<br />•&#160;Base&#160;on&#160;the&#160;expected&#160;value&#160;of&#160;rewards&#160;of&#160;all&#160;machine,&#160;in&#160;every&#160;round,&#160;the
+      </p>
+      <p style="position:absolute;top:712px;left:238px;white-space:nowrap" class="ft21">player&#160;should&#160;always&#160;choose&#160;to&#160;play&#160;the&#160;slot&#160;machine&#160;with&#160;the&#160;highest&#160;EV.</p>
+      <p style="position:absolute;top:743px;left:375px;white-space:nowrap" class="ft21">chosen&#160;a</p>
+      <p style="position:absolute;top:749px;left:433px;white-space:nowrap" class="ft22">t</p>
+      <p style="position:absolute;top:743px;left:442px;white-space:nowrap" class="ft21">=&#160;Best&#160;k&#160;=&#160;max⟨x⟩</p>
+      <p style="position:absolute;top:749px;left:572px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:779px;left:223px;white-space:nowrap" class="ft21">•&#160;In&#160;other&#160;words,&#160;player&#160;want&#160;to&#160;maximize&#160;their&#160;cumulative&#160;reward.&#160;Define</p>
+      <p style="position:absolute;top:801px;left:238px;white-space:nowrap" class="ft21">cumulative&#160;rewards&#160;up&#160;to&#160;T&#160;rounds&#160;as&#160;R:</p>
+      <p style="position:absolute;top:846px;left:439px;white-space:nowrap" class="ft21">R&#160;=</p>
+      <p style="position:absolute;top:830px;left:477px;white-space:nowrap" class="ft22">T</p>
+      <p style="position:absolute;top:841px;left:470px;white-space:nowrap" class="ft21">X</p>
+      <p style="position:absolute;top:866px;left:471px;white-space:nowrap" class="ft22">t=0</p>
+      <p style="position:absolute;top:846px;left:494px;white-space:nowrap" class="ft21">x</p>
+      <p style="position:absolute;top:851px;left:503px;white-space:nowrap" class="ft22">a</p>
+      <p style="position:absolute;top:850px;left:510px;white-space:nowrap" class="ft23">t</p>
+      <p style="position:absolute;top:895px;left:223px;white-space:nowrap" class="ft21">•&#160;In&#160;theory,&#160;the&#160;cumulative&#160;regret&#160;is&#160;more&#160;useful&#160;for&#160;analysis.&#160;Define&#160;cumu-</p>
+      <p style="position:absolute;top:917px;left:238px;white-space:nowrap" class="ft21">lative&#160;regret&#160;as&#160;small&#160;letter&#160;r:</p>
+      <p style="position:absolute;top:961px;left:336px;white-space:nowrap" class="ft21">r&#160;=</p>
+      <p style="position:absolute;top:946px;left:369px;white-space:nowrap" class="ft22">T</p>
+      <p style="position:absolute;top:957px;left:363px;white-space:nowrap" class="ft21">X</p>
+      <p style="position:absolute;top:982px;left:364px;white-space:nowrap" class="ft22">t=0</p>
+      <p style="position:absolute;top:961px;left:387px;white-space:nowrap" class="ft21">(max⟨x⟩</p>
+      <p style="position:absolute;top:967px;left:443px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:960px;left:453px;white-space:nowrap" class="ft21">−&#160;x</p>
+      <p style="position:absolute;top:967px;left:477px;white-space:nowrap" class="ft22">a</p>
+      <p style="position:absolute;top:966px;left:483px;white-space:nowrap" class="ft23">t</p>
+      <p style="position:absolute;top:961px;left:489px;white-space:nowrap" class="ft21">)</p>
+      <p style="position:absolute;top:999px;left:347px;white-space:nowrap" class="ft21">=&#160;(T&#160;×&#160;max⟨x⟩</p>
+      <p style="position:absolute;top:1004px;left:448px;white-space:nowrap" class="ft22">k</p>
+      <p style="position:absolute;top:999px;left:455px;white-space:nowrap" class="ft21">)&#160;−&#160;(cumulative&#160;reward)</p>
+      <p style="position:absolute;top:1044px;left:455px;white-space:nowrap" class="ft21">2</p>
+    </div>
+  </body>
+
+</html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <br />
+    <style type="text/css">
+      <!--
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .ft30 {
+        font-size: 12px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft31 {
+        font-size: 8px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft32 {
+        font-size: 5px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft33 {
+        font-size: 8px;
+        line-height: 9px;
+        font-family: Times;
+        color: #000000;
+      }
+      -->
+    </style>
+  </head>
+
+  <body bgcolor="#A0A0A0" vlink="blue" link="blue">
+    <div id="page3-div" style="position:relative;width:918px;height:1188px;">
+      <img width="918" height="1188" src="target003.png" alt="background image" />
+      <p style="position:absolute;top:188px;left:223px;white-space:nowrap" class="ft30">•&#160;Define&#160;n</p>
+      <p style="position:absolute;top:189px;left:294px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:192px;left:307px;white-space:nowrap" class="ft30">as&#160;the&#160;number&#160;of&#160;times&#160;k-th&#160;slot&#160;machines&#160;has&#160;been&#160;pulled&#160;up</p>
+      <p style="position:absolute;top:210px;left:238px;white-space:nowrap" class="ft30">to&#160;time&#160;t.</p>
+      <p style="position:absolute;top:253px;left:405px;white-space:nowrap" class="ft30">n</p>
+      <p style="position:absolute;top:250px;left:414px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:253px;left:425px;white-space:nowrap" class="ft30">=</p>
+      <p style="position:absolute;top:237px;left:450px;white-space:nowrap" class="ft31">t</p>
+      <p style="position:absolute;top:248px;left:441px;white-space:nowrap" class="ft30">X</p>
+      <p style="position:absolute;top:273px;left:441px;white-space:nowrap" class="ft31">τ&#160;=1</p>
+      <p style="position:absolute;top:253px;left:466px;white-space:nowrap" class="ft30">δ(a</p>
+      <p style="position:absolute;top:250px;left:486px;white-space:nowrap" class="ft31">τ</p>
+      <p style="position:absolute;top:253px;left:494px;white-space:nowrap" class="ft30">,&#160;k)&#160;+&#160;n</p>
+      <p style="position:absolute;top:250px;left:542px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:304px;left:223px;white-space:nowrap" class="ft30">•&#160;In&#160;some&#160;strategies,&#160;all&#160;slots&#160;machine&#160;was&#160;pulled&#160;a&#160;fixed&#160;amount&#160;of&#160;times</p>
+      <p style="position:absolute;top:325px;left:238px;white-space:nowrap" class="ft30">for&#160;initilization.&#160;Therefore,&#160;n</p>
+      <p style="position:absolute;top:323px;left:432px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:325px;left:445px;white-space:nowrap" class="ft30">was&#160;seperated&#160;from&#160;n</p>
+      <p style="position:absolute;top:323px;left:588px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:325px;left:601px;white-space:nowrap" class="ft30">as&#160;the&#160;initial&#160;pull</p>
+      <p style="position:absolute;top:343px;left:238px;white-space:nowrap" class="ft30">number.</p>
+      <p style="position:absolute;top:376px;left:297px;white-space:nowrap" class="ft30">n</p>
+      <p style="position:absolute;top:373px;left:306px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:376px;left:317px;white-space:nowrap" class="ft30">=&#160;initial&#160;pull&#160;number&#160;for&#160;k-th&#160;machines&#160;at&#160;time&#160;t=0</p>
+      <p style="position:absolute;top:414px;left:223px;white-space:nowrap" class="ft30">•&#160;Define&#160;the&#160;cumulative&#160;reward&#160;contributed&#160;by&#160;k-th&#160;slot&#160;machine&#160;up&#160;to&#160;time</p>
+      <p style="position:absolute;top:436px;left:238px;white-space:nowrap" class="ft30">t&#160;as&#160;s</p>
+      <p style="position:absolute;top:434px;left:274px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:436px;left:281px;white-space:nowrap" class="ft30">.</p>
+      <p style="position:absolute;top:483px;left:396px;white-space:nowrap" class="ft30">s</p>
+      <p style="position:absolute;top:480px;left:403px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:483px;left:414px;white-space:nowrap" class="ft30">=</p>
+      <p style="position:absolute;top:468px;left:439px;white-space:nowrap" class="ft31">t</p>
+      <p style="position:absolute;top:479px;left:430px;white-space:nowrap" class="ft30">X</p>
+      <p style="position:absolute;top:504px;left:430px;white-space:nowrap" class="ft31">τ&#160;=1</p>
+      <p style="position:absolute;top:483px;left:454px;white-space:nowrap" class="ft30">x</p>
+      <p style="position:absolute;top:489px;left:463px;white-space:nowrap" class="ft31">a</p>
+      <p style="position:absolute;top:488px;left:469px;white-space:nowrap" class="ft32">τ</p>
+      <p style="position:absolute;top:483px;left:477px;white-space:nowrap" class="ft30">δ(a</p>
+      <p style="position:absolute;top:480px;left:498px;white-space:nowrap" class="ft31">τ</p>
+      <p style="position:absolute;top:483px;left:505px;white-space:nowrap" class="ft30">,&#160;k)&#160;+&#160;s</p>
+      <p style="position:absolute;top:480px;left:551px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:536px;left:223px;white-space:nowrap" class="ft30">•&#160;Similarly,&#160;due&#160;to&#160;initilization,&#160;s</p>
+      <p style="position:absolute;top:537px;left:442px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:540px;left:454px;white-space:nowrap" class="ft30">was&#160;seperated&#160;from&#160;s</p>
+      <p style="position:absolute;top:537px;left:592px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:540px;left:600px;white-space:nowrap" class="ft30">.</p>
+      <p style="position:absolute;top:573px;left:276px;white-space:nowrap" class="ft30">s</p>
+      <p style="position:absolute;top:570px;left:283px;white-space:nowrap" class="ft33">0<br />k</p>
+      <p style="position:absolute;top:573px;left:295px;white-space:nowrap" class="ft30">=&#160;initial&#160;reward&#160;contributed&#160;by&#160;k-th&#160;machines&#160;at&#160;time&#160;t=0</p>
+      <p style="position:absolute;top:611px;left:223px;white-space:nowrap" class="ft30">•&#160;Connection&#160;between&#160;cumulative&#160;reward&#160;R,&#160;x&#160;and&#160;s</p>
+      <p style="position:absolute;top:661px;left:409px;white-space:nowrap" class="ft30">R&#160;=</p>
+      <p style="position:absolute;top:646px;left:447px;white-space:nowrap" class="ft31">T</p>
+      <p style="position:absolute;top:657px;left:440px;white-space:nowrap" class="ft30">X</p>
+      <p style="position:absolute;top:682px;left:441px;white-space:nowrap" class="ft31">t=0</p>
+      <p style="position:absolute;top:661px;left:464px;white-space:nowrap" class="ft30">x</p>
+      <p style="position:absolute;top:667px;left:473px;white-space:nowrap" class="ft31">a</p>
+      <p style="position:absolute;top:666px;left:479px;white-space:nowrap" class="ft32">t</p>
+      <p style="position:absolute;top:661px;left:489px;white-space:nowrap" class="ft30">=</p>
+      <p style="position:absolute;top:646px;left:510px;white-space:nowrap" class="ft31">K</p>
+      <p style="position:absolute;top:657px;left:505px;white-space:nowrap" class="ft30">X</p>
+      <p style="position:absolute;top:682px;left:505px;white-space:nowrap" class="ft31">k=1</p>
+      <p style="position:absolute;top:661px;left:529px;white-space:nowrap" class="ft30">s</p>
+      <p style="position:absolute;top:658px;left:536px;white-space:nowrap" class="ft33">T<br />k</p>
+      <p style="position:absolute;top:713px;left:223px;white-space:nowrap" class="ft30">•&#160;Connection&#160;between&#160;cumulative&#160;regret&#160;r,&#160;x&#160;and&#160;s&#160;if&#160;there&#160;are&#160;m&#160;initial&#160;pull</p>
+      <p style="position:absolute;top:734px;left:238px;white-space:nowrap" class="ft30">for&#160;all&#160;K&#160;slot&#160;machines</p>
+      <p style="position:absolute;top:767px;left:339px;white-space:nowrap" class="ft30">r&#160;=&#160;(max&#160;reward)&#160;−&#160;(cumulative&#160;reward)</p>
+      <p style="position:absolute;top:806px;left:350px;white-space:nowrap" class="ft30">=&#160;[(T&#160;+&#160;mK)&#160;×&#160;max⟨x⟩</p>
+      <p style="position:absolute;top:811px;left:506px;white-space:nowrap" class="ft31">k</p>
+      <p style="position:absolute;top:806px;left:513px;white-space:nowrap" class="ft30">]&#160;−</p>
+      <p style="position:absolute;top:790px;left:541px;white-space:nowrap" class="ft31">K</p>
+      <p style="position:absolute;top:802px;left:536px;white-space:nowrap" class="ft30">X</p>
+      <p style="position:absolute;top:827px;left:536px;white-space:nowrap" class="ft31">k=1</p>
+      <p style="position:absolute;top:806px;left:560px;white-space:nowrap" class="ft30">s</p>
+      <p style="position:absolute;top:803px;left:567px;white-space:nowrap" class="ft33">T<br />k</p>
+      <p style="position:absolute;top:858px;left:223px;white-space:nowrap" class="ft30">•&#160;Since&#160;the&#160;true&#160;values&#160;of&#160;⟨x⟩</p>
+      <p style="position:absolute;top:867px;left:414px;white-space:nowrap" class="ft31">k</p>
+      <p style="position:absolute;top:862px;left:426px;white-space:nowrap" class="ft30">are&#160;unknown&#160;for&#160;all&#160;machines,&#160;we&#160;use&#160;sample</p>
+      <p style="position:absolute;top:880px;left:238px;white-space:nowrap" class="ft30">mean&#160;as&#160;the&#160;best&#160;estimator&#160;for&#160;the&#160;population&#160;mean.&#160;Define&#160;the&#160;µ</p>
+      <p style="position:absolute;top:878px;left:666px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:880px;left:678px;white-space:nowrap" class="ft30">as&#160;the</p>
+      <p style="position:absolute;top:898px;left:238px;white-space:nowrap" class="ft30">sample&#160;mean&#160;of&#160;k-th&#160;machine&#160;at&#160;time&#160;t</p>
+      <p style="position:absolute;top:939px;left:404px;white-space:nowrap" class="ft30">sample&#160;mean&#160;µ</p>
+      <p style="position:absolute;top:936px;left:503px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:939px;left:514px;white-space:nowrap" class="ft30">=</p>
+      <p style="position:absolute;top:929px;left:533px;white-space:nowrap" class="ft30">s</p>
+      <p style="position:absolute;top:927px;left:540px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:949px;left:532px;white-space:nowrap" class="ft30">n</p>
+      <p style="position:absolute;top:947px;left:541px;white-space:nowrap" class="ft33">t<br />k</p>
+      <p style="position:absolute;top:1044px;left:455px;white-space:nowrap" class="ft30">3</p>
+    </div>
+  </body>
+
+</html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <br />
+    <style type="text/css">
+      <!--
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .ft40 {
+        font-size: 19px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft41 {
+        font-size: 15px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft42 {
+        font-size: 12px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft43 {
+        font-size: 8px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft44 {
+        font-size: 5px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft45 {
+        font-size: 19px;
+        line-height: 26px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft46 {
+        font-size: 12px;
+        line-height: 17px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft47 {
+        font-size: 5px;
+        line-height: 7px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft48 {
+        font-size: 8px;
+        line-height: 11px;
+        font-family: Times;
+        color: #000000;
+      }
+      -->
+    </style>
+  </head>
+
+  <body bgcolor="#A0A0A0" vlink="blue" link="blue">
+    <div id="page4-div" style="position:relative;width:918px;height:1188px;">
+      <img width="918" height="1188" src="target004.png" alt="background image" />
+      <p style="position:absolute;top:187px;left:201px;white-space:nowrap" class="ft40">2</p>
+      <p style="position:absolute;top:187px;left:237px;white-space:nowrap" class="ft45">Balance&#160;between&#160;exploration&#160;and&#160;exploitation<br />modes</p>
+      <p style="position:absolute;top:252px;left:201px;white-space:nowrap" class="ft41">2.1</p>
+      <p style="position:absolute;top:252px;left:247px;white-space:nowrap" class="ft41">Method&#160;1:&#160;Pull&#160;all&#160;slot&#160;machines&#160;once&#160;intially</p>
+      <p style="position:absolute;top:282px;left:243px;white-space:nowrap" class="ft42">At&#160;time&#160;t&#160;=&#160;0,&#160;roll&#160;all&#160;K&#160;machine&#160;once.&#160;(homogeneous&#160;initial&#160;exploration).</p>
+      <p style="position:absolute;top:300px;left:201px;white-space:nowrap" class="ft46">
+        Afterwards&#160;(t&#160;∈&#160;1,&#160;2,&#160;...,&#160;T&#160;),&#160;choose&#160;only&#160;the&#160;best&#160;machine.&#160;i.e.&#160;the&#160;machine&#160;with<br />the&#160;heighest&#160;expected&#160;rewarded&#160;max⟨x⟩</p>
+      <p style="position:absolute;top:323px;left:461px;white-space:nowrap" class="ft43">k</p>
+      <p style="position:absolute;top:318px;left:473px;white-space:nowrap" class="ft42">(exploitation)</p>
+      <p style="position:absolute;top:358px;left:201px;white-space:nowrap" class="ft41">2.2</p>
+      <p style="position:absolute;top:358px;left:247px;white-space:nowrap" class="ft41">Method&#160;2:&#160;Pull&#160;all&#160;slot&#160;machines&#160;m&#160;times&#160;intially</p>
+      <p style="position:absolute;top:387px;left:243px;white-space:nowrap" class="ft42">At&#160;time&#160;t&#160;=&#160;0,&#160;roll&#160;all&#160;K&#160;machine&#160;m&#160;times.&#160;(homogeneous&#160;initial&#160;explo-</p>
+      <p style="position:absolute;top:405px;left:201px;white-space:nowrap" class="ft46">
+        ration).&#160;Afterwards&#160;(t&#160;∈&#160;1,&#160;2,&#160;...,&#160;T&#160;),&#160;choose&#160;only&#160;the&#160;best&#160;machine.&#160;i.e.&#160;the<br />machine&#160;with&#160;the&#160;heighest&#160;expected&#160;rewared&#160;max⟨x⟩
+      </p>
+      <p style="position:absolute;top:428px;left:545px;white-space:nowrap" class="ft43">k</p>
+      <p style="position:absolute;top:423px;left:558px;white-space:nowrap" class="ft42">(exploitation)</p>
+      <p style="position:absolute;top:463px;left:201px;white-space:nowrap" class="ft41">2.3</p>
+      <p style="position:absolute;top:463px;left:247px;white-space:nowrap" class="ft41">Method&#160;3:&#160;Simulated&#160;annealling</p>
+      <p style="position:absolute;top:493px;left:243px;white-space:nowrap" class="ft42">Base&#160;on&#160;a&#160;predefined&#160;acceptance&#160;probability&#160;function,&#160;the&#160;player&#160;choose&#160;to</p>
+      <p style="position:absolute;top:510px;left:201px;white-space:nowrap" class="ft42">either</p>
+      <p style="position:absolute;top:537px;left:219px;white-space:nowrap" class="ft42">1.&#160;randomly&#160;pull&#160;a&#160;slot&#160;machines&#160;to&#160;gain&#160;new&#160;information</p>
+      <p style="position:absolute;top:564px;left:219px;white-space:nowrap" class="ft42">2.&#160;pull&#160;the&#160;slot&#160;machine&#160;with&#160;highest&#160;⟨x⟩</p>
+      <p style="position:absolute;top:570px;left:486px;white-space:nowrap" class="ft43">k</p>
+      <p style="position:absolute;top:603px;left:201px;white-space:nowrap" class="ft42">2.3.1</p>
+      <p style="position:absolute;top:603px;left:253px;white-space:nowrap" class="ft42">ϵ-greedy&#160;algorithm</p>
+      <p style="position:absolute;top:631px;left:243px;white-space:nowrap" class="ft42">In&#160;this&#160;method,&#160;the&#160;acceptance&#160;probability&#160;function&#160;is&#160;a&#160;constant&#160;of&#160;ϵ.</p>
+      <p style="position:absolute;top:664px;left:338px;white-space:nowrap" class="ft42">Acceptance&#160;Probability&#160;Function&#160;=&#160;ϵ</p>
+      <p style="position:absolute;top:705px;left:201px;white-space:nowrap" class="ft42">2.3.2</p>
+      <p style="position:absolute;top:705px;left:253px;white-space:nowrap" class="ft42">Softmax&#160;algorithm</p>
+      <p style="position:absolute;top:733px;left:243px;white-space:nowrap" class="ft42">In&#160;this&#160;method,the&#160;acceptance&#160;probability&#160;function&#160;is&#160;defined&#160;to&#160;be&#160;a&#160;Boltz-</p>
+      <p style="position:absolute;top:751px;left:201px;white-space:nowrap" class="ft42">mann&#160;distribution</p>
+      <p style="position:absolute;top:784px;left:265px;white-space:nowrap" class="ft42">Acceptance&#160;Probability&#160;Function&#160;=&#160;Boltzmann&#160;distribution</p>
+      <p style="position:absolute;top:820px;left:484px;white-space:nowrap" class="ft42">=</p>
+      <p style="position:absolute;top:810px;left:521px;white-space:nowrap" class="ft42">e</p>
+      <p style="position:absolute;top:807px;left:528px;white-space:nowrap" class="ft43">βµ</p>
+      <p style="position:absolute;top:805px;left:542px;white-space:nowrap" class="ft47">t<br />k</p>
+      <p style="position:absolute;top:831px;left:501px;white-space:nowrap" class="ft42">P</p>
+      <p style="position:absolute;top:828px;left:517px;white-space:nowrap" class="ft48">K<br />j=1</p>
+      <p style="position:absolute;top:833px;left:541px;white-space:nowrap" class="ft42">e</p>
+      <p style="position:absolute;top:829px;left:548px;white-space:nowrap" class="ft43">βµ</p>
+      <p style="position:absolute;top:828px;left:563px;white-space:nowrap" class="ft47">t<br />j</p>
+      <p style="position:absolute;top:820px;left:697px;white-space:nowrap" class="ft42">(1)</p>
+      <p style="position:absolute;top:866px;left:201px;white-space:nowrap" class="ft42">where</p>
+      <p style="position:absolute;top:902px;left:302px;white-space:nowrap" class="ft42">β&#160;=</p>
+      <p style="position:absolute;top:892px;left:345px;white-space:nowrap" class="ft42">1</p>
+      <p style="position:absolute;top:913px;left:333px;white-space:nowrap" class="ft42">k</p>
+      <p style="position:absolute;top:918px;left:340px;white-space:nowrap" class="ft43">B</p>
+      <p style="position:absolute;top:913px;left:351px;white-space:nowrap" class="ft42">T</p>
+      <p style="position:absolute;top:911px;left:362px;white-space:nowrap" class="ft43">′</p>
+      <p style="position:absolute;top:934px;left:293px;white-space:nowrap" class="ft42">k</p>
+      <p style="position:absolute;top:939px;left:301px;white-space:nowrap" class="ft43">B</p>
+      <p style="position:absolute;top:934px;left:315px;white-space:nowrap" class="ft42">=&#160;Boltzmann&#160;constant&#160;=&#160;1.380649&#160;×&#160;10</p>
+      <p style="position:absolute;top:930px;left:572px;white-space:nowrap" class="ft43">−23</p>
+      <p style="position:absolute;top:934px;left:594px;white-space:nowrap" class="ft42">J/K</p>
+      <p style="position:absolute;top:956px;left:296px;white-space:nowrap" class="ft42">T</p>
+      <p style="position:absolute;top:953px;left:307px;white-space:nowrap" class="ft43">′</p>
+      <p style="position:absolute;top:956px;left:315px;white-space:nowrap" class="ft42">=&#160;temperature</p>
+      <p style="position:absolute;top:1044px;left:455px;white-space:nowrap" class="ft42">4</p>
+    </div>
+  </body>
+
+</html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <br />
+    <style type="text/css">
+      <!--
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .ft50 {
+        font-size: 15px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft51 {
+        font-size: 12px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft52 {
+        font-size: 8px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft53 {
+        font-size: 5px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft54 {
+        font-size: 19px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft55 {
+        font-size: 12px;
+        line-height: 17px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft56 {
+        font-size: 8px;
+        line-height: 9px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft57 {
+        font-size: 5px;
+        line-height: 7px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft58 {
+        font-size: 19px;
+        line-height: 26px;
+        font-family: Times;
+        color: #000000;
+      }
+
+      .ft59 {
+        font-size: 8px;
+        line-height: 11px;
+        font-family: Times;
+        color: #000000;
+      }
+      -->
+    </style>
+  </head>
+
+  <body bgcolor="#A0A0A0" vlink="blue" link="blue">
+    <div id="page5-div" style="position:relative;width:918px;height:1188px;">
+      <img width="918" height="1188" src="target005.png" alt="background image" />
+      <p style="position:absolute;top:190px;left:201px;white-space:nowrap" class="ft50">2.4</p>
+      <p style="position:absolute;top:190px;left:247px;white-space:nowrap" class="ft50">Method&#160;4:&#160;Upper&#160;confidence&#160;bound&#160;algorithm</p>
+      <p style="position:absolute;top:219px;left:243px;white-space:nowrap" class="ft51">This&#160;method&#160;choose&#160;the&#160;best&#160;slot&#160;machine&#160;by&#160;the&#160;upper&#160;bound&#160;of&#160;esti-</p>
+      <p style="position:absolute;top:237px;left:201px;white-space:nowrap" class="ft55">
+        mated&#160;expected&#160;value&#160;instead&#160;of&#160;the&#160;expected&#160;value&#160;itself.&#160;It&#160;is&#160;quoted&#160;as&#160;the<br />principle&#160;of&#160;“optimism&#160;in&#160;the&#160;face&#160;of&#160;uncertainty”</p>
+      <p style="position:absolute;top:282px;left:243px;white-space:nowrap" class="ft51">Define&#160;B</p>
+      <p style="position:absolute;top:280px;left:301px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:289px;left:301px;white-space:nowrap" class="ft52">k</p>
+      <p style="position:absolute;top:282px;left:313px;white-space:nowrap" class="ft51">as&#160;the&#160;upper&#160;confidence&#160;bound&#160;of&#160;the&#160;sample&#160;mean&#160;estimation</p>
+      <p style="position:absolute;top:300px;left:201px;white-space:nowrap" class="ft51">for&#160;k-th&#160;machine&#160;up&#160;to&#160;time&#160;table.</p>
+      <p style="position:absolute;top:328px;left:295px;white-space:nowrap" class="ft51">B</p>
+      <p style="position:absolute;top:325px;left:307px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:335px;left:306px;white-space:nowrap" class="ft52">k</p>
+      <p style="position:absolute;top:328px;left:317px;white-space:nowrap" class="ft51">=&#160;µ</p>
+      <p style="position:absolute;top:325px;left:342px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:328px;left:353px;white-space:nowrap" class="ft51">+&#160;constant&#160;×&#160;σ</p>
+      <p style="position:absolute;top:334px;left:450px;white-space:nowrap" class="ft52">µ</p>
+      <p style="position:absolute;top:333px;left:457px;white-space:nowrap" class="ft57">t<br />k</p>
+      <p style="position:absolute;top:363px;left:317px;white-space:nowrap" class="ft51">=</p>
+      <p style="position:absolute;top:353px;left:336px;white-space:nowrap" class="ft51">s</p>
+      <p style="position:absolute;top:350px;left:343px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:373px;left:335px;white-space:nowrap" class="ft51">n</p>
+      <p style="position:absolute;top:371px;left:344px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:363px;left:356px;white-space:nowrap" class="ft51">+&#160;constant&#160;×</p>
+      <p style="position:absolute;top:353px;left:458px;white-space:nowrap" class="ft51">σ</p>
+      <p style="position:absolute;top:372px;left:447px;white-space:nowrap" class="ft51">pn</p>
+      <p style="position:absolute;top:373px;left:471px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:408px;left:317px;white-space:nowrap" class="ft51">=</p>
+      <p style="position:absolute;top:397px;left:336px;white-space:nowrap" class="ft51">s</p>
+      <p style="position:absolute;top:395px;left:343px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:418px;left:335px;white-space:nowrap" class="ft51">n</p>
+      <p style="position:absolute;top:416px;left:344px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:408px;left:356px;white-space:nowrap" class="ft51">+&#160;b</p>
+      <p style="position:absolute;top:405px;left:378px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:397px;left:397px;white-space:nowrap" class="ft51">1</p>
+      <p style="position:absolute;top:417px;left:385px;white-space:nowrap" class="ft51">pn</p>
+      <p style="position:absolute;top:418px;left:409px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:443px;left:302px;white-space:nowrap" class="ft51">b</p>
+      <p style="position:absolute;top:440px;left:308px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:443px;left:317px;white-space:nowrap" class="ft51">=&#160;parameter&#160;on&#160;controlling&#160;the&#160;confidence&#160;level</p>
+      <p style="position:absolute;top:465px;left:290px;white-space:nowrap" class="ft51">σ</p>
+      <p style="position:absolute;top:472px;left:299px;white-space:nowrap" class="ft52">µ</p>
+      <p style="position:absolute;top:470px;left:306px;white-space:nowrap" class="ft57">t<br />k</p>
+      <p style="position:absolute;top:465px;left:317px;white-space:nowrap" class="ft51">=&#160;standard&#160;deviation&#160;of&#160;sample&#160;mean</p>
+      <p style="position:absolute;top:495px;left:317px;white-space:nowrap" class="ft51">=</p>
+      <p style="position:absolute;top:485px;left:346px;white-space:nowrap" class="ft51">σ</p>
+      <p style="position:absolute;top:504px;left:335px;white-space:nowrap" class="ft51">pn</p>
+      <p style="position:absolute;top:505px;left:359px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:534px;left:201px;white-space:nowrap" class="ft51">For&#160;optimal&#160;setting,&#160;use</p>
+      <p style="position:absolute;top:562px;left:331px;white-space:nowrap" class="ft51">b</p>
+      <p style="position:absolute;top:559px;left:337px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:562px;left:346px;white-space:nowrap" class="ft51">=&#160;c</p>
+      <p style="position:absolute;top:558px;left:369px;white-space:nowrap" class="ft51">p</p>
+      <p style="position:absolute;top:562px;left:384px;white-space:nowrap" class="ft51">log&#160;(mK&#160;+&#160;t)</p>
+      <p style="position:absolute;top:584px;left:244px;white-space:nowrap" class="ft51">where,</p>
+      <p style="position:absolute;top:584px;left:331px;white-space:nowrap" class="ft51">c&#160;is&#160;a&#160;parameter&#160;for&#160;turning&#160;the&#160;level&#160;of&#160;exploration</p>
+      <p style="position:absolute;top:639px;left:359px;white-space:nowrap" class="ft51">∴&#160;B</p>
+      <p style="position:absolute;top:636px;left:385px;white-space:nowrap" class="ft52">t</p>
+      <p style="position:absolute;top:646px;left:384px;white-space:nowrap" class="ft52">k</p>
+      <p style="position:absolute;top:639px;left:395px;white-space:nowrap" class="ft51">=</p>
+      <p style="position:absolute;top:629px;left:414px;white-space:nowrap" class="ft51">s</p>
+      <p style="position:absolute;top:627px;left:421px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:649px;left:413px;white-space:nowrap" class="ft51">n</p>
+      <p style="position:absolute;top:647px;left:422px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:639px;left:434px;white-space:nowrap" class="ft51">+&#160;c</p>
+      <p style="position:absolute;top:622px;left:456px;white-space:nowrap" class="ft51">s</p>
+      <p style="position:absolute;top:629px;left:473px;white-space:nowrap" class="ft51">log&#160;(mK&#160;+&#160;t)</p>
+      <p style="position:absolute;top:649px;left:506px;white-space:nowrap" class="ft51">n</p>
+      <p style="position:absolute;top:647px;left:515px;white-space:nowrap" class="ft56">t<br />k</p>
+      <p style="position:absolute;top:639px;left:697px;white-space:nowrap" class="ft51">(2)</p>
+      <p style="position:absolute;top:679px;left:201px;white-space:nowrap" class="ft55">
+        We&#160;can&#160;see&#160;that&#160;the&#160;definition&#160;of&#160;the&#160;upper&#160;confidence&#160;bound&#160;itself&#160;implied<br />balanced&#160;between&#160;the&#160;exploration&#160;and&#160;exploitation&#160;modes.&#160;When&#160;the&#160;number<br />of&#160;pull&#160;is&#160;low,&#160;the&#160;upper&#160;bound&#160;was&#160;large,&#160;which&#160;encourage&#160;the&#160;machine&#160;to&#160;be<br />chosen&#160;and&#160;gain&#160;more&#160;information&#160;on&#160;it.&#160;When&#160;the&#160;number&#160;of&#160;pull&#160;is&#160;high,&#160;the<br />upper&#160;bound&#160;tends&#160;to&#160;be&#160;⟨x⟩
+      </p>
+      <p style="position:absolute;top:756px;left:388px;white-space:nowrap" class="ft52">k</p>
+      <p style="position:absolute;top:750px;left:395px;white-space:nowrap" class="ft51">,&#160;which&#160;return&#160;to&#160;our&#160;original&#160;stategy&#160;of&#160;choosing</p>
+      <p style="position:absolute;top:768px;left:201px;white-space:nowrap" class="ft51">the&#160;slot&#160;machine&#160;with&#160;highest&#160;expected&#160;value.</p>
+      <p style="position:absolute;top:812px;left:201px;white-space:nowrap" class="ft54">3</p>
+      <p style="position:absolute;top:812px;left:237px;white-space:nowrap" class="ft58">Combination&#160;of&#160;simulated&#160;annealling&#160;and&#160;Up-<br />per&#160;confidence&#160;bound&#160;algorithm</p>
+      <p style="position:absolute;top:877px;left:243px;white-space:nowrap" class="ft51">Another&#160;complex&#160;approach&#160;is&#160;to&#160;use&#160;both&#160;(1)&#160;and&#160;(2).&#160;By&#160;substituting</p>
+      <p style="position:absolute;top:895px;left:201px;white-space:nowrap" class="ft55">
+        the&#160;sample&#160;mean&#160;µ&#160;in&#160;(1)&#160;with&#160;the&#160;upper&#160;confidence&#160;bound&#160;B&#160;in&#160;(2),&#160;we&#160;have&#160;a<br />new&#160;acceptance&#160;probability&#160;function</p>
+      <p style="position:absolute;top:941px;left:294px;white-space:nowrap" class="ft51">Acceptance&#160;Probability&#160;Function&#160;for&#160;k-th&#160;machine</p>
+      <p style="position:absolute;top:977px;left:298px;white-space:nowrap" class="ft51">=</p>
+      <p style="position:absolute;top:966px;left:335px;white-space:nowrap" class="ft51">e</p>
+      <p style="position:absolute;top:964px;left:342px;white-space:nowrap" class="ft52">βB</p>
+      <p style="position:absolute;top:962px;left:359px;white-space:nowrap" class="ft53">t</p>
+      <p style="position:absolute;top:969px;left:358px;white-space:nowrap" class="ft53">k</p>
+      <p style="position:absolute;top:988px;left:316px;white-space:nowrap" class="ft51">P</p>
+      <p style="position:absolute;top:985px;left:332px;white-space:nowrap" class="ft59">K<br />j=1</p>
+      <p style="position:absolute;top:990px;left:355px;white-space:nowrap" class="ft51">e</p>
+      <p style="position:absolute;top:986px;left:362px;white-space:nowrap" class="ft52">βB</p>
+      <p style="position:absolute;top:985px;left:379px;white-space:nowrap" class="ft53">t</p>
+      <p style="position:absolute;top:992px;left:379px;white-space:nowrap" class="ft53">j</p>
+      <p style="position:absolute;top:1044px;left:455px;white-space:nowrap" class="ft51">5</p>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,184 @@
+<html>
+
+  <head>
+    <style>
+      * {
+        scroll-behavior: smooth;
+        box-sizing: border-box;
+      }
+
+      nav#sidebar {
+        width: 160px;
+        position: fixed;
+        top: 0;
+        left: -251px;
+        width: 250px;
+        background-color: #E7EAEF;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: 0.5s;
+        font-family: source sans pro, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+      }
+
+      nav#sidebar h1 {
+        display: flex;
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: #5BA199;
+        margin: 0;
+      }
+
+      nav#sidebar a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 15px;
+        color: black;
+        text-decoration: none;
+        line-height: 27px;
+        /* border-top: 1px solid rgba(255, 255, 255, .8); */
+        /* border-bottom: 1px solid black; */
+      }
+
+      nav#sidebar a:hover {
+        background-color: #BBC6C8;
+        padding-left: 20px;
+      }
+
+      nav#sidebar svg {
+        fill: currentColor;
+        padding-right: 7px;
+      }
+
+      input#check {
+        display: none;
+      }
+
+      input#check:checked~nav#sidebar {
+        left: 0;
+      }
+
+      label svg.openNav {
+        cursor: pointer;
+        height: 2em;
+        width: 2em;
+        color: red;
+        background-color: whitesmoke;
+        padding: 3px 5px;
+        border-radius: 20%;
+      }
+
+      label svg.closeNav {
+        cursor: pointer;
+        height: 2.4em;
+        width: 2.4em;
+        padding: 10px;
+        border-radius: 50%;
+        color: #E5E3E4;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      div.bottomRightButtons {
+        position: fixed;
+        right: 25px;
+        bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 5.5em;
+      }
+
+      button#btn-back-to-top {
+        border-radius: 50%;
+        height: 2.4em;
+        width: 2.4em;
+        background-color: #FF9C9C;
+        padding: 0;
+        border: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 999;
+        cursor: pointer;
+      }
+
+      nav#sidebar a.secondaryItems {
+        padding-left: 40px;
+      }
+
+      nav#sidebar a.secondaryItems:hover {
+        background-color: #BBC6C8;
+        padding-left: 45px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="nav-overlay">
+      <input type="checkbox" id="check">
+      <label for="check">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list openNav" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+        </svg>
+      </label>
+      <nav id="sidebar" class="flex-container">
+        <h1>Menu</h1>
+        <label for="check">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill closeNav" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+          </svg>
+        </label>
+        <a style="color:#26395a" href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+            <path
+              d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+          </svg>
+          <span>Home</span></a>
+        <a style="color:#355a51" href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path
+              d="M64 32C28.7 32 0 60.7 0 96v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm48 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM64 288c-35.3 0-64 28.7-64 64v64c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V352c0-35.3-28.7-64-64-64H64zm280 72a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm56 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
+          </svg>
+          <span>PhyLab's cluster</span></a>
+        <a style="color:#205dc5;" href="3dPrinting.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path
+              d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zM432 248a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+          </svg>
+          <span>3D Printing instruction</span></a>
+        <a style="color:#e57b24;" href="blenderShortcut.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+            <path
+              d="M234.5 5.7c13.9-5 29.1-5 43.1 0l192 68.6C495 83.4 512 107.5 512 134.6V377.4c0 27-17 51.2-42.5 60.3l-192 68.6c-13.9 5-29.1 5-43.1 0l-192-68.6C17 428.6 0 404.5 0 377.4V134.6c0-27 17-51.2 42.5-60.3l192-68.6zM256 66L82.3 128 256 190l173.7-62L256 66zm32 368.6l160-57.1v-188L288 246.6v188z" />
+          </svg>
+          <span>Blender Shortcut</span></a>
+        <a style="color:#32c3a6;" href="facilities.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+            <path
+              d="M160 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM126.5 199.3c-1 .4-1.9 .8-2.9 1.2l-8 3.5c-16.4 7.3-29 21.2-34.7 38.2l-2.6 7.8c-5.6 16.8-23.7 25.8-40.5 20.2s-25.8-23.7-20.2-40.5l2.6-7.8c11.4-34.1 36.6-61.9 69.4-76.5l8-3.5c20.8-9.2 43.3-14 66.1-14c44.6 0 84.8 26.8 101.9 67.9L281 232.7l21.4 10.7c15.8 7.9 22.2 27.1 14.3 42.9s-27.1 22.2-42.9 14.3L247 287.3c-10.3-5.2-18.4-13.8-22.8-24.5l-9.6-23-19.3 65.5 49.5 54c5.4 5.9 9.2 13 11.2 20.8l23 92.1c4.3 17.1-6.1 34.5-23.3 38.8s-34.5-6.1-38.8-23.3l-22-88.1-70.7-77.1c-14.8-16.1-20.3-38.6-14.7-59.7l16.9-63.5zM68.7 398l25-62.4c2.1 3 4.5 5.8 7 8.6l40.7 44.4-14.5 36.2c-2.4 6-6 11.5-10.6 16.1L54.6 502.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L68.7 398z" />
+          </svg>
+          <span>Facilities Opening Hours </span></a>
+      </nav>
+      <div class="bottomRightButtons">
+        <label for="check">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list openNav" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+          </svg>
+        </label>
+        <button type="button" id="btn-back-to-top">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </body>
+
+</html>
