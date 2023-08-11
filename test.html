@@ -3,10 +3,36 @@
   <head>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      ol {
+        counter-reset: item;
+      }
+
+      ol>li {
+        display: block;
+      }
+
+      ol>li:before {
+        content: counters(item, ".") ".";
+        counter-increment: item;
+        padding-right: 10px;
+        margin-left: -20px;
+      }
+    </style>
   </head>
 
   <body>
-    <p>\(y=mx+c\)</p>
+    <ol>
+      <li>
+        <h2>123</h2>
+        <ol>
+          <li></li>
+          <li></li>
+        </ol>
+      </li>
+      <li></li>
+      <li></li>
+    </ol>
   </body>
 
 </html>
