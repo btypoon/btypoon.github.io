@@ -63,6 +63,7 @@
         overflow-y: clip;
       }
 
+      /* Scrollbar-Style */
       div.displayMath::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         background-color: #F5F5F5;
@@ -84,7 +85,7 @@
     <main>
       <section class='pdfcontent'>
         <h1>Multi-armed Bandit</h1>
-        <p>A self written note for brainstorming and clearing the concept. Offer in both mobile friendly webpage and downloadable pdf. Still in Progress. <span style="display:block;text-align:right;">Last updated 9/Aug/2023</span></p>
+        <p>A self written note for brainstorming and clearing the concept. Offer in both mobile friendly webpage and downloadable pdf. Still in Progress. <span style="display:block;text-align:right;">Last updated 14/Aug/2023</span></p>
         <hr>
         <section>
           <h2>Game rule and symbol definition</h2>
@@ -158,11 +159,11 @@
         <section>
           <h2>Balance between exploration and exploitation modes</h2>
           <h3>Method 1: Pull all slot machines once intially</h3>
-          <p>At time $t=0$, roll all K machine once. <em>homogeneous initial exploration</em>. Afterwards ($t\in{1,2,...,T}$), choose only the best machine. i.e. the machine with the heighest expected rewarded $max\langle x\rangle _k$
-            <em>exploitation</em></p>
+          <p>At time $t=0$, roll all K machine once. (<em>homogeneous initial exploration</em>). Afterwards ($t\in{1,2,...,T}$), choose only the best machine. i.e. the machine with the heighest expected rewarded $max\langle x\rangle _k$
+            (<em>exploitation</em>)</p>
           <h3>Method 2: Pull all slot machines $m$ times intially</h3>
-          <p>At time $t=0$, roll all K machine $m$ times. <em>homogeneous initial exploration</em>. Afterwards ($t\in{1,2,...,T}$), choose only the best machine. i.e. the machine with the heighest expected rewared $max\langle x\rangle _k$
-            <em>exploitation</em></p>
+          <p>At time $t=0$, roll all K machine $m$ times. (<em>homogeneous initial exploration</em>). Afterwards ($t\in{1,2,...,T}$), choose only the best machine. i.e. the machine with the heighest expected rewared $max\langle x\rangle _k$
+            (<em>exploitation</em>)</p>
           <h3>Method 3: Simulated annealling</h3>
           <p>Base on a predefined <em>acceptance probability function</em>, the player choose to either
           <ol>
