@@ -113,20 +113,21 @@
           <p>In this method, the <em>acceptance probability function</em> is a constant of $\epsilon$. \begin{align*} \text{Acceptance Probability Function}=\epsilon \end{align*}</p>
           <h4>Softmax algorithm</h4>
           <p> In this method,the <em>acceptance probability function</em> is defined to be a <em>Boltzmann distribution</em> \begin{align} \text{Acceptance Probability Function}& =\text{Boltzmann distribution} \nonumber \\ &
-            =\frac{e^{\beta\mu^t_k}}{\sum^K_{j=1}{e^{\beta\mu^t_j}}} \end{align} where \begin{align*} \beta & =\frac{1}{k_BT'} \tag{1a} \\ k_B & = \text{Boltzmann constant} = 1.380649 \times 10^{-23} J/K \\ T' & =\text{temperature} \end{align*}</p>
+            =\frac{e^{\beta\mu^t_k}}{\sum^K_{j=1}{e^{\beta\mu^t_j}}} \tag{1}\label{1}\end{align} where \begin{align*} \beta & =\frac{1}{k_BT'} \\ k_B & = \text{Boltzmann constant} = 1.380649 \times 10^{-23} J/K \\ T' & =\text{temperature}
+            \end{align*}</p>
           <h3>Method 4: Upper confidence bound algorithm</h3>
           <p>This method choose the best slot machine by the upper bound of estimated expected value instead of the expected value itself. It is quoted as the principle of <em>"optimism in the face of uncertainty''</em> Define $B^t_k$ as the upper
             confidence bound of the sample mean estimation for $k$-th machine up to time $table$. \begin{align*} B^t_k & =\mu^t_k+\text{constant}\times \sigma_{\mu^t_k} \\ & =\frac{s^t_k}{n^t_k}+\text{constant}\times \frac{\sigma}{\sqrt{n^t_k}} \\ &
             =\frac{s^t_k}{n^t_k}+b^t\frac{1}{\sqrt{n^t_k}} \\ b^t & =\text{parameter on controlling the confidence level} \\ \sigma_{\mu^t_k} & =\text{standard deviation of sample mean} \\ & =\frac{\sigma}{\sqrt{n^t_k}} \end{align*} For optimal
-            setting, use \begin{align*} & & & b^t=c\sqrt{\log{(mK+t)}} \\ & \text{where,} & & \text{c is a parameter for turning the level of exploration } \end{align*} \begin{align}\tag{2}\label{2} \therefore
-            B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \end{align} We can see that the definition of the upper confidence bound itself implied balanced between the exploration and exploitation modes. When the number of pull is low,
-            the upper bound was large, which encourage the machine to be chosen and gain more information on it. When the number of pull is high, the upper bound tends to be $\langle x\rangle _k$, which return to our original stategy of choosing the
-            slot machine with highest expected value.</p>
+            setting, use \begin{align*} & & & b^t=c\sqrt{\log{(mK+t)}} \\ & \text{where,} & & \text{c is a parameter for turning the level of exploration } \end{align*} \begin{align}\therefore
+            B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \tag{2}\label{2}\end{align} We can see that the definition of the upper confidence bound itself implied balanced between the exploration and exploitation modes. When the number
+            of pull is low, the upper bound was large, which encourage the machine to be chosen and gain more information on it. When the number of pull is high, the upper bound tends to be $\langle x\rangle _k$, which return to our original stategy
+            of choosing the slot machine with highest expected value.</p>
         </section>
         <section>
           <h2>Combination of simulated annealling and Upper confidence bound algorithm</h2>
-          <p>Another complex approach is to use both \eqref{1a} and \eqref{2}. By substituting the sample mean $\mu$ in \eqref{1} with the upper confidence bound $B$ in \eqref{2}, we have a new <em>acceptance probability function</em> \begin{align*}
-            & \text{Acceptance Probability Function for $k$-th machine} \\ & =\frac{e^{\beta B^t_k}}{\sum^K_{j=1}{e^{\beta B^t_j}}} \end{align*}</p>
+          <p>Another complex approach is to use both \eqref{1} and \eqref{2}. By substituting the sample mean $\mu$ in \eqref{1} with the upper confidence bound $B$ in \eqref{2}, we have a new <em>acceptance probability function</em> \begin{align*} &
+            \text{Acceptance Probability Function for $k$-th machine} \\ & =\frac{e^{\beta B^t_k}}{\sum^K_{j=1}{e^{\beta B^t_j}}} \end{align*}</p>
         </section>
       </section>
       <hr>

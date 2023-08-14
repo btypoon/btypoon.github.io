@@ -1,0 +1,3 @@
+import re
+
+tex = ['\emph{']
