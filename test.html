@@ -18,21 +18,25 @@
         padding-right: 10px;
         margin-left: -20px;
       }
+
+      body {
+        counter-reset: chapter;
+      }
+
+      h2::before {
+        counter-increment: chapter;
+        content: counter(chapter)". ";
+        display: inline-block;
+        text-align: right;
+      }
     </style>
   </head>
 
   <body>
-    <ol>
-      <li>
-        <h2>123</h2>
-        <ol>
-          <li></li>
-          <li></li>
-        </ol>
-      </li>
-      <li></li>
-      <li></li>
-    </ol>
+    <h2>updated 14-8-2023</h2>
+    <h2></h2>
+    <h2></h2>
+    <ng-container *ngFor="let _ of [].constructor(20)">🐱</ng-container>
   </body>
 
 </html>
