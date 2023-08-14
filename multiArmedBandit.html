@@ -57,6 +57,10 @@
       section.pdfcontent p {
         text-indent: 30px;
       }
+
+      div.displayMath {
+        overflow: auto visible;
+      }
     </style>
   </head>
 
@@ -70,28 +74,68 @@
           <h2>Game rule and symbol definition</h2>
           <p>
           <ul>
-            <li> Let there be in total $K$ slot machines. Subscript $k$ define the k-th machine from the set of $K$ machines. \begin{align*} k\in\{1,2,...,K\} \end{align*} </li>
-            <li> Let the game to be round based. In each round, the player can only choose to play one slot machines. Define the concept of time $t$ to be the decrete round number in the set of $T$ total rounds \begin{align*} t\in\{1,2,...,T\}
-              \end{align*} </li>
-            <li> Define the chosen $k$-th slot machine at time $t$ to be \begin{align*} a^t\in\{1,2,...,K\}\ at\ time\ t \end{align*} </li>
-            <li> Let the variable $x$ be the reward of slot machine. Define $P_k(x)$ to be the probability density function of the rewards $x$ of $k$-th machine. \begin{align*} \text{Probability of getting }x_k\text{ from k-th machine }=P_k(x_k)dx
-              \end{align*} </li>
-            <li> Define expected value of reward of k-th machine as \begin{align*} \langle x \rangle_k = \int^{\infty}_{-\infty} xP_k(x)dx \end{align*} </li>
+            <li> Let there be in total $K$ slot machines. Subscript $k$ define the k-th machine from the set of $K$ machines. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} k\in\{1,2,...,K\} \end{align*}</div>
+              </div>
+            </li>
+            <li> Let the game to be round based. In each round, the player can only choose to play one slot machines. Define the concept of time $t$ to be the decrete round number in the set of $T$ total rounds <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} t\in\{1,2,...,T\} \end{align*}</div>
+              </div>
+            </li>
+            <li> Define the chosen $k$-th slot machine at time $t$ to be <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} a^t\in\{1,2,...,K\}\ at\ time\ t \end{align*}</div>
+              </div>
+            </li>
+            <li> Let the variable $x$ be the reward of slot machine. Define $P_k(x)$ to be the probability density function of the rewards $x$ of $k$-th machine. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} \text{Probability of getting }x_k\text{ from k-th machine }=P_k(x_k)dx \end{align*}</div>
+              </div>
+            </li>
+            <li> Define expected value of reward of k-th machine as <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} \langle x \rangle_k = \int^{\infty}_{-\infty} xP_k(x)dx \end{align*}</div>
+              </div>
+            </li>
             <li> The true values of $\langle x \rangle$ are unknown for all machines </li>
-            <li> Base on the expected value of rewards of all machine, in every round, the player should always choose to play the slot machine with the highest EV. \begin{align*} chosen\ a_t = Best\ k = max \langle x \rangle_k \end{align*} </li>
-            <li> In other words, player want to maximize their cumulative reward. Define cumulative rewards up to $T$ rounds as $R$: \begin{align*} R=\sum_{t=0}^{T}{x_{a^t}} \end{align*} </li>
-            <li> In theory, the cumulative regret is more useful for analysis. Define cumulative regret as small letter $r$: \begin{align*} r & =\sum_{t=0}^{T}{( max \langle x \rangle_k - x_{a^t})} \\ & =(T\times max \langle x \rangle_k) -
-              (cumulative\ reward) \end{align*} </li>
-            <li> Define $n^t_k$ as the number of times $k$-th slot machines has been pulled up to time $t$. \begin{align*} n^t_k = \sum^t_{\tau=1}{\delta(a^\tau,k)+n^0_k} \end{align*} </li>
-            <li> In some strategies, all slots machine was pulled a fixed amount of times for initilization. Therefore, $n^0_k$ was seperated from $n^t_k$ as the initial pull number. \begin{align*} n^0_k =\text{initial pull number for k-th machines
-              at time t=0} \end{align*} </li>
-            <li> Define the cumulative reward contributed by $k$-th slot machine up to time $t$ as $s^t_k$. \begin{align*} s^t_k=\sum^t_{\tau=1}{x_{a^{\tau}}\delta(a^\tau,k)+s^0_k} \end{align*} </li>
-            <li> Similarly, due to initilization, $s^0_k$ was seperated from $s^t_k$. \begin{align*} s^0_k =\text{initial reward contributed by k-th machines at time t=0} \end{align*} </li>
-            <li> Connection between cumulative reward $R$, $x$ and $s$ \begin{align*} R=\sum^T_{t=0}x_{a^t} = \sum^K_{k=1}s^T_k \end{align*} </li>
-            <li> Connection between cumulative regret $r$, $x$ and $s$ if there are $m$ initial pull for all $K$ slot machines \begin{align*} r & = \text{(max reward) }-\text{ (cumulative reward)} \\ & = [(T+mK)\times max \langle x \rangle_k] -
-              \sum^K_{k=1}{s^T_k} \end{align*} </li>
-            <li> Since the true values of $\langle x \rangle_k$ are unknown for all machines, we use sample mean as the best estimator for the population mean. Define the $\mu^t_k$ as the sample mean of $k$-th machine at time $t$ \begin{align*}
-              \text{sample mean }\mu^t_k=\frac{s^t_k}{n^t_k} \end{align*} </li>
+            <li> Base on the expected value of rewards of all machine, in every round, the player should always choose to play the slot machine with the highest EV. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} chosen\ a_t = Best\ k = max \langle x \rangle_k \end{align*}</div>
+              </div>
+            </li>
+            <li> In other words, player want to maximize their cumulative reward. Define cumulative rewards up to $T$ rounds as $R$: <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} R=\sum_{t=0}^{T}{x_{a^t}} \end{align*}</div>
+              </div>
+            </li>
+            <li> In theory, the cumulative regret is more useful for analysis. Define cumulative regret as small letter $r$: <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} r & =\sum_{t=0}^{T}{( max \langle x \rangle_k - x_{a^t})} \\ & =(T\times max \langle x \rangle_k) - (cumulative\ reward) \end{align*}</div>
+              </div>
+            </li>
+            <li> Define $n^t_k$ as the number of times $k$-th slot machines has been pulled up to time $t$. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} n^t_k = \sum^t_{\tau=1}{\delta(a^\tau,k)+n^0_k} \end{align*}</div>
+              </div>
+            </li>
+            <li> In some strategies, all slots machine was pulled a fixed amount of times for initilization. Therefore, $n^0_k$ was seperated from $n^t_k$ as the initial pull number. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} n^0_k =\text{initial pull number for k-th machines at time t=0} \end{align*}</div>
+              </div>
+            </li>
+            <li> Define the cumulative reward contributed by $k$-th slot machine up to time $t$ as $s^t_k$. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} s^t_k=\sum^t_{\tau=1}{x_{a^{\tau}}\delta(a^\tau,k)+s^0_k} \end{align*}</div>
+              </div>
+            </li>
+            <li> Similarly, due to initilization, $s^0_k$ was seperated from $s^t_k$. <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} s^0_k =\text{initial reward contributed by k-th machines at time t=0} \end{align*}</div>
+              </div>
+            </li>
+            <li> Connection between cumulative reward $R$, $x$ and $s$ <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} R=\sum^T_{t=0}x_{a^t} = \sum^K_{k=1}s^T_k \end{align*}</div>
+              </div>
+            </li>
+            <li> Connection between cumulative regret $r$, $x$ and $s$ if there are $m$ initial pull for all $K$ slot machines <div class='displayMath'>
+                <div class='displayMath'>\begin{align*} r & = \text{(max reward) }-\text{ (cumulative reward)} \\ & = [(T+mK)\times max \langle x \rangle_k] - \sum^K_{k=1}{s^T_k} \end{align*}</div>
+              </div>
+            </li>
+            <li> Since the true values of $\langle x \rangle_k$ are unknown for all machines, we use sample mean as the best estimator for the population mean. Define the $\mu^t_k$ as the sample mean of $k$-th machine at time $t$ <div
+                class='displayMath'>
+                <div class='displayMath'>\begin{align*} \text{sample mean }\mu^t_k=\frac{s^t_k}{n^t_k} \end{align*}</div>
+              </div>
+            </li>
           </ul>
           </p>
         </section>
@@ -110,24 +154,42 @@
             <li>pull the slot machine with highest $\langle x\rangle _k$</li>
           </ol>
           <h4>$\epsilon$-greedy algorithm</h4>
-          <p>In this method, the <em>acceptance probability function</em> is a constant of $\epsilon$. \begin{align*} \text{Acceptance Probability Function}=\epsilon \end{align*}</p>
+          <p>In this method, the <em>acceptance probability function</em> is a constant of $\epsilon$.
+          <div class='displayMath'>
+            <div class='displayMath'>\begin{align*} \text{Acceptance Probability Function}=\epsilon \end{align*}</div>
+          </div>
+          </p>
           <h4>Softmax algorithm</h4>
-          <p> In this method,the <em>acceptance probability function</em> is defined to be a <em>Boltzmann distribution</em> \begin{align} \text{Acceptance Probability Function}& =\text{Boltzmann distribution} \nonumber \\ &
-            =\frac{e^{\beta\mu^t_k}}{\sum^K_{j=1}{e^{\beta\mu^t_j}}} \tag{1}\label{1}\end{align} where \begin{align*} \beta & =\frac{1}{k_BT'} \\ k_B & = \text{Boltzmann constant} = 1.380649 \times 10^{-23} J/K \\ T' & =\text{temperature}
-            \end{align*}</p>
+          <p> In this method,the <em>acceptance probability function</em> is defined to be a <em>Boltzmann distribution</em>
+          <div class=displayMath>
+            <div class='displayMath'>
+              <div class='displayMath'>\begin{align} \text{Acceptance Probability Function}& =\text{Boltzmann distribution} \nonumber \\ & =\frac{e^{\beta\mu^t_k}}{\sum^K_{j=1}{e^{\beta\mu^t_j}}} \tag{1}\label{1}\end{align}</div>
+            </div>
+          </div> where <div class='displayMath'>
+            <div class='displayMath'>\begin{align*} \beta & =\frac{1}{k_BT'} \\ k_B & = \text{Boltzmann constant} = 1.380649 \times 10^{-23} J/K \\ T' & =\text{temperature} \end{align*}</div>
+          </div>
+          </p>
           <h3>Method 4: Upper confidence bound algorithm</h3>
           <p>This method choose the best slot machine by the upper bound of estimated expected value instead of the expected value itself. It is quoted as the principle of <em>"optimism in the face of uncertainty''</em> Define $B^t_k$ as the upper
-            confidence bound of the sample mean estimation for $k$-th machine up to time $table$. \begin{align*} B^t_k & =\mu^t_k+\text{constant}\times \sigma_{\mu^t_k} \\ & =\frac{s^t_k}{n^t_k}+\text{constant}\times \frac{\sigma}{\sqrt{n^t_k}} \\ &
-            =\frac{s^t_k}{n^t_k}+b^t\frac{1}{\sqrt{n^t_k}} \\ b^t & =\text{parameter on controlling the confidence level} \\ \sigma_{\mu^t_k} & =\text{standard deviation of sample mean} \\ & =\frac{\sigma}{\sqrt{n^t_k}} \end{align*} For optimal
-            setting, use \begin{align*} & & & b^t=c\sqrt{\log{(mK+t)}} \\ & \text{where,} & & \text{c is a parameter for turning the level of exploration } \end{align*} \begin{align}\therefore
-            B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \tag{2}\label{2}\end{align} We can see that the definition of the upper confidence bound itself implied balanced between the exploration and exploitation modes. When the number
-            of pull is low, the upper bound was large, which encourage the machine to be chosen and gain more information on it. When the number of pull is high, the upper bound tends to be $\langle x\rangle _k$, which return to our original stategy
-            of choosing the slot machine with highest expected value.</p>
+            confidence bound of the sample mean estimation for $k$-th machine up to time $table$.
+          <div class='displayMath'>
+            <div class='displayMath'>\begin{align*} B^t_k & =\mu^t_k+\text{constant}\times \sigma_{\mu^t_k} \\ & =\frac{s^t_k}{n^t_k}+\text{constant}\times \frac{\sigma}{\sqrt{n^t_k}} \\ & =\frac{s^t_k}{n^t_k}+b^t\frac{1}{\sqrt{n^t_k}} \\ b^t &
+              =\text{parameter on controlling the confidence level} \\ \sigma_{\mu^t_k} & =\text{standard deviation of sample mean} \\ & =\frac{\sigma}{\sqrt{n^t_k}} \end{align*}</div>
+          </div> For optimal setting, use <div class='displayMath'>
+            <div class='displayMath'>\begin{align*} & & & b^t=c\sqrt{\log{(mK+t)}} \\ & \text{where,} & & \text{c is a parameter for turning the level of exploration } \end{align*}</div>
+          </div>
+          <div class='displayMath'>
+            <div class='displayMath'>\begin{align}\therefore B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \tag{2}\label{2}\end{align}</div>
+          </div> We can see that the definition of the upper confidence bound itself implied balanced between the exploration and exploitation modes. When the number of pull is low, the upper bound was large, which encourage the machine to be chosen
+          and gain more information on it. When the number of pull is high, the upper bound tends to be $\langle x\rangle _k$, which return to our original stategy of choosing the slot machine with highest expected value.</p>
         </section>
         <section>
           <h2>Combination of simulated annealling and Upper confidence bound algorithm</h2>
-          <p>Another complex approach is to use both \eqref{1} and \eqref{2}. By substituting the sample mean $\mu$ in \eqref{1} with the upper confidence bound $B$ in \eqref{2}, we have a new <em>acceptance probability function</em> \begin{align*} &
-            \text{Acceptance Probability Function for $k$-th machine} \\ & =\frac{e^{\beta B^t_k}}{\sum^K_{j=1}{e^{\beta B^t_j}}} \end{align*}</p>
+          <p>Another complex approach is to use both \eqref{1} and \eqref{2}. By substituting the sample mean $\mu$ in \eqref{1} with the upper confidence bound $B$ in \eqref{2}, we have a new <em>acceptance probability function</em>
+          <div class='displayMath'>
+            <div class='displayMath'>\begin{align*} & \text{Acceptance Probability Function for $k$-th machine} \\ & =\frac{e^{\beta B^t_k}}{\sum^K_{j=1}{e^{\beta B^t_j}}} \end{align*}</div>
+          </div>
+          </p>
         </section>
       </section>
       <hr>
