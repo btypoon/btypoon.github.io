@@ -35,12 +35,12 @@
   <body>
     <main>
       <section>
-        <h2>Linux management guide on EdUHK PHYs cluster system</h2>
+        <h1>Linux management guide on EdUHK PHYs cluster system</h1>
         <p class="lead">A user guide for complete beginner.</p>
         <hr>
       </section>
       <section>
-        <h3>Booting Sequence</h3>
+        <h2>Booting Sequence</h2>
         <p> For some reason, the computer <em>"slave4"</em> require special steps in order to boot successfully.
         <ol>
           <li>Press f11 to go into its BIOS while booting</li>
@@ -50,11 +50,11 @@
         </p>
       </section>
       <section>
-        <h3>Cluster architecture</h3>
+        <h2>Cluster architecture</h2>
         <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
       </section>
       <section>
-        <h3>Connect to the server</h3>
+        <h2>Connect to the server</h2>
         <p> To connect to the cluster, use the following ip address: <code class='inlineCode'>phys.eduhk.hk</code>
         </p>
         <pre>
@@ -80,7 +80,7 @@ username@bill01:~$"
         </p>
       </section>
       <section>
-        <h3 id="/etc/hosts">/etc/hosts</h3>
+        <h2 id="/etc/hosts">/etc/hosts</h2>
         <p>To see the local hosts name and their corresponding local ip address read the file in /etc/hosts</p>
         <p>The files should be the same across all machines. Use <code class="inlineCode">sudo nano /etc/hosts</code> to edit it if needed. </p>
         <p>As of 30/6/2023 this file in master:</p>
@@ -109,7 +109,7 @@ ff02::2 ip6-allrouters
         </pre>
       </section>
       <section>
-        <h3 id="adduser">Adding new user</h3>
+        <h2 id="adduser">Adding new user</h2>
         <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to the <a href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">documentation</a>, <code
             class="inlineCode">sudo adduser username group</code> can also be used. </p>
         <figure class='text-center'>
@@ -189,7 +189,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h3 id="Long-format-listing">Long format listing ls -l</h3>
+        <h2 id="Long-format-listing">Long format listing ls -l</h2>
         <p> Using "ls -l" to list long format of files. The columns coorespond to:
         <ol>
           <li>The file type.</li>
@@ -204,10 +204,34 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h3 id="/etc/groups">/etc/groups</h3>
+        <h2 id="/etc/groups">/etc/groups</h2>
         <p>To view all groups is to visit <code class="inlineCode">/etc/groups</code>. To change the uid or gid of a user, use: <code class="inlineCode">sudo usermod -u uid -g gid username</code> To change the gid or group name of a group, use <code
             class="inlineCode">sudo groupmod -g gid -n new_groupName old_groupName</code>
         </p>
+      </section>
+      <section>
+        <h2>Problem 1: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
+        <p>Our new user Thomas Ho cannot run program or make any changes in all slaves computers but bill01. Older account does not have this problem</p>
+        <h3>Located Cause</h3>
+        <p>The problem was that the system treated the user from other host (slave1-5) as "other user" instead of "owner" although they have the same username. Therefore, after I allowed write permission for "other user" in the directory, the problem
+          was solved. However, "other user" including user other then the user with the same name as the owner can also modify the file inside now</p>
+        <h3>Suggested solution</h3>
+        <ol>
+          <li>Giving him admin privilege such that he can use sudo command. Downside was that he gain access to other admin command</li>
+          <li>Enable write permission for all users in Thomas's home folder. Downside was that every other user can write file to his home folder.</li>
+          <li>Another solution is to allow specific group of user to access the folder by their group ID. However, as I dig through the file, I found another problem. The group id for the groups of same name in bill01 and slave1-5 computers were
+            different.</li>
+        </ol>
+        <h3>New problem: Different group id for same user across all computers</h3>
+        <p></p>
+        <img src="image\problem1.jpg" alt="">
+        <figcaption>The image display the defined groups in bill01 (left), slave1(middle) and slave2(right) from /etc/groups.</figcaption>
+        <p>The word represents the group name and the number represent the group id. Each user was assigned a group id when created. Files recognize permitted user by their group id. For example, my group id was 1017 in bill01 and 1016 in slave1-5.
+        </p>
+        <p> Since the home folder was created in bill01, it permitted users of group id 1017 to write and modify in it. However, my group id was 1016 in slave's computer. Therefore, even if I allowed write permission for the group of ID 1017, I
+          cannot write in my home folder in slave's computers . To make it works, I would need to fix the mismatches of group id in bill01 and slave1-5. Therefore I suggest simply making the user home's folder writable for all user,
+          which is what I did.</p>
+        <p>So, at the end, <span style="text-decoration:underline;">solution 2 was employed</span>.</p>
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
