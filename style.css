@@ -44,9 +44,8 @@ kbd {
 
 img {
   display: block;
-  padding: 10px 0px;
   max-width: 100%;
-  margin: 0px auto;
+  margin: 10px auto;
 }
 
 figcaption {
