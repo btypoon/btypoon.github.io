@@ -19,20 +19,49 @@
         }
       };
     </script>
+    <link rel="stylesheet" href="style.css">
     <style>
-      div * {
-        border: black solid 1px;
-        margin: 0px;
-        padding: 0px;
+      figure {
+        border: 1px solid #c8ccd1;
+        background-color: #f8f9fa;
+        line-height: normal;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      figure>div {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .img1 {
+        background-color: orange;
+      }
+
+      .img2 {
+        background-color: green;
+      }
+
+      figure img {
+        background: white;
       }
     </style>
   </head>
 
   <body>
-    <div>
-      <h1>123</h1>
-      <p>321</p>
-    </div>
+    <figure>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Silica.svg/225px-Silica.svg.png" alt=""><span>Glass (amorphous SiO2)</span></div>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SiO%C2%B2_Quartz.svg/225px-SiO%C2%B2_Quartz.svg.png" alt=""><span>Quartz (crystalline SiO2)</span></div>
+      <div>
+        <figcaption>The magnetic disorder of spin glass compared to a ferromagnet is analogous to the positional disorder of glass (left) compared to quartz (right).</figcaption>
+      </div>
+    </figure>
   </body>
 
 </html>
