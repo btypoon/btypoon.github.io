@@ -1,0 +1,46 @@
+body {
+  counter-reset: section subsection subsubsection;
+}
+
+ul {
+  list-style-position: outside;
+}
+
+main h2::before {
+  counter-increment: section;
+  content: counter(section)".";
+  padding-right: 15px;
+}
+
+main h3::before {
+  counter-increment: subsection;
+  content: counter(section)"." counter(subsection);
+  padding-right: 15px;
+}
+
+main h4::before {
+  counter-increment: subsubsection;
+  content: counter(section)"." counter(subsection)"." counter(subsubsection);
+  padding-right: 15px;
+}
+
+div.displayMath {
+  overflow-x: auto;
+  overflow-y: clip;
+}
+
+/* Scrollbar-Style */
+div.displayMath::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+div.displayMath::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+div.displayMath::-webkit-scrollbar-thumb {
+  background-color: #888888;
+}

@@ -19,14 +19,12 @@
           ]
         }
       };
+
     </script>
     <!-- Custom Style -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="latexSection.css">
     <style>
-      section.content p {
-        text-indent: 38px;
-      }
-
       figure {
         border: 1px solid #c8ccd1;
         background-color: #f8f9fa;
@@ -34,6 +32,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        padding: 10px;
       }
 
       figure>div {
@@ -49,8 +48,14 @@
 
       figure img {
         background: white;
-        min-width: 225px;
       }
+
+      @media screen and (max-width:620px) {
+        figure>div {
+          flex-basis: 100%;
+        }
+      }
+
     </style>
   </head>
 
@@ -61,20 +66,27 @@
         <p>In this project, I tried to wrote a simulation on analysing the evolution of Spin Glass in Ising model. </p>
         <hr>
       </section>
-      <section class='content'>
+      <section>
         <h2>Definition of Spin Glass</h2>
         <p>According to wiki, spin glass defines a disordered magnetic state of a material. Comparing to ferromagnetic materials, where their atomic magnetic spins all align in the same direction, spin glass material possess random magnetic spins and
-          couplings too</p>
+          couplings. </p>
+        <figure>
+          <h5>Quote from wiki</h5>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Spin_glass_by_Zureks.svg/330px-Spin_glass_by_Zureks.svg.png" alt="">
+          <figcaption>Schematic representation of the random spin structure of a spin glass (top) and the ordered one of a ferromagnet (bottom)</figcaption>
+        </figure>
         <p>The word "glass" was used as analogy between the atomic magnetic disorder property of spin glass to the atomic positional disorder property of conventional glasses.</p>
         <p>In conventional glass, their atomic bond structures are highly irregular and amorphous. Materials exhibiting similar properties with no observed long-range periodicity are called amorphous, non-crystalline and sometime also described as
           "glassy".</p>
-        <p>Quote from wiki
-        <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png">
+        <p>
+        <figure>
+          <h5>Quote from wiki</h5><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png">
           <figcaption>Microscopically, a <a href="https://en.wikipedia.org/wiki/Single_crystal" title="Single crystal">single crystal</a> has atoms in a near-perfect <a href="https://en.wikipedia.org/wiki/Periodic_function"
               title="Periodic function">periodic</a> arrangement; a <a href="https://en.wikipedia.org/wiki/Polycrystal" title="Polycrystal">polycrystal</a> is composed of many microscopic crystals; and an <a
               href="https://en.wikipedia.org/wiki/Amorphous" title="Amorphous">amorphous</a> solid such as glass has no periodic arrangement even microscopically.</figcaption>
         </figure>
         <figure>
+          <h5>Quote from wiki</h5>
           <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Silica.svg/225px-Silica.svg.png" alt="">
             <figcaption>Glass (amorphous SiO2)</figcaption>
           </div>
@@ -85,8 +97,28 @@
             <figcaption>The magnetic disorder of spin glass compared to a ferromagnet is analogous to the positional disorder of glass (left) compared to quartz (right).</figcaption>
           </div>
         </figure>
+        <p>Therefore, "Spin glass" does not refer to your typical conventional window glasses.</p>
+      </section>
+      <section>
+        <h2>Ising model</h2>
+        <p>In Ising model, the magnetic dipole moments $s$ can be in one of two states, $+1$ or $-1$</p>
+      </section>
+      <section>
+        <h2>Mathematic formulation</h2>
+        <p>
+        <ul>
+          <li>Consider </li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
         </p>
-        <p>Therefore, "Spin glass" does not refer to your typical conventional window glasses</p>
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -95,6 +127,7 @@
     <script src='addFooter.js'></script>
     <script>
       hljs.highlightAll();
+
     </script>
   </body>
 

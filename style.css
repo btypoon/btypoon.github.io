@@ -19,6 +19,10 @@ main {
   padding: 5px 18px;
 }
 
+main p {
+  text-indent: 30px;
+}
+
 .inlineCode {
   font-family: 'Courier New';
   font-weight: bold;
