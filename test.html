@@ -5,57 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- Latex in HTML -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [
-            ['$', '$'],
-            ['\\(', '\\)']
-          ]
-        }
-      };
-    </script>
-    <link rel="stylesheet" href="style.css">
+    <title>Test</title>
     <style>
-      figure {
-        border: 1px solid #c8ccd1;
-        background-color: #f8f9fa;
-        line-height: normal;
-        display: flex;
-        flex-wrap: wrap;
+      * {
+        box-sizing: border-box;
       }
 
-      figure>div {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: 50%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
+      div.field-content {
+        width: 33%;
+        overflow: hidden;
+        border: 1px black solid;
       }
 
-      .img1 {
-        background-color: orange;
-      }
-
-      .img2 {
-        background-color: green;
-      }
-
-      figure img {
-        background: white;
+      div.field-content img {
+        width: 300px;
+        height: 100px;
+        object-fit: cover;
       }
     </style>
   </head>
 
   <body>
-    <p> 123 </p>
+    <div class="field-content">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png" />
+    </div>
   </body>
 
 </html>
