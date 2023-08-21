@@ -1,9 +1,9 @@
-body {
-  counter-reset: section subsection subsubsection;
-}
-
 ul {
   list-style-position: outside;
+}
+
+main h1 {
+  counter-reset: section subsection subsubsection;
 }
 
 main h2::before {
