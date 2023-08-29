@@ -11,31 +11,462 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="latexSection.css">
     <style>
+      body::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+      }
+
+      span.datetime {
+        display: block;
+        text-align: right;
+      }
+
+      section.cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: normal;
+        gap: 2em;
+      }
+
+      div.card {
+        flex-basis: 180px;
+        height: 265px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 15px 15px 30px #bababa,
+          -15px -15px 30px #ffffff;
+        /* transition: 0.2s ease-in-out; */
+        overflow: hidden;
+      }
+
+      div.card span.datetime {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin-bottom: 7%;
+        margin-right: 10%;
+        font-size: 0.5em;
+        color: #808080;
+      }
+
+      div.card p {
+        font-size: 0.5em;
+        padding: 10px 10%;
+        font-family: "Montserrat";
+        margin: 0;
+      }
+
+      div.card div.img {
+        width: 100%;
+        height: 60%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        background: linear-gradient(45deg, rgb(254, 240, 138), rgb(187, 247, 208), rgb(134, 239, 172));
+        display: flex;
+        align-items: top;
+        justify-content: right;
+        transition: 0.4s ease-in-out;
+      }
+
+      div.card:hover {
+        transform-origin: top center;
+        animation-name: shake;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes shake {
+        0% {
+          transform: rotate(1deg) scale(1);
+        }
+
+        25% {
+          transform: rotate(-1deg) scale(1.02);
+        }
+
+        50% {
+          transform: rotate(.5deg) scale(1.02);
+        }
+
+        75% {
+          transform: rotate(-.5deg) scale(1.02);
+        }
+
+        90% {
+          transform: rotate(-.2deg) scale(1.02);
+        }
+
+        100% {
+          transform: rotate(0deg) scale(1.02);
+        }
+      }
+
+      div.card:hover div.img {
+        height: 20%;
+      }
+
+      div.Ghost {
+        visibility: hidden;
+        height: 0px;
+      }
+
+      div.card_content .row:nth-child(1) {
+        height: 107px;
+        text-align: center;
+        padding: 0 10%;
+      }
+
+      div.card_content .row:nth-child(2) {
+        height: 60px;
+        text-align: center;
+      }
+
+      div.card_content .row:nth-child(3) {
+        height: 46px;
+      }
+
+      div.card_content a.button {
+        box-shadow: 0 0 3pt 2pt cornflowerblue;
+        background: #B5D886;
+        cursor: pointer;
+        border: 0;
+        font-size: 0.5em;
+        padding: .5em 1em;
+        border-radius: 5px;
+      }
+
+      div.card_content a.button:focus-visible {
+        outline: none;
+      }
+
+      section.overlay>section {
+        visibility: hidden;
+        position: fixed;
+        inset: 0;
+        background: rgba(256, 256, 256, 0.5);
+        opacity: 0;
+        transition: opacity 500ms;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px blue solid;
+      }
+
+      section.overlay>section .cancel {
+        position: absolute;
+        width: 100vw;
+        height: 200%;
+        cursor: default;
+        border: red 2px solid;
+        user-select: none;
+      }
+
+      section.overlay>section:target {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      section.overlay>section div.popup {
+        position: relative;
+        width: 80vw;
+        max-width: 480px;
+        height: 90vh;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #666;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        font-size: .6em;
+        overflow: auto;
+        border: yellow 2px solid;
+      }
+
+      .disable-scrolling {
+        overflow: hidden;
+      }
     </style>
   </head>
 
   <body>
     <main>
-      <section>
-        <h1>My work at EdUHK</h1>
+      <h1>title</h1>
+      <section class="cards">
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card Ghost">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card Ghost">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+        <div class="card Ghost">
+          <div class="img"></div>
+          <div class="card_content">
+            <div class="row">
+              <span class="datetime"></span>
+              <h6></h6>
+            </div>
+            <div class="row">
+              <p></p>
+            </div>
+            <div class="row">
+              <a class="button">View more</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class=overlay>
         <section>
-          <h2>Cantonese Transcription on Student Interview <span class='datetime'>14-8-2023</span></h2>
+          <h2>Cantonese Transcription on Student Interview</h2><span class='datetime'>14-8-2023</span>
           <p>I was asked to transcript a short interview of two secondary student on the use of ChatGPT to improve student's writing skill. </p>
         </section>
         <section>
-          <h2>Assist an intern on Multi-Armed Bandit research <span class="datetime">20-7-2023</span></h2>
+          <h2>Assist an intern on Multi-Armed Bandit research</h2><span class="datetime">20-7-2023</span>
           <p>I was asked to help a secondary school student summer intern on a physics research of the topic "Multi-Armed Bandit". Further note refers to <a href="multiArmedBandit.html">this page</a></p>
         </section>
         <section>
-          <h2>Type in Physics Exam Answers into PDF file <span class="datetime">19-7-2023</span></h2>
+          <h2>Type in Physics Exam Answers into PDF file</h2><span class="datetime">19-7-2023</span>
           <p>I was asked to help digitalize a hand written Physics exam answers into PDF format. I spent the day learning Latex and input the math equations into a neatly aligned pdf file</p>
         </section>
         <section>
-          <h2>Learning to use 3D printer <span class="datetime">12-7-2023</span></h2>
+          <h2>Learning to use 3D printer</h2><span class="datetime">12-7-2023</span>
           <p>Today, I learnt form our Physics' laboratory techician, Eddie, on how to use the 3D printers. Further note refers to <a href="3dPrinting.html">this page</a></p>
         </section>
         <section>
-          <h2>Making a ball track for the demonstration of Energy Conservation <span class="datetime">30-6-2023</span></h2>
+          <h2>Making a ball track for the demonstration of Energy Conservation</h2><span class="datetime">30-6-2023</span>
           <p>I was asked to help create a rolling ball track for the deomonstration of Energy Conservation targeting primary school students. The ideal creation was to make a mini version of <em>Energy Machine</em> from Space Museum. </p>
           <section>
             <h3>Attempt on making a marble track</h3>
@@ -44,15 +475,15 @@
               making a metal verison. </p>
             <p>To compromise, a paper version of the ball tracks was made folowing this tutorial <a href="https://www.sciencebuddies.org/stem-activities/paper-roller-coaster">Build a Paper Roller Coaster</a> from Science Buddy. This one was easy
               enough to make. I ended up making a A4 template in Krita for easy printing.</p>
-            <!-- <iframe src="https://drive.google.com/file/d/1-CSIEG5rIATTEF2lLDm-k-Lu17Atcup7/preview" width="640" height="480" allow="autoplay"></iframe>
+            <iframe src="https://drive.google.com/file/d/1-CSIEG5rIATTEF2lLDm-k-Lu17Atcup7/preview" width="640" height="480" allow="autoplay"></iframe>
             <p>A step by steps guide was made in </p>
             <iframe scrolling="no" src="https://drive.google.com/file/d/1-0gKdtSmUxdPE9rFs4wvTD38cY8zAZme/preview" width="640" height="480" allow="autoplay"></iframe>
             <p>And here're some demo video</p>
             <iframe src="https://drive.google.com/file/d/1-A7lHnGeza5cypfBN2RvgcK0BFjZC96J/preview" width="640" height="480" allow="autoplay"></iframe>
-            <iframe src="https://drive.google.com/file/d/1-1ENI9mOpHBcU43vjTrtomsdlBw10H6W/preview" width="640" height="480" allow="autoplay"></iframe> -->
+            <iframe src="https://drive.google.com/file/d/1-1ENI9mOpHBcU43vjTrtomsdlBw10H6W/preview" width="640" height="480" allow="autoplay"></iframe>
           </section>
           <section>
-            <h3>Actitivies/ Teaching material for Kids</h3>
+            <h3>Activies/ Teaching material for Kids</h3>
             <ul>
               <li>Importance of Error Measurement</li>
               <li>There is no such thing as 100% accurate</li>
@@ -60,43 +491,49 @@
             </ul>
             <p></p>
           </section>
+          <section>
+            <h3>Exponential Decay Experiment</h3><span class="datetime">22-8-2023</span>
+            <p>Today I made a powerpoint for an intruction on conducting the radioactive decay Dice experiment </p>
+            <p>Dr. Yeung will be holding an experiment on this friday (22-8-2023)</p>
+            <iframe src="https://drive.google.com/file/d/1-GPfnnvWfpHhSS-BO_d4BYCbT-5LKZjy/preview" width="640" height="480" allow="autoplay"></iframe>
+          </section>
         </section>
         <section>
-          <h2>Update data in an Old powerpoint <span class="datetime">29-6-2023</span></h2>
-          <p>I was asked to revise an powerpoint from 2018 with the up-to-date data. The powerpoint was titled "What are Scientists". It talked about the study and work opportunities for science students in Hong Kong. It referenced data of enrolment
-            ratio for UGC funded programmes by categories from the Hong Kong Annual Digest of Statistics. It referenced STEM works distribution, requirement and education level from the United State. It referenced up-to-date Universities ranking.</p>
+          <h2>Update data in an Old powerpoint</h2> <span class="datetime">29-6-2023</span>
+          <p class='abstract'>I was asked to revise an powerpoint from 2018 with the up-to-date data. The powerpoint was titled "What are Scientists". It talked about the study and work opportunities for science students in Hong Kong. It referenced
+            data of enrolment ratio for UGC funded programmes by categories from the Hong Kong Annual Digest of Statistics. It referenced STEM works distribution, requirement and education level from the United State. It referenced up-to-date
+            Universities ranking.</p>
           <img src="../../updateOldPPT/What_are_scientist_updated_ver2.png" alt="">
         </section>
         <section>
-          <h2>Being a Helper for physics workshop <span class="datetime">19-5-2023</span></h2>
+          <h2>Being a Helper for physics workshop </h2><span class="datetime">19-5-2023</span>
           <p>I was asked to help being a receptionist for the workshop with Nesat, another Research Assistant colleague.</p>
         </section>
         <section>
-          <h2>Combining videos from 6 departments <span class="datetime">14-4-2023</span></h2>
+          <h2>Combining videos from 6 departments </h2><span class="datetime">14-4-2023</span>
           <p>I was asked to combine videos made by six different department into one video. Background music was added. Dialogue Ducking was made</p>
         </section>
         <section>
-          <h2> Simulated Annealing <span class="datetime">29-3-2023</span>
-          </h2>
+          <h2> Simulated Annealing </h2> <span class="datetime">29-3-2023</span>
           <p>I was asked to help simulated spin glass in some interesting situation. Further note refers to <a href="spingGlass.html">this page</a></p>
         </section>
         <section>
-          <h2>Help in managing the cluster computers in Physics' laboratory<span class="datetime">16-3-2023</span></h2>
+          <h2>Help in managing the cluster computers in Physics' laboratory</h2><span class="datetime">16-3-2023</span>
           <p>I was asked to learn from a previous PHD student on the operation of the cluster computers in Physics' laboratory. He came back to EdUHK from HKUST to fix and reset the computers in the cluster server. After I learnt from him, he would
             go back to HKUST, and I will help to fix and operate the cluster in the future. Further note refers to <a href="index.html">this page</a></p>
         </section>
         <section>
-          <h2>Making an online questionaire <span class="datetime">9-3-2023</span></h2>
+          <h2>Making an online questionaire </h2><span class="datetime">9-3-2023</span>
           <p>I was asked to make a online questionaire using the provided question using the tool Qualtrics.</p>
         </section>
         <section>
-          <h2>Data processing on questionaire <span class="datetime">6-3-2023</span></h2>
+          <h2>Data processing on questionaire</h2> <span class="datetime">6-3-2023</span>
           <p>Multiple times I was asked to process the data collected from different questionaire. Average scores on each question were calculated, and input into a form. Due to the repetitive works, I decided to write Python program to automatic the
             task.</p>
           <p>This program automatically take the raw data from excel, calculated the average score and output them into a neatly organaized table.</p>
         </section>
         <section>
-          <h2>Learn to use microbit <span class="datetime">2-3-2023</span></h2>
+          <h2>Learn to use microbit</h2> <span class="datetime">2-3-2023</span>
           <p>The origianl purpose of this project is to make a interactive question where students can go through the video, answering yes and no, and jump to different steps.</p>
           <p>Also we would like to make a simulated microbit car making game where student can learn to debug programming</p>
           <p>However, these projects are on hold.</p>
@@ -117,6 +554,36 @@
     <script src='addFooter.js'></script>
     <script>
       hljs.highlightAll();
+      const sectionList = document.querySelectorAll('section.overlay>section');
+      const cardList = document.querySelectorAll('section.cards>.card');
+      const a_Cancel = document.createElement('a');
+      a_Cancel.setAttribute('href', '#/');
+      a_Cancel.setAttribute('class', 'cancel');
+      a_Cancel.setAttribute('draggable', 'false');
+      const popup_div = document.createElement('div');
+      popup_div.classList.add('popup');
+      for (let i = 0; i < sectionList.length; i++) {
+        sectionList[i].setAttribute("id", "section" + (i + 1).toString());
+        let clone = popup_div.cloneNode();
+        clone.append(...sectionList[i].children);
+        sectionList[i].append(clone);
+        sectionList[i].prepend(a_Cancel.cloneNode());
+        cardList[i].querySelector('a.button').setAttribute('href', "#section" + (i + 1).toString());
+        cardList[i].querySelector('h6').textContent = sectionList[i].querySelector('h2').textContent;
+        cardList[i].querySelector('span.datetime').textContent = sectionList[i].querySelector('span.datetime').textContent;
+      }
+      document.querySelectorAll('a.button').forEach(function(element) {
+        element.addEventListener('click', function() {
+          console.log('addClass');
+          document.body.classList.add('disable-scrolling');
+        })
+      })
+      document.querySelectorAll('a.cancel').forEach(function(element) {
+        element.addEventListener('click', function() {
+          console.log('removeClass');
+          document.body.classList.remove('disable-scrolling');
+        })
+      })
     </script>
   </body>
 

@@ -5,29 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      div.field-content {
-        width: 33%;
-        overflow: hidden;
-        border: 1px black solid;
-      }
-
-      div.field-content img {
-        width: 300px;
+      .row:nth-child(-n+3) {
+        border: red 1px solid;
         height: 100px;
-        object-fit: cover;
+        gap: 2px;
+      }
+
+      .column {
+        border: blue 2px solid;
       }
     </style>
   </head>
 
   <body>
-    <div class="field-content">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png" />
+    <div class="row">
+      <div class="column"><button>Click Me</button></div>
+      <div class="column">1</div>
+    </div>
+    <div class="row">
+      <div class="column">11</div>
+      <div class="column">2</div>
+    </div>
+    <div class="row">
+      <div class="column"></div>
+      <div class="column"></div>
     </div>
   </body>
 
