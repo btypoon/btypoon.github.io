@@ -4,234 +4,106 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My note</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>btypoon - homepage</title>
     <!-- syntax highlight -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gluten">
     <style>
-      div.hello {
-        white-space: nowrap;
+      @font-face {
+        font-family: stoked;
+        src: url('http://coloursandbeyond.com/wp-content/uploads/2015/03/stoked.ttf');
       }
 
-      pre {
-        overflow-x: auto;
+      .canvas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
       }
 
-      .codeblock.language-bash {
-        font-family: 'Courier New';
-        font-size: 1em;
+      body {
+        background: linear-gradient(to left, rgb(255, 228, 230), rgb(204, 251, 241));
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        height: 100vh;
       }
 
-      .blockquote {
-        font-size: 1.2em;
-        background: #121FCF;
-        background: linear-gradient(to right, #121FCF 0%, #CF1512 100%);
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes gradient2 {
+        0% {
+          background-position: 100% 50%;
+        }
+
+        50% {
+          background-position: 0% 50%;
+        }
+
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .canvas h1,
+      .canvas p {
+        line-height: normal;
+        background-image: conic-gradient(at center top, rgb(17, 24, 39), rgb(243, 244, 246), rgb(17, 24, 39));
+        background-size: 400% 400%;
+        background-repeat: repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        animation: gradient2 15s ease infinite;
+      }
+
+      .canvas h1 {
+        font-family: "Libre Baskerville";
+        font-weight: 100;
+      }
+
+      .canvas p {
+        font-family: stoked;
+        position: absolute;
+        bottom: 20%;
+        right: 10%;
+      }
+
+      .intro p {
+        font-size: .8em;
+        font-family: 'Caveat';
       }
     </style>
   </head>
 
   <body>
     <main>
-      <section>
-        <h1>Linux management guide on EdUHK PHYs cluster system</h1>
-        <p class="lead">A user guide for complete beginner.</p>
+      <section class="canvas">
+        <h1 style="font-size: 5.5em;">This</h1>
+        <p>is a personal blog</p>
         <hr>
       </section>
-      <section>
-        <h2>Booting Sequence</h2>
-        <p> For some reason, the computer <em>"slave4"</em> require special steps in order to boot successfully.
-        <ol>
-          <li>Press f11 to go into its BIOS while booting</li>
-          <li>Change the booting mode to UEFT</li>
-          <li>Save and reboot</li>
-        </ol>
-        </p>
-      </section>
-      <section>
-        <h2>Cluster architecture</h2>
-        <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
-      </section>
-      <section>
-        <h2>Connect to the server</h2>
-        <p> To connect to the cluster, use the following ip address: <code class='inlineCode'>phys.eduhk.hk</code>
-        </p>
-        <pre>
-            <code class="codeblock language-bash">
-"login as: username
-username@phys.eduhk.hk's password:
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.8.0-36-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-Last login: Week Month Day Time Year from ip_address
-username@bill01:~$"
-          </code>
-        </pre>
-        <p> To get administrative privileges, use the following account: <br>
-        <ul>
-          <li>username: bill</li>
-          <li>username:btypoon</li>
-          <li>password: billyeung</li>
-        </ul> A shortcut to connect the ip with a specific user is to enter <code class="inlineCode">username@ip</code>
-        </p>
-      </section>
-      <section>
-        <h2 id="/etc/hosts">/etc/hosts</h2>
-        <p>To see the local hosts name and their corresponding local ip address read the file in /etc/hosts</p>
-        <p>The files should be the same across all machines. Use <code class="inlineCode">sudo nano /etc/hosts</code> to edit it if needed. </p>
-        <p>As of 30/6/2023 this file in master:</p>
-        <pre> <code class="codeblock language-bash">
-#########################################################
-#127.0.0.1 localhost
-#127.0.1.1 bill03
-192.168.1.143 master
-192.168.1.104 bill01
-192.168.1.102 slave1
-192.168.1.224 slave2
-192.168.1.12 slave3
-192.168.1.100 slave4
-192.168.1.103 slave5
-#175.159.131.248 bill-workstation
-#202.45.51.232 master
-#202.45.51.231 slave1
-# the following lines are desirable for ipv6 capable hosts
-::1 ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-#########################################################
-          </code>
-        </pre>
-      </section>
-      <section>
-        <h2 id="adduser">Adding new user</h2>
-        <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to the <a href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">documentation</a>, <code
-            class="inlineCode">sudo adduser username group</code> can also be used. </p>
-        <figure class='text-center'>
-          <blockquote class='blockquote' cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">
-            <p style='font-style:italic'>If called with two non-option arguments, adduser will add an existing user to an existing group. </p>
-          </blockquote>
-          <figcapion class="blockquote-footer"> <em>ubuntu manual adduser</em> </figcapion>
-        </figure>
-        <p>As of 30/6/2023, the file in /etc/passwd read:</p>
-        <p>
-        <pre>
-          <code class="codeblock language-bash">
-#########################################################
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-bin:x:2:2:bin:/bin:/usr/sbin/nologin
-sys:x:3:3:sys:/dev:/usr/sbin/nologin
-sync:x:4:65534:sync:/bin:/bin/sync
-games:x:5:60:games:/usr/games:/usr/sbin/nologin
-man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
-lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
-mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
-news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
-uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
-proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
-www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
-list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
-irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
-gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
-nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
-systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
-systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
-systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
-syslog:x:104:108::/home/syslog:/bin/false
-_apt:x:105:65534::/nonexistent:/bin/false
-messagebus:x:106:110::/var/run/dbus:/bin/false
-uuidd:x:107:111::/run/uuidd:/bin/false
-lightdm:x:108:114:Light Display Manager:/var/lib/lightdm:/bin/false
-whoopsie:x:109:116::/nonexistent:/bin/false
-avahi-autoipd:x:110:119:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
-avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
-dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false
-colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false
-speech-dispatcher:x:114:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
-hplip:x:115:7:HPLIP system user,,,:/var/run/hplip:/bin/false
-kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
-pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
-rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
-saned:x:119:127::/var/lib/saned:/bin/false
-usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
-bill:x:1000:1000:bill01,,,:/home/bill:/bin/bash
-postfix:x:121:129::/var/spool/postfix:/bin/false
-sgeadmin:x:122:131::/var/lib/gridengine:/bin/false
-sshd:x:123:65534::/var/run/sshd:/usr/sbin/nologin
-hadoopuser:x:1001:1001:,,,:/home/hadoopuser:/bin/bash
-testuser:x:1002:1002:,,,:/home/testuser:/bin/bash
-jacky:x:1003:1003:,,,:/home/jacky:/bin/bash
-takshing:x:1004:1004:,,,:/home/takshing:/bin/bash
-cheong:x:1005:1005:,,,:/home/cheong:/bin/bash
-lim:x:1006:1006:,,,:/home/lim:/bin/bash
-curtis:x:1007:1007:,,,:/home/curtis:/bin/bash
-statd:x:1008:1008:,,,:/home/statd:/bin/bash
-bil:x:1009:1009:,,,:/home/bil:/bin/bash
-kcchoi:x:1010:1010:,,,:/home/kcchoi:/bin/bash
-roy:x:1011:1011:,,,:/home/roy:/bin/bash
-leo:x:1012:1012:,,,:/home/leo:/bin/bash
-intern:x:1013:1013:,,,:/home/intern:/bin/bash
-william:x:1014:1014:,,,:/home/william:/bin/bash
-brian:x:1015:1015:,,,:/home/brian:/bin/bash
-paul:x:1016:1016:,,,:/home/paul:/bin/bash
-btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
-#########################################################
-          </code>
-        </pre>
-        </p>
-      </section>
-      <section>
-        <h2 id="Long-format-listing">Long format listing ls -l</h2>
-        <p> Using "ls -l" to list long format of files. The columns coorespond to:
-        <ol>
-          <li>The file type.</li>
-          <li>The file permissions.</li>
-          <li>Number of hard links to the file.</li>
-          <li>File owner.</li>
-          <li>File group.</li>
-          <li>File size.</li>
-          <li>Date and Time.</li>
-          <li>File name.</li>
-        </ol>
-        </p>
-      </section>
-      <section>
-        <h2 id="/etc/groups">/etc/groups</h2>
-        <p>To view all groups is to visit <code class="inlineCode">/etc/groups</code>. To change the uid or gid of a user, use: <code class="inlineCode">sudo usermod -u uid -g gid username</code> To change the gid or group name of a group, use <code
-            class="inlineCode">sudo groupmod -g gid -n new_groupName old_groupName</code>
-        </p>
-      </section>
-      <section>
-        <h2>Problem 1: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
-        <p>Our new user Thomas Ho cannot run program or make any changes in all slaves computers but bill01. Older account does not have this problem</p>
-        <h3>Located Cause</h3>
-        <p>The problem was that the system treated the user from other host (slave1-5) as "other user" instead of "owner" although they have the same username. Therefore, after I allowed write permission for "other user" in the directory, the problem
-          was solved. However, "other user" including user other then the user with the same name as the owner can also modify the file inside now</p>
-        <h3>Suggested solution</h3>
-        <ol>
-          <li>Giving him admin privilege such that he can use sudo command. Downside was that he gain access to other admin command</li>
-          <li>Enable write permission for all users in Thomas's home folder. Downside was that every other user can write file to his home folder.</li>
-          <li>Another solution is to allow specific group of user to access the folder by their group ID. However, as I dig through the file, I found another problem. The group id for the groups of same name in bill01 and slave1-5 computers were
-            different.</li>
-        </ol>
-        <h3>New problem: Different group id for same user across all computers</h3>
-        <p></p>
-        <img src="image\problem1.jpg" alt="">
-        <figcaption>The image display the defined groups in bill01 (left), slave1(middle) and slave2(right) from /etc/groups.</figcaption>
-        <p>The word represents the group name and the number represent the group id. Each user was assigned a group id when created. Files recognize permitted user by their group id. For example, my group id was 1017 in bill01 and 1016 in slave1-5.
-        </p>
-        <p> Since the home folder was created in bill01, it permitted users of group id 1017 to write and modify in it. However, my group id was 1016 in slave's computer. Therefore, even if I allowed write permission for the group of ID 1017, I
-          cannot write in my home folder in slave's computers . To make it works, I would need to fix the mismatches of group id in bill01 and slave1-5. Therefore I suggest simply making the user home's folder writable for all user,
-          which is what I did.</p>
-        <p>So, at the end, <span style="text-decoration:underline;">solution 2 was employed</span>.</p>
+      <section class=intro>
+        <p> I graduated in University of Hong Kong in 2022. In late Febeurary 2023, I got my first job as a research asistant in Education University of Hong Kong. Since then, I got a lot of unexpected personal time. In all of my school life, I was
+          overloaded with tons of readings and homework. Now that I am ready to face the real world, who would have thought, all you need is Excel. (ಥᗢಥ) </p>
+        <!-- <img src="https://datavizblog.files.wordpress.com/2019/07/maths-evolution-1.png?w=2000&h=1500&crop=1" alt=""> -->
+        <p> <b>&#8220; I wanted to write a personal blog &#8221;</b> I told myself. I am a forgetful person, I had read a math textbook twice because I kept forgetting the content of the book. Maybe I am forgetting the content because I don't get to
+          use them. Therefore, I need to write them down. I want to write them down. To remind myself what I have learnt, what I have done and what I have experienced. </p>
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>

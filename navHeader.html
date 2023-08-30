@@ -1,6 +1,7 @@
 <html>
 
   <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gluten">
     <style>
       * {
         scroll-behavior: smooth;
@@ -11,30 +12,37 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         border-bottom: 2px solid #F2F2F2;
-        box-shadow: 10px 10px 20px #F2F2F2;
         padding: 0 5px;
         background-color: #fff;
         flex-wrap: wrap;
       }
 
-      @media screen and (max-width:460px) {
+      @media screen and (max-width:360px) {
         header {
-          justify-content: center;
+          flex-direction: column;
         }
       }
 
       header img {
         height: 50px;
-        margin-left: 80px;
-        margin-right: 50px;
         display: block;
+        margin: 5px;
       }
 
-      header h2 {
-        margin-left: 10px;
-        margin-right: 50px;
+      #header_title {
+        width: 160px;
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        right: 5%;
+        font-family: Gluten;
+        font-size: 2em;
+        background-image: linear-gradient(to right, #348f50, #56b4d3);
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     </style>
   </head>
@@ -42,7 +50,7 @@
   <body>
     <header>
       <img src="image\logo.jpg">
-      <h2>EdUHK</h2>
+      <h2 id="header_title">EdUHK</h2>
     </header>
   </body>
 
