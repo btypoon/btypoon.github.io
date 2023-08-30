@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -6,33 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-      .row:nth-child(-n+3) {
-        border: red 1px solid;
-        height: 100px;
-        gap: 2px;
+      body {
+        background-image: linear-gradient(to left, rgb(255, 228, 230), rgb(204, 251, 241));
+        background-size: 400% 100%;
+        background-repeat: repeat;
+        animation: gradient 15s ease infinite;
       }
 
-      .column {
-        border: blue 2px solid;
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      p {
+        line-height: normal;
+        background-image: conic-gradient(at center top, rgb(17, 24, 39), rgb(243, 244, 246), rgb(17, 24, 39));
+        background-size: 400% 400%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 15s ease infinite;
+        font-size: 5em;
       }
     </style>
   </head>
 
   <body>
-    <div class="row">
-      <div class="column"><button>Click Me</button></div>
-      <div class="column">1</div>
-    </div>
-    <div class="row">
-      <div class="column">11</div>
-      <div class="column">2</div>
-    </div>
-    <div class="row">
-      <div class="column"></div>
-      <div class="column"></div>
-    </div>
+    <p>This</p>
+    <script src='addHeader.js'></script>
   </body>
 
 </html>

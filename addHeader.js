@@ -6,12 +6,9 @@
   xhr.onload = function() {
     if (xhr.status === 200) {
       var doc = xhr.response;
-      var newElement = doc.body.querySelector('header');
-      var newStyle = doc.head.querySelector('style');
-      var indexHead = document.head;
-      var indexMain = document.querySelector('main');
-      indexMain.before(newElement);
-      indexHead.appendChild(newStyle);
+      document.querySelector('main').before(doc.body.querySelector('header'));
+      document.head.prepend(...doc.head.children);
+
     }
   };
 
