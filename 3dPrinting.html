@@ -8,28 +8,60 @@
     <!-- syntax highlight -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="latexSection.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
     <style>
-      img {
-        max-width: 80%;
+      body {}
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 0%;
+        }
+
+        50% {
+          background-position: 100% 100%;
+        }
+
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      div.heading {
+        background-image: linear-gradient(170deg, rgba(255, 220, 169, 1) 0%, rgba(226, 152, 43, 1) 100%);
+        background-size: 100% 100%;
+        background-repeat: repeat;
+        display: flex;
+        align-items: center;
+        color: white;
+        padding: 0 1em;
+        font-family: "Libre Baskerville";
+      }
+
+      section {
+        font-family: 'Merriweather';
+      }
+
+      main {
+        font-size: .7em;
       }
     </style>
   </head>
 
   <body>
     <main>
+      <h1>Instruction on 3D printing in Physics' Lab</h1>
+      <hr>
       <section>
-        <h2>Instruction on 3D printing in Physics' Lab</h2>
-        <hr>
-      </section>
-      <section>
-        <h3 id="PrintingMachineries">Printing machineries</h3>
+        <h2 id="PrintingMachineries">Printing machineries</h2>
         <p> Flashforge Creator Pro x5 </p>
         <img src="image\3dprint\creativePro.jpg" alt="">
         <p>Flashforge Creator 3 x1</p>
         <img src="image\3dprint\creative3.jpg" alt="">
       </section>
       <section>
-        <h3 id="FilamentType">Filament Type</h3>
+        <h2 id="FilamentType">Filament Type</h2>
         <p>
         <ul>
           <li>PLA (ecofriendly) 200 50 recommend 210 55</li>
@@ -39,16 +71,16 @@
         </p>
       </section>
       <section>
-        <h3 id="Calibration">Calibration</h3>
+        <h2 id="Calibration">Calibration</h2>
         <p> Level the plateform manually. Insert paper and adjust three screws in the back Feel the small friction when pulling the paper. Not to tight, not too loose. </p>
         <img src="image\3dprint\calibrationA4.jpg" alt="">
       </section>
       <section>
-        <h3 id="FilamentLoading">Filament Loading</h3>
+        <h2 id="FilamentLoading">Filament Loading</h2>
         <p> Use only the right nozzle. the left nozzles were removed </p>
       </section>
       <section>
-        <h3 id="SlicingSoftware">Slicing Software</h3>
+        <h2 id="SlicingSoftware">Slicing Software</h2>
         <p>
         <ul>
           <li>FlashPrint 5</li>
@@ -58,7 +90,7 @@
         </p>
       </section>
       <section>
-        <h3>Beware</h3>
+        <h2>Beware</h2>
         <p>
         <ul>
           <li>See if temperature can reach the target value. Old part or malfunction might cause temperature drop. You might turn the printing speed down to compensate the temperature drop of the nozzle.</li>
@@ -74,7 +106,7 @@
         </p>
       </section>
       <section>
-        <h3>Parts dimension</h3>
+        <h2>Parts dimension</h2>
         <div class=tableDiv>
           <table>
             <thead>
@@ -172,15 +204,15 @@
         </div>
       </section>
       <section>
-        <h3>Tolerance</h3>
+        <h2>Tolerance</h2>
         <p>+0.2mm each side for normal fit</p>
         <p>+0.1mm each side for tight fit</p>
       </section>
       <section>
-        <h3>Successful print</h3>
-        <p>
-        <ul>
-          <li>
+        <h2>Successful print</h2>
+        <section>
+          <h3>Bahtinov Mask</h3>
+          <div class="tableDiv">
             <table>
               <thead>
                 <tr class='header'>
@@ -205,18 +237,31 @@
                 </tr>
               </tbody>
             </table>
-            <img src="image\3dprint\bahtinovmask.jpg" alt="">
-          </li>
-          <li>Xbox Controller Stand</li>
+          </div>
+          <img src="image\3dprint\bahtinovmask.jpg" alt="">
+        </section>
+        <section>
+          <h3>Xbox Controller Stand</h3>
           <img src="image\3dprint\xboxStand.jpg" alt="">
-          <li>tensegrity stand</li>
+        </section>
+        <section>
+          <h3>tensegrity stand</h3>
           <img src="image\3dprint\tensegrityTable.jpg" alt="">
-          <li>Duck Glasses Stand</li>
+        </section>
+        <section>
+          <h3>Duck Glasses Stand</h3>
           <img src="image\3dprint\duckGlassesStand.jpg" alt="">
-          <li>SD cards USB Holder</li>
-          <img src="image\3dprint\sdCardHolder1.jpg" alt="">
-          <img src="image\3dprint\sdCardHolder2.jpg" alt="">
-          <li>
+        </section>
+        <section>
+          <h3>SD cards USB Holder</h3>
+          <div class="row">
+            <div class="column"><img src="image\3dprint\sdCardHolder1.jpg" alt=""></div>
+            <div class="column"><img src="image\3dprint\sdCardHolder2.jpg" alt=""></div>
+          </div>
+        </section>
+        <section>
+          <h3>LOTR king of death</h3>
+          <div class="tableDiv">
             <table>
               <thead>
                 <tr class='header'>
@@ -241,15 +286,19 @@
                 </tr>
               </tbody>
             </table>
-          </li>
-        </ul>
-        </p>
+          </div>
+          </p>
+        </section>
+        <section>
+          <h3>Witcher Geralt of Rivia</h3>
+        </section>
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src='addNavBar.js'></script>
     <script src='addHeader.js'></script>
     <script src='addFooter.js'></script>
+    <script src='script.js'></script>
     <script>
       hljs.highlightAll();
     </script>

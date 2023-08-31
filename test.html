@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -6,43 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-      body {
-        background-image: linear-gradient(to left, rgb(255, 228, 230), rgb(204, 251, 241));
-        background-size: 400% 100%;
-        background-repeat: repeat;
-        animation: gradient 15s ease infinite;
+      main h1 {
+        counter-reset: section subsection subsubsection;
       }
 
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      p {
-        line-height: normal;
-        background-image: conic-gradient(at center top, rgb(17, 24, 39), rgb(243, 244, 246), rgb(17, 24, 39));
-        background-size: 400% 400%;
-        background-repeat: repeat;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradient 15s ease infinite;
-        font-size: 5em;
+      main h2::before {
+        counter-increment: section;
+        content: counter(section)".";
+        padding-right: 15px;
       }
     </style>
   </head>
 
   <body>
-    <p>This</p>
-    <script src='addHeader.js'></script>
+    <main>
+      <h1></h1>
+      <section>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+      </section>
+    </main>
   </body>
 
 </html>

@@ -17,34 +17,11 @@
         src: url('fonts/stoked.ttf');
       }
 
-      .canvas {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: wrap;
-        position: relative;
-      }
-
       body {
         background-image: linear-gradient(to left, rgb(255, 228, 230), rgb(204, 251, 241));
         background-size: 400% 100%;
         background-repeat: repeat;
         animation: gradient 15s ease infinite;
-        height: 100vh;
-      }
-
-      @keyframes gradient {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
       }
 
       @keyframes gradient2 {
@@ -61,9 +38,16 @@
         }
       }
 
+      .canvas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+      }
+
       .canvas h1,
       .canvas p {
-        line-height: normal;
         background-image: conic-gradient(at center top, rgb(17, 24, 39), rgb(243, 244, 246), rgb(17, 24, 39));
         background-size: 400% 400%;
         background-repeat: repeat;
@@ -75,18 +59,18 @@
       .canvas h1 {
         font-family: "Libre Baskerville";
         font-weight: 100;
+        font-size: 5.5em;
       }
 
       .canvas p {
         font-family: stoked;
         position: absolute;
-        bottom: 20%;
+        bottom: 10%;
         right: 10%;
         text-align: right;
       }
 
       .intro p {
-        font-size: .8em;
         font-family: 'Caveat';
       }
     </style>
@@ -95,7 +79,7 @@
   <body>
     <main>
       <section class="canvas">
-        <h1 style="font-size: 5.5em;">This</h1>
+        <h1>This</h1>
         <p>is a personal blog</p>
         <hr>
       </section>
@@ -103,7 +87,7 @@
         <p> I graduated in University of Hong Kong in 2022. In late Febeurary 2023, I got my first job as a research asistant in Education University of Hong Kong. Since then, I got a lot of unexpected personal time. In all of my school life, I was
           overloaded with tons of readings and homework. Now that I am ready to face the real world, who would have thought, all you need is Excel. (ಥᗢಥ) </p>
         <img width="400px" src="https://datavizblog.files.wordpress.com/2019/07/maths-evolution-1.png?w=2000&h=1500&crop=1" alt="">
-        <figcaption style="font-size:.5em;">I am a living example of this meme </figcaption>
+        <figcaption>I am a living example of this meme </figcaption>
         <p> <b>&#8220; I wanted to write a personal blog &#8221;</b> I told myself. I am a forgetful person, I had read a math textbook twice because I kept forgetting the content of the book. Maybe I am forgetting the content because I don't get to
           use them. Therefore, I need to write them down. I want to write them down. To remind myself what I have learnt, what I have done and what I have experienced. </p>
       </section>
