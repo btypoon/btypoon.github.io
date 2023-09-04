@@ -114,6 +114,13 @@ td {
   /* Internet Explorer 5.5+ */
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  margin: 10px auto;
+  background: white;
+}
+
 figure {
   border: 1px solid #c8ccd1;
   background-color: #f8f9fa;
