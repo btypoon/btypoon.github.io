@@ -17,6 +17,10 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+
+      main {
+        font-size: .8em;
+      }
     </style>
   </head>
 
@@ -40,6 +44,16 @@
       <section>
         <h2>Cluster architecture</h2>
         <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
+        <p>There are seven computers in the cluster.</p>
+        <ol>
+          <li>master</li>
+          <li>bill01</li>
+          <li>slave01</li>
+          <li>slave02</li>
+          <li>slave03</li>
+          <li>slave04</li>
+          <li>slave05</li>
+        </ol>
       </section>
       <section>
         <h2>Connect to the server</h2>
@@ -100,6 +114,7 @@ ff02::2 ip6-allrouters
         <h2 id="adduser">Adding new user</h2>
         <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to the <a href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">documentation</a>, <code
             class="inlineCode">sudo adduser username group</code> can also be used. </p>
+        <p>Repeat the above command for all machines</p>
         <figure class='text-center'>
           <blockquote class='blockquote' cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">
             <p style='font-style:italic'>If called with two non-option arguments, adduser will add an existing user to an existing group. </p>
@@ -198,7 +213,12 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h2>Problem 1: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
+        <h2>Problem 1: Looking for a faster way to add a new users on all computers</h2>
+        <p>Currently, to add a new user, we need to repeats the command <span class="inlineCode">sudo adduser</span> in all seven computers. We are looking for a solution to add a new user on all computer by running the commands once</p>
+        <p>Maybe, there is a way to synchronize the user data on all computers. Or one might write a script to automatically create a new user with the necessary credential information on all computers in one go</p>
+      </section>
+      <section>
+        <h2>Problem 2: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
         <p>Our new user Thomas Ho cannot run program or make any changes in all slaves computers but bill01. Older account does not have this problem</p>
         <h3>Located Cause</h3>
         <p>The problem was that the system treated the user from other host (slave1-5) as "other user" instead of "owner" although they have the same username. Therefore, after I allowed write permission for "other user" in the directory, the problem
