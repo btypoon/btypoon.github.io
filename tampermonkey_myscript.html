@@ -8,8 +8,8 @@
     <title>Page Title</title>
     <!-- syntax highlight -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark-reasonable.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="latexSection.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/latexSection.css">
     <style>
     </style>
   </head>
@@ -111,6 +111,15 @@ setInterval(function() {
             </code>
         </pre>
       </section>
+      <section>
+        <h2>Adding customFun.py to python module search path</h2>
+        <p>Adding the following system path to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
+        <pre>
+            <code class="codeblock language-bash">
+PYTHONPATH = %UserProfile%\OneDrive - The Education University of Hong Kong\work\Programming
+            </code>
+        </pre>
+      </section>
       <section class="invisible">
         <h2></h2>
         <pre>
@@ -120,9 +129,9 @@ setInterval(function() {
       </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <script src='addNavBar.js'></script>
-    <script src='addHeader.js'></script>
-    <script src='addFooter.js'></script>
+    <script src='script/addNavBar.js'></script>
+    <script src='script/addHeader.js'></script>
+    <script src='script/addFooter.js'></script>
     <script>
       hljs.highlightAll();
     </script>
