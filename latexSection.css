@@ -2,7 +2,7 @@ ul {
   list-style-position: outside;
 }
 
-main h1 {
+main {
   counter-reset: section subsection subsubsection;
 }
 
