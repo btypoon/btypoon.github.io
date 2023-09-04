@@ -1,4 +1,4 @@
-(function() { //To avoid global variable conflict, wrap everything in function
+setTimeout(function() { //To avoid global variable conflict, wrap everything in function
   //request nav.html and append nav bar
   // Create a new XMLHttpRequest object
   var xhr = new XMLHttpRequest();
@@ -18,19 +18,10 @@
     if (xhr.status === 200) {
       // Get the document object from the response
       var doc = xhr.response;
-
-      // Get the root element of the document
-      var newElement = doc.body.querySelector('#nav-overlay');
-
-      // Get the container element in the index.html file
-      var indexMain = document.querySelector('main');
-
-      // Append the entire root element and its children to the container element
-      indexMain.prepend(newElement, indexMain.firstChild);
-
+      //add nav before main
+      document.querySelector('main').before(doc.body.querySelector('#nav-overlay'));
       //Add nav Style to index head
-      var navStyle = doc.head.querySelector('style');
-      document.head.appendChild(navStyle);
+      document.head.appendChild(doc.head.querySelector('style'));
     };
   };
 
@@ -73,4 +64,4 @@
   window.addEventListener("load", function() {
     setTimeout(getButton, 500);
   });
-})();
+}, 500);
