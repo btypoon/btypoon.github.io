@@ -2,8 +2,16 @@ ul {
   list-style-position: outside;
 }
 
-main {
-  counter-reset: section subsection subsubsection;
+main h1 {
+  counter-reset: section;
+}
+
+main h2 {
+  counter-reset: subsection;
+}
+
+main h3 {
+  counter-reset: subsubsection;
 }
 
 main h2::before {

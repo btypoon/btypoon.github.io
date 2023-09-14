@@ -28,6 +28,10 @@
         border: 0px solid #f3f3f3;
         box-shadow: 12px 15px 8px #e0e0e0;
       }
+
+      main {
+        font-size: .8em;
+      }
     </style>
   </head>
 
@@ -82,8 +86,8 @@
             <li> Connection between cumulative regret $r$, $x$ and $s$ if there are $m$ initial pull for all $K$ slot machines <div class='displayMath'>\begin{align*} r & = \text{(max reward) }-\text{ (cumulative reward)} \\ & = [(T+mK)\times max
                 \langle x \rangle_k] - \sum^K_{k=1}{s^T_k} \end{align*} </div>
             </li>
-            <li> Since the true values of $\langle x \rangle_k$ are unknown for all machines, we use sample mean as the best estimator for the population mean. Define the $\mu^t_k$ as the sample mean of $k$-th machine at time $t$ <div
-                class='displayMath'>\begin{align*} \text{sample mean }\mu^t_k=\frac{s^t_k}{n^t_k} \end{align*} </div>
+            <li> Since the true values of $\langle x \rangle_k$ are unknown for all machines, we use sample mean as the best estimator for the population mean. Define the $\mu^t_k$ as the sample mean of the reward of $k$-th machine up to time $t$
+              <div class='displayMath'>\begin{align*} \text{sample mean }\mu^t_k=\frac{s^t_k}{n^t_k} \end{align*} </div>
             </li>
           </ul>
           </p>
@@ -124,13 +128,13 @@
           <section>
             <h3>Method 4: Upper confidence bound algorithm</h3>
             <p>This method choose the best slot machine by the upper bound of estimated expected value instead of the expected value itself. It is quoted as the principle of <em>"optimism in the face of uncertainty''</em> Define $B^t_k$ as the upper
-              confidence bound of the sample mean estimation for $k$-th machine up to time $table$.
+              confidence bound of the sample mean estimation for $k$-th machine up to time $table$.</p>
             <div class='displayMath'>\begin{align*} B^t_k & =\mu^t_k+\text{constant}\times \sigma_{\mu^t_k} \\ & =\frac{s^t_k}{n^t_k}+\text{constant}\times \frac{\sigma}{\sqrt{n^t_k}} \\ & =\frac{s^t_k}{n^t_k}+b^t\frac{1}{\sqrt{n^t_k}} \\ b^t &
               =\text{parameter on controlling the confidence level} \\ \sigma_{\mu^t_k} & =\text{standard deviation of sample mean} \\ & =\frac{\sigma}{\sqrt{n^t_k}} \end{align*} </div>For optimal setting, use <div class='displayMath'>\begin{align*}
               & & & b^t=c\sqrt{\log{(mK+t)}} \\ & \text{where,} & & \text{c is a parameter for turning the level of exploration } \end{align*} </div>
-            <div class='displayMath'>\begin{align}\therefore B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \tag{2}\label{2}\end{align} </div>We can see that the definition of the upper confidence bound itself implied balanced between
-            the exploration and exploitation modes. When the number of pull is low, the upper bound was large, which encourage the machine to be chosen and gain more information on it. When the number of pull is high, the upper bound tends to be
-            $\langle x\rangle _k$, which return to our original stategy of choosing the slot machine with highest expected value. </p>
+            <div class='displayMath'>\begin{align}\therefore B^t_k=\frac{s^t_k}{n^t_k}+c\sqrt{\frac{\log{(mK+t)}}{n^t_k}} \tag{2}\label{2}\end{align} </div>
+            <p>We can see that the definition of the upper confidence bound itself implied balanced between the exploration and exploitation modes. When the number of pull is low, the upper bound was large, which encourage the machine to be chosen
+              and gain more information on it. When the number of pull is high, the upper bound tends to be $\langle x\rangle _k$, which return to our original stategy of choosing the slot machine with highest expected value. </p>
           </section>
         </section>
         <section>
@@ -138,6 +142,220 @@
           <p>Another complex approach is to use both \eqref{1} and \eqref{2}. By substituting the sample mean $\mu$ in \eqref{1} with the upper confidence bound $B$ in \eqref{2}, we have a new <em>acceptance probability function</em>
           <div class='displayMath'>\begin{align*} & \text{Acceptance Probability Function for $k$-th machine} \\ & =\frac{e^{\beta B^t_k}}{\sum^K_{j=1}{e^{\beta B^t_j}}} \end{align*} </div>
           </p>
+        </section>
+        <section>
+          <h2>Experiment</h2>
+          <section>
+            <h3>Predefining the supposely unknown true distribution</h3>
+            <p>In our first attemp, we gonna predefine the rewards distribution for each arms as a bipolar normal distribution.</p>
+          </section>
+          <section>
+            <h3>Programming approach</h3>
+            <p>First off, we need to declare all the independent variables with their predefined sizes. The variables include:</p>
+            <div class=tableDiv>
+              <table>
+                <thead>
+                  <tr class='header'>
+                    <th colspan='5'>Independent Variables</th>
+                  </tr>
+                  <tr>
+                    <th><u>Names</u></th>
+                    <th><u>Dimension</u></th>
+                    <th><u>Type</u></th>
+                    <th><u>Size</u></th>
+                    <th><u>Condition</u></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Number of arms K</th>
+                    <th>scalar</th>
+                    <th>Integer</th>
+                    <th>1</th>
+                    <th>$K \gt 0$</th>
+                  </tr>
+                  <tr>
+                    <th>Total Rounds T</th>
+                    <th>scalar</th>
+                    <th>Integer</th>
+                    <th>1</th>
+                    <th>$T \gt 0$</th>
+                  </tr>
+                  <tr>
+                    <th>Initial pull number m</th>
+                    <th>scalar</th>
+                    <th>Integer</th>
+                    <th>1</th>
+                    <th>$0 \lt m\le T$</th>
+                  </tr>
+                  <tr>
+                    <th>Number of pulls n</th>
+                    <th>2D array</th>
+                    <th>Integer</th>
+                    <th>$(T,K)$</th>
+                    <th>$0 \le n$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ Arms}} \\ {T\text{ rounds}}& \left[ \begin{array}{cccc} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1
+                        \end{array} \right] \end{array} \end{align*} </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Rewards x</th>
+                    <th>2D array</th>
+                    <th>Integer</th>
+                    <th>$(T,K)$</th>
+                    <th>$0 \le x$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ Arms}} \\ {T\text{ rounds}}& \left[ \begin{array}{cccc} x_{11} & 0 & \cdots & 0 \\ 0 & x_{22} & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 &
+                        \cdots & x_{TK} \end{array} \right] \end{array} \end{align*} </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>True Mean of each Arms</th>
+                    <th>2D array</th>
+                    <th>Float</th>
+                    <th>$(K,2)$</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr>
+                    <th>True Wide of each Arms</th>
+                    <th>2D array</th>
+                    <th>Float</th>
+                    <th>$(K,2)$</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr style="display:none;">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Next, we can construct rest of the dependent variables using the independent variable.</p>
+            <div class=tableDiv>
+              <table>
+                <thead>
+                  <tr class='header'>
+                    <th colspan='5'>Dependent Variables</th>
+                  </tr>
+                  <tr>
+                    <th><u>Names</u></th>
+                    <th><u>Dimension</u></th>
+                    <th><u>Type</u></th>
+                    <th><u>Size</u></th>
+                    <th><u>Condition</u></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Best Arm $k$</th>
+                    <th>scalar</th>
+                    <th>Integer</th>
+                    <th>1</th>
+                    <th>$0 \le a^t \lt K$</th>
+                  </tr>
+                  <tr>
+                    <th>Choosen arms $a^t$</th>
+                    <th>1D array</th>
+                    <th>Integer</th>
+                    <th>$T$</th>
+                    <th>$0 \le a^t \lt K$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{T\text{ rounds}} \\ & \left[ \begin{array}{cccc} a^1 & a^2 & \cdots & a^T \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the choosen arms vector to time t, we return the index of 1 in each row of the number of pulls matrix up to t-1 rows.</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Culmulative Pulls n</th>
+                    <th>1D array</th>
+                    <th>Integer</th>
+                    <th>K</th>
+                    <th>Positive Integer</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{c} {K\text{ arms}} \\ \left[ \begin{array}{cccc} n^t_1 & n^t_2 & \cdots & n^t_K \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the culmulative pulls number of all K arms up to time t, we simply sum along every column of the number of pulls matrix from the first row to t-1 row</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Culmulative rewards R</th>
+                    <th>1D array</th>
+                    <th>Integer</th>
+                    <th>K</th>
+                    <th>$0 \gt s$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ arms}} \\ & \left[ \begin{array}{cccc} s^t_1 & s^t_2 & \cdots & s^t_K \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the culmulative rewards of all K arms up to time t, we simply sum along every column of the rewards matrix from the first row to t-1 row</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Sample Mean $\mu$</th>
+                    <th>1D array</th>
+                    <th>Float</th>
+                    <th>K</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ arms}} \\ & \left[ \begin{array}{cccc} \mu^t_1 & \mu^t_2 & \cdots & \mu^t_K \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the sample mean vector of all K arms up to time t, we simply divide the culmulative rewards vector by the culmulative pulls vector elemental-wisely</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Boltzmann factor $\mu$</th>
+                    <th>1D array</th>
+                    <th>Float</th>
+                    <th>K</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ arms}} \\ & \left[ \begin{array}{cccc} e^{\beta\mu^t_1} & e^{\beta\mu^t_2} & \cdots & e^{\beta\mu^t_K} \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the Boltzmann factor vector of all K arms up to time t, we raise e to the beta times sample mean vector elemental-wisely</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Upper confidence bound $B$</th>
+                    <th>1D array</th>
+                    <th>Float</th>
+                    <th>K</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ arms}} \\ & \left[ \begin{array}{cccc} B^t_1 & B^t_2 & \cdots & B^t_K \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the UCB vector of all K arms up to time t, we raise e to the beta times UCB vector elemental-wisely</figcaption>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Boltzmann factor $UCB$</th>
+                    <th>1D array</th>
+                    <th>Float</th>
+                    <th>K</th>
+                    <th>$\Re$</th>
+                  </tr>
+                  <tr>
+                    <td colspan='5'>
+                      <div class="displayMath"> \begin{align*} \begin{array}{cc}&{K\text{ arms}} \\ & \left[ \begin{array}{cccc} e^{\beta B^t_1} & e^{\beta B^t_2} & \cdots & e^{\beta B^t_K} \end{array} \right] \end{array} \end{align*} </div>
+                      <figcaption>To get the Boltzmann factor vector of all K arms up to time t, we raise e to the beta times UCB vector elemental-wisely</figcaption>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </section>
       </section>
       <hr>
