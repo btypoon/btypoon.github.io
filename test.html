@@ -6,37 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    </style>
   </head>
 
   <body>
-    <textarea id='textarea' name="name" rows="8" cols="80"></textarea>
-    <script>
-      var string = ''
-      const pasteButton = document.createElement("button");
-      document.body.append(pasteButton);
-      pasteButton.addEventListener('click', function() {
-        navigator.clipboard.readText().then(text => {
-          string = text;
-          console.log(string);
-          document.querySelectorAll('#textarea')[0].value = string;
-        }).catch(err => {
-          string = 'Failed to read clipboard contents: ' + err
-        });
-      });
-      pasteButton.classList.add('pasteButton');
-      pasteButton.style.position = 'fixed';
-      pasteButton.style.backgroundColor = 'red';
-      pasteButton.style.right = '5px';
-      pasteButton.style.top = '50%';
-      pasteButton.style.height = '20px';
-      pasteButton.style.width = '42px';
-      document.addEventListener("keyup", function(event) {
-        console.log(event.key);
-        if (event.key === "s") {
-          pasteButton.click();
-        };
-      });
-    </script>
+    <main></main>
+    <!-- custom script -->
+    <script src="script/script.js"></script>
   </body>
-
 </html>
