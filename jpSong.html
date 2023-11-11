@@ -13,17 +13,33 @@
         font-family: "Caveat";
       }
 
+      p.title:hover {
+        background-color: #eef;
+        cursor: pointer;
+      }
+
       p.title {
+        margin: 0;
+        padding: 16px 0;
         text-align: center;
         color: green;
       }
 
-      p.title::first-line {
+      p.title::first-line,
+      p.title ruby {
         color: black;
       }
 
       ul.jpsong {
         list-style: none;
+        max-height: 0;
+        overflow: hidden;
+        margin: 0;
+        transition: 1s;
+      }
+
+      p.title.active+ul.jpsong {
+        max-height: 10000px;
       }
 
       .li1 {
@@ -47,22 +63,18 @@
       ul#tableOfContent a:visited {
         color: black;
       }
+
+      div.lyrics {
+        border: green 3px dotted;
+        display:
+      }
     </style>
   </head>
 
   <body>
     <main>
-      <ul id=tableOfContent>
-        <li><a href="#hosigaokakouenn">
-            <p>Hump Back - <ruby><rb>星丘</rb><rt>ほしがおか</rt></ruby><ruby><rb>公園</rb><rt>こうえん</rt></ruby></p>
-          </a></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
       <hr>
-      <div>
+      <div class='lyrics'>
         <p class="title" id="hosigaokakouenn">Hump Back - <ruby><rb>星丘</rb><rt>ほしがおか</rt></ruby><ruby><rb>公園</rb><rt>こうえん</rt></ruby><br>Hump Back - 星丘公園</p>
         <ul class="jpsong">
           <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>が<ruby><rb>泣</rb><rt>な</rt></ruby>いた<ruby><rb>夜</rb><rt>よる</rt></ruby>にロックンロールが<ruby><rb>死</rb><rt>し</rt></ruby>んでしまった</li>
@@ -173,7 +185,7 @@
         </ul>
       </div>
       <hr>
-      <div>
+      <div class='lyrics'>
         <p class="title">Stargaze Shelter - エミュレーション<br>Stargaze Shelter - Emulation</p>
         <ul class="jpsong">
           <li class="li1"><ruby><rb>透明</rb><rt>とうめい</rt></ruby>な<ruby><rb>瞳</rb><rt>ひとみ</rt></ruby>の<ruby><rb>奥</rb><rt>おく</rt></ruby>を</li>
@@ -281,7 +293,7 @@
         </ul>
       </div>
       <hr>
-      <div>
+      <div class='lyrics'>
         <p class="title">Tansa - セプテンバーブルー<br>Tansa - 九月藍色</p>
         <ul class="jpsong">
           <li class="li1"><ruby><rb>一番</rb><rt>いちばん</rt></ruby><ruby><rb>仲</rb><rt>な</rt></ruby><ruby><rb>良</rb><rt>か</rt></ruby>かった<ruby><rb>子</rb><rt>こ</rt></ruby>が</li>
@@ -341,7 +353,7 @@
         </ul>
       </div>
       <hr>
-      <div>
+      <div class='lyrics'>
         <p class="title">Tansa - モラトリアム<br>Tansa - 暫停</p>
         <ul class="jpsong">
           <li class="li1"><ruby><rb>夏</rb><rt>な</rt></ruby><ruby><rb>休</rb><rt>つ</rt></ruby>みなんて<ruby><rb>一瞬</rb><rt>いっしゅん</rt></ruby>で</li>
@@ -422,7 +434,7 @@
         </ul>
       </div>
       <hr>
-      <div>
+      <div class='lyrics'>
         <p class="title">ACE COLLECTION - <ruby><rb>君</rb><rt>きみ</rt></ruby>を<ruby><rb>誰</rb><rt>だれ</rt></ruby>より<ruby><rb>愛</rb><rt>あい</rt></ruby>してんのにな<br>ACE COLLECTION - 我對你的愛勝過旁人</p>
         <ul class="jpsong">
           <li class="li1"><ruby><rb>返信</rb><rt>へんしん</rt></ruby>に<ruby><rb>困</rb><rt>こま</rt></ruby>っているよ</li>
@@ -602,8 +614,441 @@
         </ul>
       </div>
       <hr>
+      <div class='lyrics'>
+        <p class="title">ユイカ - <ruby><rb>運命</rb><rt>うんめい</rt></ruby>の<ruby><rb>人</rb><rt>ひと</rt></ruby><br>ユイカ - 命運的人<br>last edited:10/11/2023</p>
+        <ul class="jpsong">
+          <li class="li1"><ruby><rb>貴方</rb><rt>あなた</rt></ruby>とならいけると<ruby><rb>思</rb><rt>おも</rt></ruby>った。</li>
+          <li class="li2">我以為和你在一起就沒問題。</li>
+          <li class="li3"></li>
+          <li class="li1">どこまでもいけると<ruby><rb>思</rb><rt>おも</rt></ruby>った。</li>
+          <li class="li2">我以為我們去那裡都得。</li>
+          <li class="li3"></li>
+          <li class="li1">「<ruby><rb>私</rb><rt>わたし</rt></ruby>はこの<ruby><rb>先</rb><rt>さき</rt></ruby>もう、<ruby><rb>貴方</rb><rt>あなた</rt></ruby><ruby><rb>以外</rb><rt>いがい</rt></ruby>とは</li>
+          <li class="li2">「我從今以後，</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>手</rb><rt>て</rt></ruby>を<ruby><rb>繫</rb><rt>つ</rt></ruby>いたりしないわ。」</li>
+          <li class="li2">除了你不會再和任何人牽手。」</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>心</rb><rt>こころ</rt></ruby>の<ruby><rb>底</rb><rt>そこ</rt></ruby>からそう<ruby><rb>思</rb><rt>おも</rt></ruby>った。</li>
+          <li class="li2">我從心底也是這麼想的。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>気</rb><rt>き</rt></ruby>づいたら<ruby><rb>今</rb><rt>いま</rt></ruby><ruby><rb>私</rb><rt>わたし</rt></ruby>は</li>
+          <li class="li2">然而當我察覺到的時候</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>貴方</rb><rt>あなた</rt></ruby>じゃない<ruby><rb>人</rb><rt>ひと</rt></ruby>とキスをしてる。</li>
+          <li class="li2">我郤和一個不是你的人親吻。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>貴方</rb><rt>あなた</rt></ruby>とはしゃいだあの<ruby><rb>水族館</rb><rt>すいぞくかん</rt></ruby>を</li>
+          <li class="li2">和你一起歡樂的水族館</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>初</rb><rt>はじ</rt></ruby>めて<ruby><rb>来</rb><rt>き</rt></ruby>たって<ruby><rb>顔</rb><rt>かお</rt></ruby>してはしゃぐの。</li>
+          <li class="li2">像是第一次來到水族館的樣子歡鬧着。</li>
+          <li class="li3"></li>
+          <li class="li1">あの<ruby><rb>時</rb><rt>とき</rt></ruby>お<ruby><rb>揃</rb><rt>そろ</rt></ruby>いで<ruby><rb>買</rb><rt>か</rt></ruby>ったキーホルダーも</li>
+          <li class="li2">那時一起買的鑰匙圈</li>
+          <li class="li3"></li>
+          <li class="li1">もうどこにしまったか<ruby><rb>覚</rb><rt>おぼ</rt></ruby>えてないや。</li>
+          <li class="li2">我不記得我把它放在哪裡了。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>言</rb><rt>い</rt></ruby>わないよ、「また<ruby><rb>好</rb><rt>す</rt></ruby>きだった」とか。</li>
+          <li class="li2">我不會說啊：「我還喜歡你。」之類的話</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>要</rb><rt>い</rt></ruby>らないよ、「<ruby><rb>幸</rb><rt>しあわ</rt></ruby>せだった」とか。</li>
+          <li class="li2">我不需要了啊，「我曾經很幸福。」之類的話</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>未</rb><rt>いま</rt></ruby>だに<ruby><rb>貴方</rb><rt>あなた</rt></ruby>が<ruby><rb>好</rb><rt>す</rt></ruby>きだった</li>
+          <li class="li2">事到如今，我明明仍然將你喜歡的</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>香</rb><rt>かお</rt></ruby>りを<ruby><rb>手首</rb><rt>てくび</rt></ruby>につけてしまうくせに。</li>
+          <li class="li2">香水味留在我的手腕上。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>貴方</rb><rt>あなた</rt></ruby>の<ruby><rb>言葉</rb><rt>ことば</rt></ruby>を<ruby><rb>思</rb><rt>おも</rt></ruby>い<ruby><rb>出</rb><rt>だ</rt></ruby>した</li>
+          <li class="li2">我想起了你說過的話</li>
+          <li class="li3"></li>
+          <li class="li1">「<ruby><rb>運命</rb><rt>うんめい</rt></ruby>の<ruby><rb>人</rb><rt>ひと</rt></ruby>って<ruby><rb>二人</rb><rt>ふたり</rt></ruby>いて、</li>
+          <li class="li2">「我命中注定有兩個人，</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>一人</rb><rt>ひとり</rt></ruby><ruby><rb>目</rb><rt>め</rt></ruby>は<ruby><rb>別</rb><rt>わか</rt></ruby>れの<ruby><rb>辛</rb><rt>つら</rt></ruby>さを</li>
+          <li class="li2">第一個是將離別痛苦</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>二人</rb><rt>ふたり</rt></ruby><ruby><rb>目</rb><rt>め</rt></ruby>は<ruby><rb>永遠</rb><rt>えいえん</rt></ruby>の<ruby><rb>愛</rb><rt>あい</rt></ruby>をー</li>
+          <li class="li2">第二個是將永恆之愛</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>教</rb><rt>おし</rt></ruby>えてくれるらしいよ。」</li>
+          <li class="li2">告訴我的人。」</li>
+          <li class="li3"></li>
+          <li class="li1">「それじゃ<ruby><rb>貴方</rb><rt>あなた</rt></ruby>はきっと<ruby><rb>二人</rb><rt>ふたり</rt></ruby><ruby><rb>目</rb><rt>め</rt></ruby>だね。」</li>
+          <li class="li2">「那你一定是第二個人了吧。」</li>
+          <li class="li3"></li>
+          <li class="li1">だなんて<ruby><rb>言</rb><rt>い</rt></ruby>ってた</li>
+          <li class="li2">你曾經這樣說過</li>
+          <li class="li3"></li>
+          <li class="li1">あの<ruby><rb>頃</rb><rt>ころ</rt></ruby>が<ruby><rb>懐</rb><rt>なつ</rt></ruby>かしい。</li>
+          <li class="li2">好懷念那個時候。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>各駅</rb><rt>かくえき</rt></ruby><ruby><rb>停車</rb><rt>ていしゃ</rt></ruby>でしか<ruby><rb>止</rb><rt>と</rt></ruby>まらない</li>
+          <li class="li2">你乘着各站之外都唔停的、各站停車的電車</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>貴方</rb><rt>あなた</rt></ruby>の<ruby><rb>最寄駅</rb><rt>もよりえき</rt></ruby>を</li>
+          <li class="li2">在離您最近的車站</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>快速</rb><rt>かいそく</rt></ruby><ruby><rb>急行</rb><rt>きゅうこう</rt></ruby>で<ruby><rb>通</rb><rt>とお</rt></ruby>り<ruby><rb>過</rb><rt>す</rt></ruby>ぎていく。</li>
+          <li class="li2">我乘搭快速急行列車經過。</li>
+          <li class="li3"></li>
+          <li class="li1">もう<ruby><rb>ニ度</rb><rt>にど</rt></ruby>とあの<ruby><rb>改札</rb><rt>かいさつ</rt></ruby>を<ruby><rb>通</rb><rt>とお</rt></ruby>ることはないだろうけど</li>
+          <li class="li2">我想我不會再經過那個檢票站了吧</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>幸</rb><rt>しあわ</rt></ruby>せだった<ruby><rb>記憶</rb><rt>きおく</rt></ruby>だけが<ruby><rb>残</rb><rt>のこ</rt></ruby>ってる。</li>
+          <li class="li2">但是曾經幸福的回憶仍然殘留着。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>言</rb><rt>い</rt></ruby>わないで、「<ruby><rb>一番</rb><rt>いちばん</rt></ruby><ruby><rb>愛</rb><rt>あい</rt></ruby>してた」とか。</li>
+          <li class="li2">請你不要說：「你是我曾經最愛的人。」之類的話</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>要</rb><rt>い</rt></ruby>らないの、「<ruby><rb>幸</rb><rt>しあわ</rt></ruby>せになってね」とか。</li>
+          <li class="li2">我不需要，「你要幸福哦。」之類的話</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>未</rb><rt>いま</rt></ruby>だに<ruby><rb>貴方</rb><rt>あなた</rt></ruby>が<ruby><rb>好</rb><rt>す</rt></ruby>きだった</li>
+          <li class="li2">事到如今，你曾經喜歡的那對耳環</li>
+          <li class="li3"></li>
+          <li class="li1">ピアスを<ruby><rb>耳</rb><rt>みみ</rt></ruby>で<ruby><rb>揺</rb><rt>ゆ</rt></ruby>らしているんだ。</li>
+          <li class="li2">現在還在我耳朵上搖動著。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>外</rb><rt>はず</rt></ruby>せずにいた<ruby><rb>貴方</rb><rt>あなた</rt></ruby>のフォロー。</li>
+          <li class="li2">我無法刪除的你的追蹤。</li>
+          <li class="li3"></li>
+          <li class="li1">たまたま<ruby><rb>流</rb><rt>なが</rt></ruby>れてきたストーリー。</li>
+          <li class="li2">只是一個偶然流傳下來的故事。</li>
+          <li class="li3"></li>
+          <li class="li1">あぁ、<ruby><rb>貴方</rb><rt>あなた</rt></ruby>も<ruby><rb>私</rb><rt>わたし</rt></ruby>じゃない<ruby><rb>誰</rb><rt>だれ</rt></ruby>かと</li>
+          <li class="li2">啊，你已經和我以外的人一起</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>幸</rb><rt>しあわ</rt></ruby>せになったんだね。</li>
+          <li class="li2">過着幸褔的生活了呢。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>言</rb><rt>い</rt></ruby>わないよ、「また<ruby><rb>好</rb><rt>す</rt></ruby>きだった」とか。</li>
+          <li class="li2">我不會說的，「我仍然喜歡你。」之類的話</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>要</rb><rt>い</rt></ruby>らないね、も<ruby><rb>幸</rb><rt>しあわ</rt></ruby>せなんだから。</li>
+          <li class="li2">我不需要了吧，因為我已經很幸福了。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>間</rb><rt>ま</rt></ruby><ruby><rb>違</rb><rt>ちが</rt></ruby>いなく<ruby><rb>貴方</rb><rt>あなた</rt></ruby>は<ruby><rb>私</rb><rt>わたし</rt></ruby>の</li>
+          <li class="li2">絕對是你</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>一人</rb><rt>ひとり</rt></ruby><ruby><rb>目</rb><rt>め</rt></ruby>の<ruby><rb>運命</rb><rt>うんめい</rt></ruby>の<ruby><rb>人</rb><rt>ひと</rt></ruby>でした。</li>
+          <li class="li2">我命中注定的第一人。</li>
+          <li class="li3"></li>
+        </ul>
+      </div>
+      <hr>
+      <div class='lyrics'>
+        <p class="title active">ミセカイ - アオイハル<br>ミセカイ - 葵春<br>last edited: 10/11/2023</p>
+        <ul class="jpsong">
+          <li class="li1"><ruby><rb>固</rb><rt>かた</rt></ruby>く<ruby><rb>結</rb><rt>むす</rt></ruby>んだ<ruby><rb>手</rb><rt>て</rt></ruby>のひらが</li>
+          <li class="li2">手掌緊緊地併攏在一起</li>
+          <li class="li3"></li>
+          <li class="li1">ほどけないように</li>
+          <li class="li2">所以它不會被撤銷</li>
+          <li class="li3"></li>
+          <li class="li1">この<ruby><rb>手</rb><rt>て</rt></ruby>に<ruby><rb>引</rb><rt>ひ</rt></ruby>っ<ruby><rb>張</rb><rt>ぱ</rt></ruby>られているのは</li>
+          <li class="li2">這隻手拉著我</li>
+          <li class="li3"></li>
+          <li class="li1">きっと</li>
+          <li class="li2">一定</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>僕</rb><rt>ぼく</rt></ruby>の<ruby><rb>方</rb><rt>ほう</rt></ruby>だ</li>
+          <li class="li2">這就是我</li>
+          <li class="li3"></li>
+          <li class="li1">あなたに<ruby><rb>恋</rb><rt>こい</rt></ruby>をして</li>
+          <li class="li2">愛上你</li>
+          <li class="li3"></li>
+          <li class="li1">あなたは<ruby><rb>恋</rb><rt>こい</rt></ruby>をしている</li>
+          <li class="li2">你在戀愛</li>
+          <li class="li3"></li>
+          <li class="li1">その<ruby><rb>流</rb><rt>なが</rt></ruby>れる<ruby><rb>涙</rb><rt>なみだ</rt></ruby>が<ruby><rb>誰</rb><rt>だれ</rt></ruby>かを</li>
+          <li class="li2">那些流淌的淚水是誰？</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>思</rb><rt>おも</rt></ruby>っている<ruby><rb>証</rb><rt>あかし</rt></ruby>なら</li>
+          <li class="li2">如果這證明你在想</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>雨</rb><rt>あめ</rt></ruby><ruby><rb>音</rb><rt>おん</rt></ruby></li>
+          <li class="li2">雨聲</li>
+          <li class="li3"></li>
+          <li class="li1">もっと<ruby><rb>叫</rb><rt>さけ</rt></ruby>んで<ruby><rb>頬</rb><rt>ほお</rt></ruby><ruby><rb>濡</rb><rt>ぬ</rt></ruby>らして</li>
+          <li class="li2">大聲尖叫，讓臉頰濕潤</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>僕</rb><rt>ぼく</rt></ruby>じゃ<ruby><rb>拭</rb><rt>ぬぐ</rt></ruby>えないから</li>
+          <li class="li2">因為我無法抹去它</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>赤</rb><rt>あか</rt></ruby>い<ruby><rb>糸</rb><rt>いと</rt></ruby><ruby><rb>解</rb><rt>と</rt></ruby>ける<ruby><rb>間</rb><rt>ま</rt></ruby>は</li>
+          <li class="li2">當紅線散開時</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>新</rb><rt>あたら</rt></ruby>しい<ruby><rb>糸</rb><rt>いと</rt></ruby>が<ruby><rb>結</rb><rt>むす</rt></ruby>ばれる<ruby><rb>前</rb><rt>まえ</rt></ruby>なら</li>
+          <li class="li2">在新線程被綁定之前</li>
+          <li class="li3"></li>
+          <li class="li1">ヘッドライトで<ruby><rb>照</rb><rt>て</rt></ruby>らされた</li>
+          <li class="li2">被車頭燈照亮</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>魔法</rb><rt>まほう</rt></ruby>の<ruby><rb>側</rb><rt>がわ</rt></ruby>で</li>
+          <li class="li2">在魔法方面</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>願</rb><rt>ねが</rt></ruby>うだけ</li>
+          <li class="li2">只是希望</li>
+          <li class="li3"></li>
+          <li class="li1">あなたは<ruby><rb>恋</rb><rt>こい</rt></ruby>をして</li>
+          <li class="li2">你在戀愛</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>僕</rb><rt>ぼく</rt></ruby>はまた<ruby><rb>見</rb><rt>み</rt></ruby><ruby><rb>守</rb><rt>ま</rt></ruby>っている</li>
+          <li class="li2">我又看了一遍</li>
+          <li class="li3"></li>
+          <li class="li1">この<ruby><rb>怯</rb><rt>おび</rt></ruby>える<ruby><rb>心</rb><rt>こころ</rt></ruby>があなたを</li>
+          <li class="li2">這顆驚恐的心讓你</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>想</rb><rt>おも</rt></ruby>っている<ruby><rb>証</rb><rt>あかし</rt></ruby>なら</li>
+          <li class="li2">如果這證明你正在考慮這個問題</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>震</rb><rt>ふる</rt></ruby>えてる<ruby><rb>愛</rb><rt>あい</rt></ruby>を<ruby><rb>叫</rb><rt>さけ</rt></ruby>んで<ruby><rb>頬</rb><rt>ほお</rt></ruby><ruby><rb>濡</rb><rt>ぬ</rt></ruby>らして</li>
+          <li class="li2">喊出你顫抖的愛，濕潤你的臉頰</li>
+          <li class="li3"></li>
+          <li class="li1">もしも<ruby><rb>届</rb><rt>とど</rt></ruby>かなくても</li>
+          <li class="li2">即使沒有到達</li>
+          <li class="li3"></li>
+          <li class="li1">その<ruby><rb>溢</rb><rt>あふ</rt></ruby>れる<ruby><rb>涙</rb><rt>なみだ</rt></ruby>が<ruby><rb>僕</rb><rt>ぼく</rt></ruby>には</li>
+          <li class="li2">那滿溢的淚是為了我</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>綺麗</rb><rt>きれい</rt></ruby>に<ruby><rb>光</rb><rt>ひか</rt></ruby>ってしまうよ</li>
+          <li class="li2">它會閃閃發光美麗</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>雨</rb><rt>あめ</rt></ruby><ruby><rb>音</rb><rt>おん</rt></ruby></li>
+          <li class="li2">雨聲</li>
+          <li class="li3"></li>
+          <li class="li1">もっともっと<ruby><rb>声</rb><rt>こえ</rt></ruby>を<ruby><rb>枯</rb><rt>か</rt></ruby>らして</li>
+          <li class="li2">讓你的聲音更加沙啞</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>僕</rb><rt>ぼく</rt></ruby>の<ruby><rb>魔法</rb><rt>まほう</rt></ruby>を<ruby><rb>青</rb><rt>あお</rt></ruby>い<ruby><rb>春</rb><rt>はる</rt></ruby>に<ruby><rb>溶</rb><rt>と</rt></ruby>かして</li>
+          <li class="li2">將我的魔法融入藍色的春天</li>
+          <li class="li3"></li>
+        </ul>
+      </div>
+      <hr>
+      <div class="lyrics">
+        <p class="title">あれくん ft. ユイカ - あのね<br>あれくん ft. ユイカ - 你知道嗎<br>last edited: 10/11/2023</p>
+        <ul class="jpsong">
+          <li class="li1">どうせだったらもうちょっと</li>
+          <li class="li2">還是多一點</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>男</rb><rt>おとこ</rt></ruby>らしく<ruby><rb>余裕</rb><rt>よゆう</rt></ruby><ruby><rb>見</rb><rt>み</rt></ruby>せたらよかったな</li>
+          <li class="li2">我希望我能像一個男人一樣表現出更多的空間。</li>
+          <li class="li3"></li>
+          <li class="li1">どうせだったらもうちょっと</li>
+          <li class="li2">還是多一點</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>可</rb><rt>か</rt></ruby><ruby><rb>愛</rb><rt>わ</rt></ruby>らしく<ruby><rb>甘</rb><rt>あま</rt></ruby>えて<ruby><rb>見</rb><rt>み</rt></ruby>せたらよかったな</li>
+          <li class="li2">我希望我能向你展示你是多麼可愛和甜蜜。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>後悔</rb><rt>こうかい</rt></ruby>ばっかが<ruby><rb>募</rb><rt>つの</rt></ruby>って</li>
+          <li class="li2">我心裡充滿了遺憾</li>
+          <li class="li3"></li>
+          <li class="li1">でも<ruby><rb>後</rb><rt>あ</rt></ruby><ruby><rb>戻</rb><rt>と</rt></ruby>りはもうできなくて</li>
+          <li class="li2">但我現在回不去了</li>
+          <li class="li3"></li>
+          <li class="li1">ずっと</li>
+          <li class="li2">永遠</li>
+          <li class="li3"></li>
+          <li class="li1">ずっと</li>
+          <li class="li2">永遠</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>だらけの<ruby><rb>毎日</rb><rt>まいにち</rt></ruby></li>
+          <li class="li2">每一天都充滿了你</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>の<ruby><rb>気</rb><rt>き</rt></ruby>を<ruby><rb>引</rb><rt>ひ</rt></ruby>きたくて</li>
+          <li class="li2">我想引起你的注意</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>の<ruby><rb>気</rb><rt>き</rt></ruby><ruby><rb>持</rb><rt>も</rt></ruby>ちを<ruby><rb>知</rb><rt>し</rt></ruby>りたくて</li>
+          <li class="li2">我想知道你的感受</li>
+          <li class="li3"></li>
+          <li class="li1">わざとからかったり</li>
+          <li class="li2">故意戲弄</li>
+          <li class="li3"></li>
+          <li class="li1">わざと<ruby><rb>未読</rb><rt>みどく</rt></ruby>したり</li>
+          <li class="li2">故意未讀</li>
+          <li class="li3"></li>
+          <li class="li1">はぁ</li>
+          <li class="li2">嘆</li>
+          <li class="li3"></li>
+          <li class="li1">ばかみたいだな</li>
+          <li class="li2">看起來很蠢</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>妬</rb><rt>や</rt></ruby>いたりしないかな</li>
+          <li class="li2">我想知道我會不會吃醋？</li>
+          <li class="li3"></li>
+          <li class="li1">あの<ruby><rb>人</rb><rt>ひと</rt></ruby>は<ruby><rb>誰</rb><rt>だれ</rt></ruby>？</li>
+          <li class="li2">那個人是誰？</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>不安</rb><rt>ふあん</rt></ruby>になったの？</li>
+          <li class="li2">你是否感到焦慮？</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>別</rb><rt>べつ</rt></ruby>にそんなんじゃないよ</li>
+          <li class="li2">不像那樣。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>しか<ruby><rb>見</rb><rt>み</rt></ruby>えない</li>
+          <li class="li2">我只能看見你</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>私</rb><rt>わたし</rt></ruby>だけ<ruby><rb>見</rb><rt>み</rt></ruby>てて</li>
+          <li class="li2">看著我</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>早</rb><rt>はや</rt></ruby>く<ruby><rb>言</rb><rt>い</rt></ruby>わなきゃ</li>
+          <li class="li2">我必須盡快說</li>
+          <li class="li3"></li>
+          <li class="li1">でもね</li>
+          <li class="li2">但你知道</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>が<ruby><rb>好</rb><rt>す</rt></ruby>きだ</li>
+          <li class="li2">我喜歡你</li>
+          <li class="li3"></li>
+          <li class="li1">なんてまだ<ruby><rb>言</rb><rt>い</rt></ruby>えない</li>
+          <li class="li2">我還不能這麼說</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>焦</rb><rt>あせ</rt></ruby>る<ruby><rb>思</rb><rt>おも</rt></ruby>いが<ruby><rb>胸</rb><rt>むね</rt></ruby>を<ruby><rb>締</rb><rt>し</rt></ruby>め<ruby><rb>付</rb><rt>つ</rt></ruby>ける</li>
+          <li class="li2">焦慮的想法讓我的胸口發緊</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>恋</rb><rt>こい</rt></ruby>をしてる</li>
+          <li class="li2">愛</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>私</rb><rt>わたし</rt></ruby></li>
+          <li class="li2">我</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>恋</rb><rt>こい</rt></ruby>をしてる</li>
+          <li class="li2">愛</li>
+          <li class="li3"></li>
+          <li class="li1">あのね「<ruby><rb>好</rb><rt>す</rt></ruby>きなんです」</li>
+          <li class="li2">你知道，「我喜歡它。」</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>言</rb><rt>い</rt></ruby>えない</li>
+          <li class="li2">我不能說</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>言</rb><rt>い</rt></ruby>えないよ</li>
+          <li class="li2">我不能說</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>好</rb><rt>す</rt></ruby>きだよなんてまだ</li>
+          <li class="li2">我依然愛你</li>
+          <li class="li3"></li>
+          <li class="li1">まだって</li>
+          <li class="li2">還沒有</li>
+          <li class="li3"></li>
+          <li class="li1">こんな<ruby><rb>自分</rb><rt>じぶん</rt></ruby>が</li>
+          <li class="li2">這就是我</li>
+          <li class="li3"></li>
+          <li class="li1">（こんな<ruby><rb>自分</rb><rt>じぶん</rt></ruby>が）</li>
+          <li class="li2">（這就是我）</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>嫌</rb><rt>きら</rt></ruby>いになりそう</li>
+          <li class="li2">我感覺我會討厭它</li>
+          <li class="li3"></li>
+          <li class="li1">（<ruby><rb>嫌</rb><rt>きら</rt></ruby>いになりそう）</li>
+          <li class="li2">（我會討厭它）</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>想</rb><rt>おも</rt></ruby>いを<ruby><rb>伝</rb><rt>つた</rt></ruby>えたいのに</li>
+          <li class="li2">我想傳達我的感受</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>気</rb><rt>き</rt></ruby><ruby><rb>持</rb><rt>も</rt></ruby>ちは<ruby><rb>固</rb><rt>かた</rt></ruby>まってるのに</li>
+          <li class="li2">儘管我的感情已經固定</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>好</rb><rt>す</rt></ruby>きとか<ruby><rb>笑</rb><rt>わら</rt></ruby>うかな？</li>
+          <li class="li2">你喜歡還是笑？</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>私</rb><rt>わたし</rt></ruby>も</li>
+          <li class="li2">我也是</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>笑</rb><rt>わら</rt></ruby>われちゃうかな？</li>
+          <li class="li2">我會被嘲笑嗎？</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>君</rb><rt>きみ</rt></ruby>しか<ruby><rb>見</rb><rt>み</rt></ruby>えない</li>
+          <li class="li2">我只能看見你</li>
+          <li class="li3"></li>
+          <li class="li1">ずっと</li>
+          <li class="li2">永遠</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>私</rb><rt>わたし</rt></ruby>だけ<ruby><rb>見</rb><rt>み</rt></ruby>てて</li>
+          <li class="li2">看著我</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>気</rb><rt>き</rt></ruby><ruby><rb>持</rb><rt>も</rt></ruby>ちが<ruby><rb>同</rb><rt>おな</rt></ruby>じなら</li>
+          <li class="li2">如果你也有同樣的感覺</li>
+          <li class="li3"></li>
+          <li class="li1">もっと<ruby><rb>早</rb><rt>はや</rt></ruby>く<ruby><rb>言</rb><rt>い</rt></ruby>えたのに</li>
+          <li class="li2">我本來可以早點說的。</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>晴</rb><rt>は</rt></ruby>れた</li>
+          <li class="li2">陽光明媚</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>青</rb><rt>あお</rt></ruby>い<ruby><rb>春</rb><rt>はる</rt></ruby>に</li>
+          <li class="li2">在藍色的春天裡</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>桜</rb><rt>さくら</rt></ruby>が<ruby><rb>空</rb><rt>そら</rt></ruby>を<ruby><rb>舞</rb><rt>ま</rt></ruby>う</li>
+          <li class="li2">櫻花在天空中翩翩起舞</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>二</rb><rt>に</rt></ruby><ruby><rb>人</rb><rt>にん</rt></ruby>の<ruby><rb>想</rb><rt>おも</rt></ruby>いが</li>
+          <li class="li2">我們兩個人的想法</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>今</rb><rt>いま</rt></ruby><ruby><rb>重</rb><rt>かさ</rt></ruby>なり<ruby><rb>合</rb><rt>あ</rt></ruby>う</li>
+          <li class="li2">現在重疊</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>恋</rb><rt>こい</rt></ruby>をしてる</li>
+          <li class="li2">愛</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>今</rb><rt>いま</rt></ruby></li>
+          <li class="li2">現在</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>恋</rb><rt>こい</rt></ruby>をしてる</li>
+          <li class="li2">愛</li>
+          <li class="li3"></li>
+          <li class="li1">あのね「<ruby><rb>幸</rb><rt>しあわ</rt></ruby>せなんです」</li>
+          <li class="li2">你知道，「我很高興」。</li>
+          <li class="li3"></li>
+          <li class="li1">どうせだったらもうちょっと</li>
+          <li class="li2">還是多一點</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>男</rb><rt>おとこ</rt></ruby>らしく<ruby><rb>余裕</rb><rt>よゆう</rt></ruby><ruby><rb>見</rb><rt>み</rt></ruby>せたらよかったな</li>
+          <li class="li2">我希望我能像一個男人一樣表現出更多的空間。</li>
+          <li class="li3"></li>
+          <li class="li1">どうせだったらもうちょっと</li>
+          <li class="li2">還是多一點</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>可</rb><rt>か</rt></ruby><ruby><rb>愛</rb><rt>わ</rt></ruby>らしく<ruby><rb>甘</rb><rt>あま</rt></ruby>えて<ruby><rb>見</rb><rt>み</rt></ruby>せたらよかったな</li>
+          <li class="li2">我希望我能向你展示你是多麼可愛和甜蜜。</li>
+          <li class="li3"></li>
+          <li class="li1">そんな<ruby><rb>後悔</rb><rt>こうかい</rt></ruby>も<ruby><rb>幸</rb><rt>しあわ</rt></ruby>せ</li>
+          <li class="li2">即使有這樣的遺憾我也很高興</li>
+          <li class="li3"></li>
+          <li class="li1">だって</li>
+          <li class="li2">因為</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>今</rb><rt>いま</rt></ruby>はこうして<ruby><rb>二</rb><rt>に</rt></ruby><ruby><rb>人</rb><rt>にん</rt></ruby>で</li>
+          <li class="li2">現在我們兩個就這樣</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>笑</rb><rt>わら</rt></ruby>いあってるから</li>
+          <li class="li2">因為我們一起笑</li>
+          <li class="li3"></li>
+          <li class="li1"><ruby><rb>今</rb><rt>いま</rt></ruby>なら<ruby><rb>言</rb><rt>い</rt></ruby>える</li>
+          <li class="li2">我現在可以說</li>
+          <li class="li3"></li>
+          <li class="li1">「<ruby><rb>好</rb><rt>す</rt></ruby>きだよ」</li>
+          <li class="li2">「我愛你」</li>
+          <li class="li3"></li>
+        </ul>
+      </div>
+      <hr>
     </main>
     <!-- custom script -->
     <script src='script/script.js'></script>
+    <script>
+      console.log("toggle active")
+      var titles = document.querySelectorAll("p.title");
+      for (var i = 0; i < titles.length; i++) {
+        titles[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          console.log("toggle active")
+        });
+      };
+    </script>
   </body>
 </html>
