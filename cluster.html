@@ -26,36 +26,35 @@
         <h1>Linux management guide on EdUHK PHYs cluster system</h1>
         <p class="lead">A user guide for complete beginner.</p>
         <hr>
-      </section>
-      <section>
-        <h2>Booting Sequence</h2>
-        <p> For some reason, the computer <em>"slave4"</em> require special steps in order to boot successfully.
-        <ol>
-          <li>Press f11 to go into its BIOS while booting</li>
-          <li>Change the booting mode to UEFT</li>
-          <li>Save and reboot</li>
-        </ol>
-        </p>
-      </section>
-      <section>
-        <h2>Cluster architecture</h2>
-        <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
-        <p>There are seven computers in the cluster.</p>
-        <ol>
-          <li>master</li>
-          <li>bill01</li>
-          <li>slave01</li>
-          <li>slave02</li>
-          <li>slave03</li>
-          <li>slave04</li>
-          <li>slave05</li>
-        </ol>
-      </section>
-      <section>
-        <h2>Connect to the server</h2>
-        <p> To connect to the cluster, use the following ip address: <code class='inlineCode'>phys.eduhk.hk</code>
-        </p>
-        <pre>
+        <section>
+          <h2>Booting Sequence</h2>
+          <p> For some reason, the computer <em>"slave4"</em> require special steps in order to boot successfully.
+          <ol>
+            <li>Press f11 to go into its BIOS while booting</li>
+            <li>Change the booting mode to UEFT</li>
+            <li>Save and reboot</li>
+          </ol>
+          </p>
+        </section>
+        <section>
+          <h2>Cluster architecture</h2>
+          <p>The Sun Grid Engine is used for job scheduling in the cluster. Use <code class='inlineCode'>sudo apt-get install gridengine-client gridengine-execute</code> to install Sun Grid Engine on Ubuntu. hostname:bill_cluster </p>
+          <p>There are seven computers in the cluster.</p>
+          <ol>
+            <li>master</li>
+            <li>bill01</li>
+            <li>slave01</li>
+            <li>slave02</li>
+            <li>slave03</li>
+            <li>slave04</li>
+            <li>slave05</li>
+          </ol>
+        </section>
+        <section>
+          <h2>Connect to the server</h2>
+          <p> To connect to the cluster, use the following ip address: <code class='inlineCode'>phys.eduhk.hk</code>
+          </p>
+          <pre>
             <code class="codeblock language-bash">
 "login as: username
 username@phys.eduhk.hk's password:
@@ -69,20 +68,20 @@ Last login: Week Month Day Time Year from ip_address
 username@bill01:~$"
           </code>
         </pre>
-        <p> To get administrative privileges, use the following account: <br>
-        <ul>
-          <li>username: bill</li>
-          <li>username:btypoon</li>
-          <li>password: billyeung</li>
-        </ul> A shortcut to connect the ip with a specific user is to enter <code class="inlineCode">username@ip</code>
-        </p>
-      </section>
-      <section>
-        <h2 id="/etc/hosts">/etc/hosts</h2>
-        <p>To see the local hosts name and their corresponding local ip address read the file in /etc/hosts</p>
-        <p>The files should be the same across all machines. Use <code class="inlineCode">sudo nano /etc/hosts</code> to edit it if needed. </p>
-        <p>As of 30/6/2023 this file in master:</p>
-        <pre> <code class="codeblock language-bash">
+          <p> To get administrative privileges, use the following account: <br>
+          <ul>
+            <li>username: bill</li>
+            <li>username:btypoon</li>
+            <li>password: billyeung</li>
+          </ul> A shortcut to connect the ip with a specific user is to enter <code class="inlineCode">username@ip</code>
+          </p>
+        </section>
+        <section>
+          <h2 id="/etc/hosts">/etc/hosts</h2>
+          <p>To see the local hosts name and their corresponding local ip address read the file in /etc/hosts</p>
+          <p>The files should be the same across all machines. Use <code class="inlineCode">sudo nano /etc/hosts</code> to edit it if needed. </p>
+          <p>As of 30/6/2023 this file in master:</p>
+          <pre> <code class="codeblock language-bash">
 #########################################################
 #127.0.0.1 localhost
 #127.0.1.1 bill03
@@ -105,21 +104,21 @@ ff02::2 ip6-allrouters
 #########################################################
           </code>
         </pre>
-      </section>
-      <section>
-        <h2 id="adduser">Adding new user</h2>
-        <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to the <a href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">documentation</a>, <code
-            class="inlineCode">sudo adduser username group</code> can also be used. </p>
-        <p>Repeat the above command for all machines</p>
-        <figure class='text-center'>
-          <blockquote class='blockquote' cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">
-            <p style='font-style:italic'>If called with two non-option arguments, adduser will add an existing user to an existing group. </p>
-          </blockquote>
-          <figcapion class="blockquote-footer"> <em>ubuntu manual adduser</em> </figcapion>
-        </figure>
-        <p>As of 30/6/2023, the file in /etc/passwd read:</p>
-        <p>
-        <pre>
+        </section>
+        <section>
+          <h2 id="adduser">Adding new user</h2>
+          <p>To Add a new user, use <code class="inlineCode">sudo adduser username</code> with administrative privileges. Refer to the <a href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">documentation</a>, <code
+              class="inlineCode">sudo adduser username group</code> can also be used. </p>
+          <p>Repeat the above command for all machines</p>
+          <figure class='text-center'>
+            <blockquote class='blockquote' cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html">
+              <p style='font-style:italic'>If called with two non-option arguments, adduser will add an existing user to an existing group. </p>
+            </blockquote>
+            <figcapion class="blockquote-footer"> <em>ubuntu manual adduser</em> </figcapion>
+          </figure>
+          <p>As of 30/6/2023, the file in /etc/passwd read:</p>
+          <p>
+          <pre>
           <code class="codeblock language-bash">
 #########################################################
 root:x:0:0:root:/root:/bin/bash
@@ -185,57 +184,63 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
 #########################################################
           </code>
         </pre>
-        </p>
-      </section>
-      <section>
-        <h2 id="Long-format-listing">Long format listing ls -l</h2>
-        <p> Using "ls -l" to list long format of files. The columns coorespond to:
-        <ol>
-          <li>The file type.</li>
-          <li>The file permissions.</li>
-          <li>Number of hard links to the file.</li>
-          <li>File owner.</li>
-          <li>File group.</li>
-          <li>File size.</li>
-          <li>Date and Time.</li>
-          <li>File name.</li>
-        </ol>
-        </p>
-      </section>
-      <section>
-        <h2 id="/etc/groups">/etc/groups</h2>
-        <p>To view all groups is to visit <code class="inlineCode">/etc/groups</code>. To change the uid or gid of a user, use: <code class="inlineCode">sudo usermod -u uid -g gid username</code> To change the gid or group name of a group, use <code
-            class="inlineCode">sudo groupmod -g gid -n new_groupName old_groupName</code>
-        </p>
-      </section>
-      <section>
-        <h2>Problem 1: Looking for a faster way to add a new users on all computers</h2>
-        <p>Currently, to add a new user, we need to repeats the command <span class="inlineCode">sudo adduser</span> in all seven computers. We are looking for a solution to add a new user on all computer by running the commands once</p>
-        <p>Maybe, there is a way to synchronize the user data on all computers. Or one might write a script to automatically create a new user with the necessary credential information on all computers in one go</p>
-      </section>
-      <section>
-        <h2>Problem 2: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
-        <p>Our new user Thomas Ho cannot run program or make any changes in all slaves computers but bill01. Older account does not have this problem</p>
-        <h3>Located Cause</h3>
-        <p>The problem was that the system treated the user from other host (slave1-5) as "other user" instead of "owner" although they have the same username. Therefore, after I allowed write permission for "other user" in the directory, the problem
-          was solved. However, "other user" including user other then the user with the same name as the owner can also modify the file inside now</p>
-        <h3>Suggested solution</h3>
-        <ol>
-          <li>Giving him admin privilege such that he can use sudo command. Downside was that he gain access to other admin command</li>
-          <li>Enable write permission for all users in Thomas's home folder. Downside was that every other user can write file to his home folder.</li>
-          <li>Another solution is to allow specific group of user to access the folder by their group ID. However, as I dig through the file, I found another problem. The group id for the groups of same name in bill01 and slave1-5 computers were
-            different.</li>
-        </ol>
-        <h3>New problem: Different group id for same user across all computers</h3>
-        <p></p>
-        <img width='300' src="image\problem1.jpg" alt="">
-        <figcaption>The image display the defined groups in bill01 (left), slave1(middle) and slave2(right) from /etc/groups.</figcaption>
-        <p>The word represents the group name and the number represent the group id. Each user was assigned a group id when created. Files recognize permitted user by their group id. For example, my group id was 1017 in bill01 and 1016 in slave1-5.
-        </p>
-        <p> Since the home folder was created in bill01, it permitted users of group id 1017 to write and modify in it. However, my group id was 1016 in slave's computer. Therefore, even if I allowed write permission for the group of ID 1017, I
-          cannot write in my home folder in slave's computers . To make it works, I would need to fix the mismatches of group id in bill01 and slave1-5. Therefore I suggest simply making the user home's folder writable for all user,
-          which is what I did.</p>
-        <p>So, at the end, <span style="text-decoration:underline;">solution 2 was employed</span>.</p>
+          </p>
+        </section>
+        <section>
+          <h2 id="Long-format-listing">Long format listing ls -l</h2>
+          <p> Using "ls -l" to list long format of files. The columns coorespond to:
+          <ol>
+            <li>The file type.</li>
+            <li>The file permissions.</li>
+            <li>Number of hard links to the file.</li>
+            <li>File owner.</li>
+            <li>File group.</li>
+            <li>File size.</li>
+            <li>Date and Time.</li>
+            <li>File name.</li>
+          </ol>
+          </p>
+        </section>
+        <section>
+          <h2 id="/etc/groups">/etc/groups</h2>
+          <p>To view all groups is to visit <code class="inlineCode">/etc/groups</code>. To change the uid or gid of a user, use: <code class="inlineCode">sudo usermod -u uid -g gid username</code> To change the gid or group name of a group, use
+            <code class="inlineCode">sudo groupmod -g gid -n new_groupName old_groupName</code>
+          </p>
+        </section>
+        <section>
+          <h2>Problem 1: Looking for a faster way to add a new users on all computers</h2>
+          <p>Currently, to add a new user, we need to repeats the command <span class="inlineCode">sudo adduser</span> in all seven computers. We are looking for a solution to add a new user on all computer by running the commands once</p>
+          <p>Maybe, there is a way to synchronize the user data on all computers. Or one might write a script to automatically create a new user with the necessary credential information on all computers in one go</p>
+        </section>
+        <section>
+          <h2>Problem 2: Unable to create or modify files in all Slave computers for new user - 5-July-2023 </h2>
+          <p>Our new user Thomas Ho cannot run program or make any changes in all slaves computers but bill01. Older account does not have this problem</p>
+          <h3>Located Cause</h3>
+          <p>The problem was that the system treated the user from other host (slave1-5) as "other user" instead of "owner" although they have the same username. Therefore, after I allowed write permission for "other user" in the directory, the
+            problem was solved. However, "other user" including user other then the user with the same name as the owner can also modify the file inside now</p>
+          <h3>Suggested solution</h3>
+          <ol>
+            <li>Giving him admin privilege such that he can use sudo command. Downside was that he gain access to other admin command</li>
+            <li>Enable write permission for all users in Thomas's home folder. Downside was that every other user can write file to his home folder.</li>
+            <li>Another solution is to allow specific group of user to access the folder by their group ID. However, as I dig through the file, I found another problem. The group id for the groups of same name in bill01 and slave1-5 computers were
+              different.</li>
+          </ol>
+          <h3>New problem: Different group id for same user across all computers</h3>
+          <p></p>
+          <img width='300' src="image\problem1.jpg" alt="">
+          <figcaption>The image display the defined groups in bill01 (left), slave1(middle) and slave2(right) from /etc/groups.</figcaption>
+          <p>The word represents the group name and the number represent the group id. Each user was assigned a group id when created. Files recognize permitted user by their group id. For example, my group id was 1017 in bill01 and 1016 in slave1-5.
+          </p>
+          <p> Since the home folder was created in bill01, it permitted users of group id 1017 to write and modify in it. However, my group id was 1016 in slave's computer. Therefore, even if I allowed write permission for the group of ID 1017, I
+            cannot write in my home folder in slave's computers . To make it works, I would need to fix the mismatches of group id in bill01 and slave1-5. Therefore I suggest simply making the user home's folder writable for all user,
+            which is what I did.</p>
+          <p>So, at the end, <span style="text-decoration:underline;">solution 2 was employed</span>.</p>
+        </section>
+        <section>
+          <h2>Problem3: Unable to run python program on ther server <span class='datetime'>09-12-2023</span></h2>
+          <p>My fellow RA Nesat wanted to run her tensorflow python program on the physics lab's cluster server, but unabled to do so. I was not able to install python module onto the cluster computer even using Dr. Yeung account.</p>
+          <p>Further investigation is required</p>
+        </section>
       </section>
     </main>
     <!-- custom script -->

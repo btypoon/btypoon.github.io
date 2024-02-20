@@ -26,6 +26,15 @@ main p {
   line-height: 2;
 }
 
+span.datetime {
+  font-size: .7em;
+  font-family: "Caveat";
+}
+
+span.datetime::before {
+  content: "last edited: ";
+}
+
 .inlineCode {
   font-family: 'Courier New';
   font-weight: bold;

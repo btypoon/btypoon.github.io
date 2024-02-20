@@ -21,135 +21,10 @@
         <h1>Ising model of Spin Glass</h1>
         <p>In this project, I tried to wrote a simulation on analysing the evolution of Spin Glass in Ising model. </p>
         <hr>
-      </section>
-      <section>
-        <h2>Definition of Spin Glass</h2>
-        <p>According to wiki, spin glass defines a disordered magnetic state of a material. Comparing to ferromagnetic materials, where their atomic magnetic spins all align in the same direction, spin glass material possess random magnetic spins and
-          couplings. </p>
-        <figure>
-          <div class="row">
-            <div class="column">
-              <h5>Quote from wiki</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Spin_glass_by_Zureks.svg/330px-Spin_glass_by_Zureks.svg.png" alt="">
-            </div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <figcaption>Schematic representation of the random spin structure of a spin glass (top) and the ordered one of a ferromagnet (bottom)</figcaption>
-            </div>
-          </div>
-        </figure>
-        <p>The word "glass" was used as analogy between the atomic magnetic disorder property of spin glass to the atomic positional disorder property of conventional glasses.</p>
-        <p>In conventional glass, their atomic bond structures are highly irregular and amorphous. Materials exhibiting similar properties with no observed long-range periodicity are called amorphous, non-crystalline and sometime also described as
-          "glassy".</p>
-        <p>
-        <figure>
-          <div class="row">
-            <div class="column">
-              <h5>Quote from wiki</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
-                style="width:140px;height:155px;object-fit: cover;object-position:left;"></div>
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
-                style="width:140px;height:155px;object-fit: cover;object-position:center;"></div>
-            <div class="column"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
-                style="width:140px;height:155px;object-fit: cover;object-position:right;"></div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <figcaption>Microscopically, a <a href="https://en.wikipedia.org/wiki/Single_crystal" title="Single crystal">single crystal</a> has atoms in a near-perfect <a href="https://en.wikipedia.org/wiki/Periodic_function"
-                  title="Periodic function">periodic</a> arrangement; a <a href="https://en.wikipedia.org/wiki/Polycrystal" title="Polycrystal">polycrystal</a> is composed of many microscopic crystals; and an <a
-                  href="https://en.wikipedia.org/wiki/Amorphous" title="Amorphous">amorphous</a> solid such as glass has no periodic arrangement even microscopically. </figcaption>
-            </div>
-          </div>
-        </figure>
-        <figure>
-          <div class="row">
-            <div class="column">
-              <h5>Quote from wiki</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Silica.svg/225px-Silica.svg.png" alt="">
-              <figcaption>Glass (amorphous SiO2)</figcaption>
-            </div>
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SiO%C2%B2_Quartz.svg/225px-SiO%C2%B2_Quartz.svg.png" alt="">
-              <figcaption>Quartz (crystalline SiO2)</figcaption>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <figcaption>
-                <br>The magnetic disorder of spin glass compared to a ferromagnet is analogous to the positional disorder of glass (left) compared to quartz (right).
-              </figcaption>
-            </div>
-          </div>
-        </figure>
-        <p>Therefore, "Spin glass" does not refer to your typical conventional window glasses.</p>
-      </section>
-      <section>
-        <h2>Ising model</h2>
-        <p>In Ising model, we consider a lattice space where local structure repeats periodically in all direction. Let there be $N$ points in this lattice space. We assign each point in the lattice a magnetic dipole moment $s$ of value from one of
-          two states, up and down. One way to represent it was to use $0$ and $1$. Here, we follow the convention of using $\pm1$. </p>
-        <div class="displayMath">\begin{align*}s_k\in\{-1,+1\}\end{align*} \begin{align*}k\in\{1,2,...,N\}\end{align*}</div>
-        <p>For simplicity, we only consider 2D square lattices of fixed dimension $m\times n$</p>
-        <div class="displayMath">\begin{align*}m\times n = N\end{align*}</div>
-        <figure>
-          <div class="row">
-            <div class="column">
-              <h5>Quote from wiki</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/SquareLattice.svg/225px-SquareLattice.svg.png" alt=""></div>
-            <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Wallpaper_group_diagram_p4m_square.svg/113px-Wallpaper_group_diagram_p4m_square.svg.png" alt=""></div>
-          </div>
-          <div class="row">
-            <div class="column">
-              <figcaption>A square lattice where distance between each adjacent points was constant and exhibit 4-fold rotational symmetry. </figcaption>
-            </div>
-          </div>
-        </figure>
         <section>
-          <h3>Coupling constant $J_{ij}$</h3>
-          <p> $J_{ij}$ represent the interation between $s_i$ and $s_j$
-          <ul>
-            <li>If $J_{ij}\gt 0$, the interation is called ferromagnetic.</li>
-            <li>If $J_{ij}\lt 0$, the interation is called antiferromagnetic.</li>
-            <li>If $J_{ij}\lt 0$, the spins are noninteracting</li>
-          </ul>
-          </p>
-          <p>We can think of them as friends and enemies. Spins whose are friends, with positive interaction $J\gt 0$, want to align with each other. Spins whose are enemies, with negative interaction $J\lt 0$, want to opposite each other. </p>
-          <p>Also, notice the symmetry when we speak of the interation between $s_i$ and $s_j$.
-          <div class="displayMath">\begin{align*}J_{ij}=J_{ji}\end{align*}</div>
-          </p>
-          <section>
-            <h3>Energy function</h3>
-            <p>In a given state of a system with known $J_ij$, $s_i$ and $s_j$, the total energy, hamoltonian or sometime called "cost function" or "discomfort function" of the system can be represented by
-            <div class="displayMath">\begin{align*}E(s_1,s_2,...,s_N)=-\sum_{i\lt j}{J_{ij}s_is_j} \end{align*}</div> where this equation allow infinite range of interaction for distant $i$ and $j$.</p>
-            <p>We are interested in minimizing the total energy of the system.</p>
-          </section>
-          <section>
-            <h3>Simplifying the coupling interaction $J$</h3>
-            <p>In real world, the interation $J_{ij}$ takes on a random normally distributed value with zero mean. However, We can simplify the problem by letting $J_{ij}$ be either $1$ or $-1$ to represent positive and negative interaction
-              respectively.</p>
-            <div class="displayMath">\begin{align*}J_{ij}\in{\{-1,1\}}\end{align*}</div>
-            <p>Moreover, in the real world, there exist interation between distant spins. But, we would like to simplify the problem by restricting the range of interation to the neighborhood only.
-            <div class="displayMath">i.e.\begin{align*}J_{ij}&=0 &\text{ for } |i-j|\ne 1\\J_{ij}&=\{-1,1\} &\text{ for } |i-j|= 1\end{align*}</div>
-            </p>
-          </section>
-        </section>
-        <section>
-          <h3>Frustration</h3>
-          <p>In some situation, no assignment of signs for a spin would minimize the total energy of a system. We call this a frustrated system.</p>
-          <p>For example, in a triangularly arranged configuration of antiferromagnetic spins. All spins are enemies and want to opposite one another.
-          <div class="displaMath">i.e.\begin{align*}J_{12}=J_{23}=J_{31}=-1\end{align*}</div>The total energy is the same no matter what sign we give the last spin.</p>
+          <h2>Definition of Spin Glass</h2>
+          <p>According to wiki, spin glass defines a disordered magnetic state of a material. Comparing to ferromagnetic materials, where their atomic magnetic spins all align in the same direction, spin glass material possess random magnetic spins
+            and couplings. </p>
           <figure>
             <div class="row">
               <div class="column">
@@ -157,43 +32,168 @@
               </div>
             </div>
             <div class="row">
-              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Triangular_frustration.svg/225px-Triangular_frustration.svg.png" alt=""></div>
+              <div class="column">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Spin_glass_by_Zureks.svg/330px-Spin_glass_by_Zureks.svg.png" alt="">
+              </div>
             </div>
             <div class="row">
               <div class="column">
-                <figcaption>Antiferromagnetically interacting spins in a triangular arrangement</figcaption>
+                <figcaption>Schematic representation of the random spin structure of a spin glass (top) and the ordered one of a ferromagnet (bottom)</figcaption>
               </div>
             </div>
           </figure>
-          <p>We also call this system to be sixfold degenerate.</p>
+          <p>The word "glass" was used as analogy between the atomic magnetic disorder property of spin glass to the atomic positional disorder property of conventional glasses.</p>
+          <p>In conventional glass, their atomic bond structures are highly irregular and amorphous. Materials exhibiting similar properties with no observed long-range periodicity are called amorphous, non-crystalline and sometime also described as
+            "glassy".</p>
+          <p>
+          <figure>
+            <div class="row">
+              <div class="column">
+                <h5>Quote from wiki</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
+                  style="width:140px;height:155px;object-fit: cover;object-position:left;"></div>
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
+                  style="width:140px;height:155px;object-fit: cover;object-position:center;"></div>
+              <div class="column"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Crystalline_polycrystalline_amorphous2.svg/420px-Crystalline_polycrystalline_amorphous2.svg.png"
+                  style="width:140px;height:155px;object-fit: cover;object-position:right;"></div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <figcaption>Microscopically, a <a href="https://en.wikipedia.org/wiki/Single_crystal" title="Single crystal">single crystal</a> has atoms in a near-perfect <a href="https://en.wikipedia.org/wiki/Periodic_function"
+                    title="Periodic function">periodic</a> arrangement; a <a href="https://en.wikipedia.org/wiki/Polycrystal" title="Polycrystal">polycrystal</a> is composed of many microscopic crystals; and an <a
+                    href="https://en.wikipedia.org/wiki/Amorphous" title="Amorphous">amorphous</a> solid such as glass has no periodic arrangement even microscopically. </figcaption>
+              </div>
+            </div>
+          </figure>
+          <figure>
+            <div class="row">
+              <div class="column">
+                <h5>Quote from wiki</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Silica.svg/225px-Silica.svg.png" alt="">
+                <figcaption>Glass (amorphous SiO2)</figcaption>
+              </div>
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SiO%C2%B2_Quartz.svg/225px-SiO%C2%B2_Quartz.svg.png" alt="">
+                <figcaption>Quartz (crystalline SiO2)</figcaption>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <figcaption>
+                  <br>The magnetic disorder of spin glass compared to a ferromagnet is analogous to the positional disorder of glass (left) compared to quartz (right).
+                </figcaption>
+              </div>
+            </div>
+          </figure>
+          <p>Therefore, "Spin glass" does not refer to your typical conventional window glasses.</p>
         </section>
-      </section>
-      <section>
-        <h2>Simulated Anneulling</h2>
         <section>
-          <h3>Objective Function</h3>
-          <p>Here, we want to minimize the total energy of the system.</p>
+          <h2>Ising model</h2>
+          <p>In Ising model, we consider a lattice space where local structure repeats periodically in all direction. Let there be $N$ points in this lattice space. We assign each point in the lattice a magnetic dipole moment $s$ of value from one of
+            two states, up and down. One way to represent it was to use $0$ and $1$. Here, we follow the convention of using $\pm1$. </p>
+          <div class="displayMath">\begin{align*}s_k\in\{-1,+1\}\end{align*} \begin{align*}k\in\{1,2,...,N\}\end{align*}</div>
+          <p>For simplicity, we only consider 2D square lattices of fixed dimension $m\times n$</p>
+          <div class="displayMath">\begin{align*}m\times n = N\end{align*}</div>
+          <figure>
+            <div class="row">
+              <div class="column">
+                <h5>Quote from wiki</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/SquareLattice.svg/225px-SquareLattice.svg.png" alt=""></div>
+              <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Wallpaper_group_diagram_p4m_square.svg/113px-Wallpaper_group_diagram_p4m_square.svg.png" alt=""></div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <figcaption>A square lattice where distance between each adjacent points was constant and exhibit 4-fold rotational symmetry. </figcaption>
+              </div>
+            </div>
+          </figure>
+          <section>
+            <h3>Coupling constant $J_{ij}$</h3>
+            <p> $J_{ij}$ represent the interation between $s_i$ and $s_j$
+            <ul>
+              <li>If $J_{ij}\gt 0$, the interation is called ferromagnetic.</li>
+              <li>If $J_{ij}\lt 0$, the interation is called antiferromagnetic.</li>
+              <li>If $J_{ij}\lt 0$, the spins are noninteracting</li>
+            </ul>
+            </p>
+            <p>We can think of them as friends and enemies. Spins whose are friends, with positive interaction $J\gt 0$, want to align with each other. Spins whose are enemies, with negative interaction $J\lt 0$, want to opposite each other. </p>
+            <p>Also, notice the symmetry when we speak of the interation between $s_i$ and $s_j$.
+            <div class="displayMath">\begin{align*}J_{ij}=J_{ji}\end{align*}</div>
+            </p>
+            <section>
+              <h3>Energy function</h3>
+              <p>In a given state of a system with known $J_ij$, $s_i$ and $s_j$, the total energy, hamoltonian or sometime called "cost function" or "discomfort function" of the system can be represented by
+              <div class="displayMath">\begin{align*}E(s_1,s_2,...,s_N)=-\sum_{i\lt j}{J_{ij}s_is_j} \end{align*}</div> where this equation allow infinite range of interaction for distant $i$ and $j$.</p>
+              <p>We are interested in minimizing the total energy of the system.</p>
+            </section>
+            <section>
+              <h3>Simplifying the coupling interaction $J$</h3>
+              <p>In real world, the interation $J_{ij}$ takes on a random normally distributed value with zero mean. However, We can simplify the problem by letting $J_{ij}$ be either $1$ or $-1$ to represent positive and negative interaction
+                respectively.</p>
+              <div class="displayMath">\begin{align*}J_{ij}\in{\{-1,1\}}\end{align*}</div>
+              <p>Moreover, in the real world, there exist interation between distant spins. But, we would like to simplify the problem by restricting the range of interation to the neighborhood only.
+              <div class="displayMath">i.e.\begin{align*}J_{ij}&=0 &\text{ for } |i-j|\ne 1\\J_{ij}&=\{-1,1\} &\text{ for } |i-j|= 1\end{align*}</div>
+              </p>
+            </section>
+          </section>
+          <section>
+            <h3>Frustration</h3>
+            <p>In some situation, no assignment of signs for a spin would minimize the total energy of a system. We call this a frustrated system.</p>
+            <p>For example, in a triangularly arranged configuration of antiferromagnetic spins. All spins are enemies and want to opposite one another.
+            <div class="displaMath">i.e.\begin{align*}J_{12}=J_{23}=J_{31}=-1\end{align*}</div>The total energy is the same no matter what sign we give the last spin.</p>
+            <figure>
+              <div class="row">
+                <div class="column">
+                  <h5>Quote from wiki</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Triangular_frustration.svg/225px-Triangular_frustration.svg.png" alt=""></div>
+              </div>
+              <div class="row">
+                <div class="column">
+                  <figcaption>Antiferromagnetically interacting spins in a triangular arrangement</figcaption>
+                </div>
+              </div>
+            </figure>
+            <p>We also call this system to be sixfold degenerate.</p>
+          </section>
         </section>
-      </section>
-      <section>
-        <h2>Mathematic formulation</h2>
-        <p>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-        </p>
-      </section>
-      <section>
-        <h2>Programming approach</h2>
+        <section>
+          <h2>Simulated Anneulling</h2>
+          <section>
+            <h3>Objective Function</h3>
+            <p>Here, we want to minimize the total energy of the system.</p>
+          </section>
+        </section>
+        <section>
+          <h2>Mathematic formulation</h2>
+          <p>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          </p>
+        </section>
+        <section>
+          <h2>Programming approach</h2>
+        </section>
       </section>
     </main>
     <!-- custom script -->

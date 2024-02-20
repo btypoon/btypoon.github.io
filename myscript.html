@@ -16,10 +16,9 @@
         <h1>Tampermonkey custom script</h1>
         <p>This page contain my custom script for personal use.</p>
         <hr>
-      </section>
-      <section>
-        <h2>9gag auto open comment section</h2>
-        <pre>
+        <section>
+          <h2>9gag auto open comment section</h2>
+          <pre>
             <code class="codeblock language-javascript">
 // ==UserScript==
 // @name         Automatically open the comments when opening post on 9gag
@@ -39,11 +38,11 @@ if (button) {
 }
 })();
             </code>
-        </pre>
-      </section>
-      <section>
-        <h2>Press "s" To Save Yotube Video</h2>
-        <pre>
+          </pre>
+        </section>
+        <section>
+          <h2>Press "s" To Save Yotube Video</h2>
+          <pre>
             <code class="codeblock language-javascript">
 // ==UserScript==
 // @name         Press "s" ToSaveVideo
@@ -82,10 +81,10 @@ document.addEventListener("keyup", function(event) {
 });
             </code>
         </pre>
-      </section>
-      <section>
-        <h2>Auto click button periodically</h2>
-        <pre>
+        </section>
+        <section>
+          <h2>Auto click button periodically</h2>
+          <pre>
             <code class="codeblock language-javascript">
 // ==UserScript==
 // @name         AutoClickButton
@@ -106,38 +105,54 @@ setInterval(function() {
 },3000);
             </code>
         </pre>
+        </section>
       </section>
+      <hr>
       <section>
-        <h2>Adding customFun.py to python module search path</h2>
-        <p>Adding the following system path to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
-        <pre>
+        <h1>Enviromental setting</h1>
+        <p>Setup and change before coding</p>
+        <section>
+          <h2>Adding customFun.py to python module search path</h2>
+          <p>Adding the following system path to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
+          <pre>
             <code class="codeblock language-bash">
 PYTHONPATH = %UserProfile%\OneDrive - The Education University of Hong Kong\work\Programming
             </code>
         </pre>
-      </section>
-      <section>
-        <h2>Environmental setting for gcc c++ compiler</h2> Add the following code to the "Link libraries". Create a "libraries" directory to store all the linked .cpp files.
-        <pre>
+        </section>
+        <section>
+          <h2>Environmental setting for gcc c++ compiler</h2> Add the following code to the "Link libraries". Create a "libraries" directory to store all the linked .cpp files.
+          <pre>
             <code class="codeblock language-javascript">
 libraries\*.cpp
             </code>
         </pre>
-      </section>
-      <section class="invisible">
-        <h2></h2>
-        <pre>
+        </section>
+        <section>
+          <h2>Change the current directory on pulsar python run terminal</h2>
+          <p>Edit and add the following code into the file: <span class="inlineCode">%USERPROFILE%\.pulsar\packages\python-run-terminalnx\bin\run_python_code.bat</span></p>
+          <pre><code class="codeblock">
+set file_python=%1
+cd
+cd %~dp1
+cd
+          </code>
+        </pre>
+        </section>
+        <section class="invisible">
+          <h2></h2>
+          <pre>
             <code class="codeblock language-javascript">
             </code>
         </pre>
-      </section>
-      <section class="invisible">
-        <h2></h2>
-        <pre>
+        </section>
+        <section class="invisible">
+          <h2></h2>
+          <pre>
             <code class="codeblock language-javascript">
             </code>
         </pre>
-      </section>
+        </section>
     </main>
     <!-- custom script -->
     <script src='script/script.js'></script>
