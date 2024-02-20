@@ -35,12 +35,21 @@ span.datetime::before {
   content: "last edited: ";
 }
 
-.inlineCode {
+span.inlineCode {
   font-family: 'Courier New';
   font-weight: bold;
   padding-right: 4px;
   padding-left: 4px;
   color: crimson;
+  background-color: whitesmoke;
+}
+
+span.dirname {
+  font-family: 'Courier New';
+  font-weight: bold;
+  padding-right: 4px;
+  padding-left: 4px;
+  color: DodgerBlue;
   background-color: whitesmoke;
 }
 

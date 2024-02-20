@@ -139,6 +139,30 @@ cd
           </code>
         </pre>
         </section>
+        <section>
+          <h2>furigana python installation steps</h2>
+          <p>
+          <ol>
+            <li>Clone repository from <a href="https://github.com/MikimotoH/furigana">https://github.com/MikimotoH/furigana</a></li>
+            <li> Require <a href="https://pypi.org/project/mecab-python3/">Mecab python</a>
+              <ul>
+                <li>Install Mecab <a href="https://taku910.github.io/mecab/"><i>mecab-0.996.exe</i></a></li>
+                <li>Install Microsoft Visual C++ Redistributable <a href="https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170">link</a></li>
+                <li>Install mecab python <span class="inlineCode">pip install mecab-python3==1.0.9.dev4</span></li>
+              </ul>
+            </li>
+            <li>Require Mecab dictionary <ul>
+                <li> Install <a href="https://github.com/polm/unidic-py">Unidic</a> <span class="inlineCode">pip install unidic</span></li>
+                <li>Download the dictionary <span class="inlineCode">python -m unidic download</span></li>
+              </ul>
+            </li>
+            <li>pip install jaconv</li>
+            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab =
+                MeCab.Tagger("-chasen")</span></li>
+            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[6]</span></li>
+          </ol>
+          </p>
+        </section>
         <section class="invisible">
           <h2></h2>
           <pre>
