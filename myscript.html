@@ -157,10 +157,10 @@ cd
               </ul>
             </li>
             <li>pip install jaconv</li>
-            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab =
-                MeCab.Tagger("-chasen")</span></li>
-            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[6]</span></li>
-          </ol>
+            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab = MeCab.Tagger('-d
+                "{}"'.format(unidic.DICDIR))</span></li>
+            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[9]</span></li>
+          </ol> For detail on the fields of <span class="inlineCode">node.feature</span>, refers to <a href="https://clrd.ninjal.ac.jp/unidic/faq.html#col_name">https://clrd.ninjal.ac.jp/unidic/faq.html#col_name</a>
           </p>
         </section>
         <section class="invisible">
