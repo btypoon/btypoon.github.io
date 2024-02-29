@@ -157,25 +157,46 @@ cd
               </ul>
             </li>
             <li>pip install jaconv</li>
-            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab = MeCab.Tagger('-d
-                "{}"'.format(unidic.DICDIR))</span></li>
-            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[9]</span></li>
+            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab = MeCab.Tagger()</span>
+            </li>
+            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[20]</span></li>
+            <li>And modify the function <span class="dirname">print_html</span> to
+              <pre>
+                <code class="codeblock language-python">
+def print_html(text):
+    string=''
+    for pair in split_furigana(text):
+        if len(pair)==2:
+            kanji,hira = pair
+            string += f"<ruby><rb>{kanji}</rb><rt>{hira}</rt></ruby>"
+        else:
+            string += pair[0]
+    return string
+                </code>
+              </pre>
+            </li>
           </ol> For detail on the fields of <span class="inlineCode">node.feature</span>, refers to <a href="https://clrd.ninjal.ac.jp/unidic/faq.html#col_name">https://clrd.ninjal.ac.jp/unidic/faq.html#col_name</a>
           </p>
         </section>
-        <section class="invisible">
-          <h2></h2>
-          <pre>
-            <code class="codeblock language-javascript">
-            </code>
-        </pre>
+        <section>
+          <h2>To view installed python package</h2>
+          <p>Use <span class="inlineCode">pip list | findstr /b /*yourtext*/ </span> in cmd.</p>
+          <p>Use <span class="inlineCode">pip freeze > requirements. txt</span> to generate list of installed packages and their versions. Next time, use <span class="inlineCode">pip install -r requirements.txt</span> to install all the required
+            package with specific version.</p>
         </section>
         <section class="invisible">
           <h2></h2>
           <pre>
             <code class="codeblock language-javascript">
             </code>
-        </pre>
+          </pre>
+        </section>
+        <section class="invisible">
+          <h2></h2>
+          <pre>
+            <code class="codeblock language-javascript">
+            </code>
+          </pre>
         </section>
     </main>
     <!-- custom script -->
