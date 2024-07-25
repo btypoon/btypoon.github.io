@@ -110,7 +110,7 @@ setInterval(function() {
       <hr>
       <section>
         <h1>Enviromental setting</h1>
-        <p>Setup and change before coding</p>
+        <p>Setup and change before coding. Use python 3.11 for compatibility.</p>
         <section>
           <h2>Adding customFun.py to python module search path</h2>
           <p>Adding the following system path to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
@@ -198,6 +198,27 @@ def print_html(text):
             </code>
           </pre>
         </section>
+      </section>
+      <section>
+        <h1>Error encounter</h1>
+        <p>This section provide solution to common encountered error</p>
+        <hr>
+        <section>
+          <h2><span class="inlineCode">OSError: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted</span></h2>
+          <p>From <span class="inlineCode">startServer.py</span>, port 8000 might be used by other program at the moment. Use <span class="inlineCode">netstat -ano|findstr 8000</span> in cmd to locate the program that was using port 8000. You will
+            get something like this:</p>
+          <p><span class="inlineCode">TCP x.x.x.x:8000 *:* 12345</span></p>
+          <p>Kill the process with <span class="inlineCode">tskill 12345</span> in cmd</p>
+          <p><a href="https://stackoverflow.com/questions/12362542/python-server-only-one-usage-of-each-socket-address-is-normally-permitted">stackoverflow reference</a></p>
+        </section>
+        <section>
+          <h2><span class="inlineCode">AttributeError: module 'httpcore' has no attribute 'SyncHTTPTransport</span></h2>
+          <p>Occur when translating japanese song using <span class="inlineCode">jpSong.py</span>. From <span class="inlineCode">client.py</span> in package <span class="inlineCode">googletrans</span>, Change <span
+              class="inlineCode">httpcore.SyncHTTPTransport</span> to <span class="inlineCode">httpcore.AsyncHTTPProxy</span>.
+          <p><a href="https://blog.csdn.net/czqjijiboy/article/details/134279814">reference</a></p>
+          </p>
+        </section>
+      </section>
     </main>
     <!-- custom script -->
     <script src='script/script.js'></script>
