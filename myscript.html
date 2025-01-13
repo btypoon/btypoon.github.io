@@ -113,12 +113,13 @@ setInterval(function() {
         <p>Setup and change before coding. Use python 3.11 for compatibility.</p>
         <section>
           <h2>Adding customFun.py to python module search path</h2>
-          <p>Adding the following system path to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
+          <p>Adding PYTHONPATH to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
           <pre>
             <code class="codeblock language-bash">
-PYTHONPATH = %UserProfile%\OneDrive - The Education University of Hong Kong\work\Programming
+PYTHONPATH = %OneDrive%\work\Programming
             </code>
-        </pre>
+          </pre>
+          <p>To check if it is working, run <span class="inlineCode">print(sys.path)</span> in python and see if the path is listed.</p>
         </section>
         <section>
           <h2>Environmental setting for gcc c++ compiler</h2> Add the following code to the "Link libraries". Create a "libraries" directory to store all the linked .cpp files.
@@ -184,8 +185,20 @@ def print_html(text):
           <p>Use <span class="inlineCode">pip freeze > requirements. txt</span> to generate list of installed packages and their versions. Next time, use <span class="inlineCode">pip install -r requirements.txt</span> to install all the required
             package with specific version.</p>
         </section>
-        <section class="invisible">
-          <h2></h2>
+        <section>
+          <h2>Install ffmpeg (dependency of Manim community)</h2>
+          <p>Download the zip file from ffmpeg website and extract it into any directory. Edit and add the absolute path to the ffmpeg bin directory into PATH environment variable.</p>
+          <p>If you now open a new command line prompt and run ffmpeg, the command should be recognized.</p>
+          <p>For example,</p>
+          <pre>
+            <code class="codeblock language-bash">
+Path = C:\Program Files\ffmpeg-7.1-essentials_build\bin
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>Manim</h2>
+          <p>Only work with python 3.12 because of manimpango not compatible with python 3.13 currently.</p>
           <pre>
             <code class="codeblock language-javascript">
             </code>
