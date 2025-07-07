@@ -1,26 +1,26 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>my script</title>
-    <style>
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>my script</title>
+  <style>
+  </style>
+</head>
 
-  <body>
-    <main>
+<body>
+  <main>
+
+    <section>
+      <h1>Tampermonkey custom script</h1>
+      <p>This page contain my custom script for personal use.</p>
+      <hr>
 
       <section>
-        <h1>Tampermonkey custom script</h1>
-        <p>This page contain my custom script for personal use.</p>
-        <hr>
-
-        <section>
-          <h2>9gag auto open comment section</h2>
-          <pre><code class="codeblock language-javascript">
+        <h2>9gag auto open comment section</h2>
+        <pre><code class="codeblock language-javascript">
 // ==UserScript==
 // @name         Automatically open the comments when opening post on 9gag
 // @namespace    http://tampermonkey.net/
@@ -39,11 +39,11 @@ if (button) {
 }
 })();
           </code></pre>
-        </section>
+      </section>
 
-        <section>
-          <h2>Press "s" To Save Yotube Video</h2>
-          <pre><code class="codeblock language-javascript">
+      <section>
+        <h2>Press "s" To Save Yotube Video</h2>
+        <pre><code class="codeblock language-javascript">
 // ==UserScript==
 // @name         Press "s" ToSaveVideo
 // @namespace    http://tampermonkey.net/
@@ -80,11 +80,11 @@ document.addEventListener("keyup", function(event) {
   };
 });
           </code></pre>
-        </section>
+      </section>
 
-        <section>
-          <h2>Auto click button periodically</h2>
-          <pre><code class="codeblock language-javascript">
+      <section>
+        <h2>Auto click button periodically</h2>
+        <pre><code class="codeblock language-javascript">
 // ==UserScript==
 // @name         AutoClickButton
 // @namespace    http://tampermonkey.net/
@@ -103,99 +103,117 @@ setInterval(function() {
         };
 },3000);
           </code></pre>
-        </section>
       </section>
-      <hr>
+    </section>
+    <hr>
+
+    <section>
+      <h1>Enviromental setting</h1>
+      <p>Setup and change before coding. Use python 3.11 for compatibility.</p>
 
       <section>
-        <h1>Enviromental setting</h1>
-        <p>Setup and change before coding. Use python 3.11 for compatibility.</p>
-
-        <section>
-          <h2>Migrate old module into new Python version</h2>
-          <p>When installing newer version of python, modules needed to be reinstalled. First, we need to generate a list of modules in older version of Python.</p>
-          <p>To list out installed modules, type <span class="inlineCode">pip list</span> in cmd. You may attach and pipe the output into <span class="inlineCode">| findstr /b /*yourtext*/</span> to filter individual modules within a large list.</p>
-          <p>To find out where are the modules installed, type in cmd:</p>
-          <pre><code class="codeblock language-shell">
+        <h2>Migrate old module into new Python version</h2>
+        <p>When installing newer version of python, modules needed to be reinstalled. First, we need to generate a list
+          of modules in older version of Python.</p>
+        <p>To list out installed modules, type <span class="inlineCode">pip list</span> in cmd. You may attach and pipe
+          the output into <span class="inlineCode">| findstr /b /*yourtext*/</span> to filter individual modules within
+          a large list.</p>
+        <p>To find out where are the modules installed, type in cmd:</p>
+        <pre><code class="codeblock language-shell">
 python -m site
           </code></pre>
-          <p>which execute the <span class="inlineCode">Lib/site.py</span> file or use the following script in python.</p>
-          <pre><code class="codeblock language-python">
+        <p>which execute the <span class="inlineCode">Lib/site.py</span> file or use the following script in python.</p>
+        <pre><code class="codeblock language-python">
 import sys
 for e in sys.path:
     print(e)
           </code></pre>
-          <p> Installed modules should be within <span class="inlineCode">Lib/site-packages</span> directory. </p>
-          <p>To generate an <span class="inlineCode">requirements.txt</span> from old modules. Type in the cmd:
-          <pre><code class="codeblock language-shell">
+        <p> Installed modules should be within <span class="inlineCode">Lib/site-packages</span> directory. </p>
+        <p>To generate an <span class="inlineCode">requirements.txt</span> from old modules. Type in the cmd:
+        <pre><code class="codeblock language-shell">
 pip freeze > %userprofile%\downloads\requirement.txt
           </code></pre>
-          </p>
-          <p>To download and install newer version on python, type in cmd:
-          <pre><code class="codeblock language-shell">
+        </p>
+        <p>To download and install newer version on python, type in cmd:
+        <pre><code class="codeblock language-shell">
 pip install -r %userprofile%\downloads\requirement.txt
           </code></pre>
-          </p>
-          <p>You may use <span class="inlineCode">pip-review</span> modules to update installed modules. Bewared updated module might break existing code.</p>
-        </section>
+        </p>
+        <p>You may use <span class="inlineCode">pip-review</span> modules to update installed modules. Bewared updated
+          module might break existing code.</p>
+      </section>
 
-        <section>
-          <h2>Adding customFun.py to python module search path</h2>
-          <p>Adding <span class="inlineCode">PYTHONPATH</span> to window environmental variable can therefore let you <span class="inlineCode">import customFun</span> in all python script.</p>
-          <pre><code class="codeblock language-bash">
+      <section>
+        <h2>Adding customFun.py to python module search path</h2>
+        <p>Adding <span class="inlineCode">PYTHONPATH</span> to window environmental variable can therefore let you
+          <span class="inlineCode">import customFun</span> in all python script.
+        </p>
+        <pre><code class="codeblock language-bash">
 PYTHONPATH = %OneDrive%\work\Programming
           </code></pre>
-          <p>To check if it is working, run <span class="inlineCode">print(sys.path)</span> in python and see if the path is listed.</p>
-        </section>
+        <p>To check if it is working, run <span class="inlineCode">print(sys.path)</span> in python and see if the path
+          is listed.</p>
+      </section>
 
-        <section>
-          <h2>Add pulsar and ppm command to cmd</h2>
-          <p>To do that, add the absolute path to <span class="inlineCode">Pulsar\resources</span> and <span class="inlineCode">Pulsar\resources\app\ppm\bin</span> into windows environmental variables <span class="inlineCode">Path</span></p>
-          <p>Use <span class="inlineCode">open file location</span> to locate the directory of <i>Pulsar-edit</i></p>
-        </section>
+      <section>
+        <h2>Add pulsar and ppm command to cmd</h2>
+        <p>To do that, add the absolute path to <span class="inlineCode">Pulsar\resources</span> and <span
+            class="inlineCode">Pulsar\resources\app\ppm\bin</span> into windows environmental variables <span
+            class="inlineCode">Path</span></p>
+        <p>Use <span class="inlineCode">open file location</span> to locate the directory of <i>Pulsar-edit</i></p>
+      </section>
 
-        <section>
-          <h2>Change the current directory on pulsar python run terminal</h2>
-          <p>Edit and add the following code into the file: <span class="inlineCode">%USERPROFILE%\.pulsar\packages\python-run-terminalnx\bin\run_python_code.bat</span></p>
-          <pre><code class="codeblock">
+      <section>
+        <h2>Change the current directory on pulsar python run terminal</h2>
+        <p>Edit and add the following code into the file: <span
+            class="inlineCode">%USERPROFILE%\.pulsar\packages\python-run-terminalnx\bin\run_python_code.bat</span></p>
+        <pre><code class="codeblock">
 set file_python=%1
 cd
 cd %~dp1
 cd
           </code></pre>
-        </section>
+      </section>
 
-        <section>
-          <h2>Environmental setting for gcc c++ compiler</h2>
-          <p>Add the following code to the "Link libraries". Create a "libraries" directory to store all the linked .cpp files.</p>
-          <pre><code class="codeblock language-shell">
+      <section>
+        <h2>Environmental setting for gcc c++ compiler</h2>
+        <p>Add the following code to the "Link libraries". Create a "libraries" directory to store all the linked .cpp
+          files.</p>
+        <pre><code class="codeblock language-shell">
 libraries\*.cpp
           </code></pre>
-        </section>
+      </section>
 
-        <section>
-          <h2>furigana python installation steps</h2>
-          <p>
-          <ol>
-            <li>Clone repository from <a href="https://github.com/MikimotoH/furigana">https://github.com/MikimotoH/furigana</a></li>
-            <li> Require <a href="https://pypi.org/project/mecab-python3/">Mecab python</a>
-              <ul>
-                <li>Install Mecab <a href="https://taku910.github.io/mecab/"><i>mecab-0.996.exe</i></a></li>
-                <li>Install Microsoft Visual C++ Redistributable <a href="https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170">link</a></li>
-                <li>Install mecab python <span class="inlineCode">pip install mecab-python3==1.0.9.dev4</span></li>
-              </ul>
-            </li>
-            <li>Require Mecab dictionary <ul>
-                <li> Install <a href="https://github.com/polm/unidic-py">Unidic</a> <span class="inlineCode">pip install unidic</span></li>
-                <li>Download the dictionary <span class="inlineCode">python -m unidic download</span></li>
-              </ul>
-            </li>
-            <li>pip install jaconv</li>
-            <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>, change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab = MeCab.Tagger()</span>
-            </li>
-            <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span class="inlineCode">kana = node.feature.split(",")[20]</span></li>
-            <li>And modify the function <span class="dirname">print_html</span> to
-              <pre><code class="codeblock language-python">
+      <section>
+        <h2>furigana python installation steps</h2>
+        <p>
+        <ol>
+          <li>Clone repository from <a
+              href="https://github.com/MikimotoH/furigana">https://github.com/MikimotoH/furigana</a></li>
+          <li> Require <a href="https://pypi.org/project/mecab-python3/">Mecab python</a>
+            <ul>
+              <li>Install Mecab <a href="https://taku910.github.io/mecab/"><i>mecab-0.996.exe</i></a></li>
+              <li>Install Microsoft Visual C++ Redistributable <a
+                  href="https://learn.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170">link</a>
+              </li>
+              <li>Install mecab python <span class="inlineCode">pip install mecab-python3==1.0.9.dev4</span></li>
+            </ul>
+          </li>
+          <li>Require Mecab dictionary <ul>
+              <li> Install <a href="https://github.com/polm/unidic-py">Unidic</a> <span class="inlineCode">pip install
+                  unidic</span></li>
+              <li>Download the dictionary <span class="inlineCode">python -m unidic download</span></li>
+            </ul>
+          </li>
+          <li>pip install jaconv</li>
+          <li>In the function <span class="dirname">split_furigana</span> of <span class="dirname">furigana.py</span>,
+            change <span class="inlineCode">mecab = MeCab.Tagger("-Ochasen")</span> to <span class="inlineCode">mecab =
+              MeCab.Tagger()</span>
+          </li>
+          <li>and change <span class="inlineCode">kana = node.feature.split(",")[7]</span> to <span
+              class="inlineCode">kana = node.feature.split(",")[20]</span></li>
+          <li>And modify the function <span class="dirname">print_html</span> to
+            <pre><code class="codeblock language-python">
 def print_html(text):
     string=''
     for pair in split_furigana(text):
@@ -206,60 +224,71 @@ def print_html(text):
             string += pair[0]
     return string
                 </code></pre>
-            </li>
-          </ol> For detail on the fields of <span class="inlineCode">node.feature</span>, refers to <a href="https://clrd.ninjal.ac.jp/unidic/faq.html#col_name">https://clrd.ninjal.ac.jp/unidic/faq.html#col_name</a>
-          </p>
-        </section>
-
-        <section>
-          <h2>Install ffmpeg</h2>
-          <p>Download the zip file from ffmpeg website and extract it into any directory. Edit and add the absolute path to the ffmpeg bin directory into windows PATH environment variable.</p>
-          <p>For example,</p>
-          <pre><code class="codeblock language-bash">
-Path = C:\Program Files\ffmpeg-7.1-essentials_build\bin
-          </code></pre>
-          <p>If you now open a new command line prompt and run <span class="inlineCode">ffmpeg</span>, the command should be recognized.</p>
-        </section>
-
-        <section>
-          <h2>Manim</h2>
-          <p>As of Manim 1.19, simply use pip.</p>
-          <pre><code class="codeblock language-javascript">
-pip install manim
-            </code></pre>
-        </section>
-
-        <section class="invisible">
-          <h2></h2>
-          <pre><code class="codeblock language-javascript">
-            </code></pre>
-        </section>
+          </li>
+        </ol> For detail on the fields of <span class="inlineCode">node.feature</span>, refers to <a
+          href="https://clrd.ninjal.ac.jp/unidic/faq.html#col_name">https://clrd.ninjal.ac.jp/unidic/faq.html#col_name</a>
+        </p>
       </section>
 
       <section>
-        <h1>Error encounter</h1>
-        <p>This section provide solution to common encountered error</p>
-        <hr>
-
-        <section>
-          <h2><span class="inlineCode">OSError: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted</span></h2>
-          <p>From <span class="inlineCode">startServer.py</span>, port 8000 might be used by other program at the moment. Use <span class="inlineCode">netstat -ano|findstr 8000</span> in cmd to locate the program that was using port 8000. You will
-            get something like this:</p>
-          <p><span class="inlineCode">TCP x.x.x.x:8000 *:* 12345</span></p>
-          <p>Kill the process with <span class="inlineCode">tskill 12345</span> in cmd</p>
-          <p><a href="https://stackoverflow.com/questions/12362542/python-server-only-one-usage-of-each-socket-address-is-normally-permitted">stackoverflow reference</a></p>
-        </section>
-
-        <section>
-          <h2><span class="inlineCode">AttributeError: module 'httpcore' has no attribute 'SyncHTTPTransport</span></h2>
-          <p>Occur when translating japanese song using <span class="inlineCode">jpSong.py</span>. From <span class="inlineCode">client.py</span> in package <span class="inlineCode">googletrans</span>, Change <span
-              class="inlineCode">httpcore.SyncHTTPTransport</span> to <span class="inlineCode">httpcore.AsyncHTTPProxy</span>.
-          <p><a href="https://blog.csdn.net/czqjijiboy/article/details/134279814">reference</a></p>
-          </p>
-        </section>
+        <h2>Install ffmpeg</h2>
+        <p>Download the zip file from ffmpeg website and extract it into any directory. Edit and add the absolute path
+          to the ffmpeg bin directory into windows PATH environment variable.</p>
+        <p>For example,</p>
+        <pre><code class="codeblock language-bash">
+Path = C:\Program Files\ffmpeg-7.1-essentials_build\bin
+          </code></pre>
+        <p>If you now open a new command line prompt and run <span class="inlineCode">ffmpeg</span>, the command should
+          be recognized.</p>
       </section>
-    </main>
-    <!-- custom script -->
-    <script src='script/script.js'></script>
-  </body>
+
+      <section>
+        <h2>Manim</h2>
+        <p>As of Manim 1.19, simply use pip.</p>
+        <pre><code class="codeblock language-javascript">
+pip install manim
+            </code></pre>
+      </section>
+
+      <section class="invisible">
+        <h2></h2>
+        <pre><code class="codeblock language-javascript">
+            </code></pre>
+      </section>
+    </section>
+
+    <section>
+      <h1>Error encounter</h1>
+      <p>This section provide solution to common encountered error</p>
+      <hr>
+
+      <section>
+        <h2><span class="inlineCode">OSError: [WinError 10048] Only one usage of each socket address (protocol/network
+            address/port) is normally permitted</span></h2>
+        <p>From <span class="inlineCode">startServer.py</span>, port 8000 might be used by other program at the moment.
+          Use <span class="inlineCode">netstat -ano|findstr 8000</span> in cmd to locate the program that was using port
+          8000. You will
+          get something like this:</p>
+        <p><span class="inlineCode">TCP x.x.x.x:8000 *:* 12345</span></p>
+        <p>Kill the process with <span class="inlineCode">tskill 12345</span> in cmd</p>
+        <p><a
+            href="https://stackoverflow.com/questions/12362542/python-server-only-one-usage-of-each-socket-address-is-normally-permitted">stackoverflow
+            reference</a></p>
+      </section>
+
+      <section>
+        <h2><span class="inlineCode">AttributeError: module 'httpcore' has no attribute 'SyncHTTPTransport</span></h2>
+        <p>Occur when translating japanese song using <span class="inlineCode">jpSong.py</span>. From <span
+            class="inlineCode">client.py</span> in package <span class="inlineCode">googletrans</span>, Change <span
+            class="inlineCode">httpcore.SyncHTTPTransport</span> to <span
+            class="inlineCode">httpcore.AsyncHTTPProxy</span>.
+        <p><a href="https://blog.csdn.net/czqjijiboy/article/details/134279814">reference</a></p>
+        </p>
+      </section>
+    </section>
+  </main>
+  <!-- custom script -->
+  <script src='script/script.js'></script>
+</body>
+
 </html>
