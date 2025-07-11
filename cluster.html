@@ -64,7 +64,17 @@
       <section>
         <h2>Connect to the server</h2>
         <p>
-          To connect to the server, use any ssh software of your choice such as
+          To connect to the server, you must first connected to the university
+          intranet. You may use either:
+        </p>
+        <ul>
+          <li>Wifi <span class="inlineCode">EdUHK</span></li>
+          <li>Wifi <span class="inlineCode">IoT</span></li>
+          <li>Wired university computer</li>
+          <li>EdUHK VPN</li>
+        </ul>
+        <p>
+          Use any ssh software of your choice such as
           <i>PuTTY</i> or window terminal. You can connect to either of the
           following IP addresses via
           <span class="inlineCode">ssh</span> command:
@@ -72,6 +82,7 @@
         <ul>
           <li><span class="inlineCode">ssh phys.eduhk.hk</span></li>
           <li><span class="inlineCode">ssh phys.ied.edu.hk</span></li>
+          <li><span class="inlineCode">ssh 175.159.131.248</span></li>
         </ul>
         <p>
           Enter your username and password when prompted. A quick way to connect
@@ -147,12 +158,12 @@ username@bill01:~$"
 #175.159.131.248 bill-workstation
 #202.45.51.232 master
 #202.45.51.231 slave1
-# the following lines are desirable for IPv6 capable hosts
-::1 IP6-localhost IP6-loopback
-fe00::0 IP6-localnet
-ff00::0 IP6-mcastprefix
-ff02::1 IP6-allnodes
-ff02::2 IP6-allrouters
+# the following lines are desirable for ipv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
 #########################################################
           </code>
         </pre>
@@ -218,12 +229,12 @@ messagebus:x:106:110::/var/run/dbus:/bin/false
 uuidd:x:107:111::/run/uuidd:/bin/false
 lightdm:x:108:114:Light Display Manager:/var/lib/lightdm:/bin/false
 whoopsie:x:109:116::/nonexistent:/bin/false
-avahi-autoIPd:x:110:119:Avahi autoIP daemon,,,:/var/lib/avahi-autoIPd:/bin/false
+avahi-autoipd:x:110:119:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
 avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
 dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false
 colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false
 speech-dispatcher:x:114:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
-hplIP:x:115:7:HPLIP system user,,,:/var/run/hplIP:/bin/false
+hplip:x:115:7:HPLIP system user,,,:/var/run/hplip:/bin/false
 kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
 pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
 rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
@@ -296,7 +307,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
         <p>
           Maybe, there is a way to synchronize the user data on all computers.
-          Or one might write a scrIPt to automatically create a new user with
+          Or one might write a script to automatically create a new user with
           the necessary credential information on all computers in one go
         </p>
       </section>
@@ -381,7 +392,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
 
       <section>
         <h2>
-          Security reported three critical vulnerabilities
+          Problem 4: Security reported three critical vulnerabilities
           <br /><span class="datetime">3-Jul-2025</span>
         </h2>
         <p>
@@ -422,6 +433,13 @@ sudo do-release-upgrade
             The upgrade process must be repeated for each of the seven computers
             in our server cluster, marking a total of 28 OS upgrades. This made
             the overall effort very time-consuming.
+          </p>
+          <p>
+            To check the current OS version, one may use the following commands
+            for version before 18.04:
+            <span class="command">lsb_release -a</span>
+            and after 20.04:
+            <span class="command">cat /etc/os/release</span>
           </p>
           <p>
             During the upgrade process of computers <i>Bill01</i> and
@@ -526,18 +544,34 @@ sudo do-release-upgrade
             and append the following code to the end of file
           </p>
           <pre><code class="language-bash">
-# Disable ChaCha20-Poly1305 cIPher
-CIPhers -chacha20-poly1305@openssh.com
+# Disable Ciphers List
+Ciphers -chacha20-poly1305@openssh.com
 
-# Disable Encrypt-then-MAC (EtM) MACs
+#Enable MACs List
+MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,umac-64@openssh.com,umac-128@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com
+          </code></pre>
+          <p>
+            For unknown reason, multiple exclusions was not working. Only the
+            first one in the list was disabled. User can still connect via other
+            listed MACs algorithm. Therefore, we used explicit inclusion list
+            and avoided using exclusion list for MACs.
+          </p>
+          <pre><code class="language-bash">
+# Disable MACs List
 MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@openssh.com,-hmac-sha2-512-etm@openssh.com,-hmac-sha1-etm@openssh.com
           </code></pre>
           <p>
-            To verify the cryptographic algorithms used by our SSH server before
-            and after modifications, type commands
+            To list all available Ciphers and MACs supported by OpenSSH, use
             <span class="inlineCode">ssh -Q mac</span> and
             <span class="inlineCode">ssh -Q cipher</span>
-            in the terminal.
+          </p>
+          <p>
+            To verify the whether the cryptographic algorithms were disabled,
+            specify the algorithms used in ssh connection. For example:
+            <span class="command"
+              >ssh -c chacha20-poly1305@openssh.com user@ip</span
+            >
+            <span class="command">ssh -m umac-64-etm@openssh.com user@ip</span>
           </p>
           <p>
             Implementing these modifications is expected to resolve the second
@@ -555,11 +589,92 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
         </section>
       </section>
       <section>
-        <h2>Static IP Connection Failed</h2>
-        <p></p>
+        <h2>Problem 5: SSH Connection failure</h2>
+        <p>
+          While upgrading the Operating system of the server, there was a period
+          during which the SSH service became inaccessible. A thorough and
+          extensive investigation revealed that two wired network connections
+          were conflicting, resulting in a mismatch between the static public IP
+          address provided by OCIO and the dynamic public IP address assigned by
+          our router. It hints a potential problem that might recur in future
+          upgrades. For reference, the steps we took were logged below.
+        </p>
+        <section>
+          <h3>Mismatch between public IPs</h3>
+          <p>
+            When runing <span class="inlineCode">hostname -I</span> and
+            <span class="inlineCode">curl ifconfig.me</span>, different public
+            IPs were returned. Our server although connected to the static IP
+            network, was not using it as its public IP. Hence, connection via
+            static IP, <span class="inlineCode">ssh 175.159.131.248</span>, was
+            not working.
+          </p>
+          <p>
+            One may temporarily forward port 22 on the router via its setting
+            page at <span class="inlineCode">192.168.1.1</span> with the
+            password <span class="inlineCode">billyeung</span>. And enable
+            listening on incoming connection from all IPs by editing the
+            <span class="inlineCode">sshd_config</span> file:
+            <span class="command">sudo nano /etc/ssh/sshd_config</span>
+          </p>
+          <pre><code class="language-bash">
+ListenAddress ::
+ListenAddress 0.0.0.0
+            </code></pre>
+          <p>
+            Then, use the dynamic public IP assigned by the router to ssh
+            connect the server. As of 10-7-2025, SSH connection was temporarily
+            reestablished using the dynamic IP,
+            <span class="inlineCode">ssh 175.159.139.164</span>.
+          </p>
+          <p>
+            If the ssh service is still unavailable, one may checkand restart
+            its status using
+            <span class="command">sudo systemctl status ssh</span>
+            <span class="command">sudo systemctl restart ssh</span>
+          </p>
+          <p>
+            Check also the firewall to see if connection via port 22 was
+            allowed. Allow ssh in the firewall if needed.
+            <span class="command">sudo ufw status</span>
+            <span class="command">sudo ufw allow ssh</span>
+          </p>
+        </section>
+        <section>
+          <h2>Hostnam unreachable</h2>
+          <p>
+            After OS upgrade, the local IP address assigned by our router might
+            changed. Therefore, command like
+            <span class="inlineCode">ssh master</span> which the system refered
+            to the old local IP might make the connection insuccessful.
+          </p>
+          <p>
+            Check the latest local IP of each computer one may use either the
+            commands
+            <span class="inlineCode">ip a</span> or
+            <span class="inlineCode">ifconfig</span> to view its network
+            properties.
+          </p>
+          <p>
+            Use <span class="inlineCode">namp</span> modules to view all the
+            devices in the local network. Reinstall the module if needed:
+            <span class="command">sudo apt install nmap</span>
+          </p>
+          <p>
+            Then, run the following command to scan the local network. Try to
+            locate any new IP and connect to it to check its hostname.
+            <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
+          </p>
+          <p>
+            Finally, update the file
+            <span class="inlineCode">/etc/hosts</span> with the latest local IP
+            address corresponding to each computers hostname. Repeat and
+            synchronize the file across all seven computers.
+          </p>
+        </section>
       </section>
     </main>
-    <!-- custom scrIPt -->
-    <script src="scrIPt/scrIPt.js"></script>
+    <!-- custom script -->
+    <script src="script/script.js"></script>
   </body>
 </html>
