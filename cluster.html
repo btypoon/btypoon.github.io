@@ -191,9 +191,9 @@ ff02::2 ip6-allrouters
               existing user to an existing group.
             </p>
           </blockquote>
-          <figcapion class="blockquote-footer">
+          <figcaption class="blockquote-footer">
             <em>ubuntu manual adduser</em>
-          </figcapion>
+          </figcaption>
         </figure>
         <p>
           As of 30/6/2023, the file in
@@ -550,6 +550,10 @@ Ciphers -chacha20-poly1305@openssh.com
 #Enable MACs List
 MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,umac-64@openssh.com,umac-128@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com
           </code></pre>
+          <pre><code class="language-bash">
+#Enable MACs List
+MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.com
+          </code></pre>
           <p>
             For unknown reason, multiple exclusions was not working. Only the
             first one in the list was disabled. User can still connect via other
@@ -631,7 +635,7 @@ ListenAddress 0.0.0.0
             <span class="inlineCode">ssh 175.159.139.164</span>.
           </p>
           <p>
-            If the ssh service is still unavailable, one may checkand restart
+            If the ssh service is still unavailable, one may check and restart
             its status using
             <span class="command">sudo systemctl status ssh</span>
             <span class="command">sudo systemctl restart ssh</span>
@@ -642,42 +646,103 @@ ListenAddress 0.0.0.0
             <span class="command">sudo ufw status</span>
             <span class="command">sudo ufw allow ssh</span>
           </p>
+          <p>
+            This way, one may continue working on the server remotely via the
+            dynamic ip address.
+          </p>
         </section>
         <section>
-          <h2>
-            Problem 6: Hostnam unreachable
-            <br /><span class="datetime">11-Jul-2025</span>
-          </h2>
+          <h3>Cause and Replication steps</h3>
+          <figure>
+            <img width="450" src="image\cluster\network_setting.jpg" alt="" />
+            <figcaption>
+              (Top) Ethernet <i>enp0s25</i> refers to the static IP network.
+              (Bottom) Ethernet <i>ens1</i> refers to the dynamic IP network.
+            </figcaption>
+          </figure>
+
           <p>
-            After OS upgrade, the local IP address assigned by our router might
-            changed. Therefore, command like
-            <span class="inlineCode">ssh master</span> which the system refered
-            to the old local IP might make the connection insuccessful.
+            Extensive investigation revealed that the computer was connected to
+            two different networks. The Ethernet interface
+            <i>enp0s25</i> connected the computer <i>bill01</i> to the external
+            internet, while the Ethernet interface <i>ens1</i> linked
+            <i>bill01</i> to the internal intranet, allowing its communication
+            and access with the other six computers.
           </p>
           <p>
-            Check the latest local IP of each computer one may use either the
-            commands
-            <span class="inlineCode">ip a</span> or
-            <span class="inlineCode">ifconfig</span> to view its network
-            properties.
+            The order in which the network interfaces were connected affected
+            the computer’s public IP address. When the network <i>ens1</i> was
+            connected first, bill01 use the dynamic public IP address assigned
+            by the router as its public IP address. When the network
+            <i>enp0s25</i> was connected first, bill01 use the static public IP
+            address assigned by OCIO as its public IP address.
           </p>
           <p>
-            Use <span class="inlineCode">namp</span> modules to view all the
-            devices in the local network. Reinstall the module if needed:
-            <span class="command">sudo apt install nmap</span>
-          </p>
-          <p>
-            Then, run the following command to scan the local network. Try to
-            locate any new IP and connect to it to check its hostname.
-            <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
-          </p>
-          <p>
-            Finally, update the file
-            <span class="inlineCode">/etc/hosts</span> with the latest local IP
-            address corresponding to each computers hostname. Repeat and
-            synchronize the file across all seven computers.
+            Therefore, we should always click the <i>enp0s25</i> button first,
+            then the <i>ens1</i> button secondly. It was confirmed that the
+            static IP address, the SSH service, and the firewall were all
+            functioning correctly. The issue stemmed solely from the sequence of
+            network connections, which altered the public IP address and led to
+            SSH connection failures.
           </p>
         </section>
+        <section>
+          <h3>Static IP address</h3>
+          <figure>
+            <img width="450" src="image/cluster/static-ip.jpg" alt="" />
+            <figcaption>
+              The static public IP, netmask, gateway and DNS provided by OCIO in
+              April 2016.
+            </figcaption>
+          </figure>
+          <p>
+            Make sure the network interface <i>enp0s25</i> was setup correcly
+            using the static IP address provided by OCIO.
+          </p>
+        </section>
+      </section>
+      <section>
+        <h2>
+          Problem 6: Hostnam unreachable
+          <br /><span class="datetime">11-Jul-2025</span>
+        </h2>
+        <p>
+          After OS upgrade, the local IP address assigned by our router might
+          changed. Therefore, SSH connection between computers like
+          <span class="inlineCode">ssh master</span> fails. The system will try
+          to refer and connect you to the old local IP which no longer exist.
+        </p>
+        <p>
+          Check the latest local IP on each computer using either command
+          <span class="inlineCode">ip a</span> or command
+          <span class="inlineCode">ifconfig</span>.
+        </p>
+        <p>
+          You may also connect to the router webpage via
+          <span class="inlineCode">192.168.1.1</span>, login with the password
+          <sudo class="inlineCode">billyeung</sudo> and check the list of local
+          IP address.
+        </p>
+        <figure>
+          <img width="450" src="image\cluster\local-ip.jpg" alt="" />
+          <figcaption>List of local IP address as of 10-7-2025.</figcaption>
+        </figure>
+        <p>
+          Use <span class="inlineCode">namp</span> modules to view all the
+          devices in the local network. Reinstall the module if needed:
+          <span class="command">sudo apt install nmap</span>
+        </p>
+        <p>
+          Then, run the following command to scan the local network. Try to
+          locate any new IP and connect to it to check its hostname.
+          <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
+        </p>
+        <p>
+          Finally, update the file
+          <span class="inlineCode">/etc/hosts</span> with the latest local IP
+          address corresponding to each computers hostname. Repeat and
+          synchronize the file across all seven computers.
+        </p>
       </section>
     </main>
     <!-- custom script -->
