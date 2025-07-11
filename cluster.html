@@ -567,71 +567,98 @@ sudo do-release-upgrade
         </section>
         <section>
           <h3>Second vulnerability</h3>
-          <p>
-            Regarding the second high-severity vulnerability, it was identified
-            that the cryptographic algorithms currently utilized by our SSH
-            server were considered insecure and potentially susceptible to
-            exploitation. Specifically, the following six algorithms were
-            flagged:
-          </p>
-          <ul>
-            <li>chacha20-poly1305@openssh.com</li>
-            <li>umac-64-etm@openssh.com</li>
-            <li>umac-128-etm@openssh.com</li>
-            <li>hmac-sha2-256-etm@openssh.com</li>
-            <li>hmac-sha2-512-etm@openssh.com</li>
-            <li>hmac-sha1-etm@openssh.com</li>
-          </ul>
-          <p>
-            To mitigate this vulnerability, it is recommended to either disabled
-            or replaced these algorithms with more secure alternatives.
-            Disabling them should be sufficient to resolve the issue.
-          </p>
-          <p>
-            To do that, edit the
-            <span class="inlineCode">sshd_config</span> file by command
+          <section>
+            <h4>first scan</h4>
+            <p>
+              Regarding the second high-severity vulnerability, it was
+              identified that the cryptographic algorithms currently utilized by
+              our SSH server were considered insecure and potentially
+              susceptible to exploitation. Specifically, the following six
+              algorithms were flagged:
+            </p>
+            <ul>
+              <li>chacha20-poly1305@openssh.com</li>
+              <li>umac-64-etm@openssh.com</li>
+              <li>umac-128-etm@openssh.com</li>
+              <li>hmac-sha2-256-etm@openssh.com</li>
+              <li>hmac-sha2-512-etm@openssh.com</li>
+              <li>hmac-sha1-etm@openssh.com</li>
+            </ul>
+            <p>
+              To mitigate this vulnerability, it is recommended to either
+              disabled or replaced these algorithms with more secure
+              alternatives. Disabling them should be sufficient to resolve the
+              issue.
+            </p>
+            <p>
+              To do that, edit the
+              <span class="inlineCode">sshd_config</span> file by command
 
-            <span class="command"> sudo nano /etc/ssh/sshd_config </span>
-            and append the following code to the end of file
-          </p>
-          <pre><code class="language-bash">
+              <span class="command"> sudo nano /etc/ssh/sshd_config </span>
+              and append the following code to the end of file
+            </p>
+            <pre><code class="language-bash">
 # Disable Ciphers List
 Ciphers -chacha20-poly1305@openssh.com
 
 #Enable MACs List
 MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,umac-64@openssh.com,umac-128@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com
-          </code></pre>
-          <pre><code class="language-bash">
-#Enable MACs List
-MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.com
-          </code></pre>
-          <p>
-            For unknown reason, multiple exclusions was not working. Only the
-            first one in the list was disabled. User can still connect via other
-            listed MACs algorithm. Therefore, we used explicit inclusion list
-            and avoided using exclusion list for MACs.
-          </p>
-          <pre><code class="language-bash">
+            </code></pre>
+            <p>
+              For unknown reason, multiple exclusions was not working. Only the
+              first one in the list was disabled. User can still connect via
+              other listed MACs algorithm. Therefore, we used explicit inclusion
+              list and avoided using exclusion list for MACs.
+            </p>
+            <pre><code class="language-bash">
 # Disable MACs List
 MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@openssh.com,-hmac-sha2-512-etm@openssh.com,-hmac-sha1-etm@openssh.com
           </code></pre>
-          <p>
-            To list all available Ciphers and MACs supported by OpenSSH, use
-            <span class="inlineCode">ssh -Q mac</span> and
-            <span class="inlineCode">ssh -Q cipher</span>
-          </p>
-          <p>
-            To verify the whether the cryptographic algorithms were disabled,
-            specify the algorithms used in ssh connection. For example:
-            <span class="command"
-              >ssh -c chacha20-poly1305@openssh.com user@ip</span
-            >
-            <span class="command">ssh -m umac-64-etm@openssh.com user@ip</span>
-          </p>
-          <p>
-            Implementing these modifications is expected to resolve the second
-            high-severity vulnerability.
-          </p>
+            <p>
+              To list all available Ciphers and MACs supported by OpenSSH, use
+              <span class="inlineCode">ssh -Q mac</span> and
+              <span class="inlineCode">ssh -Q cipher</span>
+            </p>
+            <p>
+              To verify the whether the cryptographic algorithms were disabled,
+              specify the algorithms used in ssh connection. For example:
+              <span class="command"
+                >ssh -c chacha20-poly1305@openssh.com user@ip</span
+              >
+              <span class="command"
+                >ssh -m umac-64-etm@openssh.com user@ip</span
+              >
+            </p>
+            <p>
+              Implementing these modifications is expected to resolve the second
+              high-severity vulnerability.
+            </p>
+          </section>
+          <section>
+            <h4>Second security scan</h4>
+            <p>
+              After the correction of the MACs list, a second security scan was
+              performed and reported by OCIO. The Tenable security scan reported
+              additional insecure MAC algorithms in used, namely:
+            </p>
+            <ul>
+              <li>hmac-md5</li>
+              <li>hmac-md5-96</li>
+              <li>hmac-md5-96-etm@openssh.com</li>
+              <li>hmac-md5-etm@openssh.com</li>
+              <li>hmac-sha1-96</li>
+              <li>hmac-sha1-96-etm@openssh.com</li>
+            </ul>
+            <p>
+              In response, a list of permitted MAC algorithms in
+              <span class="inlineCode">sshd_config</span> was further restricted
+              to enhance security.
+            </p>
+            <pre><code class="language-bash">   
+#Enable MACs List
+MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.com
+            </code></pre>
+          </section>
         </section>
         <section>
           <h3>Third vulnerability</h3>
