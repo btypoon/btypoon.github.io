@@ -27,55 +27,67 @@
       </p>
       <hr />
       <h1>Table of content</h1>
-      <div class="toc">
+      <figure class="toc">
         <ol>
-          <a href="#cluster_architecture">
-            <li>Cluster architecture</li>
-          </a>
-          <a href="#booting_sequence">
-            <li>Booting Sequence</li>
-          </a>
-          <a href="#connect_to_the_server">
-            <li>Connect to the server</li>
-          </a>
-          <a href="#etc_hosts">
-            <li>/etc/hosts</li>
-          </a>
-          <a href="#new_user">
-            <li>Adding new user</li>
-          </a>
-          <a href="#list_format">
-            <li>Long format listing ls -l</li>
-          </a>
-          <a href="#etc_groups">
-            <li>/etc/groups</li>
-          </a>
-          <a href="#problem1">
-            <li>
-              Problem 1: Looking for a faster way to add a new users on all
+          <li><a href="#cluster_architecture">Cluster architecture </a></li>
+          <li><a href="#booting_sequence">Booting Sequence </a></li>
+          <li>
+            <a href="#connect_to_the_server">Connect to the server </a>
+          </li>
+          <li><a href="#etc_hosts">/etc/hosts </a></li>
+          <li><a href="#new_user">Adding new user </a></li>
+          <li><a href="#list_format">Long format listing ls -l </a></li>
+          <li><a href="#etc_groups">/etc/groups </a></li>
+          <li>
+            <a href="#problem1">
+              Problem 1: Looking for a faster way to add new user on all
               computers
-            </li>
-          </a>
-          <a href="#problem2">
-            <li>
+            </a>
+          </li>
+          <li>
+            <a href="#problem2">
               Problem 2: Unable to create or modify files in all Slave computers
               for new user
-            </li>
-          </a>
-          <a href="#problem3">
-            <li>Problem3: Unable to run python program on ther server</li>
-          </a>
-          <a href="#problem4">
-            <li>Problem 4: Security reported three critical vulnerabilities</li>
-          </a>
-          <a href="#problem5">
-            <li>Problem 5: SSH Connection failure</li>
-          </a>
-          <a href="#problem6">
-            <li>Problem 6: Hostnam unreachable</li>
-          </a>
+              <ol class="sub-toc">
+                <li><a href="#9.1"> Located Cause </a></li>
+                <li><a href="#9.2"> Suggested solution </a></li>
+                <li>
+                  <a href="#9.3">
+                    New problem: Different group id for same user across all
+                    computers
+                  </a>
+                </li>
+              </ol>
+            </a>
+          </li>
+          <li>
+            <a href="#problem3">
+              Problem3: Unable to run python program on ther server
+            </a>
+          </li>
+          <li>
+            <a href="#problem4">
+              Problem 4: Security reported three critical vulnerabilities
+              <ol class="sub-toc">
+                <li><a href="#11.1"> First Vulnerability </a></li>
+                <li><a href="#11.2"> Second Vulnerability </a></li>
+                <li><a href="#11.3"> Third Vulnerability </a></li>
+              </ol>
+            </a>
+          </li>
+          <li>
+            <a href="#problem5">
+              Problem 5: SSH Connection failure
+              <ol class="sub-toc">
+                <li><a href="#12.1"> Mismatch between public IPs </a></li>
+                <li><a href="#12.2"> Cause and Replication steps </a></li>
+                <li><a href="#12.3"> Static IP address </a></li>
+              </ol>
+            </a>
+          </li>
+          <li><a href="#problem6"> Problem 6: Hostnam unreachable </a></li>
         </ol>
-      </div>
+      </figure>
       <hr />
       <section>
         <h2 id="cluster_architecture">Cluster architecture</h2>
@@ -347,14 +359,12 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       </section>
       <section>
         <h2 id="problem1">
-          Problem 1: Looking for a faster way to add a new users on all
-          computers
+          Problem 1: Looking for a faster way to add new user on all computers
         </h2>
         <p>
           Currently, to add a new user, we need to repeats the command
           <span class="inlineCode">sudo adduser</span> in all seven computers.
-          We are looking for a solution to add a new user on all computer by
-          running the commands once
+          We look for solution to add new user on all computer simultaneously.
         </p>
         <p>
           Maybe, there is a way to synchronize the user data on all computers.
@@ -371,7 +381,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           Our new user Thomas Ho cannot run program or make any changes in all
           slaves computers but bill01. Older account does not have this problem
         </p>
-        <h3>Located Cause</h3>
+        <h3 id="9.1">Located Cause</h3>
         <p>
           The problem was that the system treated the user from other host
           (slave1-5) as "other user" instead of "owner" although they have the
@@ -380,7 +390,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           including user other then the user with the same name as the owner can
           also modify the file inside now
         </p>
-        <h3>Suggested solution</h3>
+        <h3 id="9.2">Suggested solution</h3>
         <ol>
           <li>
             Giving him admin privilege such that he can use sudo command.
@@ -398,7 +408,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
             bill01 and slave1-5 computers were different.
           </li>
         </ol>
-        <h3>
+        <h3 id="9.3">
           New problem: Different group id for same user across all computers
         </h3>
         <img width="300" src="image\problem1.jpg" alt="" />
@@ -460,7 +470,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           <li>ICMP Timestamp Request Remote Date Disclosure - Low Severity</li>
         </ol>
         <section>
-          <h3>First vulnerability</h3>
+          <h3 id="11.1">First vulnerability</h3>
           <p>
             Regarding the first critical vulnerability, our server was running
             Ubuntu version 16.04, which reached its end-of-life in 2021 and was
@@ -566,7 +576,7 @@ sudo do-release-upgrade
           </p>
         </section>
         <section>
-          <h3>Second vulnerability</h3>
+          <h3 id="11.2">Second vulnerability</h3>
           <section>
             <h4>first scan</h4>
             <p>
@@ -661,7 +671,7 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
           </section>
         </section>
         <section>
-          <h3>Third vulnerability</h3>
+          <h3 id="11.3">Third vulnerability</h3>
           <p>
             For the third vulnerability, the server maintenance technician
             should Block ICMP Timestamp Requests at the Firewall. Require
@@ -685,7 +695,7 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
           upgrades. For reference, the steps we took were logged below.
         </p>
         <section>
-          <h3>Mismatch between public IPs</h3>
+          <h3 id="12.1">Mismatch between public IPs</h3>
           <p>
             When runing <span class="inlineCode">hostname -I</span> and
             <span class="inlineCode">curl ifconfig.me</span>, different public
@@ -730,7 +740,7 @@ ListenAddress 0.0.0.0
           </p>
         </section>
         <section>
-          <h3>Cause and Replication steps</h3>
+          <h3 id="12.2">Cause and Replication steps</h3>
           <figure>
             <img width="450" src="image\cluster\network_setting.jpg" alt="" />
             <figcaption>
@@ -765,7 +775,7 @@ ListenAddress 0.0.0.0
           </p>
         </section>
         <section>
-          <h3>Static IP address</h3>
+          <h3 id="12.3">Static IP address</h3>
           <figure>
             <img width="450" src="image/cluster/static-ip.jpg" alt="" />
             <figcaption>
