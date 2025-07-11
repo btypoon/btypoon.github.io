@@ -26,8 +26,59 @@
         and support continuity for future system administrators.
       </p>
       <hr />
+      <h1>Table of content</h1>
+      <div class="toc">
+        <ol>
+          <a href="#cluster_architecture">
+            <li>Cluster architecture</li>
+          </a>
+          <a href="#booting_sequence">
+            <li>Booting Sequence</li>
+          </a>
+          <a href="#connect_to_the_server">
+            <li>Connect to the server</li>
+          </a>
+          <a href="#etc_hosts">
+            <li>/etc/hosts</li>
+          </a>
+          <a href="#new_user">
+            <li>Adding new user</li>
+          </a>
+          <a href="#list_format">
+            <li>Long format listing ls -l</li>
+          </a>
+          <a href="#etc_groups">
+            <li>/etc/groups</li>
+          </a>
+          <a href="#problem1">
+            <li>
+              Problem 1: Looking for a faster way to add a new users on all
+              computers
+            </li>
+          </a>
+          <a href="#problem2">
+            <li>
+              Problem 2: Unable to create or modify files in all Slave computers
+              for new user
+            </li>
+          </a>
+          <a href="#problem3">
+            <li>Problem3: Unable to run python program on ther server</li>
+          </a>
+          <a href="#problem4">
+            <li>Problem 4: Security reported three critical vulnerabilities</li>
+          </a>
+          <a href="#problem5">
+            <li>Problem 5: SSH Connection failure</li>
+          </a>
+          <a href="#problem6">
+            <li>Problem 6: Hostnam unreachable</li>
+          </a>
+        </ol>
+      </div>
+      <hr />
       <section>
-        <h2>Cluster architecture</h2>
+        <h2 id="cluster_architecture">Cluster architecture</h2>
         <p>There are the seven computers and their hostname in the cluster.</p>
         <ol>
           <li>bill01</li>
@@ -49,7 +100,7 @@
         </p>
       </section>
       <section>
-        <h2>Booting Sequence</h2>
+        <h2 id="booting_sequence">Booting Sequence</h2>
         <p>
           For some reason, the computer <em>"slave4"</em> require special steps
           in order to be boot successfully. When you face "The Red Screen of
@@ -62,7 +113,7 @@
         </ol>
       </section>
       <section>
-        <h2>Connect to the server</h2>
+        <h2 id="connect_to_the_server">Connect to the server</h2>
         <p>
           To connect to the server, you must first connected to the university
           intranet. You may use either:
@@ -119,7 +170,7 @@ username@bill01:~$"
         </ul>
       </section>
       <section>
-        <h2 id="/etc/hosts">/etc/hosts</h2>
+        <h2 id="etc_hosts">/etc/hosts</h2>
         <p>
           The file in <span class="inlineCode">/etc/hosts</span> stores the
           hostname and their corresponding IP address.
@@ -169,7 +220,7 @@ ff02::2 ip6-allrouters
         </pre>
       </section>
       <section>
-        <h2>Adding new user</h2>
+        <h2 id="new_user">Adding new user</h2>
         <p>
           To Add a new user, use
           <span class="inlineCode">sudo adduser username</span> with
@@ -265,7 +316,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           </code></pre>
       </section>
       <section>
-        <h2>Long format listing ls -l</h2>
+        <h2 id="list_format">Long format listing ls -l</h2>
         <p>
           Using <span class="inlineCode">ls -l</span> to list long format of
           files. The columns coorespond to:
@@ -282,7 +333,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </ol>
       </section>
       <section>
-        <h2>/etc/groups</h2>
+        <h2 id="etc_groups">/etc/groups</h2>
         <p>
           To view all groups, visit
           <span class="inlineCode">/etc/groups</span>. To change the uid or gid
@@ -295,7 +346,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h2>
+        <h2 id="problem1">
           Problem 1: Looking for a faster way to add a new users on all
           computers
         </h2>
@@ -312,7 +363,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h2>
+        <h2 id="problem2">
           Problem 2: Unable to create or modify files in all Slave computers for
           new user <br /><span class="datetime">5-July-2023</span>
         </h2>
@@ -377,7 +428,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </p>
       </section>
       <section>
-        <h2>
+        <h2 id="problem3">
           Problem3: Unable to run python program on ther server
           <br /><span class="datetime">9-Dec-2023</span>
         </h2>
@@ -391,7 +442,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       </section>
 
       <section>
-        <h2>
+        <h2 id="problem4">
           Problem 4: Security reported three critical vulnerabilities
           <br /><span class="datetime">11-Jul-2025</span>
         </h2>
@@ -593,7 +644,7 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
         </section>
       </section>
       <section>
-        <h2>
+        <h2 id="problem5">
           Problem 5: SSH Connection failure
           <br /><span class="datetime">11-Jul-2025</span>
         </h2>
@@ -702,7 +753,7 @@ ListenAddress 0.0.0.0
         </section>
       </section>
       <section>
-        <h2>
+        <h2 id="problem6">
           Problem 6: Hostnam unreachable
           <br /><span class="datetime">11-Jul-2025</span>
         </h2>
