@@ -235,9 +235,11 @@ figcaption {
   color: rgb(6, 69, 173);
 }
 
+.toc .sub-toc li::marker {
+  content: "⤷";
+}
 .toc .sub-toc {
-  list-style: none;
-  padding-left: 25px;
+  padding-left: 30px;
 }
 .toc a:hover {
   text-decoration: underline;

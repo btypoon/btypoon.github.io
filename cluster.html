@@ -68,22 +68,32 @@
           <li>
             <a href="#problem4">
               Problem 4: Security reported three critical vulnerabilities
-              <ol class="sub-toc">
-                <li><a href="#11.1"> First Vulnerability </a></li>
-                <li><a href="#11.2"> Second Vulnerability </a></li>
-                <li><a href="#11.3"> Third Vulnerability </a></li>
-              </ol>
             </a>
+            <ol class="sub-toc">
+              <li>
+                <a href="#11.1"> First Vulnerability </a>
+                <ol class="sub-toc">
+                  <li><a href="#graphic_driver">Outdated Graphic Driver</a></li>
+                  <li><a href="#dpkg">"DPKG" packages error</a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="#11.2"> Second Vulnerability </a>
+                <ol class="sub-toc">
+                  <li><a href="#first_scan">First scan</a></li>
+                  <li><a href="#second_scan">Second scan</a></li>
+                </ol>
+              </li>
+              <li><a href="#11.3"> Third Vulnerability </a></li>
+            </ol>
           </li>
           <li>
-            <a href="#problem5">
-              Problem 5: SSH Connection failure
-              <ol class="sub-toc">
-                <li><a href="#12.1"> Mismatch between public IPs </a></li>
-                <li><a href="#12.2"> Cause and Replication steps </a></li>
-                <li><a href="#12.3"> Static IP address </a></li>
-              </ol>
-            </a>
+            <a href="#problem5"> Problem 5: SSH Connection failure </a>
+            <ol class="sub-toc">
+              <li><a href="#12.1"> Mismatch between public IPs </a></li>
+              <li><a href="#12.2"> Cause and Replication steps </a></li>
+              <li><a href="#12.3"> Static IP address </a></li>
+            </ol>
           </li>
           <li><a href="#problem6"> Problem 6: Hostnam unreachable </a></li>
         </ol>
@@ -502,83 +512,89 @@ sudo do-release-upgrade
             and after 20.04:
             <span class="command">cat /etc/os/release</span>
           </p>
-          <p>
-            During the upgrade process of computers <i>Bill01</i> and
-            <i>master</i>, the display output was lost due to outdated graphics
-            drivers that were incompatible with the newer version of Ubuntu.
-          </p>
-          <p>To resolve this issue, the following steps were taken:</p>
-          <ol>
-            <li>
-              <b>Identifying the Graphics Card</b>
-              <p>
-                The following command was ran to determine the video card
-                installed on the system:
-                <span class="command">sudo lshw -c video</span>
-              </p>
-            </li>
-            <li>
-              <b>Installing Driver Management Module (if missing)</b>
-              <p>
-                For machine that do not have ubuntu-drivers utility installed,
-                we ran:
-                <span class="command"
-                  >sudo apt install ubuntu-drivers-common</span
-                >
-              </p>
-            </li>
-            <li>
-              <b>Check for Available Drivers</b>
-              <p>
-                Using the command below, we listed any new and available
-                drivers:
-                <span class="command">ubuntu-drivers devices</span>
-              </p>
-            </li>
-            <li>
-              <b>Installing new Drivers</b>
-              <p>
-                To install the new graphics drivers, we ran:
-                <span class="command">sudo ubuntu-drivers autoinstall</span>
-              </p>
-            </li>
-            <li>
-              <b>Reboot the System</b>
-              <p>
-                After installation, we rebooted the system to apply the
-                changes:<span class="command">sudo reboot</span>
-              </p>
-            </li>
-          </ol>
-          <p>
-            Afterwards, the display functionality was restored and the upgrade
-            process can be continued.
-          </p>
-
-          <p>
-            During the upgrade process of computers <i>Slave1-5</i>, all
-            encountered the error:
-            <span class="inlineCode"
-              >"Sub-process /usr/bin/dpkg returned an error code (1)"</span
-            >, preventing them from being upgradable.
-          </p>
-          <p>
-            Extensive testing showed the issue stemmed from many conflicting and
-            corrupted packages presented on each of the affected computers.
-            Resolving the problem involved either removing or reinstalling the
-            problematic packages, which successfully restored the upgrade
-            functionality.
-          </p>
-          <p>
-            Afterward, type command
-            <span class="command">sudo dpkg --configure -a </span> to fix
-            package installation issue
-          </p>
+          <section>
+            <h4 id="graphic_driver">Outdated Graphic Driver</h4>
+            <p>
+              During the upgrade process of computers <i>Bill01</i> and
+              <i>master</i>, the display output was lost due to outdated
+              graphics drivers that were incompatible with the newer version of
+              Ubuntu.
+            </p>
+            <p>To resolve this issue, the following steps were taken:</p>
+            <ol>
+              <li>
+                <b>Identifying the Graphics Card</b>
+                <p>
+                  The following command was ran to determine the video card
+                  installed on the system:
+                  <span class="command">sudo lshw -c video</span>
+                </p>
+              </li>
+              <li>
+                <b>Installing Driver Management Module (if missing)</b>
+                <p>
+                  For machine that do not have ubuntu-drivers utility installed,
+                  we ran:
+                  <span class="command"
+                    >sudo apt install ubuntu-drivers-common</span
+                  >
+                </p>
+              </li>
+              <li>
+                <b>Check for Available Drivers</b>
+                <p>
+                  Using the command below, we listed any new and available
+                  drivers:
+                  <span class="command">ubuntu-drivers devices</span>
+                </p>
+              </li>
+              <li>
+                <b>Installing new Drivers</b>
+                <p>
+                  To install the new graphics drivers, we ran:
+                  <span class="command">sudo ubuntu-drivers autoinstall</span>
+                </p>
+              </li>
+              <li>
+                <b>Reboot the System</b>
+                <p>
+                  After installation, we rebooted the system to apply the
+                  changes:<span class="command">sudo reboot</span>
+                </p>
+              </li>
+            </ol>
+            <p>
+              Afterwards, the display functionality was restored and the upgrade
+              process can be continued.
+            </p>
+          </section>
+          <section>
+            <h4 id="dpkg">"DPKG" packages error</h4>
+            <p>
+              During the upgrade process of computers <i>Slave1-5</i>, all
+              encountered the error:
+              <span class="inlineCode"
+                >"Sub-process /usr/bin/dpkg returned an error code (1)"</span
+              >, preventing them from being upgradable.
+            </p>
+            <p>
+              Extensive testing showed the issue stemmed from many conflicting
+              and corrupted packages presented on each of the affected
+              computers. Resolving the problem involved either removing or
+              reinstalling the problematic packages, which successfully restored
+              the upgrade functionality.
+            </p>
+            <p>
+              Afterward, type command
+              <span class="command">sudo dpkg --configure -a </span> to fix
+              package installation issue
+            </p>
+          </section>
         </section>
         <section>
           <h3 id="11.2">Second vulnerability</h3>
           <section>
-            <h4>first scan</h4>
+            <h4 id="first_scan">First scan</h4>
             <p>
               Regarding the second high-severity vulnerability, it was
               identified that the cryptographic algorithms currently utilized by
@@ -645,7 +661,7 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
             </p>
           </section>
           <section>
-            <h4>Second security scan</h4>
+            <h4 id="second_scan">Second scan</h4>
             <p>
               After the correction of the MACs list, a second security scan was
               performed and reported by OCIO. The Tenable security scan reported
@@ -831,6 +847,22 @@ ListenAddress 0.0.0.0
           address corresponding to each computers hostname. Repeat and
           synchronize the file across all seven computers.
         </p>
+      </section>
+      <section>
+        <h2 id="Failed_to_connect_to_lts">
+          Failed to connect to "meta-release-lts-development"
+        </h2>
+        <p>
+          For slave2, slave3 and slave4, there was a period when
+          <span class="inlineCode">sudo do-release-upgrade</span> was not
+          executable becuase it said:
+        </p>
+        <pre><code class="language-bash">
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts-development. 
+Check your Internet connection or proxy settings
+There is no development version of an LTS available."
+        </code></pre>
+        <p>It was solved</p>
       </section>
     </main>
     <!-- custom script -->
