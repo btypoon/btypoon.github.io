@@ -34,7 +34,6 @@
           <li>
             <a href="#connect_to_the_server">Connect to the server </a>
           </li>
-          <li><a href="#etc_hosts">/etc/hosts </a></li>
           <li><a href="#new_user">Adding new user </a></li>
           <li><a href="#list_format">Long format listing ls -l </a></li>
           <li><a href="#etc_groups">/etc/groups </a></li>
@@ -191,56 +190,7 @@ username@bill01:~$"
           <li>password: billyeung</li>
         </ul>
       </section>
-      <section>
-        <h2 id="etc_hosts">/etc/hosts</h2>
-        <p>
-          The file in <span class="inlineCode">/etc/hosts</span> stores the
-          hostname and their corresponding IP address.
-        </p>
-        <ol>
-          <li>The files should be the same across all computers.</li>
-          <li>And the IP should match the assigned local IP by the router.</li>
-        </ol>
-        <p>
-          If not, use <span class="inlineCode">sudo nano /etc/hosts</span> to
-          edit the file.
-        </p>
-        <p>
-          If for some reasons, you cannot connect to other computers via
-          <span class="inlineCode">ssh hostname</span>, one possible cause is
-          that the local IP assigned by the router had been changed. You should
-          access the router setting via
-          <span class="inlineCode">192.168.1.1</span> on any browswer using the
-          server computer. Login with the password
-          <span class="inlineCode">billyeung</span>. And cross check the local
-          IP between the router's page and the file in
-          <span class="inlineCode">/etc/hosts</span>. Edit the file if needed.
-        </p>
-        <p>As of 30/6/2023, this file in computer <i>master</i>:</p>
-        <pre><code class="language-bash">
-#########################################################
-#127.0.0.1 localhost
-#127.0.1.1 bill03
-192.168.1.143 master
-192.168.1.104 bill01
-192.168.1.102 slave1
-192.168.1.224 slave2
-192.168.1.12 slave3
-192.168.1.100 slave4
-192.168.1.103 slave5
-#175.159.131.248 bill-workstation
-#202.45.51.232 master
-#202.45.51.231 slave1
-# the following lines are desirable for ipv6 capable hosts
-::1 ip6-localhost ip6-loopback
-fe00::0 ip6-localnet
-ff00::0 ip6-mcastprefix
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-#########################################################
-          </code>
-        </pre>
-      </section>
+
       <section>
         <h2 id="new_user">Adding new user</h2>
         <p>
@@ -807,47 +757,99 @@ ListenAddress 0.0.0.0
       </section>
       <section>
         <h2 id="problem6">
-          Problem 6: Hostnam unreachable
-          <br /><span class="datetime">11-Jul-2025</span>
+          Problem 6: <span class="inlineCode">ssh hostname</span>: Hostname
+          unreachable <br /><span class="datetime">11-Jul-2025</span>
         </h2>
         <p>
-          After OS upgrade, the local IP address assigned by our router might
-          changed. Therefore, SSH connection between computers like
-          <span class="inlineCode">ssh master</span> fails. The system will try
-          to refer and connect you to the old local IP which no longer exist.
+          After OS upgrade or system reboot, the local IP address assigned to
+          the computers by our router might changed. Therefore, SSH connection
+          between computers like
+          <span class="inlineCode">ssh master</span> fails. The system tried to
+          refer and connect you to the old local IP which no longer exist.
         </p>
-        <p>
-          Check the latest local IP on each computer using either command
-          <span class="inlineCode">ip a</span> or command
-          <span class="inlineCode">ifconfig</span>.
-        </p>
-        <p>
-          You may also connect to the router webpage via
-          <span class="inlineCode">192.168.1.1</span>, login with the password
-          <sudo class="inlineCode">billyeung</sudo> and check the list of local
-          IP address.
-        </p>
-        <figure>
-          <img width="450" src="image\cluster\local-ip.jpg" alt="" />
-          <figcaption>List of local IP address as of 10-7-2025.</figcaption>
-        </figure>
-        <p>
-          Use <span class="inlineCode">namp</span> modules to view all the
-          devices in the local network. Reinstall the module if needed:
-          <span class="command">sudo apt install nmap</span>
-        </p>
-        <p>
-          Then, run the following command to scan the local network. Try to
-          locate any new IP and connect to it to check its hostname.
-          <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
-        </p>
-        <p>
-          Finally, update the file
-          <span class="inlineCode">/etc/hosts</span> with the latest local IP
-          address corresponding to each computers hostname. Repeat and
-          synchronize the file across all seven computers.
-        </p>
+        <section>
+          <h3>Option 1</h3>
+          <p>
+            Check the latest local IP on each computer using either command
+            <span class="inlineCode">ip a</span> or command
+            <span class="inlineCode">ifconfig</span>.
+          </p>
+        </section>
+        <section>
+          <h3>Option 2</h3>
+          <p>
+            You may also connect to the router webpage via
+            <span class="inlineCode">192.168.1.1</span>, login with the password
+            <sudo class="inlineCode">billyeung</sudo> and check the list of
+            local IP address.
+          </p>
+          <figure>
+            <img width="450" src="image\cluster\local-ip.jpg" alt="" />
+            <figcaption>List of local IP address as of 10-7-2025.</figcaption>
+          </figure>
+        </section>
+        <section>
+          <h3>Option 3</h3>
+          <p>
+            Use <span class="inlineCode">namp</span> modules to view all the
+            devices in the local network. Reinstall the module if needed:
+            <span class="command">sudo apt install nmap</span>
+          </p>
+          <p>
+            Then, run the following command to scan the local network. Try to
+            locate any new IP and connect to it to check its hostname.
+            <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
+          </p>
+        </section>
+        <section>
+          <h3>Solution</h3>
+          <p>
+            Finally, update the file
+            <span class="inlineCode">/etc/hosts</span> with the latest local IP
+            address corresponding to each computers hostname. Repeat and
+            synchronize the file across all seven computers.
+          </p>
+          <p>
+            The file in <span class="inlineCode">/etc/hosts</span> stores the
+            hostname and their corresponding IP address.
+          </p>
+          <ol>
+            <li>The files should be the same across all computers.</li>
+            <li>
+              And the IP should match the assigned local IP by the router.
+            </li>
+          </ol>
+          <p>
+            If not, use <span class="inlineCode">sudo nano /etc/hosts</span> to
+            edit the file.
+          </p>
+          <p>As of 30/6/2023, this file in computer <i>master</i>:</p>
+          <pre><code class="language-bash">
+#########################################################
+#127.0.0.1 localhost
+#127.0.1.1 bill03
+192.168.1.143 master
+192.168.1.104 bill01
+192.168.1.102 slave1
+192.168.1.224 slave2
+192.168.1.12 slave3
+192.168.1.100 slave4
+192.168.1.103 slave5
+#175.159.131.248 bill-workstation
+#202.45.51.232 master
+#202.45.51.231 slave1
+# the following lines are desirable for ipv6 capable hosts
+::1 ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+#########################################################
+            </code>
+          </pre>
+        </section>
       </section>
+
       <section>
         <h2 id="Failed_to_connect_to_lts">
           Failed to connect to "meta-release-lts-development"
