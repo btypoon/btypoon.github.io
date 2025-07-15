@@ -94,13 +94,29 @@
               <li><a href="#12.3"> Static IP address </a></li>
             </ol>
           </li>
-          <li><a href="#problem6"> Problem 6: Hostnam unreachable </a></li>
+          <li>
+            <a href="#problem6">
+              Problem 6: <span class="inlineCode">ssh hostname</span> Hostname
+              unreachable
+            </a>
+          </li>
+          <li>
+            <a href="#problem7"
+              >Problem 7: Failed to connect to "meta-release-lts-development"</a
+            >
+          </li>
         </ol>
       </figure>
       <hr />
       <section>
-        <h2 id="cluster_architecture">Cluster architecture</h2>
-        <p>There are the seven computers and their hostname in the cluster.</p>
+        <h2 id="cluster_architecture">
+          Cluster architecture <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
+        <p>
+          There are the seven computers in our server cluster. Their hostname
+          are listed below:
+        </p>
         <ol>
           <li>bill01</li>
           <li>master</li>
@@ -121,10 +137,13 @@
         </p>
       </section>
       <section>
-        <h2 id="booting_sequence">Booting Sequence</h2>
+        <h2 id="booting_sequence">
+          Booting Sequence <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
         <p>
           For some reason, the computer <em>"slave4"</em> require special steps
-          in order to be boot successfully. When you face "The Red Screen of
+          in order to be booted successfully. When you face "The Red Screen of
           Death", follow these steps:
         </p>
         <ol>
@@ -134,7 +153,10 @@
         </ol>
       </section>
       <section>
-        <h2 id="connect_to_the_server">Connect to the server</h2>
+        <h2 id="connect_to_the_server">
+          Connect to the server <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
         <p>
           To connect to the server, you must first connected to the university
           intranet. You may use either:
@@ -192,7 +214,10 @@ username@bill01:~$"
       </section>
 
       <section>
-        <h2 id="new_user">Adding new user</h2>
+        <h2 id="new_user">
+          Adding new user <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
         <p>
           To Add a new user, use
           <span class="inlineCode">sudo adduser username</span> with
@@ -288,7 +313,10 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           </code></pre>
       </section>
       <section>
-        <h2 id="list_format">Long format listing ls -l</h2>
+        <h2 id="list_format">
+          Long format listing ls -l <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
         <p>
           Using <span class="inlineCode">ls -l</span> to list long format of
           files. The columns coorespond to:
@@ -305,7 +333,10 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </ol>
       </section>
       <section>
-        <h2 id="etc_groups">/etc/groups</h2>
+        <h2 id="etc_groups">
+          /etc/groups <br />
+          <span class="datetime"> 10-Auguest-2023 </span>
+        </h2>
         <p>
           To view all groups, visit
           <span class="inlineCode">/etc/groups</span>. To change the uid or gid
@@ -320,6 +351,8 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       <section>
         <h2 id="problem1">
           Problem 1: Looking for a faster way to add new user on all computers
+          <br />
+          <span class="datetime"> 19-Auguest-2023 </span>
         </h2>
         <p>
           Currently, to add a new user, we need to repeats the command
@@ -403,12 +436,12 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           <br /><span class="datetime">9-Dec-2023</span>
         </h2>
         <p>
-          My fellow RA Nesat wanted to run her tensorflow python program on the
-          physics lab's cluster server, but unabled to do so. I was not able to
-          install python module onto the cluster computer even using Dr. Yeung
-          account.
+          Another work colleague Nesat wanted to run her python program on the
+          physics lab's cluster server, but unabled to do so. Specifically, she
+          wanted to install the python packages "Tensorflow", which her program
+          rely on, but unsuccessful. This problem remain unresolved. Further
+          investigation is required.
         </p>
-        <p>Further investigation is required</p>
       </section>
 
       <section>
