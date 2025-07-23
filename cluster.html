@@ -70,20 +70,54 @@
             </a>
             <ol class="sub-toc">
               <li>
-                <a href="#11.1"> First Vulnerability </a>
+                <a href="#problem4.1">
+                  First Vulnerability - Canonical Ubuntu Linux SEoL (16.04.x) -
+                  Critical Severity
+                </a>
                 <ol class="sub-toc">
-                  <li><a href="#graphic_driver">Outdated Graphic Driver</a></li>
-                  <li><a href="#dpkg">"DPKG" packages error</a></li>
+                  <li>
+                    <a href="#problem4.1.1"
+                      >Problem 4.1.1 - Outdated Graphic Driver
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#problem4.1.2"
+                      >Problem 4.1.2 - "DPKG" packages error</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#problem4.1.3"
+                      >Problem 4.1.3 - Obsolete PostgreSQL version 9.5</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#problem4.1.4"
+                      >Problem 4.1.4 - No development version of an LTS
+                      available
+                    </a>
+                  </li>
                 </ol>
               </li>
               <li>
-                <a href="#11.2"> Second Vulnerability </a>
+                <a href="#problem4.2">
+                  Second Vulnerability - SSH Terrapin Prefix Truncation Weakness
+                  - High Severity</a
+                >
                 <ol class="sub-toc">
-                  <li><a href="#first_scan">First scan</a></li>
-                  <li><a href="#second_scan">Second scan</a></li>
+                  <li>
+                    <a href="#problem4.2.1">Problem 4.2.1 - First scan</a>
+                  </li>
+                  <li>
+                    <a href="#problem4.2.2">Problem 4.2.2 - Second scan</a>
+                  </li>
                 </ol>
               </li>
-              <li><a href="#11.3"> Third Vulnerability </a></li>
+              <li>
+                <a href="#problem4.3">
+                  Third Vulnerability - ICMP Timestamp Request Remote Date
+                  Disclosure - Low Severity
+                </a>
+              </li>
             </ol>
           </li>
           <li>
@@ -101,9 +135,9 @@
             </a>
           </li>
           <li>
-            <a href="#problem7"
-              >Problem 7: Failed to connect to "meta-release-lts-development"</a
-            >
+            <a href="#direct_reinstall">
+              Final Decision: Direct Reinstallation of Ubuntu 24.04 LTS
+            </a>
           </li>
         </ol>
       </figure>
@@ -463,7 +497,10 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           <li>ICMP Timestamp Request Remote Date Disclosure - Low Severity</li>
         </ol>
         <section>
-          <h3 id="11.1">First vulnerability</h3>
+          <h3 id="problem4.1">
+            First vulnerability - Canonical Ubuntu Linux SEoL (16.04.x) -
+            Critical Severity
+          </h3>
           <p>
             Regarding the first critical vulnerability, our server was running
             Ubuntu version 16.04, which reached its end-of-life in 2021 and was
@@ -472,11 +509,18 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
             issue.
           </p>
           <p>
+            To reserve all the user data and system settings, we desired to not
+            do a comeplete erase and reinstallation of the OS. So, we decided to
+            upgrade the OS using the system upgrader.
+          </p>
+          <p>
             However, Ubuntu does not support a direct upgrade from version 16.04
             to the latest release, 24.04. Instead, the upgrade must be performed
             incrementally from 16.04 → 18.04 → 20.04 → 22.04 → 24.04.
           </p>
-          <p>For each upgrade step, the following commands must be executed:</p>
+          <p>
+            For each upgrade step, the following commands should be executed:
+          </p>
           <pre><code class="language-bash">
 sudo apt update
 sudo apt dist-upgrade
@@ -489,6 +533,121 @@ sudo do-release-upgrade
             the overall effort very time-consuming.
           </p>
           <p>
+            To make the process effective, the following two shell script were
+            written and to be executed in sequence on each of the OS upgrades.
+          </p>
+          <pre><b>ubuntu_apt-upgrade.sh</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root or with sudo"
+  exit 1
+fi
+
+# Ubuntu Upgrade Automation Script: 16.04 → 24.04 LTS
+function upgrade_stage() {
+    echo "======================================"
+    echo "Preparing system for release upgrade from Ubuntu $1"
+    echo "======================================"
+    read -p "This script will update your system and drivers. Press Enter to continue, or Ctrl+C to cancel."
+
+
+    echo "======================================"
+    echo "Step 1: Updating package list..."
+    echo "======================================"
+    apt update
+
+    echo "======================================"
+    echo "Step 2: Performing dist-upgrade..."
+    echo "======================================"
+    apt dist-upgrade -y
+
+
+    echo "======================================"
+    echo "Step 3: Removing unused packages."
+    echo "======================================"
+    apt autoremove -y
+
+
+    echo "======================================"
+    echo "Step 4: Checking for recommended drivers..."
+    echo "======================================"
+    ubuntu-drivers devices
+
+
+    echo "======================================"
+    echo "Step 5: Ready to install recommended drivers."
+    echo "======================================"
+    read -p "Press Enter to proceed, or Ctrl+C to cancel."
+    ubuntu-drivers autoinstall
+
+    echo "======================================"
+    echo "Step 6: Rebooting system..."
+    echo "======================================"
+    read -p "Press Enter to reboot now, or Ctrl+C to cancel."
+    reboot
+}
+
+
+
+# Detect current version
+#using /etc/os-release instead of lsb_release for newer OS
+if [[ -f /etc/os-release ]]; then
+    current_version=$(grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f 2)
+else
+    echo "Cannot detect OS version. /etc/os-release not found."
+    exit 1
+fi
+
+upgrade_stage "$current_version"
+          </code></pre>
+          <pre><b>ubuntu_do-release-upgrade.sh</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root or with sudo"
+  exit 1
+fi
+
+# Ubuntu Upgrade Automation Script: 16.04 → 24.04 LTS
+function release_upgrade() {
+    echo "======================================"
+    echo "OS upgrading from Ubuntu $1"
+    echo "Performing release upgrade..."
+    echo "======================================"
+
+    if do-release-upgrade -f DistUpgradeViewNonInteractive; then
+        echo "Standard release upgrade succeeded."
+    else
+        echo "Standard upgrade failed. Trying development release upgrade..."
+        do-release-upgrade -d -f DistUpgradeViewNonInteractive
+    fi
+
+    echo "Release upgrade completed. Please reboot and re-run the script to continue."
+    read -p "Press Enter to reboot now."
+    reboot
+}
+
+
+# Detect current version 
+#using /etc/os-release instead of lsb_release for newer OS
+if [[ -f /etc/os-release ]]; then
+    current_version=$(grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f 2)
+else
+    echo "Cannot detect OS version. /etc/os-release not found."
+    exit 1
+fi
+
+
+release_upgrade "$current_version"
+          </code></pre>
+          <p>
             To check the current OS version, one may use the following commands
             for version before 18.04:
             <span class="command">lsb_release -a</span>
@@ -496,7 +655,7 @@ sudo do-release-upgrade
             <span class="command">cat /etc/os/release</span>
           </p>
           <section>
-            <h4 id="graphic_driver">Outdated Graphic Driver</h4>
+            <h4 id="problem4.1.1">Problem 4.1.1 - Outdated Graphic Driver</h4>
             <p>
               During the upgrade process of computers <i>Bill01</i> and
               <i>master</i>, the display output was lost due to outdated
@@ -552,7 +711,7 @@ sudo do-release-upgrade
             </p>
           </section>
           <section>
-            <h4 id="dpkg">"DPKG" packages error</h4>
+            <h4 id="problem4.1.2">Problem 4.1.2 - "DPKG" packages error</h4>
             <p>
               During the upgrade process of computers <i>Slave1-5</i>, all
               encountered the error:
@@ -573,11 +732,79 @@ sudo do-release-upgrade
               package installation issue
             </p>
           </section>
+          <section>
+            <h4 id="problem4.1.3">
+              Problem 4.1.3 - Obsolete PostgreSQL version 9.5
+              <br /><span class="datetime">22-July-2025</span>
+            </h4>
+            <p>
+              During the upgrade process of all seven computers, a prompt
+              displaying the message "Obsolete major version 9.5" appeared,
+              which halted the upgrade.
+            </p>
+            <p>
+              After consulting with staff and the supervisor, we determined that
+              the associated package is no longer in use. Therefore, we opted to
+              uninstall the package rather than invest time in resolving
+              potential conflicts or upgrading its version. To find and list all
+              the PostgreSQL packages, we ran:
+              <span class="command">dpkg -l | grep postgresql</span>
+            </p>
+            <p>
+              Following the uninstallation of the PostgreSQL package, the OS
+              upgrade processes were resumed.
+            </p>
+          </section>
+          <section>
+            <h4 id="problem4.1.4">
+              Problem 4.1.4 - No development version of an LTS available
+              <br /><span class="datetime">22-July-2025</span>
+            </h4>
+
+            <p>
+              During the OS upgrade from version 18.04 to 20.04 on the computers
+              "slave2", "slave3", and "slave4", all three machines failed to
+              execute the command command
+              <span class="inlineCode">sudo do-release-upgrade</span>. Each
+              reported the same error.
+            </p>
+            <pre>
+              <code class="language-bash">
+"Checking for a new Ubuntu release
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts-development.
+Check your Internet connection or proxy settings
+There is no development version of an LTS available."
+            </code>
+          </pre>
+            <p>
+              After extensive research, we discovered that the URLs used by the
+              update manager to access the repository of available Ubuntu
+              releases were no longer functioning.
+            </p>
+            <p>
+              To resolve this, we manually modified the URLs by running:
+              <span class="command"
+                >sudo nano /etc/update-manager/meta-release</span
+              >
+              and changing <span class="inlineCode">https</span> to
+              <span class="inlineCode">http</span>.
+            </p>
+            <pre>
+              <code class="language-bash">  
+[METARELEASE]         
+URI = http://changelogs.ubuntu.com/meta-release
+URI_LTS = http://changelogs.ubuntu.com/meta-release-lts
+            </code>
+          </pre>
+          </section>
         </section>
         <section>
-          <h3 id="11.2">Second vulnerability</h3>
+          <h3 id="problem4.2">
+            Second vulnerability - SSH Terrapin Prefix Truncation Weakness -
+            High Severity
+          </h3>
           <section>
-            <h4 id="first_scan">First scan</h4>
+            <h4 id="problem4.2.1">Problem 4.2.1 - First scan</h4>
             <p>
               Regarding the second high-severity vulnerability, it was
               identified that the cryptographic algorithms currently utilized by
@@ -644,7 +871,7 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
             </p>
           </section>
           <section>
-            <h4 id="second_scan">Second scan</h4>
+            <h4 id="problem4.2.2">Problem 4.2.2 - Second scan</h4>
             <p>
               After the correction of the MACs list, a second security scan was
               performed and reported by OCIO. The Tenable security scan reported
@@ -670,12 +897,19 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
           </section>
         </section>
         <section>
-          <h3 id="11.3">Third vulnerability</h3>
+          <h3 id="problem4.3">
+            Third vulnerability - ICMP Timestamp Request Remote Date Disclosure
+            - Low Severity
+          </h3>
           <p>
             For the third vulnerability, the server maintenance technician
             should Block ICMP Timestamp Requests at the Firewall. Require
             someone familiar with Linus operating systems to access and modify
             the firewall setting.
+          </p>
+          <p>
+            The issue was automatically resolved upon completion of the OS
+            upgrade.
           </p>
         </section>
       </section>
@@ -687,11 +921,16 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
         <p>
           While upgrading the Operating system of the server, there was a period
           during which the SSH service became inaccessible. A thorough and
-          extensive investigation revealed that two wired network connections
-          were conflicting, resulting in a mismatch between the static public IP
-          address provided by OCIO and the dynamic public IP address assigned by
-          our router. It hints a potential problem that might recur in future
-          upgrades. For reference, the steps we took were logged below.
+          extensive investigation revealed that, in <i>Bill01</i>, two wired
+          network connections were conflicting, resulting in a mismatch between
+          the static public IP address provided by OCIO and the dynamic public
+          IP address assigned by our router.
+        </p>
+        <p>
+          On every reboot of <i>Bill01</i>, the dynamic public IP address
+          override the static public IP. An network reset and override must be
+          performed manually. It hints a potential problem that might recur in
+          the future. For reference, the steps we took were logged below.
         </p>
         <section>
           <h3 id="12.1">Mismatch between public IPs</h3>
@@ -741,7 +980,7 @@ ListenAddress 0.0.0.0
         <section>
           <h3 id="12.2">Cause and Replication steps</h3>
           <figure>
-            <img width="450" src="image\cluster\network_setting.jpg" alt="" />
+            <img width="450" src="image\cluster\network_setting.webp" alt="" />
             <figcaption>
               (Top) Ethernet <i>enp0s25</i> refers to the static IP network.
               (Bottom) Ethernet <i>ens1</i> refers to the dynamic IP network.
@@ -765,18 +1004,20 @@ ListenAddress 0.0.0.0
             address assigned by OCIO as its public IP address.
           </p>
           <p>
-            Therefore, we should always click the <i>enp0s25</i> button first,
-            then the <i>ens1</i> button secondly. It was confirmed that the
-            static IP address, the SSH service, and the firewall were all
-            functioning correctly. The issue stemmed solely from the sequence of
-            network connections, which altered the public IP address and led to
-            SSH connection failures.
+            <b>
+              Therefore, we should always click the <i>enp0s25</i> button first,
+              then the <i>ens1</i> button secondly.
+            </b>
+            It was confirmed that the static IP address, the SSH service, and
+            the firewall were all functioning correctly. The issue stemmed
+            solely from the sequence of network connections, which altered the
+            public IP address and led to SSH connection failures.
           </p>
         </section>
         <section>
           <h3 id="12.3">Static IP address</h3>
           <figure>
-            <img width="450" src="image/cluster/static-ip.jpg" alt="" />
+            <img width="450" src="image/cluster/static-ip.webp" alt="" />
             <figcaption>
               The static public IP, netmask, gateway and DNS provided by OCIO in
               April 2016.
@@ -798,14 +1039,15 @@ ListenAddress 0.0.0.0
           the computers by our router might changed. Therefore, SSH connection
           between computers like
           <span class="inlineCode">ssh master</span> fails. The system tried to
-          refer and connect you to the old local IP which no longer exist.
+          refer and connect to the old local IP which no longer exist.
         </p>
         <section>
           <h3>Option 1</h3>
           <p>
             Check the latest local IP on each computer using either command
-            <span class="inlineCode">ip a</span> or command
-            <span class="inlineCode">ifconfig</span>.
+            <span class="inlineCode">ip a</span>,
+            <span class="inlineCode">ifconfig</span> or
+            <span class="inlineCode">hostname -I</span>.
           </p>
         </section>
         <section>
@@ -816,23 +1058,38 @@ ListenAddress 0.0.0.0
             <sudo class="inlineCode">billyeung</sudo> and check the list of
             local IP address.
           </p>
-          <figure>
-            <img width="450" src="image\cluster\local-ip.jpg" alt="" />
-            <figcaption>List of local IP address as of 10-7-2025.</figcaption>
-          </figure>
         </section>
         <section>
           <h3>Option 3</h3>
           <p>
-            Use <span class="inlineCode">namp</span> modules to view all the
-            devices in the local network. Reinstall the module if needed:
+            Use <span class="inlineCode">nmap</span> modules to view all the
+            devices in the local network. Install the module if needed:
             <span class="command">sudo apt install nmap</span>
           </p>
           <p>
             Then, run the following command to scan the local network. Try to
             locate any new IP and connect to it to check its hostname.
-            <span class="command">nmap -sn &lt;local-ip&gt;/24</span>
+            <span class="command">
+              nmap -sn $(hostname -I | awk '{print $1}')/24
+            </span>
           </p>
+        </section>
+        <section>
+          <h3>Option 4</h3>
+          <p>
+            Reassign static local IPs to each of the seven compupters. To do
+            that, login our router webpage via
+            <span class="inlineCode">192.168.1.1</span> with the password
+            <span class="inlineCode">billyeung</span>. Assign each of the seven
+            computers with a custom static local IP address.
+          </p>
+          <figure>
+            <img width="450" src="image\cluster\local-ip.webp" alt="" />
+            <figcaption>
+              On 17-July-2025, new custom static local IP addresses were
+              assigned to each of the seven computers.
+            </figcaption>
+          </figure>
         </section>
         <section>
           <h3>Solution</h3>
@@ -880,24 +1137,284 @@ ff02::2 ip6-allrouters
 #########################################################
             </code>
           </pre>
+          <p>
+            As of July 17, 2025, each of the seven computers was assigned a new
+            static local IP address. Their hosts files have been updated to
+            incorporate these changes accordingly.
+          </p>
+          <pre>
+            <code class="language-bash">
+#########################################################
+127.0.0.1       localhost
+127.0.1.1       this_computer_hostname
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+192.168.1.100 bill01
+192.168.1.101 slave1
+192.168.1.102 slave2
+192.168.1.103 slave3
+192.168.1.104 slave4
+192.168.1.105 slave5
+192.168.1.106 master
+#########################################################
+          </code>
+        </pre>
         </section>
       </section>
-
       <section>
-        <h2 id="Failed_to_connect_to_lts">
-          Failed to connect to "meta-release-lts-development"
+        <h2 id="problem7">Bill01: Locked Display Resolution at 640x480</h2>
+        <p>
+          Due to a previous attempt to resolve issues with executing
+          <span class="inlineCode">do-release-upgrades</span>, the update
+          manager was configured to allow upgrades to non-LTS versions of
+          Ubuntu.
+        </p>
+        <p>
+          Specifically, the setting
+          <span class="inlineCode">prompt=lts</span> was changed to
+          <span class="inlineCode">prompt=normal</span> in the configuration
+          file using the command:
+          <span class="command"
+            >sudo nano /etc/update-manager/release-upgrades</span
+          >
+        </p>
+        <p>
+          This change was not reverted, resulting in the system upgrading to
+          Ubuntu 25.04. Since this upgrade, the display on <em>Bill01</em> has
+          been locked at a resolution of 640x480.
+        </p>
+        <p>
+          Extensive investigation revealed that the last officially supported
+          driver for Bill01's Quadro K420 graphics card is Nvidia 470, which is
+          not available in the Ubuntu 25.04 repositories. Ubuntu 25.04 includes
+          only Nvidia drivers versions 535 to 575, which do not support the
+          Quadro K420.
+        </p>
+        <p>
+          Consequently, command like
+          <span class="inlineCode">nvidia-smi</span> failed to communicate with
+          the driver, indicating that the Nvidia 470 driver was not loaded or
+          active.
+        </p>
+        <p>
+          To resolve this issue, we first purged all Nvidia drivers installed on
+          the system with:
+          <span class="command">sudo apt purge '^nvidia-.*'</span>
+        </p>
+        <p>
+          Then, we installed the open-source Nouveau graphics driver with:
+          <span class="command"
+            >sudo apt install xserver-xorg-video-nouveau</span
+          >
+        </p>
+        <p>
+          After rebooting the system, the display resolution options were
+          restored, allowing for higher display resolutions to be used.
+        </p>
+      </section>
+      <section>
+        <h2 id="direct_reinstall">
+          Final Decision: Direct Reinstallation of Ubuntu 24.04 LTS
         </h2>
         <p>
-          For slave2, slave3 and slave4, there was a period when
-          <span class="inlineCode">sudo do-release-upgrade</span> was not
-          executable becuase it said:
+          Despite significant efforts to upgrade the operating systems and
+          troubleshoot the seven computers through versions 16.04, 18.04, 20.04,
+          22.04, and 24.04, the system files remained heavily corrupted, leading
+          to persistent issues.
         </p>
-        <pre><code class="language-bash">
-Failed to connect to https://changelogs.ubuntu.com/meta-release-lts-development. 
-Check your Internet connection or proxy settings
-There is no development version of an LTS available."
+        <p>Specifically</p>
+        <ul>
+          <li>
+            <b>Slave1</b>: The GUI was inaccessible. Further investigation
+            revealed that the system was in a mixed state of versions 20.04 and
+            24.04. As a result, the internal updater continuously requested
+            packages for 24.04 while the system was still running 20.04, causing
+            errors.
+          </li>
+          <li>
+            <b>Slave2</b>: The GUI was non-functional. The taskbar, menu, and
+            "Open Terminal" option via right-click were missing, leaving only
+            the background image visible.
+          </li>
+          <li>
+            <b>Slave5</b>: The GUI also appeared broken, with the screen turning
+            off and on repeatedly every few seconds.
+          </li>
+        </ul>
+
+        <p>
+          Given these problems, the final decision was to erase the disks of all
+          computers expect <em>bill01</em>. And perform a clean reinstallation
+          of Ubuntu version 24.04. This approach ensures that all previous data
+          and system problems were removed, resulting in fully operational and
+          clean systems.
+        </p>
+        <p>
+          To preserve user data such as user accounts, passwords, and system
+          settings like static IP configurations, we have decided not to
+          reinstall the OS on <em>bill01</em>.
+        </p>
+        <p>
+          To facilitate synchronization and streamline the setup process across
+          master and slave1-5 computers, three additional shell scripts, namely
+          <span class="inlineCode">ssh_setup.sh</span>,
+          <span class="inlineCode">desktop_setup.sh</span> and
+          <span class="inlineCode">hostname_setup.sh</span> were written and to
+          be executed on all computers.
+        </p>
+
+        <pre><b>ssh_setup.sh:</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root or with sudo"
+  exit 1
+fi
+
+echo "Set power mode to performance" 
+powerprofilesctl set performance
+echo "✅ Power mode set to Performance."
+	
+echo "Installing OpenSSH server..."
+apt update
+apt install -y openssh-server
+echo "✅ OpenSSH installed"
+
+echo "Starting SSH service..."
+systemctl start ssh
+echo "✅ OpenSSH started"
+
+echo "Enabling SSH service to start on boot..."
+systemctl enable ssh
+echo "✅ OpenSSH enabled on startup"
+
+echo "Setting up UFW (Uncomplicated Firewall)..."
+ufw allow ssh
+ufw --force enable
+echo "✅ Firewall enabled"
+
+echo "Removing previous SSH host keys"
+if [ -f "$HOME/.ssh/known_hosts" ]; then
+	rm -f "$HOME/.ssh/known_hosts"
+	echo "✅ $HOME/.ssh/known_hosts file cleared"
+else
+	echo "✅ No Known_hosts file"
+fi
+if [ -f "$HOME/.ssh/known_hosts.old" ]; then
+	rm -f "$HOME/.ssh/known_hosts.old"
+	echo "✅ $HOME/.ssh/known_hosts.old file cleared"
+else
+	echo "✅ No Known_hosts file"
+fi
+echo "✅ SSH and firewall setup complete. 🎉"
+
+echo "Remove insecure Cryptographic Algorithms"
+CONFIG_FILE="/etc/ssh/sshd_config"
+CIPHERS_LINE="Ciphers -chacha20-poly1305@openssh.com"
+MACS_LINE="MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.com"
+
+# Function to check and append if necessary
+append_if_missing() {
+    local line="$1"
+    local comment="$2"
+    if ! grep -Fxq "$line" "$CONFIG_FILE"; then
+        echo "" >> "$CONFIG_FILE"
+        echo "# $comment" >> "$CONFIG_FILE"
+        echo "$line" >> "$CONFIG_FILE"
+        echo "✅ Appended in $CONFIG_FILE:"
+        echo "$line"
+    else
+        echo "✅ Already exists in $CONFIG_FILE:"
+        echo "$line"
+    fi
+}
+
+# Run the checks
+append_if_missing "$CIPHERS_LINE" "Disable Ciphers List"
+append_if_missing "$MACS_LINE" "Enable MACs List"
         </code></pre>
-        <p>It was solved</p>
+
+        <pre><b>desktop_setup.sh:</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# 🛑 Abort if running as root
+if [ "$EUID" -eq 0 ]; then
+  echo "❌ Don't run this script as root. Run it as a regular user."
+  exit 1
+fi
+
+if ! command -v dbus-launch &> /dev/null
+then
+    echo "✅ dbus-launch not found. Installing dbus-x11..."
+    sudo apt update
+    sudo apt install -y dbus-x11
+else
+    echo "✅ dbus-launch is already installed."
+fi
+
+echo "Mimicing Windows Desktop Style"
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+echo "✅ Dock moved to the bottom."
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-always-in-the-edge true
+echo "✅ App button moved to the left."
+gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
+gsettings set org.gnome.shell.extensions.ding arrangeorder 'NAME'
+gsettings set org.gnome.shell.extensions.ding keep-arranged true
+echo "✅ Desktop icon arranged to the top left."
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'firefox_firefox.desktop']"
+echo "✅ Pinned Folder, Terminal, Browswer to the taskbar."
+
+echo "Disable screen blanking on idle"
+gsettings set org.gnome.desktop.session idle-delay 0
+echo "✅ Screen blanking disabled."
+        </code></pre>
+
+        <pre><b>hostname_setup.sh:</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root or with sudo"
+  exit 1
+fi
+
+# List of IP-hostname pairs
+HOST_ENTRIES=(
+  "192.168.1.100 bill01"
+  "192.168.1.101 slave1"
+  "192.168.1.102 slave2"
+  "192.168.1.103 slave3"
+  "192.168.1.104 slave4"
+  "192.168.1.105 slave5"
+  "192.168.1.106 master"
+)
+
+echo "🔍 Checking /etc/hosts for existing entries..."
+
+for entry in "${HOST_ENTRIES[@]}"; do
+  if ! grep -Fqx "$entry" /etc/hosts; then
+    echo "$entry" >> /etc/hosts
+    echo "➕ Added: $entry"
+  else
+    echo "✅ Already exists: $entry"
+  fi
+done
+
+echo "🚀 Host entries update complete!"
+        </code></pre>
       </section>
     </main>
     <!-- custom script -->

@@ -33,7 +33,7 @@ main p {
 }
 
 span.datetime {
-  font-size: 0.7em;
+  font-size: 13.5px;
   font-family: "Caveat";
 }
 
@@ -74,6 +74,9 @@ span.dirname {
   background-color: whitesmoke;
 }
 
+pre > b {
+  line-height: 1.56em;
+}
 code::-webkit-scrollbar {
   width: 6px;
   height: 6px;
