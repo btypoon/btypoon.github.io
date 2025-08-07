@@ -1,25 +1,42 @@
+// (function addTemplate() {
+//   //To avoid global variable conflict, wrap everything in function
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("GET", "template.html", true);
+//   xhr.responseType = "document";
+//   xhr.onload = function () {
+//     if (this.status === 200) {
+//       var templateDocument = xhr.response;
+//       addNavBar(templateDocument); //prepend firstly
+//       addHeader(templateDocument); //prepend secondly
+//       addFooter(templateDocument);
+//       addLinkCSS(templateDocument);
+//       addLinkScript(templateDocument, 1);
+//       setTimeout(addLinkScript, 500, templateDocument, 2);
+//     }
+//   };
+//   xhr.send();
+// })();
+
 (function addTemplate() {
-  //To avoid global variable conflict, wrap everything in function
-  //request nav.html and append nav bar
-  // Create a new XMLHttpRequest object
-  var xhr = new XMLHttpRequest();
-  // Make a GET request to the file
-  xhr.open("GET", "template.html", true);
-  // Set the response type to text. Default type: text
-  xhr.responseType = "document";
-  // When the request is complete
-  xhr.onload = function () {
-    if (this.status === 200) {
-      var templateDocument = xhr.response;
-      addNavBar(templateDocument); //prepend firstly
-      addHeader(templateDocument); //prepend secondly
-      addFooter(templateDocument);
+  fetch("template.html")
+    .then(function (e) {
+      return e.text();
+    })
+    .then(function (e) {
+      var parser = new DOMParser();
+      var templateDocument = parser.parseFromString(e, "text/html");
       addLinkCSS(templateDocument);
+      addNavBar(templateDocument); // prepend firstly
+      addHeader(templateDocument); // prepend secondly
+      addFooter(templateDocument);
       addLinkScript(templateDocument, 1);
-      setTimeout(addLinkScript, 500, templateDocument, 2);
-    }
-  };
-  xhr.send();
+      setTimeout(function () {
+        addLinkScript(templateDocument, 2);
+      }, 500);
+    })
+    .catch(function (error) {
+      console.error("Error fetching template:", error);
+    });
 })();
 
 function addHeader(templateDocument) {

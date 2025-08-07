@@ -25,7 +25,7 @@ main {
   max-width: 688px;
   margin: auto;
   padding: 5px 18px;
-  font-size: 1.15em;
+  font-size: 1em;
 }
 
 main p {
@@ -41,7 +41,7 @@ span.datetime::before {
   content: "last edited: ";
 }
 
-span.inlineCode {
+span.inline {
   font-family: "Courier New";
   font-weight: bold;
   padding-right: 4px;
@@ -229,21 +229,24 @@ figcaption {
 .toc li::marker {
   color: rgb(32, 33, 34);
 }
+
 .toc li {
   padding-left: 0.5ch;
-}
-
-.toc a {
-  text-decoration: none;
-  color: rgb(6, 69, 173);
 }
 
 .toc .sub-toc li::marker {
   content: "⤷";
 }
+
 .toc .sub-toc {
   padding-left: 30px;
 }
-.toc a:hover {
+
+a {
+  text-decoration: none;
+  color: rgb(6, 69, 173);
+}
+
+a:hover {
   text-decoration: underline;
 }

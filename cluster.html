@@ -4,11 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My note</title>
-    <style>
-      body {
-        font-size: 0.8em;
-      }
-    </style>
   </head>
 
   <body>
@@ -130,7 +125,7 @@
           </li>
           <li>
             <a href="#problem6">
-              Problem 6: <span class="inlineCode">ssh hostname</span> Hostname
+              Problem 6: <span class="inline">ssh hostname</span> Hostname
               unreachable
             </a>
           </li>
@@ -196,26 +191,25 @@
           intranet. You may use either:
         </p>
         <ul>
-          <li>Wifi <span class="inlineCode">EdUHK</span></li>
-          <li>Wifi <span class="inlineCode">IoT</span></li>
+          <li>Wifi <span class="inline">EdUHK</span></li>
+          <li>Wifi <span class="inline">IoT</span></li>
           <li>Wired university computer</li>
           <li>EdUHK VPN</li>
         </ul>
         <p>
           Use any ssh software of your choice such as
           <i>PuTTY</i> or window terminal. You can connect to either of the
-          following IP addresses via
-          <span class="inlineCode">ssh</span> command:
+          following IP addresses via <span class="inline">ssh</span> command:
         </p>
         <ul>
-          <li><span class="inlineCode">ssh phys.eduhk.hk</span></li>
-          <li><span class="inlineCode">ssh phys.ied.edu.hk</span></li>
-          <li><span class="inlineCode">ssh 175.159.131.248</span></li>
+          <li><span class="inline">ssh phys.eduhk.hk</span></li>
+          <li><span class="inline">ssh phys.ied.edu.hk</span></li>
+          <li><span class="inline">ssh 175.159.131.248</span></li>
         </ul>
         <p>
           Enter your username and password when prompted. A quick way to connect
           the server with a specific username is to use
-          <span class="inlineCode">ssh username@IP</span>
+          <span class="inline">ssh username@IP</span>
         </p>
         <p>
           When connected successfully, you will be greeted by the following
@@ -236,7 +230,7 @@ username@bill01:~$"
         <p>
           The entrance point of the server is <i>bill01</i>. To connect to any
           other six computers, type the command
-          <span class="inlineCode">ssh hostname</span> with the hostname of the
+          <span class="inline">ssh hostname</span> with the hostname of the
           other computer.
         </p>
         <p>To get administrative privileges, use the following account:</p>
@@ -254,13 +248,13 @@ username@bill01:~$"
         </h2>
         <p>
           To Add a new user, use
-          <span class="inlineCode">sudo adduser username</span> with
-          administrative privileges. Referring to the
+          <span class="inline">sudo adduser username</span> with administrative
+          privileges. Referring to the
           <a
             href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html"
             >documentation</a
           >, one may also use
-          <span class="inlineCode">sudo adduser username group</span>
+          <span class="inline">sudo adduser username group</span>
         </p>
         <p>Repeat the above command for all machines</p>
         <figure class="text-center">
@@ -279,7 +273,7 @@ username@bill01:~$"
         </figure>
         <p>
           As of 30/6/2023, the file in
-          <span class="inlineCode">/etc/passwd</span> read:
+          <span class="inline">/etc/passwd</span> read:
         </p>
         <pre><code class="language-bash">
 #########################################################
@@ -352,8 +346,8 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           <span class="datetime"> 10-Auguest-2023 </span>
         </h2>
         <p>
-          Using <span class="inlineCode">ls -l</span> to list long format of
-          files. The columns coorespond to:
+          Using <span class="inline">ls -l</span> to list long format of files.
+          The columns coorespond to:
         </p>
         <ol>
           <li>The file type.</li>
@@ -373,8 +367,8 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </h2>
         <p>
           To view all groups, visit
-          <span class="inlineCode">/etc/groups</span>. To change the uid or gid
-          of a user, use:
+          <span class="inline">/etc/groups</span>. To change the uid or gid of a
+          user, use:
           <span class="command">sudo usermod -u uid -g gid username</span> To
           change the gid or group name of a group, use:
           <span class="command"
@@ -390,8 +384,8 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         </h2>
         <p>
           Currently, to add a new user, we need to repeats the command
-          <span class="inlineCode">sudo adduser</span> in all seven computers.
-          We look for solution to add new user on all computer simultaneously.
+          <span class="inline">sudo adduser</span> in all seven computers. We
+          look for solution to add new user on all computer simultaneously.
         </p>
         <p>
           Maybe, there is a way to synchronize the user data on all computers.
@@ -715,7 +709,7 @@ release_upgrade "$current_version"
             <p>
               During the upgrade process of computers <i>Slave1-5</i>, all
               encountered the error:
-              <span class="inlineCode"
+              <span class="inline"
                 >"Sub-process /usr/bin/dpkg returned an error code (1)"</span
               >, preventing them from being upgradable.
             </p>
@@ -765,17 +759,15 @@ release_upgrade "$current_version"
               During the OS upgrade from version 18.04 to 20.04 on the computers
               "slave2", "slave3", and "slave4", all three machines failed to
               execute the command command
-              <span class="inlineCode">sudo do-release-upgrade</span>. Each
-              reported the same error.
+              <span class="inline">sudo do-release-upgrade</span>. Each reported
+              the same error.
             </p>
-            <pre>
-              <code class="language-bash">
+            <pre><code class="language-bash">
 "Checking for a new Ubuntu release
 Failed to connect to https://changelogs.ubuntu.com/meta-release-lts-development.
 Check your Internet connection or proxy settings
 There is no development version of an LTS available."
-            </code>
-          </pre>
+            </code></pre>
             <p>
               After extensive research, we discovered that the URLs used by the
               update manager to access the repository of available Ubuntu
@@ -786,16 +778,14 @@ There is no development version of an LTS available."
               <span class="command"
                 >sudo nano /etc/update-manager/meta-release</span
               >
-              and changing <span class="inlineCode">https</span> to
-              <span class="inlineCode">http</span>.
+              and changing <span class="inline">https</span> to
+              <span class="inline">http</span>.
             </p>
-            <pre>
-              <code class="language-bash">  
+            <pre><code class="language-bash">  
 [METARELEASE]         
 URI = http://changelogs.ubuntu.com/meta-release
 URI_LTS = http://changelogs.ubuntu.com/meta-release-lts
-            </code>
-          </pre>
+            </code></pre>
           </section>
         </section>
         <section>
@@ -828,7 +818,7 @@ URI_LTS = http://changelogs.ubuntu.com/meta-release-lts
             </p>
             <p>
               To do that, edit the
-              <span class="inlineCode">sshd_config</span> file by command
+              <span class="inline">sshd_config</span> file by command
 
               <span class="command"> sudo nano /etc/ssh/sshd_config </span>
               and append the following code to the end of file
@@ -852,8 +842,8 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
           </code></pre>
             <p>
               To list all available Ciphers and MACs supported by OpenSSH, use
-              <span class="inlineCode">ssh -Q mac</span> and
-              <span class="inlineCode">ssh -Q cipher</span>
+              <span class="inline">ssh -Q mac</span> and
+              <span class="inline">ssh -Q cipher</span>
             </p>
             <p>
               To verify the whether the cryptographic algorithms were disabled,
@@ -887,8 +877,8 @@ MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@opens
             </ul>
             <p>
               In response, a list of permitted MAC algorithms in
-              <span class="inlineCode">sshd_config</span> was further restricted
-              to enhance security.
+              <span class="inline">sshd_config</span> was further restricted to
+              enhance security.
             </p>
             <pre><code class="language-bash">   
 #Enable MACs List
@@ -935,19 +925,19 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
         <section>
           <h3 id="12.1">Mismatch between public IPs</h3>
           <p>
-            When runing <span class="inlineCode">hostname -I</span> and
-            <span class="inlineCode">curl ifconfig.me</span>, different public
-            IPs were returned. Our server although connected to the static IP
+            When runing <span class="inline">hostname -I</span> and
+            <span class="inline">curl ifconfig.me</span>, different public IPs
+            were returned. Our server although connected to the static IP
             network, was not using it as its public IP. Hence, connection via
-            static IP, <span class="inlineCode">ssh 175.159.131.248</span>, was
-            not working.
+            static IP, <span class="inline">ssh 175.159.131.248</span>, was not
+            working.
           </p>
           <p>
             One may temporarily forward port 22 on the router via its setting
-            page at <span class="inlineCode">192.168.1.1</span> with the
-            password <span class="inlineCode">billyeung</span>. And enable
-            listening on incoming connection from all IPs by editing the
-            <span class="inlineCode">sshd_config</span> file:
+            page at <span class="inline">192.168.1.1</span> with the password
+            <span class="inline">billyeung</span>. And enable listening on
+            incoming connection from all IPs by editing the
+            <span class="inline">sshd_config</span> file:
             <span class="command">sudo nano /etc/ssh/sshd_config</span>
           </p>
           <pre><code class="language-bash">
@@ -958,7 +948,7 @@ ListenAddress 0.0.0.0
             Then, use the dynamic public IP assigned by the router to ssh
             connect the server. As of 10-7-2025, SSH connection was temporarily
             reestablished using the dynamic IP,
-            <span class="inlineCode">ssh 175.159.139.164</span>.
+            <span class="inline">ssh 175.159.139.164</span>.
           </p>
           <p>
             If the ssh service is still unavailable, one may check and restart
@@ -1031,39 +1021,39 @@ ListenAddress 0.0.0.0
       </section>
       <section>
         <h2 id="problem6">
-          Problem 6: <span class="inlineCode">ssh hostname</span>: Hostname
+          Problem 6: <span class="inline">ssh hostname</span>: Hostname
           unreachable <br /><span class="datetime">11-Jul-2025</span>
         </h2>
         <p>
           After OS upgrade or system reboot, the local IP address assigned to
           the computers by our router might changed. Therefore, SSH connection
           between computers like
-          <span class="inlineCode">ssh master</span> fails. The system tried to
+          <span class="inline">ssh master</span> fails. The system tried to
           refer and connect to the old local IP which no longer exist.
         </p>
         <section>
           <h3>Option 1</h3>
           <p>
             Check the latest local IP on each computer using either command
-            <span class="inlineCode">ip a</span>,
-            <span class="inlineCode">ifconfig</span> or
-            <span class="inlineCode">hostname -I</span>.
+            <span class="inline">ip a</span>,
+            <span class="inline">ifconfig</span> or
+            <span class="inline">hostname -I</span>.
           </p>
         </section>
         <section>
           <h3>Option 2</h3>
           <p>
             You may also connect to the router webpage via
-            <span class="inlineCode">192.168.1.1</span>, login with the password
-            <sudo class="inlineCode">billyeung</sudo> and check the list of
-            local IP address.
+            <span class="inline">192.168.1.1</span>, login with the password
+            <sudo class="inline">billyeung</sudo> and check the list of local IP
+            address.
           </p>
         </section>
         <section>
           <h3>Option 3</h3>
           <p>
-            Use <span class="inlineCode">nmap</span> modules to view all the
-            devices in the local network. Install the module if needed:
+            Use <span class="inline">nmap</span> modules to view all the devices
+            in the local network. Install the module if needed:
             <span class="command">sudo apt install nmap</span>
           </p>
           <p>
@@ -1079,8 +1069,8 @@ ListenAddress 0.0.0.0
           <p>
             Reassign static local IPs to each of the seven compupters. To do
             that, login our router webpage via
-            <span class="inlineCode">192.168.1.1</span> with the password
-            <span class="inlineCode">billyeung</span>. Assign each of the seven
+            <span class="inline">192.168.1.1</span> with the password
+            <span class="inline">billyeung</span>. Assign each of the seven
             computers with a custom static local IP address.
           </p>
           <figure>
@@ -1095,12 +1085,12 @@ ListenAddress 0.0.0.0
           <h3>Solution</h3>
           <p>
             Finally, update the file
-            <span class="inlineCode">/etc/hosts</span> with the latest local IP
+            <span class="inline">/etc/hosts</span> with the latest local IP
             address corresponding to each computers hostname. Repeat and
             synchronize the file across all seven computers.
           </p>
           <p>
-            The file in <span class="inlineCode">/etc/hosts</span> stores the
+            The file in <span class="inline">/etc/hosts</span> stores the
             hostname and their corresponding IP address.
           </p>
           <ol>
@@ -1110,8 +1100,8 @@ ListenAddress 0.0.0.0
             </li>
           </ol>
           <p>
-            If not, use <span class="inlineCode">sudo nano /etc/hosts</span> to
-            edit the file.
+            If not, use <span class="inline">sudo nano /etc/hosts</span> to edit
+            the file.
           </p>
           <p>As of 30/6/2023, this file in computer <i>master</i>:</p>
           <pre><code class="language-bash">
@@ -1175,15 +1165,14 @@ ff02::2 ip6-allrouters
         </h2>
         <p>
           Due to a previous attempt to resolve issues with executing
-          <span class="inlineCode">do-release-upgrades</span>, the update
-          manager was configured to allow upgrades to non-LTS versions of
-          Ubuntu.
+          <span class="inline">do-release-upgrades</span>, the update manager
+          was configured to allow upgrades to non-LTS versions of Ubuntu.
         </p>
         <p>
           Specifically, the setting
-          <span class="inlineCode">prompt=lts</span> was changed to
-          <span class="inlineCode">prompt=normal</span> in the configuration
-          file using the command:
+          <span class="inline">prompt=lts</span> was changed to
+          <span class="inline">prompt=normal</span> in the configuration file
+          using the command:
           <span class="command"
             >sudo nano /etc/update-manager/release-upgrades</span
           >
@@ -1202,8 +1191,8 @@ ff02::2 ip6-allrouters
         </p>
         <p>
           Consequently, command like
-          <span class="inlineCode">nvidia-smi</span> failed to communicate with
-          the driver, indicating that the Nvidia 470 driver was not loaded or
+          <span class="inline">nvidia-smi</span> failed to communicate with the
+          driver, indicating that the Nvidia 470 driver was not loaded or
           active.
         </p>
         <p>
@@ -1268,10 +1257,10 @@ ff02::2 ip6-allrouters
         <p>
           To facilitate synchronization and streamline the setup process across
           master and slave1-5 computers, three additional shell scripts, namely
-          <span class="inlineCode">ssh_setup.sh</span>,
-          <span class="inlineCode">desktop_setup.sh</span> and
-          <span class="inlineCode">hostname_setup.sh</span> were written and to
-          be executed on all computers.
+          <span class="inline">ssh_setup.sh</span>,
+          <span class="inline">desktop_setup.sh</span> and
+          <span class="inline">hostname_setup.sh</span> were written and to be
+          executed on all computers.
         </p>
 
         <pre><b>ssh_setup.sh:</b><code class="language-bash">
@@ -1307,18 +1296,19 @@ ufw allow ssh
 ufw --force enable
 echo "✅ Firewall enabled"
 
-echo "Removing previous SSH host keys"
-if [ -f "$HOME/.ssh/known_hosts" ]; then
-	rm -f "$HOME/.ssh/known_hosts"
-	echo "✅ $HOME/.ssh/known_hosts file cleared"
+ssh_folder="/home/$SUDO_USER/.ssh"
+echo "Removing previous SSH host keys in $ssh_folder"
+if [ -f "$ssh_folder/known_hosts" ]; then
+rm -f "$ssh_folder/known_hosts"
+echo "✅ $ssh_folder/known_hosts file cleared"
 else
-	echo "✅ No Known_hosts file"
+echo "✅ No Known_hosts file"
 fi
-if [ -f "$HOME/.ssh/known_hosts.old" ]; then
-	rm -f "$HOME/.ssh/known_hosts.old"
-	echo "✅ $HOME/.ssh/known_hosts.old file cleared"
+if [ -f "$ssh_folder/known_hosts.old" ]; then
+rm -f "$ssh_folder/known_hosts.old"
+echo "✅ $ssh_folder/known_hosts.old file cleared"
 else
-	echo "✅ No Known_hosts file"
+echo "✅ No Known_hosts.old file"
 fi
 echo "✅ SSH and firewall setup complete. 🎉"
 
