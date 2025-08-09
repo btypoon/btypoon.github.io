@@ -169,7 +169,7 @@ figure {
   background-color: #f8f9fa;
   line-height: normal;
   padding: 10px;
-  margin: 0;
+  margin: 10px auto;
 }
 
 figcaption {

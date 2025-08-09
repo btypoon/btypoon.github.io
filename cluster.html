@@ -12,7 +12,7 @@
         Standard Operating Procedure: Management and Troubleshooting Guide for
         the EdUHK Physics Laboratory's Server
       </h1>
-      <p class="lead">
+      <p>
         This document serves as a manual for the administration and maintenance
         of the EdUHK Physics Laboratory's Server. It provides instructions for
         accessing and operating the server, outlines current unresolved issues,
@@ -432,11 +432,13 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         <h3 id="9.3">
           New problem: Different group id for same user across all computers
         </h3>
-        <img width="300" src="image\problem1.jpg" alt="" />
-        <figcaption>
-          The image display the defined groups in bill01 (left), slave1(middle)
-          and slave2(right) from /etc/groups.
-        </figcaption>
+        <figure>
+          <img width="300" src="image\cluster\problem1.webp" alt="" />
+          <figcaption>
+            The image display the defined groups in bill01 (left),
+            slave1(middle) and slave2(right) from /etc/groups.
+          </figcaption>
+        </figure>
         <p>
           The word represents the group name and the number represent the group
           id. Each user was assigned a group id when created. Files recognize

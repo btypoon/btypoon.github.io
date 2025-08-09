@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instruction on 3D printing in Physics' Lab</title>
     <style>
       @keyframes gradient {
@@ -21,7 +20,11 @@
       }
 
       div.heading {
-        background-image: linear-gradient(170deg, rgba(255, 220, 169, 1) 0%, rgba(226, 152, 43, 1) 100%);
+        background-image: linear-gradient(
+          170deg,
+          rgba(255, 220, 169, 1) 0%,
+          rgba(226, 152, 43, 1) 100%
+        );
         background-size: 100% 100%;
         background-repeat: repeat;
         display: flex;
@@ -30,80 +33,100 @@
         padding: 0 1em;
         font-family: "Libre Baskerville";
       }
-
-      section {
-        font-family: 'Merriweather';
-      }
-
-      main {
-        font-size: .7em;
-      }
     </style>
   </head>
 
   <body>
     <main>
-      <h1>Instruction on 3D printing in Physics' Lab</h1>
-      <hr>
+      <div class="heading">
+        <h1>Instruction on 3D printing in Physics' Lab</h1>
+      </div>
+      <hr />
       <section>
         <h2 id="PrintingMachineries">Printing machineries</h2>
-        <p> Flashforge Creator Pro x5 </p>
-        <img width='200' src="image\3dprint\creativePro.webp" alt="">
-        <p>Flashforge Creator 3 x1</p>
-        <img width='200' src="image\3dprint\creative3.webp" alt="">
+        <figure>
+          <img width="200" src="image\3dprint\creativePro.webp" alt="" />
+          <figcaption>Flashforge Creator Pro x5</figcaption>
+        </figure>
+
+        <figure>
+          <img width="200" src="image\3dprint\creative3.webp" alt="" />
+          <figcaption>Flashforge Creator 3 x1</figcaption>
+        </figure>
       </section>
       <section>
         <h2 id="FilamentType">Filament Type</h2>
-        <p>
         <ul>
           <li>PLA (ecofriendly) 200 50 recommend 210 55</li>
           <li>PETG (tougher) nozzle:210-250 plate:80-100 Recommend 240,90</li>
           <li>ABS (toxic)</li>
         </ul>
-        </p>
       </section>
       <section>
         <h2 id="Calibration">Calibration</h2>
-        <p> Level the plateform manually. Insert paper and adjust three screws in the back Feel the small friction when pulling the paper. Not to tight, not too loose. </p>
-        <img width='200' src="image\3dprint\calibrationA4.webp" alt="">
+        <p>
+          Level the platform manually. Insert paper and adjust three screws in
+          the back Feel the small friction when pulling the paper. Not to tight,
+          not too loose.
+        </p>
+        <figure>
+          <img width="200" src="image\3dprint\calibrationA4.webp" alt="" />
+          <figcaption>3d printing platform</figcaption>
+        </figure>
       </section>
       <section>
         <h2 id="FilamentLoading">Filament Loading</h2>
-        <p> Use only the right nozzle. the left nozzles were removed </p>
+        <p>Use only the right nozzle. the left nozzles were removed</p>
       </section>
       <section>
         <h2 id="SlicingSoftware">Slicing Software</h2>
-        <p>
         <ul>
           <li>FlashPrint 5</li>
           <li>0.6mm path width</li>
           <li>119% extrusion rate</li>
         </ul>
-        </p>
       </section>
       <section>
         <h2>Beware</h2>
-        <p>
         <ul>
-          <li>See if temperature can reach the target value. Old part or malfunction might cause temperature drop. You might turn the printing speed down to compensate the temperature drop of the nozzle.</li>
-          <img width='200' src="image\3dprint\underheatedNozzle.webp" alt="">
+          <li>
+            See if temperature can reach the target value. Old part or
+            malfunction might cause temperature drop. You might turn the
+            printing speed down to compensate the temperature drop of the
+            nozzle.
+          </li>
+          <figure>
+            <img
+              width="200"
+              src="image\3dprint\underheatedNozzle.webp"
+              alt=""
+            />
+            <figcaption>figure</figcaption>
+          </figure>
           <li>Preheat the nozzle before cleaning</li>
-          <li>Unscrew the cover and clear the residue if some got stuck inside</li>
+          <li>
+            Unscrew the cover and clear the residue if some got stuck inside
+          </li>
           <li>Renew the filament if it was brittle</li>
           <li>Watch out for tangled Filament at the nozzle when printing</li>
-          <img width='200' src="image\3dprint\tangledNozzle.webp" alt="">
+          <figure>
+            <img width="200" src="image\3dprint\tangledNozzle.webp" alt="" />
+            <figcaption>figure</figcaption>
+          </figure>
           <li>Watch out for the filament coilling up in the hanger</li>
-          <img width='150' src="image\3dprint\tangledFilament.webp" alt="">
+          <figure>
+            <img width="150" src="image\3dprint\tangledFilament.webp" alt="" />
+            <figcaption>figure</figcaption>
+          </figure>
         </ul>
-        </p>
       </section>
       <section>
         <h2>Parts dimension</h2>
-        <div class=tableDiv>
+        <div class="tableDiv">
           <table>
             <thead>
-              <tr class='header'>
-                <th colspan='3'>Magnet</th>
+              <tr class="header">
+                <th colspan="3">Magnet</th>
               </tr>
               <tr>
                 <th>Property</th>
@@ -126,7 +149,7 @@
           </table>
           <table>
             <thead>
-              <tr class='header'>
+              <tr class="header">
                 <th colspan="3">Threads insert</th>
               </tr>
               <tr>
@@ -154,13 +177,18 @@
             </tbody>
             <tfooter>
               <tr>
-                <td colspan="3" style="padding-left:16px;border-top:1px solid black;">*: This was calculated using the new Diameter</td>
+                <td
+                  colspan="3"
+                  style="padding-left: 16px; border-top: 1px solid black"
+                >
+                  *: This was calculated using the new Diameter
+                </td>
               </tr>
             </tfooter>
           </table>
           <table>
             <thead>
-              <tr class='header'>
+              <tr class="header">
                 <th colspan="3">Headphone hanger</th>
               </tr>
               <tr>
@@ -186,13 +214,16 @@
                 <th></th>
               </tr>
               <tr>
-                <th>Headphone pad </th>
-                <th> 11mm</th>
+                <th>Headphone pad</th>
+                <th>11mm</th>
                 <th></th>
               </tr>
             </tbody>
           </table>
-          <img width='200' src="image\3dprint\hexagon.webp">
+          <figure>
+            <img width="200" src="image\3dprint\hexagon.webp" />
+            <figcaption>123</figcaption>
+          </figure>
         </div>
       </section>
       <section>
@@ -207,7 +238,7 @@
           <div class="tableDiv">
             <table>
               <thead>
-                <tr class='header'>
+                <tr class="header">
                   <th colspan="3">Bahtinov Mask</th>
                 </tr>
                 <tr>
@@ -230,25 +261,47 @@
               </tbody>
             </table>
           </div>
-          <img width='200' src="image\3dprint\bahtinovmask.webp" alt="">
+          <img width="200" src="image\3dprint\bahtinovmask.webp" alt="" />
         </section>
         <section>
           <h3>Xbox Controller Stand</h3>
-          <img width='200' src="image\3dprint\xboxStand.webp" alt="">
+          <figure>
+            <img width="200" src="image\3dprint\xboxStand.webp" alt="" />
+          </figure>
         </section>
         <section>
           <h3>tensegrity stand</h3>
-          <img width='200' src="image\3dprint\tensegrityTable.webp" alt="">
+          <figure>
+            <img width="200" src="image\3dprint\tensegrityTable.webp" alt="" />
+          </figure>
         </section>
         <section>
           <h3>Duck Glasses Stand</h3>
-          <img width='200' src="image\3dprint\duckGlassesStand.webp" alt="">
+          <figure>
+            <img width="200" src="image\3dprint\duckGlassesStand.webp" alt="" />
+          </figure>
         </section>
         <section>
           <h3>SD cards USB Holder</h3>
           <div class="row">
-            <div class="column"><img width='200' src="image\3dprint\sdCardHolder1.webp" alt=""></div>
-            <div class="column"><img width='200' src="image\3dprint\sdCardHolder2.webp" alt=""></div>
+            <div class="column">
+              <figure>
+                <img
+                  width="200"
+                  src="image\3dprint\sdCardHolder1.webp"
+                  alt=""
+                />
+              </figure>
+            </div>
+            <div class="column">
+              <figure>
+                <img
+                  width="200"
+                  src="image\3dprint\sdCardHolder2.webp"
+                  alt=""
+                />
+              </figure>
+            </div>
           </div>
         </section>
         <section>
@@ -256,7 +309,7 @@
           <div class="tableDiv">
             <table>
               <thead>
-                <tr class='header'>
+                <tr class="header">
                   <th colspan="3">LOTR king of death</th>
                 </tr>
                 <tr>
@@ -279,7 +332,6 @@
               </tbody>
             </table>
           </div>
-          </p>
         </section>
         <section>
           <h3>Witcher Geralt of Rivia</h3>
@@ -287,6 +339,6 @@
       </section>
     </main>
     <!-- custom script -->
-    <script src='script/script.js'></script>
+    <script src="script/script.js"></script>
   </body>
 </html>
