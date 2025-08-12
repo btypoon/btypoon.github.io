@@ -34,8 +34,8 @@
           <li><a href="#etc_groups">/etc/groups </a></li>
           <li>
             <a href="#problem1">
-              Problem 1: Looking for a faster way to add new user on all
-              computers
+              Problem 1 (obsolete): Looking for a faster way to add new user on
+              all computers
             </a>
           </li>
           <li>
@@ -155,15 +155,118 @@
           <li>slave4</li>
           <li>slave5</li>
         </ol>
-        <p>
-          Sun Grid Engine is used for job scheduling in our server. To install
-          Sun Grid Engine, use:
-
-          <span class="command">
-            sudo apt-get install gridengine-client gridengine-execute
-          </span>
-          Set the hostname: to bill_cluster.
-        </p>
+        <p>Grid Engine was used for job scheduling in our server.</p>
+        <section>
+          <h3>
+            Grid Engines<br /><span class="datetime"> 12-Auguest-2025 </span>
+          </h3>
+          <p>
+            My research found that the original Sun Grid Engine was developed by
+            Oracle and discontinued in 2010. Their official website was closed
+            in 2010. Many alternative fork of the grid engine exists nowadays,
+            such as Open Cluster Scheduler or Some Grid Engine. There is hardly
+            any installation guide left on the internet regarding the original
+            Sun grid engine. I managed to salvaged the last two version of user
+            guide (<a
+              href="image/cluster/Sun N1 Grid Engine 6.1 User's Guide.pdf"
+              >v6.1</a
+            >,
+            <a href="image/cluster/Sun_Grid_Engine_6.2_install_and_config.pdf"
+              >v6.2</a
+            >) published by Sun Microsystem. And I suggest we should migrate to
+            newer fork of grid engines.
+          </p>
+          <p>
+            In 2023, we would install the Grid Engine, using:
+            <span class="command">
+              sudo apt-get install gridengine-client gridengine-execute
+            </span>
+          </p>
+          <p>
+            The package name
+            <a href="https://packages.ubuntu.com/source/plucky/gridengine"
+              >gridengine 8.1.9</a
+            >
+            suggested it was actually "Son of Grid Engine" developed by Advanced
+            Research Computing center at the University of Liverpool that we
+            were using. It was also a fork of the original Sun Grid Engine by
+            Oracle. Its official webpage (<a href="arc.liv.ac.uk"
+              >arc.liv.ac.uk</a
+            >) was now shutdown too and inaccessable. Looking at the last
+            available online source of the packages seems to suggest that it was
+            last updated and discontinued at <a
+              href="https://stab.st-andrews.ac.uk/wiki/index.php/Son_of_Gridengine"
+              >March 2016</a
+            >.
+          </p>
+          <p>
+            <a href="https://github.com/daimh/sge">Some Grid Engine</a>,
+            developed by University of Michigan, seems to be a successor and a
+            fork of Son of Grid Engine. Making it a fork of fork of the original
+            Sun Grid Engine. It is free and currently still being maintained.
+          </p>
+          <p>
+            There is also another free open source Grid engine
+            <a href="https://github.com/hpc-gridware/clusterscheduler"
+              >Open Cluster Scheduler</a
+            >, based on the Open Cluster Scheduler (OCS), which itself
+            originates from the Univa Open Core Grid Engine, which in turn was
+            derived from the open-source Sun Grid Engine. It seems to be
+            developed by a private company and also under active support
+            and development.
+          </p>
+          <p>
+            Since our OS reinstallation of our server in 2025, we have to
+            reinstall the Grid Engine from scratch. As the official website for
+            both Orcale Sun Grid Engine (2010) and University of Liverpool's Son
+            of Grid Engine (2016) are both shutdown and inaccessible, there are
+            not any official guide left regarding the installation of their Grid
+            engine. I suggest installing Some Grid Engine instead of going back
+            to using Son of Grid Engine.
+          </p>
+          <figure>
+            <img src="image/cluster/timeline.webp" alt="" />
+            <figcaption>Timeline of the Grid Engine development.</figcaption>
+          </figure>
+        </section>
+        <section>
+          <h3>
+            Architecture<br /><span class="datetime"> 12-Auguest-2025 </span>
+          </h3>
+          <p>
+            Originally, our server setup consist of a client node, a master node
+            and five execution nodes. User connect to the client node via ssh
+            connection. Client node has grid engine installed. Therefore, it can
+            submit job to master node, which distribute the job to the execution
+            nodes.
+          </p>
+          <figure>
+            <img width="700" src="image/cluster/architecture_old.webp" alt="" />
+            <figcaption>Original server setup before 2025</figcaption>
+          </figure>
+          <p>
+            However I think, the the client node was a redundancy. The real
+            server became the other six computers. When there is nobody
+            connecting to the server, the client node is just idling and master
+            node is just in standby mode. To be honest, any client computer with
+            grid engine installed and connectivity to master nodes can directly
+            submit job to master without the need to connect to client node
+            first. Therefore, the computational power of both client node and
+            master node were wasted.
+          </p>
+          <p>
+            I suggested to merge both the job of a client node and master node
+            to one computer, freeing another computer. The extra computer can
+            become another execution node. In this setup, we have six execution
+            nodes instead of five. User without grid engine installed on their
+            computer connect directly to master node firstly, then submit their
+            job secondly.
+          </p>
+          <figure>
+            <img width="700" src="image/cluster/architecture_new.webp" alt="" />
+            <figcaption>My suggested server setup in 2025</figcaption>
+          </figure>
+        </section>
       </section>
       <section>
         <h2 id="booting_sequence">
@@ -244,38 +347,70 @@ username@bill01:~$"
       <section>
         <h2 id="new_user">
           Adding new user <br />
-          <span class="datetime"> 10-Auguest-2023 </span>
+          <span class="datetime"> 11-Auguest-2025 </span>
         </h2>
         <p>
-          To Add a new user, use
-          <span class="inline">sudo adduser username</span> with administrative
-          privileges. Referring to the
-          <a
-            href="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html"
-            >documentation</a
-          >, one may also use
-          <span class="inline">sudo adduser username group</span>
+          To Add a new user, run
+          <span class="command">
+            sudo
+            <a
+              href="https://manpages.ubuntu.com/manpages/noble/man8/adduser.8.html"
+            >
+              adduser
+            </a>
+            username
+          </span>
+          with administrative privileges.
         </p>
-        <p>Repeat the above command for all machines</p>
-        <figure class="text-center">
-          <blockquote
-            class="blockquote1"
-            cite="https://manpages.ubuntu.com/manpages/xenial/man8/adduser.8.html"
-          >
-            <p style="font-style: italic">
-              If called with two non-option arguments, adduser will add an
-              existing user to an existing group.
-            </p>
-          </blockquote>
-          <figcaption class="blockquote-footer">
-            <em>ubuntu manual adduser</em>
-          </figcaption>
-        </figure>
+        <p>
+          If you ever encountered a problem that user cannot write to their own
+          home directory, their home directory might not be initialized
+          successfully and is owned by root. Check permission with command:
+          <span class="command">ls -l /home</span>
+        </p>
+        <p>
+          To fix that, delete the user completely and recreate the user account.
+          <span class="command">
+            sudo
+            <a
+              href="https://manpages.ubuntu.com/manpages/noble/en/man8/deluser.8.html"
+            >
+              deluser
+            </a>
+            --remove-all-files username
+          </span>
+        </p>
+        <p>
+          To list all the human user, run the command:
+          <span class="command">awk -F: '$3 >= 1000' /etc/passwd | sort</span>
+        </p>
+        <p>
+          Good record of the user information is recommended to keep track of
+          the ownership of the username. To modify user information, please run
+          the following command:
+          <span class="command"
+            >sudo
+            <a
+              href="https://manpages.ubuntu.com/manpages/noble/en/man1/chfn.1.html"
+            >
+              chfn
+            </a>
+            username
+          </span>
+        </p>
+        <p>It will prompt user to input their</p>
+        <ul>
+          <li>Full name</li>
+          <li>Room number</li>
+          <li>Work phone</li>
+          <li>Home phone</li>
+          <li>Other</li>
+        </ul>
         <p>
           As of 30/6/2023, the file in
           <span class="inline">/etc/passwd</span> read:
         </p>
-        <pre><code class="language-bash">
+        <pre><b>/etc/passwd</b><code class="language-bash">
 #########################################################
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
@@ -346,8 +481,15 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           <span class="datetime"> 10-Auguest-2023 </span>
         </h2>
         <p>
-          Using <span class="inline">ls -l</span> to list long format of files.
-          The columns coorespond to:
+          Using
+          <span class="inline"
+            ><a
+              href="https://manpages.ubuntu.com/manpages/noble/en/man1/ls.1posix.html"
+              >ls</a
+            >
+            -l</span
+          >
+          to list long format of files. The columns coorespond to:
         </p>
         <ol>
           <li>The file type.</li>
@@ -369,29 +511,54 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           To view all groups, visit
           <span class="inline">/etc/groups</span>. To change the uid or gid of a
           user, use:
-          <span class="command">sudo usermod -u uid -g gid username</span> To
-          change the gid or group name of a group, use:
           <span class="command"
-            >sudo groupmod -g gid -n new_groupName old_groupName</span
+            >sudo
+            <a
+              href="https://manpages.ubuntu.com/manpages/noble/en/man8/usermod.8.html"
+            >
+              usermod
+            </a>
+            -u uid -g gid username</span
+          >
+          To change the gid or group name of a group, use:
+          <span class="command"
+            >sudo
+            <a
+              href="https://manpages.ubuntu.com/manpages/noble/en/man8/groupmod.8.html"
+            >
+              groupmod
+            </a>
+            -g gid -n new_groupName old_groupName</span
           >
         </p>
       </section>
       <section>
         <h2 id="problem1">
-          Problem 1: Looking for a faster way to add new user on all computers
+          Problem 1 (obsolete): Looking for a faster way to add new user on all
+          computers
           <br />
           <span class="datetime"> 19-Auguest-2023 </span>
         </h2>
         <p>
-          Currently, to add a new user, we need to repeats the command
-          <span class="inline">sudo adduser</span> in all seven computers. We
-          look for solution to add new user on all computer simultaneously.
+          In 2023, we needed to create the same user account on all machines by
+          running the command
+          <span class="inline">sudo adduser</span> repeatingly. We were looking
+          for solution to add the same user on all computer simultaneously and
+          efficiently.
         </p>
         <p>
           Maybe, there is a way to synchronize the user data on all computers.
           Or one might write a script to automatically create a new user with
           the necessary credential information on all computers in one go
         </p>
+        <p>
+          In 2025, we now recommanded to only create new user on
+          <span class="inline">Bill01</span>. So, we can restrict user from
+          accessing any of the slaves computers. As of 2025, after the
+          reinstallation of Ubuntu OS v24.04 onto all slaves computers, only the
+          admin user <i>Bill</i> exists on them.
+        </p>
+        <p>Therefore, this problem is now obsolete.</p>
       </section>
       <section>
         <h2 id="problem2">
@@ -972,7 +1139,7 @@ ListenAddress 0.0.0.0
         <section>
           <h3 id="12.2">Cause and Replication steps</h3>
           <figure>
-            <img width="450" src="image\cluster\network_setting.webp" alt="" />
+            <img width="550" src="image\cluster\network_setting.webp" alt="" />
             <figcaption>
               (Top) Ethernet <i>enp0s25</i> refers to the static IP network.
               (Bottom) Ethernet <i>ens1</i> refers to the dynamic IP network.
