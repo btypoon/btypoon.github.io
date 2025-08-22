@@ -30,6 +30,7 @@ main {
 
 main p {
   line-height: 2;
+  /* text-indent: 2.5em; */
 }
 
 span.datetime {

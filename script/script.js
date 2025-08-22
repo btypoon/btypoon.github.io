@@ -108,3 +108,19 @@ function getButton() {
 window.addEventListener("load", function () {
   setTimeout(getButton, 500);
 });
+
+(function table_of_content_text() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const toc = document.querySelector("ol.toc");
+    if (toc) {
+      const tocLinks = toc.querySelectorAll('a[href^="#"]');
+      tocLinks.forEach(function (e) {
+        const targetID = e.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetID);
+        if (targetElement) {
+          e.textContent = targetElement.firstChild.nodeValue.trim();
+        }
+      });
+    }
+  });
+})();

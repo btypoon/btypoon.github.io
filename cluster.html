@@ -22,118 +22,80 @@
       </p>
       <hr />
       <h1>Table of content</h1>
-      <figure class="toc">
-        <ol>
-          <li><a href="#cluster_architecture">Cluster architecture </a></li>
-          <li><a href="#booting_sequence">Booting Sequence </a></li>
+      <figure>
+        <ol class="toc">
           <li>
-            <a href="#connect_to_the_server">Connect to the server </a>
-          </li>
-          <li><a href="#new_user">Adding new user </a></li>
-          <li><a href="#list_format">Long format listing ls -l </a></li>
-          <li><a href="#etc_groups">/etc/groups </a></li>
-          <li>
-            <a href="#problem1">
-              Problem 1 (obsolete): Looking for a faster way to add new user on
-              all computers
-            </a>
-          </li>
-          <li>
-            <a href="#problem2">
-              Problem 2: Unable to create or modify files in all Slave computers
-              for new user
-              <ol class="sub-toc">
-                <li><a href="#9.1"> Located Cause </a></li>
-                <li><a href="#9.2"> Suggested solution </a></li>
-                <li>
-                  <a href="#9.3">
-                    New problem: Different group id for same user across all
-                    computers
-                  </a>
-                </li>
-              </ol>
-            </a>
-          </li>
-          <li>
-            <a href="#problem3">
-              Problem3: Unable to run python program on ther server
-            </a>
-          </li>
-          <li>
-            <a href="#problem4">
-              Problem 4: Security reported three critical vulnerabilities
-            </a>
+            <a href="#cluster_architecture"></a>
             <ol class="sub-toc">
-              <li>
-                <a href="#problem4.1">
-                  First Vulnerability - Canonical Ubuntu Linux SEoL (16.04.x) -
-                  Critical Severity
-                </a>
-                <ol class="sub-toc">
-                  <li>
-                    <a href="#problem4.1.1"
-                      >Problem 4.1.1 - Outdated Graphic Driver
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#problem4.1.2"
-                      >Problem 4.1.2 - "DPKG" packages error</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#problem4.1.3"
-                      >Problem 4.1.3 - Obsolete PostgreSQL version 9.5</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#problem4.1.4"
-                      >Problem 4.1.4 - No development version of an LTS
-                      available
-                    </a>
-                  </li>
-                </ol>
-              </li>
-              <li>
-                <a href="#problem4.2">
-                  Second Vulnerability - SSH Terrapin Prefix Truncation Weakness
-                  - High Severity</a
-                >
-                <ol class="sub-toc">
-                  <li>
-                    <a href="#problem4.2.1">Problem 4.2.1 - First scan</a>
-                  </li>
-                  <li>
-                    <a href="#problem4.2.2">Problem 4.2.2 - Second scan</a>
-                  </li>
-                </ol>
-              </li>
-              <li>
-                <a href="#problem4.3">
-                  Third Vulnerability - ICMP Timestamp Request Remote Date
-                  Disclosure - Low Severity
-                </a>
-              </li>
+              <li><a href="#cluster1"></a></li>
+              <li><a href="#cluster2"></a></li>
             </ol>
           </li>
           <li>
-            <a href="#problem5"> Problem 5: SSH Connection failure </a>
+            <a href="#booting_sequence"></a>
             <ol class="sub-toc">
-              <li><a href="#12.1"> Mismatch between public IPs </a></li>
-              <li><a href="#12.2"> Cause and Replication steps </a></li>
-              <li><a href="#12.3"> Static IP address </a></li>
+              <li><a href="#boot1"></a></li>
+              <li><a href="#boot2"></a></li>
+            </ol>
+          </li>
+          <li><a href="#connect_to_the_server"></a></li>
+          <li><a href="#new_user"></a></li>
+          <li><a href="#list_format"></a></li>
+          <li><a href="#etc_groups"></a></li>
+          <li><a href="#problem1"></a></li>
+          <li>
+            <a href="#problem2"></a>
+            <ol class="sub-toc">
+              <li><a href="#problem2.1"></a></li>
+              <li><a href="#problem2.2"></a></li>
+              <li><a href="#problem2.3"></a></li>
+            </ol>
+          </li>
+          <li><a href="#problem3"></a></li>
+          <li>
+            <a href="#problem4"></a>
+            <ol class="sub-toc">
+              <li>
+                <a href="#problem4.1"></a>
+                <ol class="sub-toc">
+                  <li><a href="#ubuntu_apt-upgrade"></a></li>
+                  <li><a href="#ubuntu_do-release-upgrade"></a></li>
+                  <li><a href="#problem4.1.1"></a></li>
+                  <li><a href="#problem4.1.2"></a></li>
+                  <li><a href="#problem4.1.3"></a></li>
+                  <li><a href="#problem4.1.4"></a></li>
+                </ol>
+              </li>
+              <li>
+                <a href="#problem4.2"></a>
+                <ol class="sub-toc">
+                  <li><a href="#problem4.2.1"></a></li>
+                  <li><a href="#problem4.2.2"></a></li>
+                </ol>
+              </li>
+              <li><a href="#problem4.3"></a></li>
             </ol>
           </li>
           <li>
-            <a href="#problem6">
-              Problem 6: <span class="inline">ssh hostname</span> Hostname
-              unreachable
-            </a>
+            <a href="#problem5"></a>
+            <ol class="sub-toc">
+              <li><a href="#12.1"></a></li>
+              <li><a href="#12.2"></a></li>
+              <li><a href="#12.3"></a></li>
+            </ol>
           </li>
+          <li><a href="#problem6"></a></li>
+          <li><a href="#problem7"></a></li>
           <li>
-            <a href="#direct_reinstall">
-              Final Decision: Direct Reinstallation of Ubuntu 24.04 LTS
-            </a>
+            <a href="#direct_reinstall"></a>
+            <ol class="sub-toc">
+              <li><a href="#backupData"></a></li>
+              <li><a href="#ssh_setup"></a></li>
+              <li><a href="#desktop_setup"></a></li>
+              <li><a href="#hostname_setup"></a></li>
+            </ol>
           </li>
+          <li><a href="#NFS"></a></li>
         </ol>
       </figure>
       <hr />
@@ -157,7 +119,7 @@
         </ol>
         <p>Grid Engine was used for job scheduling in our server.</p>
         <section>
-          <h3>
+          <h3 id="cluster1">
             Grid Engines<br /><span class="datetime"> 12-Auguest-2025 </span>
           </h3>
           <p>
@@ -230,7 +192,7 @@
           </figure>
         </section>
         <section>
-          <h3>
+          <h3 id="cluster2">
             Architecture<br /><span class="datetime"> 12-Auguest-2025 </span>
           </h3>
           <p>
@@ -269,15 +231,43 @@
         </section>
       </section>
       <section>
-        <h2 id="booting_sequence">
-          Booting Sequence <br />
-          <span class="datetime"> 10-Auguest-2023 </span>
-        </h2>
-        <p>
-          For some reason, the computer <em>"slave4"</em> require special steps
-          in order to be booted successfully. When you face "The Red Screen of
-          Death", follow these steps:
-        </p>
+        <h2 id="booting_sequence">Booting Sequence <br /></h2>
+        <section>
+          <h3 id="boot1">
+            Bill01<br /><span class="datetime"> 21-Auguest-2025 </span>
+          </h3>
+          <p>
+            The BIOS of <em>Bill01</em> was password protected, and nobody know
+            the password. Moreover, the boot priority was set to prioritize the
+            USB drive over the harddrive. Therefore, upon every reboot, the
+            system would display an error indicating a missing operating system,
+            since no USB with an OS was inserted at that time. There is no way
+            to change the boot priority without the password.
+          </p>
+          <p>
+            Potential solutions included removing and reinserting the CMOS
+            battery on the motherboard. Or removing the password reset jumper on
+            the motherboard and rebooting the computer. However, both methods
+            require taking out the computer and disassembling it, which we
+            prefer to avoid due to the associated inconvenience.
+          </p>
+          <p>
+            A temporary workaround is to access the BIOS setting on every
+            startup and manually select <span class="inline">Ubuntu</span> as
+            the boot drive.
+          </p>
+        </section>
+        <section>
+          <h3 id="boot2">
+            Slave4<br /><span class="datetime"> 10-Auguest-2023 </span>
+          </h3>
+          <p>
+            <em>Slave4</em> require special steps in order to be booted
+            successfully. When you face "The Red Screen of Death", follow these
+            steps:
+          </p>
+        </section>
+
         <ol>
           <li>Press F11 to go into BIOS while booting</li>
           <li>Change the booting mode to UEFI</li>
@@ -336,12 +326,6 @@ username@bill01:~$"
           <span class="inline">ssh hostname</span> with the hostname of the
           other computer.
         </p>
-        <p>To get administrative privileges, use the following account:</p>
-        <ul>
-          <li>username: bill</li>
-          <li>username: btypoon</li>
-          <li>password: billyeung</li>
-        </ul>
       </section>
 
       <section>
@@ -562,83 +546,109 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       </section>
       <section>
         <h2 id="problem2">
-          Problem 2: Unable to create or modify files in all Slave computers for
-          new user <br /><span class="datetime">5-July-2023</span>
+          Problem 2 (obsolete): Unable to create or modify files in all Slave
+          computers for new user <br /><span class="datetime">5-July-2023</span>
         </h2>
         <p>
           Our new user Thomas Ho cannot run program or make any changes in all
           slaves computers but bill01. Older account does not have this problem
         </p>
-        <h3 id="9.1">Located Cause</h3>
+        <h3 id="problem2.1">Located Cause</h3>
         <p>
-          The problem was that the system treated the user from other host
-          (slave1-5) as "other user" instead of "owner" although they have the
-          same username. Therefore, after I allowed write permission for "other
-          user" in the directory, the problem was solved. However, "other user"
-          including user other then the user with the same name as the owner can
-          also modify the file inside now
+          The issue was that, although the user <em>ThomasHo</em> has the same
+          username on both <em>Bill01</em> and the <em>Slave</em> computers,
+          their UID and GID do not match. The directory
+          <span class="inline">/home/ThomasHo</span> on the
+          <em>Slave</em> computers are owned and grouped based on UID and GID,
+          rather than the username. As a result, when user
+          <em>ThomasHo</em> from <em>Bill01</em> attempts to access
+          <span class="inline">/home/ThomasHo</span> on the
+          <em>Slave</em> computers, the system does not recognize him as the
+          owner of the directory.
         </p>
-        <h3 id="9.2">Suggested solution</h3>
-        <ol>
-          <li>
-            Giving him admin privilege such that he can use sudo command.
-            Downside was that he gain access to other admin command
-          </li>
-          <li>
-            Enable write permission for all users in Thomas's home folder.
-            Downside was that every other user can write file to his home
-            folder.
-          </li>
-          <li>
-            Another solution is to allow specific group of user to access the
-            folder by their group ID. However, as I dig through the file, I
-            found another problem. The group id for the groups of same name in
-            bill01 and slave1-5 computers were different.
-          </li>
-        </ol>
-        <h3 id="9.3">
-          New problem: Different group id for same user across all computers
+
+        <h3 id="problem2.2">Suggested solution</h3>
+        <p>
+          The problem was resolved by granting permissions to
+          <em>others</em> for his home directory. However, this change also
+          allowed any other user, in addition to <em>ThomasHo</em> from
+          <em>Bill01</em>, to read, write, and execute files within his home
+          directory.
+        </p>
+        <h3 id="problem2.3">
+          New problem (obsolete): Different group id for same user across all
+          computers
         </h3>
         <figure>
           <img width="300" src="image\cluster\problem1.webp" alt="" />
           <figcaption>
-            The image display the defined groups in bill01 (left),
-            slave1(middle) and slave2(right) from /etc/groups.
+            Above shows the file <span class="inline">/etc/groups</span> in
+            computer bill01 (left), slave1(middle) and slave2(right).
+            <br />Their fields are represented as group_name:password:GID:Group
+            List.
           </figcaption>
         </figure>
         <p>
-          The word represents the group name and the number represent the group
-          id. Each user was assigned a group id when created. Files recognize
-          permitted user by their group id. For example, my group id was 1017 in
-          bill01 and 1016 in slave1-5.
+          As I digged deeper into the files, I realise new users have mismatched
+          UID and GID.
         </p>
         <p>
-          Since the home folder was created in bill01, it permitted users of
-          group id 1017 to write and modify in it. However, my group id was 1016
-          in slave's computer. Therefore, even if I allowed write permission for
-          the group of ID 1017, I cannot write in my home folder in slave's
-          computers . To make it works, I would need to fix the mismatches of
-          group id in bill01 and slave1-5. Therefore I suggest simply making the
-          user home's folder writable for all user, which is what I did.
+          In Linux, each user is assigned a UID and GID when created. File
+          permissions are determined based on these IDs. The system recognizes
+          the owner and group of a file by matching UIDs and GIDs.
         </p>
         <p>
-          So, at the end,
-          <span style="text-decoration: underline">solution 2 was employed</span
-          >.
+          An example of this issue can be seen with user <em>btypoon</em>: on
+          the <em>Bill01</em> system, <em>btypoon</em> has GID 1017, but on the
+          <em>Slave</em> computer, <em>btypoon</em> has GID 1016. Further
+          mismatches can be seen starting from user <em>curtis</em> (GID 1007)
+          and onwards.
+        </p>
+        <p>
+          To fix that, we will need to synchronize the UID and GID across all
+          seven computers. However, this process is time-consuming. Therefore, I
+          recommended simply making the user's home directory writable for all
+          users as a practical solution.
+        </p>
+        <p>
+          As of 2025, we reinstalled the OS of all computers and erased all user
+          data. Only the admin user <em>Bill</em> will be existing on all
+          <em>Slave</em> computers.
         </p>
       </section>
       <section>
         <h2 id="problem3">
-          Problem3: Unable to run python program on ther server
+          Problem 3: Unable to run python program on the server
           <br /><span class="datetime">9-Dec-2023</span>
         </h2>
         <p>
-          Another work colleague Nesat wanted to run her python program on the
-          physics lab's cluster server, but unabled to do so. Specifically, she
-          wanted to install the python packages "Tensorflow", which her program
-          rely on, but unsuccessful. This problem remain unresolved. Further
+          One of the staff, Nesat, reported that she was unable to run her
+          python program on our Physics Lab Server. Specifically, she wanted to
+          install the python packages "Tensorflow", which her program rely on,
+          but unsuccessful. This problem remain unresolved. Further
           investigation is required.
         </p>
+        <section>
+          <h3>
+            Suggested solution<br /><span class="datetime">21-Augest-2025</span>
+          </h3>
+          <p>
+            As of 2025, we realised that Ubuntu relies heavily on Python.
+            Consequently, we cannot let user to freely install or modify Python
+            modules as it might lead to conflicts with the system's Python
+            environment and potentially cause core functionality break down and
+            system corruption.
+          </p>
+          <p>
+            We look for ways to set up virtual environments for each user and
+            allow use to install modules within their local python envrionments.
+          </p>
+          <p>
+            Currently, a Python tool called
+            <span class="inline">PyInstaller</span> might be the solution to our
+            problem.
+          </p>
+        </section>
       </section>
 
       <section>
@@ -699,7 +709,7 @@ sudo do-release-upgrade
             To make the process effective, the following two shell script were
             written and to be executed in sequence on each of the OS upgrades.
           </p>
-          <pre><b>ubuntu_apt-upgrade.sh</b><code class="language-bash">
+          <pre><b id="ubuntu_apt-upgrade">ubuntu_apt-upgrade.sh</b><code class="language-bash">
 #!/bin/bash
 
 # Exit if any command fails
@@ -767,7 +777,7 @@ fi
 
 upgrade_stage "$current_version"
           </code></pre>
-          <pre><b>ubuntu_do-release-upgrade.sh</b><code class="language-bash">
+          <pre><b id="ubuntu_do-release-upgrade">ubuntu_do-release-upgrade.sh</b><code class="language-bash">
 #!/bin/bash
 
 # Exit if any command fails
@@ -1419,20 +1429,27 @@ ff02::2 ip6-allrouters
           clean systems.
         </p>
         <p>
-          To preserve user data such as user accounts, passwords, and system
-          settings like static IP configurations, we have decided not to
-          reinstall the OS on <em>bill01</em>.
-        </p>
-        <p>
           To facilitate synchronization and streamline the setup process across
-          master and slave1-5 computers, three additional shell scripts, namely
+          master and slave1-5 computers, four additional shell scripts, namely
+          <span class="inline">backupData.sh</span>,
           <span class="inline">ssh_setup.sh</span>,
           <span class="inline">desktop_setup.sh</span> and
           <span class="inline">hostname_setup.sh</span> were written and to be
           executed on all computers.
         </p>
+        <pre><b id="backupData">backupData.sh</b><code class="language-bash">
+#!/bin/bash
 
-        <pre><b>ssh_setup.sh:</b><code class="language-bash">
+[ -z "$1" ] && echo "Please provide a folder name." && exit 1
+#DEST reter to USB destination
+DEST="/mnt/usb/$1"
+#DEST="/media/bill/PHY LAB 04/Backup/$1"
+echo "backing up to $DEST"
+[ ! -d "$DEST" ] && sudo mkdir -p "$DEST"
+sudo cp /etc/passwd /etc/shadow /etc/group /etc/gshadow /etc/sudoers "$DEST"
+[ -d "/etc/sudoers.d" ] && sudo cp -r /etc/sudoers.d "$DEST"
+        </code></pre>
+        <pre><b id="ssh_setup">ssh_setup.sh</b><code class="language-bash">
 #!/bin/bash
 
 # Exit if any command fails
@@ -1507,7 +1524,7 @@ append_if_missing "$CIPHERS_LINE" "Disable Ciphers List"
 append_if_missing "$MACS_LINE" "Enable MACs List"
         </code></pre>
 
-        <pre><b>desktop_setup.sh:</b><code class="language-bash">
+        <pre><b id="desktop_setup">desktop_setup.sh</b><code class="language-bash">
 #!/bin/bash
 
 # Exit if any command fails
@@ -1545,7 +1562,7 @@ gsettings set org.gnome.desktop.session idle-delay 0
 echo "✅ Screen blanking disabled."
         </code></pre>
 
-        <pre><b>hostname_setup.sh:</b><code class="language-bash">
+        <pre><b id="hostname_setup">hostname_setup.sh</b><code class="language-bash">
 #!/bin/bash
 
 # Exit if any command fails
@@ -1558,13 +1575,13 @@ fi
 
 # List of IP-hostname pairs
 HOST_ENTRIES=(
-  "192.168.1.100 bill01"
+  "192.168.1.100 Bill01-master"
   "192.168.1.101 slave1"
   "192.168.1.102 slave2"
   "192.168.1.103 slave3"
   "192.168.1.104 slave4"
   "192.168.1.105 slave5"
-  "192.168.1.106 master"
+  "192.168.1.106 slave6"
 )
 
 echo "🔍 Checking /etc/hosts for existing entries..."
@@ -1580,6 +1597,190 @@ done
 
 echo "🚀 Host entries update complete!"
         </code></pre>
+      </section>
+      <section>
+        <h2 id="NFS">Setting up Network File System (NFS)</h2>
+        <p>
+          To allow job exeuting on <b>Slave</b> computers able to read and write
+          files on the <b>Master</b> computer, we need to setup NFS on the
+          <b>Master</b> computer and mount the NFS share on each of the
+          <b>Slave</b> computers.
+        </p>
+        <p>
+          This way, script distributed to and running on any of the
+          <b>Slave</b> computers can read stuff like libraries, data, python
+          modules stored in <b>Master</b> computer. And it can also returns
+          result and write back to <b>Master</b> computer.
+        </p>
+        <p>
+          To set up NFS, we need to install the server package on
+          <b>Bill01-master</b> computer and client package on
+          <b>Slave</b> computers.
+        </p>
+        <section>
+          <h3>NFS-server: Bill01-master</h3>
+          <p>
+            First, we install the NFS server package in
+            <b>Bill01-master</b> computer:
+            <span class="command">sudo apt install nfs-kernel-server</span>
+          </p>
+          <p>
+            Enable auto-start of the NFS server on every boot by:
+            <span class="command">sudo systemctl enable nfs-kernel-server</span>
+          </p>
+          <p>
+            Start the NFS server right now by:
+            <span class="command">sudo systemctl start nfs-kernel-server</span>
+          </p>
+          <p>
+            Check if NFS server is running:
+            <span class="command">sudo systemctl status nfs-kernel-server</span>
+          </p>
+          <p>
+            One of the important step offen omitted by internet guide is to
+            allow port 2049 in the firewall. Otherwise, <b>Slave</b> computers
+            cannot connect to the NFS server although the server was running.
+          </p>
+          <p>
+            Allow port 2049 in the firewall by:
+            <span class="command">sudo ufw allow 2049</span>
+          </p>
+          <p>
+            Check for change by:
+            <span class="command">sudo ufw status</span>
+          </p>
+          <p>
+            Enter in <span class="inline">/etc/exports</span> by:
+            <span class="command">sudo nano /etc/exports</span>
+          </p>
+
+          <pre><b>/etc/exports</b><code class="language-bash">
+/home *(rw,sync,no_subtree_check)
+          </code></pre>
+          <p>
+            This allows <span class="inline">*</span> all hosts to connect to
+            <span class="inline">/home</span> in the server
+          </p>
+          <p>
+            Restart the NFS server to load the changes:
+            <span class="command"
+              >sudo systemctl restart nfs-kernel-server</span
+            >
+          </p>
+          <p>
+            Check if the NFS server is running flawlessly again:
+            <span class="command">sudo systemctl status nfs-kernel-server</span>
+          </p>
+        </section>
+        <section>
+          <h3>NFS-client: Slave1-6</h3>
+          <p>
+            Second, we install the NFS client packages on
+            <b>Slave</b> computers.
+            <span class="command">sudo apt install nfs-common</span>
+          </p>
+          <p>
+            NFS client packages is a set of tool for accessing the NFS server.
+            Therefore, we do not need to enable or start it.
+          </p>
+          <section>
+            <h4>Manual mount</h4>
+            <p>
+              Now, we test mount the /home directory from
+              <b>Bill01-master</b> computer to <b>Slave</b> computers:
+            </p>
+            <p>
+              We first create a mount point, a folder holding the NFS server
+              directory, in <span class="inline">/mnt/Bill01-master/home</span>:
+              <span class="command">sudo mkdir -p /mnt/Bill01-master/home</span>
+            </p>
+            <p>
+              Then, make sure the local-ip address of <b>Bill01-master</b> is
+              <span class="inline">192.168.1.100</span> and run:
+              <span class="command"
+                >sudo mount 192.168.1.100:/home /mnt/Bill01-master/home
+              </span>
+            </p>
+            <p>
+              If everything went right, we now will be able to view and modify
+              the
+              <span class="inline">/home</span> directory from
+              <b>Bill01-master</b> in <b>Slave</b> computers
+              <span class="inline">/mnt/Bill01-master/home</span>:
+              <span class="command">ls /mnt/Bill01-master/home</span>
+            </p>
+            <p>
+              Now, let's unmount the NFS server for now:
+              <span class="command">sudo umount /mnt/Bill01-master/home</span>
+            </p>
+            <p>
+              The disadvantage of using
+              <span class="inline">mount</span> command is that, it does not
+              persist after reboot. The mount will be lost and require manual
+              mount again.
+            </p>
+            <p>
+              To solve that, we employ an auto mount package,
+              <span class="inline">Autofs</span>.
+            </p>
+          </section>
+          <section>
+            <h4>Auto mount (Autofs)</h4>
+            <p>
+              First, we install the package,
+              <span class="inline">Autofs</span> in <b>Slave</b> computers.
+              <span class="command">sudo apt install autofs</span>
+            </p>
+            <p>
+              Enable and start <span class="line">Autofs</span> to make sure it
+              is up and running. Enable auto-start of the
+              <span class="inline">Autofs</span> on every boot by:
+              <span class="command">sudo systemctl enable autofs</span>
+            </p>
+            <p>
+              Start the <span class="inline">Autofs</span> right now by:
+              <span class="command">sudo systemctl start autofs</span>
+            </p>
+            <p>
+              Check if <span class="inline">Autofs</span> is running:
+              <span class="command">sudo systemctl status autofs</span>
+            </p>
+            <p>
+              Enter and append at the end in
+              <span class="inline">/etc/auto.master</span> by:
+              <span class="command">sudo nano /etc/auto.master</span>
+            </p>
+            <pre><b>/etc/auto.master</b><code class="language-bash">
+/mnt/Bill01-master /etc/auto.nfs --timeout=60 --ghost
+            </code></pre>
+            <p>
+              Enter in <span class="inline">/etc/auto.nfs</span> by:
+              <span class="command">sudo nano /etc/auto.nfs</span>
+            </p>
+            <pre><b>/etc/auto.master</b><code class="language-bash">
+home -fstype=nfs4,rw 192.168.1.100:/home
+            </code></pre>
+            <p>
+              Restart <span class="inline">Autofs</span> to load the changes:
+              <span class="command">sudo systemctl restart autofs</span>
+            </p>
+            <p>
+              If everything went right, we now will be able to view and modify
+              the
+              <span class="inline">/home</span> directory from
+              <b>Bill01-master</b> in <b>Slave</b> computers
+              <span class="inline">/mnt/Bill01-master/home</span>:
+              <span class="command">ls /mnt/Bill01-master/home</span>
+            </p>
+            <p>
+              The advantage of <span class="inline">Autofs</span> is that it
+              performs on demand mounting and automatically unmounting. The
+              system will only mount the NFS when accessed, and unmount the NFS
+              after a period of inactivity. Hence, freeing system resources and
+              reducing unnecessary mounts.
+            </p>
+          </section>
+        </section>
       </section>
     </main>
     <!-- custom script -->
