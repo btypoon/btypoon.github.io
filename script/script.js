@@ -118,7 +118,7 @@ window.addEventListener("load", function () {
         const targetID = e.getAttribute("href").substring(1);
         const targetElement = document.getElementById(targetID);
         if (targetElement) {
-          e.textContent = targetElement.firstChild.nodeValue.trim();
+          e.textContent = targetElement.textContent.trim();
         }
       });
     }
