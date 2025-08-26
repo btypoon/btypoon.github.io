@@ -4,7 +4,10 @@ This is a repository for hosting my personal [website](https://btypoon.github.io
 
 ![preview of my index.html](./image/readme/preview_index.webp)
 
-The main purpose of my blog is to record things that I did and learnt. I work on Physics related projects. I occasionally update my blog.
+=======
+
+> > > > > > > eac2a6833ab24dac55ccfdd2c5fff2a357291627
+> > > > > > > The main purpose of my blog is to record things that I did and learnt. I work on Physics related projects. I occasionally update my blog.
 
 ## Other projects
 
