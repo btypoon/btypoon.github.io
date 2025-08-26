@@ -938,8 +938,8 @@ httpd.serve_forever()
               <pre><b>convert2webp.bat</b><code class="language-bash">
 @echo off
 for %%f in (*.jpg *.png) do magick "%%f" -auto-orient "%%f"
-for %%f in (*.jpg *.png) do cwebp "%%f" -o "%%~nf.webp"
-for %%f in (*.gif) do gif2webp "%%f" -o "%%~nf.webp" -lossless -q 100
+for %%f in (*.jpg *.png) do cwebp "%%f" -o "%%~nf.webp" -lossless -q 100
+for %%f in (*.gif) do gif2webp "%%f" -o "%%~nf.webp" -q 100
 pause
               </code></pre>
               <p>
