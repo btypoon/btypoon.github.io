@@ -51,7 +51,13 @@
               <li><a href="#problem2.3"></a></li>
             </ol>
           </li>
-          <li><a href="#problem3"></a></li>
+          <li>
+            <a href="#problem3"></a>
+            <ol class="sub-toc">
+              <li><a href="#problem3.1"></a></li>
+              <li><a href="#problem3.2"></a></li>
+            </ol>
+          </li>
           <li>
             <a href="#problem4"></a>
             <ol class="sub-toc">
@@ -108,7 +114,7 @@
       <hr />
       <section>
         <h2 id="cluster_architecture">Cluster architecture</h2>
-        <div class="datetime"><time>10-Auguest-2023</time></div>
+        <div class="datetime"><time datetime="2023-8-10"></time></div>
         <div class="content">
           <p>
             There are the seven computers in our server cluster. Their hostname
@@ -126,7 +132,7 @@
           <p>Grid Engine was used for job scheduling in our server.</p>
           <section>
             <h3 id="cluster1">Grid Engines</h3>
-            <div class="datetime"><time>12-Auguest-2025</time></div>
+            <div class="datetime"><time datetime="2025-8-12"></time></div>
             <div class="content">
               <p>
                 My research found that the original Sun Grid Engine was
@@ -205,7 +211,7 @@
           </section>
           <section>
             <h3 id="cluster2">Architecture</h3>
-            <div class="datetime"><time>12-Auguest-2025</time></div>
+            <div class="datetime"><time datetime="2025-8-12"></time></div>
             <div class="content">
               <p>
                 Originally, our server setup consist of a client node, a master
@@ -258,7 +264,7 @@
         <div class="content">
           <section>
             <h3 id="boot1">Bill01</h3>
-            <div class="datetime"><time>21-Auguest-2025</time></div>
+            <div class="datetime"><time datetime="2025-8-21"></time></div>
             <div class="content">
               <p>
                 The BIOS of <em>Bill01</em> was password protected, and nobody
@@ -286,7 +292,7 @@
           </section>
           <section>
             <h3 id="boot2">Slave4</h3>
-            <div class="datetime"><time>10-Auguest-2023</time></div>
+            <div class="datetime"><time datetime="2023-8-10"></time></div>
             <div class="content">
               <p>
                 <em>Slave4</em> require special steps in order to be booted
@@ -304,7 +310,7 @@
       </section>
       <section>
         <h2 id="connect_to_the_server">Connect to the server</h2>
-        <div class="datetime"><time>10-Auguest-2023</time></div>
+        <div class="datetime"><time datetime="2023-8-10"></time></div>
         <div class="content">
           <p>
             To connect to the server, you must first connected to the university
@@ -357,7 +363,7 @@ username@bill01:~$"
       </section>
       <section>
         <h2 id="new_user">Adding new user</h2>
-        <div class="datetime"><time>11-Auguest-2025</time></div>
+        <div class="datetime"><time datetime="2025-8-11"></time></div>
         <div class="content">
           <p>
             To Add a new user, run
@@ -489,7 +495,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       </section>
       <section>
         <h2 id="list_format">Long format listing ls -l</h2>
-        <div class="datetime"><time>10-Auguest-2023</time></div>
+        <div class="datetime"><time datetime="2023-8-10"></time></div>
         <div class="content">
           <p>
             Using
@@ -516,7 +522,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
       </section>
       <section>
         <h2 id="etc_groups">/etc/groups</h2>
-        <div class="datetime"><time>10-Auguest-2023</time></div>
+        <div class="datetime"><time datetime="2023-8-10"></time></div>
         <div class="content">
           <p>
             To view all groups, visit
@@ -549,7 +555,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           Problem 1 (obsolete): Looking for a faster way to add new user on all
           computers
         </h2>
-        <div class="datetime"><time>19-Auguest-2023</time></div>
+        <div class="datetime"><time datetime="2023-8-19"></time></div>
         <div class="content">
           <p>
             In 2023, we needed to create the same user account on all machines
@@ -578,7 +584,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
           Problem 2 (obsolete): Unable to create or modify files in all Slave
           computers for new user
         </h2>
-        <div class="datetime"><time>5-July-2023</time></div>
+        <div class="datetime"><time datetime="2023-7-5"></time></div>
         <div class="content">
           <p>
             Our new user Thomas Ho cannot run program or make any changes in all
@@ -666,7 +672,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         Problem 3: Unable to run python program on the server
       </h2>
       <section>
-        <div class="datetime"><time>9-Dec-2023</time></div>
+        <div class="datetime"><time datetime="2023-12-9"></time></div>
         <div class="content">
           <p>
             One of the staff, Nesat, reported that she was unable to run her
@@ -676,8 +682,8 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
             investigation is required.
           </p>
           <section>
-            <h3>Suggested solution</h3>
-            <div class="datetime"><time>21-Augest-2025</time></div>
+            <h3 id="problem3.1">Suggested solution</h3>
+            <div class="datetime"><time datetime="2025-8-21"></time></div>
             <div class="content">
               <p>
                 As of 2025, we realised that Ubuntu relies heavily on Python.
@@ -698,6 +704,41 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
               </p>
             </div>
           </section>
+          <section>
+            <h3 id="problem3.2">PyInstaller</h3>
+            <div class="datetime">
+              <time datetime="2025-8-25"></time>
+            </div>
+            <div class="content">
+              <p>
+                <a href="https://github.com/pyinstaller/pyinstaller"
+                  >PyInstaller</a
+                >
+                is a Python tool used to convert Python scripts into standalone
+                executable files for Windows, macOS, and Linux. It packages your
+                Python program along with all its dependencies into a single
+                folder or executable, making it easy to distribute and run your
+                applications on systems without requiring a installation of
+                Python interpreter or Python modules.
+              </p>
+              <p>
+                However, Quoting from its github pages, "Pyinstaller is not a
+                cross-compiler. To make a Windows app you run PyInstaller in
+                Windows; to make a GNU/Linux app you run it in GNU/Linux, etc."
+              </p>
+              <p>
+                Therefore, if we want to submit to and execute our script in the
+                Physics Laboratory Linux server, we need to build and compile
+                the script in a Linux environment.
+              </p>
+              <p>
+                We suggest user to use virtual machine to set up a Linux
+                environment on their non-Linux operating systems. A free and
+                easy to use virtual machine software would be
+                <a href="https://www.virtualbox.org/">VirtualBox</a>.
+              </p>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -705,7 +746,7 @@ btypoon:x:1017:1017:,,,:/home/btypoon:/bin/bash
         <h2 id="problem4">
           Problem 4: Security reported three critical vulnerabilities
         </h2>
-        <div class="datetime"><time>11-Jul-2025</time></div>
+        <div class="datetime"><time datetime="2025-7-11"></time></div>
         <div class="content">
           <p>
             According to the Tenable Security Report provided by the OCIO, three
@@ -975,7 +1016,9 @@ release_upgrade "$current_version"
                 <h4 id="problem4.1.3">
                   Problem 4.1.3 - Obsolete PostgreSQL version 9.5
                 </h4>
-                <div class="datetime"><time>22-July-2025</time></div>
+                <div class="datetime">
+                  <time datetime="2025-7-22"></time>
+                </div>
                 <div class="content">
                   <p>
                     During the upgrade process of all seven computers, a prompt
@@ -1001,7 +1044,9 @@ release_upgrade "$current_version"
                 <h4 id="problem4.1.4">
                   Problem 4.1.4 - No development version of an LTS available
                 </h4>
-                <div class="datetime"><time>22-July-2025</time></div>
+                <div class="datetime">
+                  <time datetime="2025-7-22"></time>
+                </div>
                 <div class="content">
                   <p>
                     During the OS upgrade from version 18.04 to 20.04 on the
@@ -1169,7 +1214,7 @@ MACs hmac-sha1,hmac-sha2-256,hmac-sha2-512,umac-64@openssh.com,umac-128@openssh.
       </section>
       <section>
         <h2 id="problem5">Problem 5: SSH Connection failure</h2>
-        <div class="datetime"><time>11-Jul-2025</time></div>
+        <div class="datetime"><time datetime="2025-7-11"></time></div>
         <div class="content">
           <p>
             While upgrading the Operating system of the server, there was a
@@ -1302,7 +1347,7 @@ ListenAddress 0.0.0.0
           Problem 6: <span class="inline">ssh hostname</span>: Hostname
           unreachable
         </h2>
-        <div class="datetime"><time>11-Jul-2025</time></div>
+        <div class="datetime"><time datetime="2025-7-11"></time></div>
         <div class="content">
           <p>
             After OS upgrade or system reboot, the local IP address assigned to
@@ -1448,7 +1493,7 @@ ff02::2 ip6-allrouters
       </section>
       <section>
         <h2 id="problem7">Bill01: Locked Display Resolution at 640x480</h2>
-        <div class="datetime"><time>23-Jul-2025</time></div>
+        <div class="datetime"><time datetime="2025-7-23"></time></div>
         <div class="content">
           <p>
             Due to a previous attempt to resolve issues with executing
@@ -1503,7 +1548,7 @@ ff02::2 ip6-allrouters
         <h2 id="direct_reinstall">
           Final Decision: Direct Reinstallation of Ubuntu 24.04 LTS
         </h2>
-        <div class="datetime"><time>23-Jul-2025</time></div>
+        <div class="datetime"><time datetime="2025-7-23"></time></div>
         <div class="content">
           <p>
             Despite significant efforts to upgrade the operating systems and
@@ -1729,7 +1774,7 @@ echo "🚀 Host entries update complete!"
           </p>
           <section>
             <h3 id="NFS_server">NFS-server: Bill01-master</h3>
-            <div class="datetime"><time>22-Auguest-2025</time></div>
+            <div class="datetime"><time datetime="2025-8-22"></time></div>
             <div class="content">
               <p>
                 First, we install the NFS server package in
@@ -1891,6 +1936,7 @@ echo "🚀 Host entries update complete!"
                   </p>
                   <pre><b>/etc/auto.master</b><code class="language-bash">
 home -fstype=nfs4,rw 192.168.1.100:/home
+nfs-shared -fstype=nfs4,rw 192.168.1.100:/nfs-shared
                   </code></pre>
                   <p>
                     Restart <span class="inline">Autofs</span> to load the
@@ -1905,6 +1951,7 @@ home -fstype=nfs4,rw 192.168.1.100:/home
                     <span class="inline">/mnt/Bill01-master/home</span>:
                     <span class="command">ls /mnt/Bill01-master/home</span>
                   </p>
+                  <p>Verify using: <span class="command">df -h</span></p>
                   <p>
                     The advantage of <span class="inline">Autofs</span> is that
                     it performs on demand mounting and automatically unmounting.
@@ -1918,7 +1965,7 @@ home -fstype=nfs4,rw 192.168.1.100:/home
           </section>
           <section>
             <h3 id="NFS_investigation">Investigation on the old NFS setup</h3>
-            <div class="datetime"><time>23-Aug-2025</time></div>
+            <div class="datetime"><time datetime="2025-8-23"></time></div>
             <div class="content">
               <p>
                 In this section, we will be looking at the original method the
@@ -1927,7 +1974,7 @@ home -fstype=nfs4,rw 192.168.1.100:/home
               </p>
               <section>
                 <h4>Problem 1: The use of mount command</h4>
-                <div class="datetime"><time>23-Aug-2025</time></div>
+                <div class="datetime"><time datetime="2025-8-23"></time></div>
                 <div class="content">
                   <p>
                     According to the old documentation left from the university,
@@ -1945,7 +1992,7 @@ home -fstype=nfs4,rw 192.168.1.100:/home
               </section>
               <section>
                 <h4>Problem 2: Dynamic local ip in /etc/exports</h4>
-                <div class="datetime"><time>23-Aug-2025</time></div>
+                <div class="datetime"><time datetime="2025-8-23"></time></div>
                 <div class="content">
                   <p>
                     The original content of
@@ -1970,7 +2017,7 @@ home -fstype=nfs4,rw 192.168.1.100:/home
               </section>
               <section>
                 <h4>Problem 3: Masking of the /home directory</h4>
-                <div class="datetime"><time>23-Aug-2025</time></div>
+                <div class="datetime"><time datetime="2025-8-23"></time></div>
                 <div class="content">
                   <p>
                     Looking at the mount command again.
@@ -2002,6 +2049,56 @@ home -fstype=nfs4,rw 192.168.1.100:/home
                 <span class="inline">/etc/exports</span>. Therefore we can
                 safely assume the Network File System was always not working.
               </p>
+            </div>
+          </section>
+          <section>
+            <h3>Problem 7: Permission issue of the Network File System</h3>
+            <div class="datetime">
+              <time datetime="2025-8-25"></time>
+            </div>
+            <div class="content">
+              <p>
+                As of 2025, only user Bill with UID 1000 exist on
+                <b>Slave</b> computers. The default permission of the user home
+                directories are <span class="inline">750</span> or
+                <span class="inline">rwxr-x---</span>.
+              </p>
+              <p>
+                Assume user submitted a script to <b>Master</b> computer, and
+                the <b>Master</b> computer distributed the job to one of the
+                <b>Slave</b> computer. The script requires reading data from
+                external spreadsheet file stored in user's home directory, and
+                return any result to also the user's home directory.
+              </p>
+              <p>
+                Therefore, user <b>Bill</b> from <b>Slave</b> computer would
+                require read and write permission to the user's home directory.
+                But, doing so require manual addition of read and write
+                permission for <span class="inline">other</span> class (users
+                who are neither the file's owner nor members of the file's
+                group) to each of the user home's directory.
+              </p>
+              <p>
+                The manual action is also required whenever we created a new
+                user account for our staffs and students.
+              </p>
+              <p>
+                One half of the solution is to create a public NFS folder for
+                <b>Slave</b> computers to write back the results. But it does
+                not solve for the read permission of external files. And it
+                risks users overwriting each other's data.
+              </p>
+              <p>
+                The other half of the solution is to require user to compile and
+                embed all their required data into their script. Eliminating the
+                need to read external files.
+              </p>
+              <p>
+                The final solution is to allow pulic read and write permission
+                onto all user's home directories. But it expose risk to privacy
+                and security.
+              </p>
+              <p>This problem still require further discussion.</p>
             </div>
           </section>
         </div>

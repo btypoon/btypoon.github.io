@@ -124,3 +124,25 @@ window.addEventListener("load", function () {
     }
   });
 })();
+
+(function auto_display_datetime() {
+  document.addEventListener("DOMContentLoaded", function () {
+    const times = document.querySelectorAll("div.datetime>time");
+    if (times.length > 0) {
+      times.forEach(function (e) {
+        const datetimeStr = e.getAttribute("datetime");
+        const date = new Date(datetimeStr);
+        if (!isNaN(date.getTime())) {
+          const formatter = Intl.DateTimeFormat(navigator.languages, {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+          e.textContent = formatter.format(date);
+        } else {
+          console.warn("Invalid date:", datetimeStr);
+        }
+      });
+    }
+  });
+})();

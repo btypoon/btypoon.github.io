@@ -112,9 +112,11 @@ code::-webkit-scrollbar-thumb {
 }
 
 kbd {
-  font-size: 0.85em;
+  font-size: 1em;
   font-weight: 700;
   display: inline-block;
+  vertical-align: bottom;
+  margin-top: 7px;
   padding: 2px 4px;
   white-space: nowrap;
   color: #333;
