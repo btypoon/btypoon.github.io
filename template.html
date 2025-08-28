@@ -191,9 +191,11 @@
       }
 
       header#navHeader img {
-        height: 50px;
-        display: block;
-        margin: 5px;
+        height: 70px;
+        width: 200px;
+        object-fit: cover;
+        object-position: center;
+        overflow-clip-margin: unset;
       }
 
       header#navHeader h2 {
@@ -211,16 +213,6 @@
       }
     </style>
     <style id="navFooterStyle">
-      :root {
-        --footer-div-width: 300px;
-        --footer-breakpoint: calc(var(--footer-div-width) * 4 + 17px);
-      }
-
-      /* @media screen and (min-width:817px) {
-        footer#navFooter {
-
-        }
-      } */
       footer#navFooter {
         background-color: rgb(35, 38, 41);
         color: white;
@@ -233,15 +225,18 @@
         justify-content: center;
       }
 
-      @media screen and (max-width: 817px) {
+      /* max-width = --footer-div-width * number of div =17 */
+      @media screen and (max-width: 617px) {
         footer#navFooter {
           justify-content: start;
         }
       }
+      :root {
+        --footer-div-width: 300px;
+      }
 
       footer#navFooter div {
-        box-sizing: border-box;
-        padding: 20px 50px;
+        padding: 30px 50px;
         width: var(--footer-div-width);
       }
 
@@ -263,7 +258,9 @@
   <body>
     <template id="navHeaderTemplate">
       <header id="navHeader">
-        <img src="image\logo.webp" />
+        <img
+          src="https://www.eduhk.hk/images_up_n/brandpolicy/EdUHK_Signature_RGB.jpg"
+        />
         <h2>EdUHK</h2>
       </header>
     </template>

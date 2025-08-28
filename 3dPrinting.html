@@ -4,253 +4,128 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instruction on 3D printing in Physics' Lab</title>
-    <style>
-      @keyframes gradient {
-        0% {
-          background-position: 0% 0%;
-        }
-
-        50% {
-          background-position: 100% 100%;
-        }
-
-        100% {
-          background-position: 0% 0%;
-        }
-      }
-
-      div.heading {
-        background-image: linear-gradient(
-          170deg,
-          rgba(255, 220, 169, 1) 0%,
-          rgba(226, 152, 43, 1) 100%
-        );
-        background-size: 100% 100%;
-        background-repeat: repeat;
-        display: flex;
-        align-items: center;
-        color: white;
-        padding: 0 1em;
-        font-family: "Libre Baskerville";
-      }
-    </style>
   </head>
 
   <body>
     <main>
-      <div class="heading">
-        <h1>Instruction on 3D printing in Physics' Lab</h1>
-      </div>
+      <h1>Instruction on 3D printing in Physics' Lab</h1>
+
+      <hr />
       <figure>
-        <blockquote class="blockquote1" cite="">
-          <p style="font-style: italic">
-            If called with two non-option arguments, adduser will add an
-            existing user to an existing group.
-          </p>
-        </blockquote>
-        <figcaption>
-          <em>ubuntu manual adduser</em>
-        </figcaption>
+        <ol class="toc">
+          <li><a href="#PrintingMachineries"></a></li>
+          <li><a href="#FilamentType"></a></li>
+          <li><a href="#Calibration"></a></li>
+          <li><a href="#FilamentLoading"></a></li>
+          <li><a href="#SlicingSoftware"></a></li>
+          <li><a href="#beware"></a></li>
+          <li><a href="#dimension"></a></li>
+          <li><a href="#tolerance"></a></li>
+          <li><a href="#print"></a></li>
+        </ol>
       </figure>
       <hr />
       <section>
         <h2 id="PrintingMachineries">Printing machineries</h2>
-        <figure>
-          <img width="200" src="image\3dprint\creativePro.webp" alt="" />
-          <figcaption>Flashforge Creator Pro x5</figcaption>
-        </figure>
-
-        <figure>
-          <img width="200" src="image\3dprint\creative3.webp" alt="" />
-          <figcaption>Flashforge Creator 3 x1</figcaption>
-        </figure>
-      </section>
-      <section>
-        <h2 id="FilamentType">Filament Type</h2>
-        <ul>
-          <li>PLA (ecofriendly) 200 50 recommend 210 55</li>
-          <li>PETG (tougher) nozzle:210-250 plate:80-100 Recommend 240,90</li>
-          <li>ABS (toxic)</li>
-        </ul>
-      </section>
-      <section>
-        <h2 id="Calibration">Calibration</h2>
-        <p>
-          Level the platform manually. Insert paper and adjust three screws in
-          the back Feel the small friction when pulling the paper. Not to tight,
-          not too loose.
-        </p>
-        <figure>
-          <img width="200" src="image\3dprint\calibrationA4.webp" alt="" />
-          <figcaption>3d printing platform</figcaption>
-        </figure>
-      </section>
-      <section>
-        <h2 id="FilamentLoading">Filament Loading</h2>
-        <p>Use only the right nozzle. the left nozzles were removed</p>
-      </section>
-      <section>
-        <h2 id="SlicingSoftware">Slicing Software</h2>
-        <ul>
-          <li>FlashPrint 5</li>
-          <li>0.6mm path width</li>
-          <li>119% extrusion rate</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Beware</h2>
-        <ul>
-          <li>
-            See if temperature can reach the target value. Old part or
-            malfunction might cause temperature drop. You might turn the
-            printing speed down to compensate the temperature drop of the
-            nozzle.
-          </li>
+        <div class="content">
           <figure>
-            <img
-              width="200"
-              src="image\3dprint\underheatedNozzle.webp"
-              alt=""
-            />
-            <figcaption>figure</figcaption>
+            <img width="200" src="image\3dprint\creativePro.webp" alt="" />
+            <figcaption>Flashforge Creator Pro x5</figcaption>
           </figure>
-          <li>Preheat the nozzle before cleaning</li>
-          <li>
-            Unscrew the cover and clear the residue if some got stuck inside
-          </li>
-          <li>Renew the filament if it was brittle</li>
-          <li>Watch out for tangled Filament at the nozzle when printing</li>
           <figure>
-            <img width="200" src="image\3dprint\tangledNozzle.webp" alt="" />
-            <figcaption>figure</figcaption>
-          </figure>
-          <li>Watch out for the filament coilling up in the hanger</li>
-          <figure>
-            <img width="150" src="image\3dprint\tangledFilament.webp" alt="" />
-            <figcaption>figure</figcaption>
-          </figure>
-        </ul>
-      </section>
-      <section>
-        <h2>Parts dimension</h2>
-        <div class="tableDiv">
-          <table>
-            <thead>
-              <tr class="header">
-                <th colspan="3">Magnet</th>
-              </tr>
-              <tr>
-                <th>Property</th>
-                <th>Measurement</th>
-                <th>Value used</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Diameter</th>
-                <th>10.06mm</th>
-                <th>10.26mm</th>
-              </tr>
-              <tr>
-                <th>Height</th>
-                <th>1.81mm</th>
-                <th>1.91mm</th>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <thead>
-              <tr class="header">
-                <th colspan="3">Threads insert</th>
-              </tr>
-              <tr>
-                <th>Property</th>
-                <th>Measurement</th>
-                <th>Value used</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Height</th>
-                <th>4.24mm</th>
-                <th>4.34mm</th>
-              </tr>
-              <tr>
-                <th>Length across</th>
-                <th>4.65mm</th>
-                <th>4.823mm*</th>
-              </tr>
-              <tr>
-                <th>Calculated Diameter</th>
-                <th>5.369mm</th>
-                <th>5.569mm</th>
-              </tr>
-            </tbody>
-            <tfooter>
-              <tr>
-                <td
-                  colspan="3"
-                  style="padding-left: 16px; border-top: 1px solid black"
-                >
-                  *: This was calculated using the new Diameter
-                </td>
-              </tr>
-            </tfooter>
-          </table>
-          <table>
-            <thead>
-              <tr class="header">
-                <th colspan="3">Headphone hanger</th>
-              </tr>
-              <tr>
-                <th>Property</th>
-                <th>Measurement</th>
-                <th>Value used</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Length</th>
-                <th>94.51mm</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>Depth</th>
-                <th>17.49mm</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>Headphone height</th>
-                <th>52.22mm</th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>Headphone pad</th>
-                <th>11mm</th>
-                <th></th>
-              </tr>
-            </tbody>
-          </table>
-          <figure>
-            <img width="200" src="image\3dprint\hexagon.webp" />
-            <figcaption>123</figcaption>
+            <img width="200" src="image\3dprint\creative3.webp" alt="" />
+            <figcaption>Flashforge Creator 3 x1</figcaption>
           </figure>
         </div>
       </section>
       <section>
-        <h2>Tolerance</h2>
-        <p>+0.2mm each side for normal fit</p>
-        <p>+0.1mm each side for tight fit</p>
+        <h2 id="FilamentType">Filament Type</h2>
+        <div class="content">
+          <ul>
+            <li>PLA (ecofriendly) 200 50 recommend 210 55</li>
+            <li>PETG (tougher) nozzle:210-250 plate:80-100 Recommend 240,90</li>
+            <li>ABS (toxic)</li>
+          </ul>
+        </div>
       </section>
       <section>
-        <h2>Successful print</h2>
-        <section>
-          <h3>Bahtinov Mask</h3>
+        <h2 id="Calibration">Calibration</h2>
+        <div class="content">
+          <p>
+            Level the platform manually. Insert paper and adjust three screws in
+            the back Feel the small friction when pulling the paper. Not to
+            tight, not too loose.
+          </p>
+          <figure>
+            <img width="200" src="image\3dprint\calibrationA4.webp" alt="" />
+            <figcaption>3d printing platform</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section>
+        <h2 id="FilamentLoading">Filament Loading</h2>
+        <div class="content">
+          <p>Use only the right nozzle. the left nozzles were removed</p>
+        </div>
+      </section>
+      <section>
+        <h2 id="SlicingSoftware">Slicing Software</h2>
+        <div class="content">
+          <ul>
+            <li>FlashPrint 5</li>
+            <li>0.6mm path width</li>
+            <li>119% extrusion rate</li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <h2 id="beware">Beware</h2>
+        <div class="content">
+          <ul>
+            <li>
+              See if temperature can reach the target value. Old part or
+              malfunction might cause temperature drop. You might turn the
+              printing speed down to compensate the temperature drop of the
+              nozzle.
+            </li>
+            <figure>
+              <img
+                width="200"
+                src="image\3dprint\underheatedNozzle.webp"
+                alt=""
+              />
+              <figcaption>figure</figcaption>
+            </figure>
+            <li>Preheat the nozzle before cleaning</li>
+            <li>
+              Unscrew the cover and clear the residue if some got stuck inside
+            </li>
+            <li>Renew the filament if it was brittle</li>
+            <li>Watch out for tangled Filament at the nozzle when printing</li>
+            <figure>
+              <img width="200" src="image\3dprint\tangledNozzle.webp" alt="" />
+              <figcaption>figure</figcaption>
+            </figure>
+            <li>Watch out for the filament coilling up in the hanger</li>
+            <figure>
+              <img
+                width="150"
+                src="image\3dprint\tangledFilament.webp"
+                alt=""
+              />
+              <figcaption>figure</figcaption>
+            </figure>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <h2 id="dimension">Parts dimension</h2>
+        <div class="content">
           <div class="tableDiv">
             <table>
               <thead>
                 <tr class="header">
-                  <th colspan="3">Bahtinov Mask</th>
+                  <th colspan="3">Magnet</th>
                 </tr>
                 <tr>
                   <th>Property</th>
@@ -261,67 +136,20 @@
               <tbody>
                 <tr>
                   <th>Diameter</th>
-                  <th>73.43mm</th>
-                  <th>70.75</th>
+                  <th>10.06mm</th>
+                  <th>10.26mm</th>
                 </tr>
                 <tr>
-                  <th>Depth</th>
-                  <th>13.5mm</th>
-                  <th></th>
+                  <th>Height</th>
+                  <th>1.81mm</th>
+                  <th>1.91mm</th>
                 </tr>
               </tbody>
             </table>
-          </div>
-          <img width="200" src="image\3dprint\bahtinovmask.webp" alt="" />
-        </section>
-        <section>
-          <h3>Xbox Controller Stand</h3>
-          <figure>
-            <img width="200" src="image\3dprint\xboxStand.webp" alt="" />
-          </figure>
-        </section>
-        <section>
-          <h3>tensegrity stand</h3>
-          <figure>
-            <img width="200" src="image\3dprint\tensegrityTable.webp" alt="" />
-          </figure>
-        </section>
-        <section>
-          <h3>Duck Glasses Stand</h3>
-          <figure>
-            <img width="200" src="image\3dprint\duckGlassesStand.webp" alt="" />
-          </figure>
-        </section>
-        <section>
-          <h3>SD cards USB Holder</h3>
-          <div class="row">
-            <div class="column">
-              <figure>
-                <img
-                  width="200"
-                  src="image\3dprint\sdCardHolder1.webp"
-                  alt=""
-                />
-              </figure>
-            </div>
-            <div class="column">
-              <figure>
-                <img
-                  width="200"
-                  src="image\3dprint\sdCardHolder2.webp"
-                  alt=""
-                />
-              </figure>
-            </div>
-          </div>
-        </section>
-        <section>
-          <h3>LOTR king of death</h3>
-          <div class="tableDiv">
             <table>
               <thead>
                 <tr class="header">
-                  <th colspan="3">LOTR king of death</th>
+                  <th colspan="3">Threads insert</th>
                 </tr>
                 <tr>
                   <th>Property</th>
@@ -331,22 +159,197 @@
               </thead>
               <tbody>
                 <tr>
-                  <th>面對面打直</th>
-                  <th>29.14mm</th>
+                  <th>Height</th>
+                  <th>4.24mm</th>
+                  <th>4.34mm</th>
+                </tr>
+                <tr>
+                  <th>Length across</th>
+                  <th>4.65mm</th>
+                  <th>4.823mm*</th>
+                </tr>
+                <tr>
+                  <th>Calculated Diameter</th>
+                  <th>5.369mm</th>
+                  <th>5.569mm</th>
+                </tr>
+              </tbody>
+              <tfooter>
+                <tr>
+                  <td
+                    colspan="3"
+                    style="padding-left: 16px; border-top: 1px solid black"
+                  >
+                    *: This was calculated using the new Diameter
+                  </td>
+                </tr>
+              </tfooter>
+            </table>
+            <table>
+              <thead>
+                <tr class="header">
+                  <th colspan="3">Headphone hanger</th>
+                </tr>
+                <tr>
+                  <th>Property</th>
+                  <th>Measurement</th>
+                  <th>Value used</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Length</th>
+                  <th>94.51mm</th>
                   <th></th>
                 </tr>
                 <tr>
-                  <th>打橫</th>
-                  <th>28.8mm</th>
+                  <th>Depth</th>
+                  <th>17.49mm</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th>Headphone height</th>
+                  <th>52.22mm</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th>Headphone pad</th>
+                  <th>11mm</th>
                   <th></th>
                 </tr>
               </tbody>
             </table>
+            <figure>
+              <img width="200" src="image\3dprint\hexagon.webp" />
+              <figcaption>123</figcaption>
+            </figure>
           </div>
-        </section>
-        <section>
-          <h3>Witcher Geralt of Rivia</h3>
-        </section>
+        </div>
+      </section>
+      <section>
+        <h2 id="tolerance">Tolerance</h2>
+        <div class="content">
+          <p>+0.2mm each side for normal fit</p>
+          <p>+0.1mm each side for tight fit</p>
+        </div>
+      </section>
+      <section>
+        <h2 id="print">Successful print</h2>
+        <div class="content">
+          <section>
+            <h3>Bahtinov Mask</h3>
+            <div class="content">
+              <div class="tableDiv">
+                <table>
+                  <thead>
+                    <tr class="header">
+                      <th colspan="3">Bahtinov Mask</th>
+                    </tr>
+                    <tr>
+                      <th>Property</th>
+                      <th>Measurement</th>
+                      <th>Value used</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Diameter</th>
+                      <th>73.43mm</th>
+                      <th>70.75</th>
+                    </tr>
+                    <tr>
+                      <th>Depth</th>
+                      <th>13.5mm</th>
+                      <th></th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <img width="200" src="image\3dprint\bahtinovmask.webp" alt="" />
+            </div>
+          </section>
+          <section>
+            <h3>Xbox Controller Stand</h3>
+            <figure>
+              <img width="200" src="image\3dprint\xboxStand.webp" alt="" />
+            </figure>
+          </section>
+          <section>
+            <h3>tensegrity stand</h3>
+            <figure>
+              <img
+                width="200"
+                src="image\3dprint\tensegrityTable.webp"
+                alt=""
+              />
+            </figure>
+          </section>
+          <section>
+            <h3>Duck Glasses Stand</h3>
+            <figure>
+              <img
+                width="200"
+                src="image\3dprint\duckGlassesStand.webp"
+                alt=""
+              />
+            </figure>
+          </section>
+          <section>
+            <h3>SD cards USB Holder</h3>
+            <div class="row">
+              <div class="column">
+                <figure>
+                  <img
+                    width="200"
+                    src="image\3dprint\sdCardHolder1.webp"
+                    alt=""
+                  />
+                </figure>
+              </div>
+              <div class="column">
+                <figure>
+                  <img
+                    width="200"
+                    src="image\3dprint\sdCardHolder2.webp"
+                    alt=""
+                  />
+                </figure>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>LOTR king of death</h3>
+            <div class="tableDiv">
+              <table>
+                <thead>
+                  <tr class="header">
+                    <th colspan="3">LOTR king of death</th>
+                  </tr>
+                  <tr>
+                    <th>Property</th>
+                    <th>Measurement</th>
+                    <th>Value used</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>面對面打直</th>
+                    <th>29.14mm</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <th>打橫</th>
+                    <th>28.8mm</th>
+                    <th></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h3>Witcher Geralt of Rivia</h3>
+          </section>
+        </div>
       </section>
     </main>
     <!-- custom script -->

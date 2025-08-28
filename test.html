@@ -1,17 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <style>
+      main {
+        counter-reset: num;
+      }
+      p::before {
+        counter-increment: num;
+        content: counter(num) ". ";
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 0%;
+        }
+
+        50% {
+          background-position: 100% 100%;
+        }
+
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      div.heading {
+        background-image: linear-gradient(
+          170deg,
+          rgba(255, 220, 169, 1) 0%,
+          rgba(226, 152, 43, 1) 100%
+        );
+        background-size: 100% 100%;
+        background-repeat: repeat;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-family: "Libre Baskerville";
+        padding: 0px 0px 15px 15px;
+      }
     </style>
   </head>
 
   <body>
-    <main></main>
+    <main>
+      <div class="heading">
+        <h1>Heading</h1>
+      </div>
+      <p>1</p>
+      <p>2</p>
+      <p>3</p>
+      <p>4</p>
+      <p>5</p>
+      <p>6</p>
+      <p>7</p>
+      <p>8</p>
+      <p>9</p>
+      <p>10</p>
+      <figure>
+        <blockquote class="blockquote1" cite="">
+          <p style="font-style: italic">
+            If called with two non-option arguments, adduser will add an
+            existing user to an existing group.
+          </p>
+        </blockquote>
+        <figcaption>
+          <em>ubuntu manual adduser</em>
+        </figcaption>
+      </figure>
+    </main>
     <!-- custom script -->
     <script src="script/script.js"></script>
   </body>

@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
@@ -34,17 +36,17 @@ main p {
   line-height: 2;
   /* text-indent: 2.5em; */
 }
-section div.content {
+main section div.content {
   border-left: #dbdbdb 1.5px groove;
   padding-left: 16px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
   margin-bottom: 0px;
 }
 
@@ -93,25 +95,25 @@ span.dirname {
   background-color: whitesmoke;
 }
 
-pre > b {
+main pre > b {
   line-height: 1.56em;
 }
-code::-webkit-scrollbar {
+main code::-webkit-scrollbar {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
 }
 
-code::-webkit-scrollbar-track {
+main code::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #f5f5f5;
 }
 
-code::-webkit-scrollbar-thumb {
+main code::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 
-kbd {
+main kbd {
   font-size: 1em;
   font-weight: 700;
   display: inline-block;
@@ -128,7 +130,7 @@ kbd {
   text-indent: 0px;
 }
 
-table {
+main table {
   border-collapse: collapse;
   width: 72%;
   margin: 10px 0px;
@@ -142,25 +144,25 @@ table {
   flex-wrap: wrap;
 }
 
-tr {
+main tr {
   border-top: 1px solid #dcdcdc;
   border-bottom: 1px solid #dcdcdc;
 }
 
-tr:nth-child(even) {
+main tr:nth-child(even) {
   background-color: #ffffff;
 }
 
-tr:nth-child(odd) {
+main tr:nth-child(odd) {
   background-color: #f3f3f3;
 }
 
-tr.header {
+main tr.header {
   background-color: rgb(241, 244, 235);
 }
 
-th,
-td {
+main th,
+main td {
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -178,14 +180,14 @@ td {
   /* Internet Explorer 5.5+ */
 }
 
-img {
+main img {
   display: block;
   max-width: 100%;
   margin: 10px auto;
   background: white;
 }
 
-figure {
+main figure {
   border: 1px solid #c8ccd1;
   background-color: #f8f9fa;
   line-height: normal;
@@ -193,7 +195,7 @@ figure {
   margin: 10px auto;
 }
 
-figcaption {
+main figcaption {
   text-align: center;
   font-size: 0.7em;
   font-style: italic;
@@ -263,11 +265,11 @@ figcaption {
   padding-left: 30px;
 }
 
-a {
+main a {
   text-decoration: none;
   color: rgb(6, 69, 173);
 }
 
-a:hover {
+main a:hover {
   text-decoration: underline;
 }
