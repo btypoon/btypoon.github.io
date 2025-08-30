@@ -55,6 +55,14 @@
               <li><a href="#4.3"></a></li>
             </ol>
           </li>
+          <li>
+            <a href="#5"></a>
+            <ol class="sub-toc">
+              <li><a href="#5.1"></a></li>
+              <li><a href="#5.2"></a></li>
+              <li><a href="#5.3"></a></li>
+            </ol>
+          </li>
         </ol>
       </figure>
       <hr />
@@ -996,6 +1004,329 @@ pause
                 <span class="inline">$1</span>,
                 <span class="inline">$2</span>...
               </p>
+            </div>
+          </section>
+          <section>
+            <h2 id="5">Useful keybind</h2>
+            <div class="datetime">
+              <time datetime="">2025-8-30</time>
+            </div>
+            <div class="content">
+              <p>
+                Here record useful custom keybinds tailored for my development.
+              </p>
+              <section>
+                <h3 id="5.1">VSCode</h3>
+                <div class="datetime">
+                  <time datetime="">2025-8-30</time>
+                </div>
+                <div class="content">
+                  <div class="tablewrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="4">Navigation</th>
+                        </tr>
+                        <tr>
+                          <th>Key</th>
+                          <th>Command</th>
+                          <th>Command id</th>
+                          <th>When</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><kbd>Ctrl+E</kbd></td>
+                          <td>Go to File...</td>
+                          <td>workbench.action.quickOpen</td>
+                          <td>/</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+E</kbd></td>
+                          <td>Show All Commands</td>
+                          <td>workbench.action.showCommands</td>
+                          <td>!inQuickOpen</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Tab</kbd></td>
+                          <td>View: Open Next Editor in Group</td>
+                          <td>workbench.action.nextEditorInGroup</td>
+                          <td>!inQuickOpen</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+Tab</kbd></td>
+                          <td>View: Open Previous Editor in Group</td>
+                          <td>workbench.action.previousEditorInGroup</td>
+                          <td>!inQuickOpen</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+B</kbd></td>
+                          <td>View: Toggle Primary Side Bar Visibility</td>
+                          <td>workbench.action.toggleSidebarVisibility</td>
+                          <td>/</td>
+                        </tr>
+
+                        <tr>
+                          <td><kbd>Shift+Alt+R</kbd></td>
+                          <td>File: Reveal in File Explorer</td>
+                          <td>revealFileInOS</td>
+                          <td>!editorFocus</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+0</kbd></td>
+                          <td>Explorer: Focus on Folders View</td>
+                          <td>workbench.explorer.fileView.focus</td>
+                          <td>/</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+1</kbd></td>
+                          <td>View: Focus First Editor Group</td>
+                          <td>workbench.action.focusFirstEditorGroup</td>
+                          <td>/</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+2</kbd></td>
+                          <td>/</td>
+                          <td>workbench.action.focusSecondEditorGroup</td>
+                          <td>/</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+W</kbd></td>
+                          <td>View: Close Editor</td>
+                          <td>workbench.action.closeActiveEditor</td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Shift+Alt+RightArrow</kbd></td>
+                          <td>Expand Selection</td>
+                          <td>editor.action.smartSelect.expand</td>
+                          <td>editorTextFocus</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="tablewrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="4">Editor</th>
+                        </tr>
+                        <tr>
+                          <th>Key</th>
+                          <th>Command</th>
+                          <th>Command id</th>
+                          <th>When</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><kbd>F1</kbd> / <kbd>Ctrl+/</kbd></td>
+                          <td>Toggle Line Comment</td>
+                          <td>editor.action.commentLine</td>
+                          <td>editorTextFocus && !editorReadonly</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F2</kbd></td>
+                          <td>Rename Symbol</td>
+                          <td>editor.action.rename</td>
+                          <td>
+                            editorHasRenameProvider && editorTextFocus &&
+                            !editorReadonly
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+F2</kbd></td>
+                          <td>Change All Occurrences</td>
+                          <td>editor.action.changeAll</td>
+                          <td>editorTextFocus && !editorReadonly</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F3</kbd></td>
+                          <td>Find Next</td>
+                          <td>editor.action.nextMatchFindAction</td>
+                          <td>editorFocus</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Shift+F3</kbd></td>
+                          <td>Find Previous</td>
+                          <td>editor.action.previousMatchFindAction</td>
+                          <td>editorFocus</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F5</kbd></td>
+                          <td>Python: Run Python File in Terminal</td>
+                          <td>python.execInTerminal</td>
+                          <td>editorTextFocus && editorLangId == 'python'</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F6</kbd></td>
+                          <td>/</td>
+                          <td>openInIntegratedTerminal</td>
+                          <td>editorTextFocus</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F7</kbd></td>
+                          <td>Live Preview: Show Preview</td>
+                          <td>livePreview.start.preview.atFile</td>
+                          <td>editorTextFocus && editorLangId == 'html'</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F8</kbd></td>
+                          <td>Format Document</td>
+                          <td>editor.action.formatDocument</td>
+                          <td>
+                            editorHasDocumentFormattingProvider &&
+                            editorTextFocus && !editorReadonly &&
+                            !inCompositeEditor
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>F12</kbd></td>
+                          <td>Go to Definition</td>
+                          <td>editor.action.revealDefinition</td>
+                          <td>
+                            editorHasDefinitionProvider && editorTextFocus
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+V</kbd></td>
+                          <td>Markdown: Open Preview to the Side</td>
+                          <td>markdown.showPreviewToSide</td>
+                          <td>
+                            !notebookEditorFocused && editorLangId == 'markdown'
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="tablewrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="4">Emmet</th>
+                        </tr>
+                        <tr>
+                          <th>Key</th>
+                          <th>Command</th>
+                          <th>Command id</th>
+                          <th>When</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><kbd>Tab</kbd></td>
+                          <td>Emmet: Expand Abbreviation</td>
+                          <td>editor.emmet.action.expandAbbreviation</td>
+                          <td>
+                            config.emmet.triggerExpansionOnTab &&
+                            editorTextFocus && !editorReadonly &&
+                            !editorTabMovesFocus
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+M</kbd></td>
+                          <td>Emmet: Go to Matching Pair</td>
+                          <td>editor.emmet.action.matchTag</td>
+                          <td>
+                            editorTextFocus && !editorReadonly && editorLangId
+                            == 'html'
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+A</kbd></td>
+                          <td>Emmet: Remove Tag</td>
+                          <td>editor.emmet.action.removeTag</td>
+                          <td>
+                            editorTextFocus && !editorReadonly && editorLangId
+                            == 'html'
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+W</kbd></td>
+                          <td>Emmet: Wrap with Abbreviation</td>
+                          <td>editor.emmet.action.wrapWithAbbreviation</td>
+                          <td>
+                            editorTextFocus && !editorReadonly && editorLangId
+                            == 'html'
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="tablewrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="4">Remote SSH</th>
+                        </tr>
+                        <tr>
+                          <th>Key</th>
+                          <th>Command</th>
+                          <th>Command id</th>
+                          <th>When</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+S</kbd></td>
+                          <td>Save as Root</td>
+                          <td>save-as-root.saveFile</td>
+                          <td>/</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+              <section>
+                <h3 id="5.2">PowerToys</h3>
+                <div class="datetime">
+                  <time datetime="">2025-8-30</time>
+                </div>
+                <div class="content">
+                  <div class="tablewrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th colspan="2">Windows</th>
+                        </tr>
+                        <tr>
+                          <th>Key</th>
+                          <th>Tools</th>
+                          <th>Function</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><kbd>Win+Shift+T</kbd></td>
+                          <td>Always On Top</td>
+                          <td>Pins windows on top.</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Win+Shift+Del</kbd></td>
+                          <td>FancyZones</td>
+                          <td>Create window layouts.</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Win+Space</kbd></td>
+                          <td>PowerToys Run</td>
+                          <td>Quick search.</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Win+Alt+Space</kbd></td>
+                          <td>PowerToys Command Palette</td>
+                          <td>
+                            Quick search with new command feature. Run commands
+                            using <span class="inline">&gt;</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
             </div>
           </section>
         </div>
