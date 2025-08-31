@@ -1102,6 +1102,12 @@ pause
                           <td>editor.action.smartSelect.expand</td>
                           <td>editorTextFocus</td>
                         </tr>
+                        <tr>
+                          <td><kbd>Ctrl+Shift+I</kbd></td>
+                          <td>Developer: Toggle Developer Tools</td>
+                          <td>workbench.action.toggleDevTools</td>
+                          <td>/</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -1196,6 +1202,18 @@ pause
                           <td>
                             !notebookEditorFocused && editorLangId == 'markdown'
                           </td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Alt+UpArrow</kbd></td>
+                          <td>Move Line Up</td>
+                          <td>editor.action.moveLinesUpAction</td>
+                          <td>editorTextFocus && !editorReadonly</td>
+                        </tr>
+                        <tr>
+                          <td><kbd>Alt+DownArrow</kbd></td>
+                          <td>Move Line Down</td>
+                          <td>editor.action.moveLinesDownAction</td>
+                          <td>editorTextFocus && !editorReadonly</td>
                         </tr>
                       </tbody>
                     </table>
