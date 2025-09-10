@@ -17,17 +17,13 @@
 
 body {
   font-family: "Noto Sans", "Segoe UI", "Arial";
-  min-width: 0;
   margin: 0;
-  transition: 0.15s;
-  background-color: #fff;
 }
 
 main {
   max-width: 800px;
-  margin: auto;
-  padding: 5px 18px;
-  font-size: 1em;
+  margin: 0 auto;
+  padding: 5px 20px;
 }
 
 main p {
@@ -84,6 +80,8 @@ span.command {
   border-left: 3.5px solid #aaa;
   background-color: whitesmoke;
   color: #2c3e50;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 span.dirname {
@@ -178,48 +176,46 @@ main table tfoot tr td {
   border-top: #dbdbdb 1.5px groove;
 }
 
-main img {
-  display: block;
-  max-width: 100%;
-  margin: 10px auto;
-  background: white;
-}
-
 main figure {
   border: 1px solid #c8ccd1;
   background-color: #f8f9fa;
   line-height: normal;
-  padding: 10px;
-  margin: 10px auto;
+  padding: 20px 10px 10px 10px;
+  width: fit-content;
+  margin: 0px;
+}
+
+main figure img {
+  display: block;
+  width: 200px;
+  object-fit: contain;
 }
 
 main figcaption {
   text-align: center;
   font-size: 0.7em;
   font-style: italic;
+  margin-top: 10px;
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
   gap: 1px 15px;
 }
-.row.imgs {
-  justify-content: space-around;
-}
-
-.column {
-  position: relative;
-  width: 200px;
+.row p {
+  /* display: block; */
+  width: 300px;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-basis: auto;
+}
+.row figure {
+  margin: 10px 0px;
+}
+.row.grid img {
+  height: 267px;
 }
 
 @keyframes gradient {

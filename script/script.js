@@ -140,9 +140,51 @@ window.addEventListener("load", function () {
           });
           e.textContent = formatter.format(date);
         } else {
-          console.warn("Invalid date:", datetimeStr);
+          console.warn("Invalid date:", e);
         }
       });
     }
+  });
+})();
+
+(function fixScrollRestoration(delay = 100) {
+  history.scrollRestoration = "manual";
+  window.addEventListener("beforeunload", () => {
+    console.log("Saving scrollY:", window.scrollY);
+    sessionStorage.setItem("scrollY", window.scrollY.toString());
+  });
+  window.addEventListener("load", () => {
+    const savedScrollY = sessionStorage.getItem("scrollY");
+    if (savedScrollY !== null) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollY, 10));
+      }, delay);
+      console.log("Restored scroll position:", savedScrollY);
+    } else {
+      console.log("No saved scroll position found.", savedScrollY);
+    }
+  });
+})();
+
+(function horizontalScrolling(delay = 500) {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const containers = document.querySelectorAll(
+        ".tablewrapper, span.command, code.hljs"
+      );
+      containers.forEach(function (e) {
+        if (e.scrollWidth > e.clientWidth) {
+          // console.log(e, e.scrollWidth, e.clientWidth);
+          e.addEventListener(
+            "wheel",
+            function (wheelEvent) {
+              wheelEvent.preventDefault();
+              e.scrollLeft += wheelEvent.deltaY;
+            },
+            { passive: false }
+          );
+        }
+      });
+    }, delay);
   });
 })();

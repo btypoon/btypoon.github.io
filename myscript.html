@@ -17,6 +17,14 @@
       <figure>
         <ol class="toc">
           <li>
+            <a href="#5"></a>
+            <ol class="sub-toc">
+              <li><a href="#5.1"></a></li>
+              <li><a href="#5.2"></a></li>
+              <li><a href="#5.3"></a></li>
+            </ol>
+          </li>
+          <li>
             <a href="#1"></a>
             <ol class="sub-toc">
               <li><a href="#IIFE"></a></li>
@@ -45,6 +53,9 @@
             <ol class="sub-toc">
               <li><a href="#3.1"></a></li>
               <li><a href="#3.2"></a></li>
+              <li><a href="#3.3"></a></li>
+              <li><a href="#3.4"></a></li>
+              <li><a href="#3.5"></a></li>
             </ol>
           </li>
           <li>
@@ -53,19 +64,396 @@
               <li><a href="#4.1"></a></li>
               <li><a href="#4.2"></a></li>
               <li><a href="#4.3"></a></li>
-            </ol>
-          </li>
-          <li>
-            <a href="#5"></a>
-            <ol class="sub-toc">
-              <li><a href="#5.1"></a></li>
-              <li><a href="#5.2"></a></li>
-              <li><a href="#5.3"></a></li>
+              <li><a href="#4.4"></a></li>
             </ol>
           </li>
         </ol>
       </figure>
       <hr />
+      <section>
+        <h2 id="5">Useful keybind</h2>
+        <div class="datetime">
+          <time datetime="2025-8-30"></time>
+        </div>
+        <div class="content">
+          <p>Here record useful custom keybinds tailored for my development.</p>
+          <section>
+            <h3 id="5.1">VSCode</h3>
+            <div class="datetime">
+              <time datetime="2025-8-30"></time>
+            </div>
+            <div class="content">
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="4">Navigation</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+                      <th>Command</th>
+                      <th>Command id</th>
+                      <th>When</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>Ctrl+E</kbd></td>
+                      <td>Go to File...</td>
+                      <td>workbench.action.quickOpen</td>
+                      <td>/</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+E</kbd></td>
+                      <td>Show All Commands</td>
+                      <td>workbench.action.showCommands</td>
+                      <td>!inQuickOpen</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Tab</kbd></td>
+                      <td>View: Open Next Editor in Group</td>
+                      <td>workbench.action.nextEditorInGroup</td>
+                      <td>!inQuickOpen</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+Tab</kbd></td>
+                      <td>View: Open Previous Editor in Group</td>
+                      <td>workbench.action.previousEditorInGroup</td>
+                      <td>!inQuickOpen</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+B</kbd></td>
+                      <td>View: Toggle Primary Side Bar Visibility</td>
+                      <td>workbench.action.toggleSidebarVisibility</td>
+                      <td>/</td>
+                    </tr>
+
+                    <tr>
+                      <td><kbd>Shift+Alt+R</kbd></td>
+                      <td>File: Reveal in File Explorer</td>
+                      <td>revealFileInOS</td>
+                      <td>!editorFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+0</kbd></td>
+                      <td>Explorer: Focus on Folders View</td>
+                      <td>workbench.explorer.fileView.focus</td>
+                      <td>/</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+1</kbd></td>
+                      <td>View: Focus First Editor Group</td>
+                      <td>workbench.action.focusFirstEditorGroup</td>
+                      <td>/</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+2</kbd></td>
+                      <td>/</td>
+                      <td>workbench.action.focusSecondEditorGroup</td>
+                      <td>/</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+W</kbd></td>
+                      <td>View: Close Editor</td>
+                      <td>workbench.action.closeActiveEditor</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Shift+Alt+RightArrow</kbd></td>
+                      <td>Expand Selection</td>
+                      <td>editor.action.smartSelect.expand</td>
+                      <td>editorTextFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+I</kbd></td>
+                      <td>Developer: Toggle Developer Tools</td>
+                      <td>workbench.action.toggleDevTools</td>
+                      <td>/</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="4">Editor</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+                      <th>Command</th>
+                      <th>Command id</th>
+                      <th>When</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>F1</kbd> / <kbd>Ctrl+/</kbd></td>
+                      <td>Toggle Line Comment</td>
+                      <td>editor.action.commentLine</td>
+                      <td>editorTextFocus && !editorReadonly</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F2</kbd></td>
+                      <td>Rename Symbol</td>
+                      <td>editor.action.rename</td>
+                      <td>
+                        editorHasRenameProvider && editorTextFocus &&
+                        !editorReadonly
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+F2</kbd></td>
+                      <td>Change All Occurrences</td>
+                      <td>editor.action.changeAll</td>
+                      <td>editorTextFocus && !editorReadonly</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F3</kbd></td>
+                      <td>Find Next</td>
+                      <td>editor.action.nextMatchFindAction</td>
+                      <td>editorFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Shift+F3</kbd></td>
+                      <td>Find Previous</td>
+                      <td>editor.action.previousMatchFindAction</td>
+                      <td>editorFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F5</kbd></td>
+                      <td>Python: Run Python File in Terminal</td>
+                      <td>python.execInTerminal</td>
+                      <td>editorTextFocus && editorLangId == 'python'</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F6</kbd></td>
+                      <td>/</td>
+                      <td>openInIntegratedTerminal</td>
+                      <td>editorTextFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F7</kbd></td>
+                      <td>Live Preview: Show Preview</td>
+                      <td>livePreview.start.preview.atFile</td>
+                      <td>editorTextFocus && editorLangId == 'html'</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F8</kbd></td>
+                      <td>Format Document</td>
+                      <td>editor.action.formatDocument</td>
+                      <td>
+                        editorHasDocumentFormattingProvider && editorTextFocus
+                        && !editorReadonly && !inCompositeEditor
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F12</kbd></td>
+                      <td>Go to Definition</td>
+                      <td>editor.action.revealDefinition</td>
+                      <td>editorHasDefinitionProvider && editorTextFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+V</kbd></td>
+                      <td>Markdown: Open Preview to the Side</td>
+                      <td>markdown.showPreviewToSide</td>
+                      <td>
+                        !notebookEditorFocused && editorLangId == 'markdown'
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Alt+UpArrow</kbd></td>
+                      <td>Move Line Up</td>
+                      <td>editor.action.moveLinesUpAction</td>
+                      <td>editorTextFocus && !editorReadonly</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Alt+DownArrow</kbd></td>
+                      <td>Move Line Down</td>
+                      <td>editor.action.moveLinesDownAction</td>
+                      <td>editorTextFocus && !editorReadonly</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="4">Emmet</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+                      <th>Command</th>
+                      <th>Command id</th>
+                      <th>When</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>Tab</kbd></td>
+                      <td>Emmet: Expand Abbreviation</td>
+                      <td>editor.emmet.action.expandAbbreviation</td>
+                      <td>
+                        config.emmet.triggerExpansionOnTab && editorTextFocus &&
+                        !editorReadonly && !editorTabMovesFocus
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+M</kbd></td>
+                      <td>Emmet: Go to Matching Pair</td>
+                      <td>editor.emmet.action.matchTag</td>
+                      <td>
+                        editorTextFocus && !editorReadonly && editorLangId ==
+                        'html'
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+A</kbd></td>
+                      <td>Emmet: Remove Tag</td>
+                      <td>editor.emmet.action.removeTag</td>
+                      <td>
+                        editorTextFocus && !editorReadonly && editorLangId ==
+                        'html'
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+W</kbd></td>
+                      <td>Emmet: Wrap with Abbreviation</td>
+                      <td>editor.emmet.action.wrapWithAbbreviation</td>
+                      <td>
+                        editorTextFocus && !editorReadonly && editorLangId ==
+                        'html'
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="4">Remote SSH</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+                      <th>Command</th>
+                      <th>Command id</th>
+                      <th>When</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+S</kbd></td>
+                      <td>Save as Root</td>
+                      <td>save-as-root.saveFile</td>
+                      <td>/</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3 id="5.2">PowerToys</h3>
+            <div class="datetime">
+              <time datetime="2025-8-30"></time>
+            </div>
+            <div class="content">
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="2">Windows</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+                      <th>Tools</th>
+                      <th>Function</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>Win+Shift+T</kbd></td>
+                      <td>Always On Top</td>
+                      <td>Pins windows on top.</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Win+Shift+Del</kbd></td>
+                      <td>FancyZones</td>
+                      <td>Create window layouts.</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Win+Space</kbd></td>
+                      <td>PowerToys Run</td>
+                      <td>Quick search.</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Win+Alt+Space</kbd></td>
+                      <td>PowerToys Command Palette</td>
+                      <td>
+                        Quick search with new command feature. Run commands
+                        using <span class="inline">&gt;</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3 id="5.3">Microsoft Office</h3>
+            <div class="datetime">
+              <time datetime="2025-9-4"></time>
+            </div>
+            <div class="content">
+              <div class="tablewrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th colspan="2">Excel</th>
+                    </tr>
+                    <tr>
+                      <th>Key</th>
+
+                      <th>Function</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+V</kbd></td>
+
+                      <td>Paste Special</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Alt+F11</kbd></td>
+                      <td>Open VBA editor</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+Scroll</kbd></td>
+                      <td>Scroll horizontally</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+1</kbd></td>
+                      <td>Open the Format Cells dialog box.</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Arrow</kbd></td>
+                      <td>Move to the edge of the current data region.</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+Shift+Arrow</kbd></td>
+                      <td>Highlight to the edge of the current data region.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
       <section>
         <h2 id="1">Tempermonkey script</h2>
         <div class="content">
@@ -196,7 +584,7 @@ document.addEventListener("keyup", function (event) {
               <time datetime="2023-9-4"></time>
             </div>
             <div class="content">
-              <pre><code class="codeblock language-javascript">
+              <pre><code class="language-javascript">
 // ==UserScript==
 // @name         AutoClickButton
 // @namespace    http://tampermonkey.net/
@@ -264,9 +652,9 @@ setInterval(function () {
               </p>
               <p>You may also run the following custom script in python.</p>
               <pre><b>print_pypath.py</b><code class="language-python">
-            import sys
-            for e in sys.path:
-                print(e)
+import sys
+for e in sys.path:
+    print(e)
             </code></pre>
               <p>
                 Installed modules should be within
@@ -523,7 +911,7 @@ project/
                 <li>
                   And modify the function
                   <span class="dirname">print_html</span> to
-                  <pre><code class="codeblock language-python">
+                  <pre><code class="language-python">
 def print_html(text):
     string = ""
     for pair in split_furigana(text):
@@ -706,28 +1094,6 @@ def print_html(text):
                 Force push files to the remote repository once:
                 <span class="command">git push --force origin main</span>
               </p>
-              <p>
-                If for some reason git push from the local repository return
-                "Everything's up-to-date" althought there is nothing in the
-                remote repository, the local repository and the new remote bare
-                repository might be out of sync. Git is thinking the remote
-                repository already has the latest commits, even if those commits
-                don't contain the files.
-              </p>
-              <p>
-                In this case, we should reset remote tracking by:
-                <span class="command"
-                  >del /path/to/local-repo/.git/refs/remotes/origin/*.lock</span
-                >
-                <span class="command">git remote remove origin</span>
-              </p>
-              <p>
-                And re-add the origin:
-                <span class="command"
-                  >git remote add origin
-                  ssh://btypoon@remote-ip:/path/to/remote/bare-repo.git</span
-                >
-              </p>
             </div>
           </section>
         </div>
@@ -824,6 +1190,187 @@ httpd.serve_forever()
               </p>
             </div>
           </section>
+
+          <section>
+            <h3 id="3.3">Git Push: Everything's up-to-date</h3>
+            <div class="datetime">
+              <time datetime="2025-9-10"></time>
+            </div>
+            <div class="content">
+              <p>
+                If for some reason git push from the local repository return
+                "Everything's up-to-date" althought there is nothing in the
+                remote repository, the local repository and the new remote bare
+                repository might be out of sync. Git is thinking the remote
+                repository already has the latest commits, even if those commits
+                don't contain the files.
+              </p>
+              <p>
+                In this case, we should reset remote tracking by:
+                <span class="command"
+                  >del /path/to/local-repo/.git/refs/remotes/origin/*.lock</span
+                >
+                <span class="command">git remote remove origin</span>
+              </p>
+              <p>
+                And re-add the origin:
+                <span class="command"
+                  >git remote add origin
+                  ssh://btypoon@remote-ip:/path/to/remote/bare-repo.git</span
+                >
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="3.4">Git Push: SSH connection failed</h3>
+            <div class="datetime">
+              <time datetime="2025-9-10"></time>
+            </div>
+            <div class="content">
+              <p>
+                If for some reason, git push failed due to ssh connection
+                failure, check to see if git is using the
+                <span class="inline">OpenSSH</span> client.
+              </p>
+              <p>
+                By default, GIT uses its own SSH client in:
+                <span class="command">C:\Git\usr\bin\ssh.exe</span>
+              </p>
+              <p>
+                Check the location of any SSH program in
+                <span class="inline">Git Bash</span>via command:
+                <span class="command">where ssh</span>
+              </p>
+              <p>
+                To change it to use <span class="inline">OpenSSH</span>, modify
+                <span class="inline">.gitconfig</span> manually or via command:
+                <span class="command"
+                  >git config --global core.sshCommand
+                  C:/Windows/System32/OpenSSH/ssh.exe</span
+                >
+              </p>
+              <pre><b>.gitconfig</b><code class="language-plaintext">
+[core]
+  sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+              </code></pre>
+              <p>
+                Make sure to use forward slash <span class="inline">/</span> for
+                it to works.
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="3.5">Git Push: Author identity unknown</h3>
+            <div class="datetime">
+              <time datetime="2025-9-10"></time>
+            </div>
+            <div class="content">
+              <p>If Git prompt the following error</p>
+              <pre><code class="language-plaintext">
+[info] Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: no email was given and auto-detection is disabled
+              </code></pre>
+              <p>
+                Check <span class="inline">.gitconfig</span> to see if the
+                following identity is added.
+              </p>
+              <pre><code class="language-plaintext">
+[user]
+  name = btypoon
+  email = btypoon@eduhk.hk
+              </code></pre>
+              <p>
+                Modify via the following command if needed.
+                <span class="command">git config --global --edit</span>
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="3.6">Default location of Git .gitconfig</h3>
+            <div class="datetime">
+              <time datetime="2025-9-10"></time>
+            </div>
+            <div class="content">
+              <p>
+                By default, Git create
+                <span class="inline">.gitconfig</span> using the location
+                <span class="inline">%HOMEDRIVE%%HOMEPATH%</span> if
+                <span class="inline">%HOME%</span> is not defined.
+              </p>
+              <p>
+                And by default,<span class="inline">%HOME%</span> is not defined
+                by Windows.
+              </p>
+              <p>
+                In EdUHK, due to IT group policies,
+                <span class="inline">%HOMEDRIVE%</span> is set to
+                <span class="inline">N:</span> and
+                <span class="inline">%HOMEPATH%</span> is set to
+                <span class="inline">\</span>.
+              </p>
+              <p>
+                Therefore, the default home path for git became
+                <span class="inline">N:\</span>.
+              </p>
+              <p>
+                To solve that, we shall create a new user environmental variable
+                in windows called <span class="inline">HOME</span> with value
+                pointed to your home directory.
+              </p>
+              <p>In cmd, test via <span class="command">echo %HOME%</span></p>
+              <p>
+                If worked, in the future, Git will create and refer to the
+                <span class="inline">.gitconfig</span> file in your home
+                directory.
+              </p>
+              <p>
+                Delete the old <span class="inline">.gitcongif</span> in
+                <span class="inline">N:\</span> and create a new one via the
+                following command:
+                <span class="command"
+                  >git config --global user.email "you@example.com"</span
+                >
+                <span class="command"
+                  >git config --global user.name "Your Name"</span
+                >
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="3.6">Default location of Windows cmd</h3>
+            <div class="datetime">
+              <time datetime="2025-9-10"></time>
+            </div>
+            <div class="content">
+              <p>
+                Similar to previous problem, windows by default start cmd in
+                <span class="inline">%HOMEDRIVE%%HOMEPATH%</span>.
+              </p>
+              <p>
+                To change that, right click your cmd shortcut and click
+                <span class="line">Open File Location</span>.
+              </p>
+              <p>
+                Right click cmd and select
+                <span class="inline">properties</span>.
+              </p>
+              <p>
+                In <span class="inline">Start in:</span>, enter the absolute
+                path to your home directory.
+              </p>
+            </div>
+          </section>
         </div>
       </section>
       <hr />
@@ -853,7 +1400,7 @@ httpd.serve_forever()
                 Each section consists of heading, modification time and content.
                 Its <b>Emmet</b> code is:
                 <span class="command"
-                  >section&gt;h2+(div.datetime&gt;time)+div.content&gt;p</span
+                  >section&gt;h2[id]+(div.datetime&gt;time)+div.content&gt;p</span
                 >
               </p>
               <pre><code class="language-html">
@@ -874,7 +1421,7 @@ httpd.serve_forever()
                 <span class="inline">div.content</span>. Add right before the
                 closing tag <span class="inline">&lt/div&gt;</span>:
                 <span class="command"
-                  >section&gt;h3+(div.datetime&gt;time)+div.content&gt;p</span
+                  >section&gt;h3[id]+(div.datetime&gt;time)+div.content&gt;p</span
                 >
               </p>
               <p>Hence becoming,</p>
@@ -1007,344 +1554,35 @@ pause
             </div>
           </section>
           <section>
-            <h2 id="5">Useful keybind</h2>
+            <h3 id="4.4">Editing Excel VBA in VScode via xlwings</h3>
             <div class="datetime">
-              <time datetime="">2025-8-30</time>
+              <time datetime="2025-9-5"></time>
             </div>
             <div class="content">
               <p>
-                Here record useful custom keybinds tailored for my development.
+                To utilize my IDE on developing VBA, I installed a python
+                library,
+                <a href="https://docs.xlwings.org/en/stable/index.html"
+                  >xlwings</a
+                >, that link the VBA program of an Excel file to an external
+                <span class="inline">.cls</span> file.
               </p>
-              <section>
-                <h3 id="5.1">VSCode</h3>
-                <div class="datetime">
-                  <time datetime="">2025-8-30</time>
-                </div>
-                <div class="content">
-                  <div class="tablewrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="4">Navigation</th>
-                        </tr>
-                        <tr>
-                          <th>Key</th>
-                          <th>Command</th>
-                          <th>Command id</th>
-                          <th>When</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><kbd>Ctrl+E</kbd></td>
-                          <td>Go to File...</td>
-                          <td>workbench.action.quickOpen</td>
-                          <td>/</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+E</kbd></td>
-                          <td>Show All Commands</td>
-                          <td>workbench.action.showCommands</td>
-                          <td>!inQuickOpen</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Tab</kbd></td>
-                          <td>View: Open Next Editor in Group</td>
-                          <td>workbench.action.nextEditorInGroup</td>
-                          <td>!inQuickOpen</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+Tab</kbd></td>
-                          <td>View: Open Previous Editor in Group</td>
-                          <td>workbench.action.previousEditorInGroup</td>
-                          <td>!inQuickOpen</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+B</kbd></td>
-                          <td>View: Toggle Primary Side Bar Visibility</td>
-                          <td>workbench.action.toggleSidebarVisibility</td>
-                          <td>/</td>
-                        </tr>
-
-                        <tr>
-                          <td><kbd>Shift+Alt+R</kbd></td>
-                          <td>File: Reveal in File Explorer</td>
-                          <td>revealFileInOS</td>
-                          <td>!editorFocus</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+0</kbd></td>
-                          <td>Explorer: Focus on Folders View</td>
-                          <td>workbench.explorer.fileView.focus</td>
-                          <td>/</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+1</kbd></td>
-                          <td>View: Focus First Editor Group</td>
-                          <td>workbench.action.focusFirstEditorGroup</td>
-                          <td>/</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+2</kbd></td>
-                          <td>/</td>
-                          <td>workbench.action.focusSecondEditorGroup</td>
-                          <td>/</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+W</kbd></td>
-                          <td>View: Close Editor</td>
-                          <td>workbench.action.closeActiveEditor</td>
-                          <td></td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Shift+Alt+RightArrow</kbd></td>
-                          <td>Expand Selection</td>
-                          <td>editor.action.smartSelect.expand</td>
-                          <td>editorTextFocus</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+I</kbd></td>
-                          <td>Developer: Toggle Developer Tools</td>
-                          <td>workbench.action.toggleDevTools</td>
-                          <td>/</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div class="tablewrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="4">Editor</th>
-                        </tr>
-                        <tr>
-                          <th>Key</th>
-                          <th>Command</th>
-                          <th>Command id</th>
-                          <th>When</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><kbd>F1</kbd> / <kbd>Ctrl+/</kbd></td>
-                          <td>Toggle Line Comment</td>
-                          <td>editor.action.commentLine</td>
-                          <td>editorTextFocus && !editorReadonly</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F2</kbd></td>
-                          <td>Rename Symbol</td>
-                          <td>editor.action.rename</td>
-                          <td>
-                            editorHasRenameProvider && editorTextFocus &&
-                            !editorReadonly
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+F2</kbd></td>
-                          <td>Change All Occurrences</td>
-                          <td>editor.action.changeAll</td>
-                          <td>editorTextFocus && !editorReadonly</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F3</kbd></td>
-                          <td>Find Next</td>
-                          <td>editor.action.nextMatchFindAction</td>
-                          <td>editorFocus</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Shift+F3</kbd></td>
-                          <td>Find Previous</td>
-                          <td>editor.action.previousMatchFindAction</td>
-                          <td>editorFocus</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F5</kbd></td>
-                          <td>Python: Run Python File in Terminal</td>
-                          <td>python.execInTerminal</td>
-                          <td>editorTextFocus && editorLangId == 'python'</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F6</kbd></td>
-                          <td>/</td>
-                          <td>openInIntegratedTerminal</td>
-                          <td>editorTextFocus</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F7</kbd></td>
-                          <td>Live Preview: Show Preview</td>
-                          <td>livePreview.start.preview.atFile</td>
-                          <td>editorTextFocus && editorLangId == 'html'</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F8</kbd></td>
-                          <td>Format Document</td>
-                          <td>editor.action.formatDocument</td>
-                          <td>
-                            editorHasDocumentFormattingProvider &&
-                            editorTextFocus && !editorReadonly &&
-                            !inCompositeEditor
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>F12</kbd></td>
-                          <td>Go to Definition</td>
-                          <td>editor.action.revealDefinition</td>
-                          <td>
-                            editorHasDefinitionProvider && editorTextFocus
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+V</kbd></td>
-                          <td>Markdown: Open Preview to the Side</td>
-                          <td>markdown.showPreviewToSide</td>
-                          <td>
-                            !notebookEditorFocused && editorLangId == 'markdown'
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Alt+UpArrow</kbd></td>
-                          <td>Move Line Up</td>
-                          <td>editor.action.moveLinesUpAction</td>
-                          <td>editorTextFocus && !editorReadonly</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Alt+DownArrow</kbd></td>
-                          <td>Move Line Down</td>
-                          <td>editor.action.moveLinesDownAction</td>
-                          <td>editorTextFocus && !editorReadonly</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="tablewrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="4">Emmet</th>
-                        </tr>
-                        <tr>
-                          <th>Key</th>
-                          <th>Command</th>
-                          <th>Command id</th>
-                          <th>When</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><kbd>Tab</kbd></td>
-                          <td>Emmet: Expand Abbreviation</td>
-                          <td>editor.emmet.action.expandAbbreviation</td>
-                          <td>
-                            config.emmet.triggerExpansionOnTab &&
-                            editorTextFocus && !editorReadonly &&
-                            !editorTabMovesFocus
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+M</kbd></td>
-                          <td>Emmet: Go to Matching Pair</td>
-                          <td>editor.emmet.action.matchTag</td>
-                          <td>
-                            editorTextFocus && !editorReadonly && editorLangId
-                            == 'html'
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+A</kbd></td>
-                          <td>Emmet: Remove Tag</td>
-                          <td>editor.emmet.action.removeTag</td>
-                          <td>
-                            editorTextFocus && !editorReadonly && editorLangId
-                            == 'html'
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+W</kbd></td>
-                          <td>Emmet: Wrap with Abbreviation</td>
-                          <td>editor.emmet.action.wrapWithAbbreviation</td>
-                          <td>
-                            editorTextFocus && !editorReadonly && editorLangId
-                            == 'html'
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <div class="tablewrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="4">Remote SSH</th>
-                        </tr>
-                        <tr>
-                          <th>Key</th>
-                          <th>Command</th>
-                          <th>Command id</th>
-                          <th>When</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><kbd>Ctrl+Shift+S</kbd></td>
-                          <td>Save as Root</td>
-                          <td>save-as-root.saveFile</td>
-                          <td>/</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </section>
-              <section>
-                <h3 id="5.2">PowerToys</h3>
-                <div class="datetime">
-                  <time datetime="">2025-8-30</time>
-                </div>
-                <div class="content">
-                  <div class="tablewrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th colspan="2">Windows</th>
-                        </tr>
-                        <tr>
-                          <th>Key</th>
-                          <th>Tools</th>
-                          <th>Function</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><kbd>Win+Shift+T</kbd></td>
-                          <td>Always On Top</td>
-                          <td>Pins windows on top.</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Win+Shift+Del</kbd></td>
-                          <td>FancyZones</td>
-                          <td>Create window layouts.</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Win+Space</kbd></td>
-                          <td>PowerToys Run</td>
-                          <td>Quick search.</td>
-                        </tr>
-                        <tr>
-                          <td><kbd>Win+Alt+Space</kbd></td>
-                          <td>PowerToys Command Palette</td>
-                          <td>
-                            Quick search with new command feature. Run commands
-                            using <span class="inline">&gt;</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </section>
+              <p>
+                Install xlwings via
+                <span class="command">pip install xlwings</span>
+              </p>
+              <p>
+                Open the directory to the Excel file in terminal. And enter:
+                <span class="command">xlwings vba edit</span>
+              </p>
+              <p>
+                It will create a <span class="inline">.cls</span> file which you
+                can open in VScode and start your VBA programming.
+              </p>
+              <p>
+                On save, xlwings will automatically sync the VBA program to the
+                Excel file.
+              </p>
             </div>
           </section>
         </div>
