@@ -16,6 +16,24 @@
 //   };
 //   xhr.send();
 // })();
+(function fixScrollRestoration(delay = 500) {
+  history.scrollRestoration = "manual";
+  window.addEventListener("beforeunload", () => {
+    console.log("Saving scrollY:", window.scrollY);
+    sessionStorage.setItem("scrollY", window.scrollY.toString());
+  });
+  window.addEventListener("load", () => {
+    const savedScrollY = sessionStorage.getItem("scrollY");
+    if (savedScrollY !== null) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollY, 10));
+      }, delay);
+      console.log("Restored scroll position:", savedScrollY);
+    } else {
+      console.log("No saved scroll position found.", savedScrollY);
+    }
+  });
+})();
 
 (function addTemplate() {
   fetch("template.html")
@@ -143,25 +161,6 @@ window.addEventListener("load", function () {
           console.warn("Invalid date:", e);
         }
       });
-    }
-  });
-})();
-
-(function fixScrollRestoration(delay = 100) {
-  history.scrollRestoration = "manual";
-  window.addEventListener("beforeunload", () => {
-    console.log("Saving scrollY:", window.scrollY);
-    sessionStorage.setItem("scrollY", window.scrollY.toString());
-  });
-  window.addEventListener("load", () => {
-    const savedScrollY = sessionStorage.getItem("scrollY");
-    if (savedScrollY !== null) {
-      setTimeout(() => {
-        window.scrollTo(0, parseInt(savedScrollY, 10));
-      }, delay);
-      console.log("Restored scroll position:", savedScrollY);
-    } else {
-      console.log("No saved scroll position found.", savedScrollY);
     }
   });
 })();

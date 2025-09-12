@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HTML Test File</title>
-  </head>
-  <body>
-    <h1>It works123!</h1>
-    
-    
-    <?php 
-    echo "text123";
-    ?>
 
-  </body>
+<head>
+  <title>HTML Test File</title>
+</head>
+
+<body>
+  <h1>PHP Test</h1>
+
+
+  <?php
+  echo "It works!";
+  phpinfo();
+  ?>
+
+</body>
+
 </html>

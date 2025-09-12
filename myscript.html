@@ -46,6 +46,8 @@
               <li><a href="#2.8"></a></li>
               <li><a href="#2.9"></a></li>
               <li><a href="#repo"></a></li>
+              <li><a href="#php_win"></a></li>
+              <li><a href="#php_nginx"></a></li>
             </ol>
           </li>
           <li>
@@ -56,6 +58,8 @@
               <li><a href="#3.3"></a></li>
               <li><a href="#3.4"></a></li>
               <li><a href="#3.5"></a></li>
+              <li><a href="#3.6"></a></li>
+              <li><a href="#3.7"></a></li>
             </ol>
           </li>
           <li>
@@ -235,8 +239,8 @@
                     </tr>
                     <tr>
                       <td><kbd>F7</kbd></td>
-                      <td>Live Preview: Show Preview</td>
-                      <td>livePreview.start.preview.atFile</td>
+                      <td>Live Server: Open with Live Server</td>
+                      <td>extension.liveServer.goOnline</td>
                       <td>editorTextFocus && editorLangId == 'html'</td>
                     </tr>
                     <tr>
@@ -1096,6 +1100,101 @@ def print_html(text):
               </p>
             </div>
           </section>
+          <section>
+            <h3 id="php_win">PHP in Windows</h3>
+            <div class="datetime">
+              <time datetime="11-9-2025"></time>
+            </div>
+            <div class="content">
+              <p>
+                To run php file locally, install the latest php exectuable
+                version 8.4 from the official
+                <a href="https://www.php.net/downloads">Downloads</a> page.
+                Choose x64 Non Thread Safe version. Download the zip file and
+                unpackage it into a desired destination folder. Edit and append
+                the absolute path to the folder into Windows user environmental
+                PATH variable.
+              </p>
+              <p>
+                Finally, download any php live server extension in the VSCode
+                marketplace. And serve the php file in your browser.
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="php_nginx">PHP in Nginx</h3>
+            <div class="datetime">
+              <time datetime="11-9-2025"></time>
+            </div>
+            <div class="content">
+              <p>
+                To enable PHP, a server-side scripting language, in the Nginx
+                website, first install the
+                <span class="inline">php8.4-fpm</span> package.
+              </p>
+              <p>
+                Because Ubuntu's official repository does not provide the latest
+                version of PHP, we will be using
+                <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php"
+                  >Ondřej Surý</a
+                >'s personal package archive to install the latest version of
+                PHP.
+
+                <span class="command"
+                  >sudo add-apt-repository ppa:ondrej/php</span
+                ><span class="command">sudo apt update</span>
+                <span class="command">sudo apt install php8.4-fpm</span>
+                <span class="command">sudo systemctl enable php8.4-fpm</span>
+                <span class="command">sudo systemctl start php8.4-fpm</span>
+                <span class="command">sudo systemctl status php8.4-fpm</span>
+              </p>
+
+              <figure>
+                <blockquote class="blockquote1" cite="">
+                  <p style="font-style: italic">
+                    A common mistake is to install the PHP, not PHP-FPM package.
+                    The problem with this approach is that unlike PHP-FPM, the
+                    PHP package installs the Apache HTTP server and its httpd
+                    process, which conflicts with Nginx.
+                  </p>
+                </blockquote>
+                <figcaption>
+                  <em
+                    >How to setup PHP on Nginx with fastCGI (PHP-FPM) example
+                    (<a
+                      href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example"
+                      >source</a
+                    >)</em
+                  >
+                </figcaption>
+              </figure>
+              <p>
+                Next, uncomment the PHP location block in the default file from
+                Nginx. It tells Nginx to pass the any URL ending with .php
+                request to the php executable. Serving the php file to the
+                browser.
+              </p>
+              <pre><b>default</b><code class="language-shell">
+location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME "$myroot_path/Files$fastcgi_script_name";
+}
+              </code></pre>
+              <p>
+                Validate and reload the Nginx configuration file.
+                <span class="command">sudo nginx -t</span>
+                <span class="command">sudo systemctl restart nginx</span>
+              </p>
+
+              <p>Test if PHP is working by serving the following test file.</p>
+              <pre><b>test.php</b><code class="language-php">
+&lt;?php
+  phpinfo();
+?&gt;
+              </code></pre>
+            </div>
+          </section>
         </div>
       </section>
       <hr />
@@ -1348,7 +1447,7 @@ fatal: no email was given and auto-detection is disabled
             </div>
           </section>
           <section>
-            <h3 id="3.6">Default location of Windows cmd</h3>
+            <h3 id="3.7">Default location of Windows cmd</h3>
             <div class="datetime">
               <time datetime="2025-9-10"></time>
             </div>
@@ -1405,7 +1504,7 @@ fatal: no email was given and auto-detection is disabled
               </p>
               <pre><code class="language-html">
 &lt;section&gt;
-  &lt;h2&gt;&lt;/h2&gt;
+  &lt;h2 id=""&gt;&lt;/h2&gt;
   &lt;div class="datetime"&gt;
     &lt;time datetime=""&gt;&lt;/time&gt;
   &lt;/div&gt;
@@ -1427,7 +1526,7 @@ fatal: no email was given and auto-detection is disabled
               <p>Hence becoming,</p>
               <pre><b>Before Emmet expansion:</b><code class="language-html">
 &lt;section&gt;
-  &lt;h2&gt;&lt;/h2&gt;
+  &lt;h2 id=""&gt;&lt;/h2&gt;
   &lt;div class="datetime"&gt;
     &lt;time datetime=""&gt;&lt;/time&gt;
   &lt;/div&gt;
@@ -1439,14 +1538,14 @@ fatal: no email was given and auto-detection is disabled
               </code></pre>
               <pre><b>After Emmet expansion:</b><code class="language-html">
 &lt;section&gt;
-  &lt;h2&gt;&lt;/h2&gt;
+  &lt;h2 id=""&gt;&lt;/h2&gt;
   &lt;div class="datetime"&gt;
     &lt;time datetime=""&gt;&lt;/time&gt;
   &lt;/div&gt;
   &lt;div class="content"&gt;
     &lt;p&gt;&lt;/p&gt;
     &lt;section&gt;
-      &lt;h3&gt;&lt;/h3&gt;
+      &lt;h3 id=""&gt;&lt;/h3&gt;
       &lt;div class="datetime"&gt;
         &lt;time datetime=""&gt;&lt;/time&gt;
       &lt;/div&gt;
