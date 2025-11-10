@@ -187,3 +187,43 @@ window.addEventListener("load", function () {
     }, delay);
   });
 })();
+
+(function addCopyButtons() {
+  document.querySelectorAll("pre>code").forEach(function (node) {
+    const button = document.createElement("button");
+    button.className = "copy";
+    button.type = "button";
+    button.title = "Copy to clipboard";
+    button.textContent = "Copy";
+    node.parentElement.append(button);
+  });
+  document.querySelectorAll("button.copy").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // const targetQuery = button.dataset.copy;
+      const targetNode = button.previousElementSibling;
+      console.log(targetNode);
+      if (targetNode) {
+        const textToCopy = targetNode.textContent;
+        console.log(textToCopy);
+        navigator.clipboard.writeText(textToCopy).then(function (e) {
+          button.textContent = "Copied!";
+          button.disabled = true;
+          setTimeout(function () {
+            button.textContent = "Copy";
+            button.disabled = false;
+          }, 5000);
+        });
+      }
+    });
+  });
+  document.querySelectorAll("span.command").forEach(function (node) {
+    let popup = document.createElement("i");
+    popup.className = "popup fa-solid fa-copy";
+    node.append(popup);
+    node.addEventListener("click", function () {
+      const textToCopy = node.textContent.replace(/\s+/g, " ").trim();
+      console.log(textToCopy);
+      navigator.clipboard.writeText(textToCopy).then(function (e) {});
+    });
+  });
+})();

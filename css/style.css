@@ -68,7 +68,8 @@ span.inline {
 }
 
 span.command {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   font-size: 1.3em;
   line-height: 22px;
   font-family: monospace;
@@ -82,6 +83,7 @@ span.command {
   color: #2c3e50;
   white-space: nowrap;
   overflow-x: auto;
+  position: relative;
 }
 
 span.dirname {
@@ -268,4 +270,77 @@ main a {
 
 main a:hover {
   text-decoration: underline;
+}
+
+pre:has(code) {
+  position: relative;
+}
+button.copy {
+  position: absolute;
+  bottom: 12px;
+  right: 5px;
+  background-color: #ffffff;
+  border: 1px solid rgb(209, 213, 219);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2rem;
+  padding: 0.2rem 0.7rem;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition-duration: 2s;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.copy:hover {
+  background-color: rgb(249, 250, 251);
+}
+
+button.copy:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+button.copy:focus-visible {
+  box-shadow: none;
+}
+
+button.copy:disabled {
+  background-color: #111827;
+  border: 1px solid transparent;
+  color: #ffffff;
+  transition-duration: 0.2s;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+i.popup {
+  position: sticky;
+  right: 0vw;
+  cursor: pointer;
+  color: #111827;
+  background-color: whitesmoke;
+  /* border-color: #aaa;
+  border-width: 0px 0px 0px 2px;
+  border-style: solid; */
+  box-shadow: 0px 0px 20px 18px whitesmoke;
+  margin-left: 20px;
+  padding: 4px 10px;
+  font-size: 15px;
+}
+
+i.popup:hover {
+  background-color: #e7ebf1;
 }

@@ -398,10 +398,6 @@ username@bill01:~$"
             </span>
           </p>
           <p>
-            To list all the human user, run the command:
-            <span class="command">awk -F: '$3 >= 1000' /etc/passwd | sort</span>
-          </p>
-          <p>
             Good record of the user information is recommended to keep track of
             the ownership of the username. To modify user information, please
             run the following command:
@@ -423,6 +419,14 @@ username@bill01:~$"
             <li>Home phone</li>
             <li>Other</li>
           </ul>
+          <p>
+            To list a user, run the command:
+            <span class="command">getent passwd username</span>
+          </p>
+          <p>
+            To list all the human user, run the command:
+            <span class="command">awk -F: '$3 >= 1000' /etc/passwd | sort</span>
+          </p>
           <p>
             As of 30/6/2023, the file in
             <span class="inline">/etc/passwd</span> read:
