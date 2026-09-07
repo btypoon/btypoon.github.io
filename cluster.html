@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -1130,7 +1130,8 @@ URI_LTS = http://changelogs.ubuntu.com/meta-release-lts
 Ciphers -chacha20-poly1305@openssh.com
 
 #Enable MACs List
-MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,umac-64@openssh.com,umac-128@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com
+#MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,umac-64@openssh.com,umac-128@openssh.com,hmac-sha1-96-etm@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com
+MACs -umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com
                   </code></pre>
                   <p>
                     For unknown reason, multiple exclusions was not working.
@@ -1143,6 +1144,33 @@ MACs hmac-sha1,hmac-sha1-96,hmac-sha2-256,hmac-sha2-512,hmac-md5,hmac-md5-96,uma
 # Disable MACs List
 MACs -umac-64-etm@openssh.com,-umac-128-etm@openssh.com,-hmac-sha2-256-etm@openssh.com,-hmac-sha2-512-etm@openssh.com,-hmac-sha1-etm@openssh.com
                 </code></pre>
+                  <p>
+                    2026-9-3, multiple exclusions was fixed. the systax was to
+                    use a single minus sign in front. Check
+                    <a
+                      href="https://man7.org/linux/man-pages/man5/sshd_config.5.html"
+                      >sshd_config</a
+                    >
+                  </p>
+                  <figure>
+                    <blockquote class="blockquote1" cite="">
+                      <p style="font-style: italic">
+                        Multiple ciphers / algorithms must be comma-separated.
+                        If the specified list begins with a ‘+’ character, then
+                        the specified ciphers / algorithms will be appended to
+                        the default set instead of replacing them. If the
+                        specified list begins with a ‘-’ character, then the
+                        specified ciphers / algorithms (including wildcards)
+                        will be removed from the default set instead of
+                        replacing them. If the specified list begins with a ‘^’
+                        character, then the specified ciphers / algorithms will
+                        be placed at the head of the default set.
+                      </p>
+                    </blockquote>
+                    <figcaption>
+                      <em>Linux manual page - sshd_config </em>
+                    </figcaption>
+                  </figure>
                   <p>
                     To list all available Ciphers and MACs supported by OpenSSH,
                     use

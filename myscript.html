@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
         This page contain my custom script for personal development environment.
       </p>
       <hr />
-      <h1>Table of content</h1>
+      <h1>Table Of Content</h1>
       <figure>
         <ol class="toc">
           <li>
@@ -77,6 +77,15 @@
               <li><a href="#4.2"></a></li>
               <li><a href="#4.3"></a></li>
               <li><a href="#4.4"></a></li>
+            </ol>
+          </li>
+          <li>
+            <a href="#Ubuntu"></a>
+            <ol class="sub-toc">
+              <li><a href="#Ubuntu.1"></a></li>
+              <li><a href="#Ubuntu.2"></a></li>
+              <li><a href="#Ubuntu.3"></a></li>
+              <li><a href="#Ubuntu.4"></a></li>
             </ol>
           </li>
         </ol>
@@ -232,6 +241,22 @@
                       <td>Find Previous</td>
                       <td>editor.action.previousMatchFindAction</td>
                       <td>editorFocus</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>F4</kbd></td>
+                      <td>Transform to Title Case</td>
+                      <td>editor.action.transformToTitlecase</td>
+                      <td>
+                        editorHasSelection && editorTextFocus && !editorReadonly
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Shift+F4</kbd></td>
+                      <td>Transform to Lowercase</td>
+                      <td>editor.action.transformToLowercase</td>
+                      <td>
+                        editorHasSelection && editorTextFocus && !editorReadonly
+                      </td>
                     </tr>
                     <tr>
                       <td><kbd>F5</kbd></td>
@@ -472,23 +497,38 @@
                 <table>
                   <thead>
                     <tr>
-                      <th colspan="2">
-                        PDF-XChange
-                        <a
-                          href="https://www.pdf-xchange.com/knowledgebase/340-How-do-I-view-edit-and-create-keyboard-shortcuts-in-PDF-XChange-Editor"
-                          >*</a
-                        >
-                      </th>
+                      <th colspan="2">PDF-XChange</th>
+                    </tr>
+                    <tr>
+                      <td colspan="3" style="white-space: wrap">
+                        <i>
+                          To create custom keyboard shortcuts, right click the
+                          tool bar, select "Customize Toolbars...". Select tab
+                          "Commands". Search for the command of your choice.
+                        </i>
+                      </td>
                     </tr>
                     <tr>
                       <th>Key</th>
                       <th>Function</th>
+                      <th>Command ID</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><kbd>Alt+H</kbd></td>
-                      <td>Highlight Selected Text</td>
+                      <td><kbd>S</kbd></td>
+                      <td>Select Text</td>
+                      <td>cmd.tool.selectText</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>H</kbd></td>
+                      <td>Hand Tool</td>
+                      <td>cmd.tool.hand</td>
+                    </tr>
+                    <tr>
+                      <td><kbd>Ctrl+H</kbd></td>
+                      <td>Highlight Text</td>
+                      <td>cmd.textsel.addHighlight</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1209,77 +1249,46 @@ def print_html(text):
             </div>
           </section>
           <section>
-            <h3 id="repo">Setup remote repository for website deployment.</h3>
+            <h3 id="VM">Setup Virtual Box on Windows for a Linux System</h3>
             <div class="datetime">
-              <time datetime="2025-8-24"></time>
+              <time datetime="2026-9-3"></time>
             </div>
             <div class="content">
-              <p>
-                To host my website on a remote Linux Server, first install on
-                the server <a href="https://nginx.org/">Nginx</a
-                ><span class="command">sudo apt install nginx</span>
-              </p>
-              <p>
-                Start and enable Nginx via:
-                <span class="command">sudo systemctl start nginx</span>
-                <span class="command">sudo systemctl enable nginx</span>
-              </p>
-              <p>
-                Allow the neccessary port in the firewall via:
-                <span class="command">sudo ufw allow 'Nginx Full'</span>
-              </p>
-              <p>
-                Enable HTTPS via:
-                <span class="command"
-                  >sudo apt install certbot python3-certbot-nginx</span
-                ><span class="command">sudo certbot --nginx</span>
-              </p>
-              <p>
-                Permit Nginx to read my file by adding Nginx user
-                <span class="inline">www-data</span> to my group
-                <span class="inline">btypoon</span>.
-                <span class="command">sudo usermod -aG btypoon www-data</span>
-              </p>
-              <p>
-                Create a custom site configuration file and includes its
-                absolute path in
-                <span class="inline">/etc/nginx/nginx.conf</span> http block.
-              </p>
-              <p>
-                Create a remote repository in the remote Linux Server.
-                <span class="command"
-                  >git init --bare /working-directory/bare-repo.git</span
-                >
-              </p>
-              <p>
-                Go back to the local development envirnment, and create a local
-                repository.
-                <span class="command">git init /working-directory</span>
-              </p>
-              <p>
-                Beware creating bare repository does not create the
-                <span class="inline">.git</span> folder for you. Therefore, we
-                need to specify in the path the
-                <span class="inline">bare-repo.git</span> folder to create a
-                parallel folder structure.
-              </p>
-              <p>
-                Next, link the remote repository to the local repository by
-                command:
-                <span class="command"
-                  >git remote add origin
-                  ssh://btypoon@remote-ip:/path/to/remote/bare-repo.git</span
-                >
-              </p>
+              <ol>
+                <li>Install <span class="inline">VirtaulBox</span></li>
+                <li>Download the latest version of Ubuntu ISO</li>
+                <li>Create a new virtual machine in VirtualBox</li>
+                <li>Import the Ubuntu ISO</li>
+                <li>Uncheck "Unattended Installation</li>
+                <li>
+                  In Setting -> Network, enable Bridged Adapter to allow
+                  individual IP to the Virtual Machine.
+                </li>
 
-              <p>
-                To check the current link, use:
-                <span class="command">git remote -v</span>
-              </p>
-              <p>
-                Force push files to the remote repository once:
-                <span class="command">git push --force origin main</span>
-              </p>
+                <li>Create a Shared Folder for file transfer</li>
+                <li>
+                  Or use SSH File Transfer Protocol (SFTP) in WinSCP for easy
+                  file transfer. (Require installation of SSH on the Virtual
+                  Machine)
+                  <span class="command">sudo apt install openssh-server</span>
+                </li>
+              </ol>
+              <p>To Enable bidirectional copying and pasting</p>
+              <ol>
+                <li>
+                  Enable Bidirectional Shared Clipboard in Setting -> General ->
+                  Features.
+                </li>
+                <li>Start the Virtual Machine.</li>
+                <li>Open the drop-down menu "Devices".</li>
+                <li>Select "Insert Guest Additions CD Image".</li>
+                <li>
+                  A new CD drive named something like "VBox_GAs" should pop up
+                  in the file explorer.
+                </li>
+                <li>Open the CD Drive and press "Run Software".</li>
+                <li>Reboot the Virtual Machine and enjoy.</li>
+              </ol>
             </div>
           </section>
           <section>
@@ -1529,6 +1538,10 @@ httpd.serve_forever()
                   >git config --global core.sshCommand
                   C:/Windows/System32/OpenSSH/ssh.exe</span
                 >
+              </p>
+              <p>
+                Locate <span class="inline">.gitconfig</span> via
+                <span class="command">git config --global --list</span>
               </p>
               <pre><b>.gitconfig</b><code class="language-plaintext">
 [core]
@@ -1863,6 +1876,288 @@ pause
               <p>
                 On save, xlwings will automatically sync the VBA program to the
                 Excel file.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section>
+        <h2 id="Ubuntu">Seting up a Linux Web Server from scratch</h2>
+        <div class="datetime">
+          <time datetime="2026-9-2"></time>
+        </div>
+        <div class="content">
+          <section>
+            <h3 id="Ubuntu.1">Installation of Ubuntu Linux</h3>
+            <div class="datetime">
+              <time datetime="2026-9-2"></time>
+            </div>
+            <div class="content">
+              <p>
+                First, download the latest .ISO file
+                <a href="https://ubuntu.com/download/desktop">Ubuntu Desktop</a
+                >.
+              </p>
+              <p>
+                Next, install
+                <a href="https://etcher.balena.io/">balenaEtcher</a>
+              </p>
+              <p>
+                Then, open balenaEtcher. Flash the Ubuntu .ISO file onto a USB
+                drive.
+              </p>
+              <p>
+                Afterwards, reboot the computer with the USB stick inserted.Hold
+                <kbd>F12</kbd> during booting to bring up the boot menu.
+              </p>
+              <p>Choose and boot from the USB stick</p>
+              <p>Under GNU GRUB, select "Try or Install Ubuntu".</p>
+              <p>
+                Unplug ethernet and select Offline Installation to avoid stuck
+                at "Copying Files".
+              </p>
+              <p>
+                Follow the rest of the steps in the Ubuntu installer to finish
+                installing Ubuntu.
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="Ubuntu.2">Minmicking Windows desktop environment</h3>
+            <div class="datetime">
+              <time datetime="2026-9-4"></time>
+            </div>
+            <div class="content">
+              <p>
+                To mimic the Windows desktop environment, a shell script has
+                been written to automate the task.
+              </p>
+              <pre><b id="desktop_setup">desktop_setup.sh</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# 🛑 Abort if running as root
+if [ "$EUID" -eq 0 ]; then
+  echo "❌ Don't run this script as root. Run it as a regular user."
+  exit 1
+fi
+
+echo "Mimicking Windows Desktop Style"
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+echo "✅ Dock moved to the bottom."
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-always-in-the-edge true
+echo "✅ App button moved to the left."
+gsettings set org.gnome.shell.extensions.ding start-corner 'top-left'
+gsettings set org.gnome.shell.extensions.ding arrangeorder 'NAME'
+gsettings set org.gnome.shell.extensions.ding keep-arranged true
+echo "✅ Desktop icon arranged to the top left."
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+echo "✅ Pinned Folder and Terminal to the taskbar."
+echo "Disable screen blanking on idle"
+gsettings set org.gnome.desktop.session idle-delay 0
+echo "✅ Screen blanking disabled."
+          </code></pre>
+            </div>
+          </section>
+          <section>
+            <h3 id="Ubuntu.3">Setup SSH</h3>
+            <div class="datetime">
+              <time datetime="2026-9-4"></time>
+            </div>
+            <div class="content">
+              <p>
+                Install OpenSSH to enable SFTP or SSH services.
+                <span class="command">sudo apt install openssh-server</span>
+              </p>
+              <pre><b id="ssh_setup">ssh_setup.sh</b><code class="language-bash">
+#!/bin/bash
+
+# Exit if any command fails
+set -e
+# Ensure the script is run as root
+if [ "$EUID" -ne 0 ]; then
+  echo "❌ Please run as root or with sudo"
+  exit 1
+fi
+
+echo "Installing OpenSSH server..."
+apt update
+apt install -y openssh-server
+echo "✅ OpenSSH installed"
+
+echo "Starting SSH service..."
+systemctl start ssh
+echo "✅ OpenSSH started"
+
+echo "Enabling SSH on startup..."
+systemctl enable ssh
+echo "✅ OpenSSH enabled on startup"
+
+echo "Setting up UFW (Uncomplicated Firewall)..."
+ufw allow ssh
+ufw --force enable
+echo "✅ Firewall enabled"
+
+ssh_folder="/home/$SUDO_USER/.ssh"
+echo "Removing previous SSH host keys in $ssh_folder"
+if [ -f "$ssh_folder/known_hosts" ]; then
+rm -f "$ssh_folder/known_hosts"
+echo "✅ $ssh_folder/known_hosts file cleared"
+else
+echo "✅ No Known_hosts file"
+fi
+if [ -f "$ssh_folder/known_hosts.old" ]; then
+rm -f "$ssh_folder/known_hosts.old"
+echo "✅ $ssh_folder/known_hosts.old file cleared"
+else
+echo "✅ No Known_hosts.old file"
+fi
+
+CONFIG_FILE="/etc/ssh/sshd_config"
+echo "Remove insecure Cryptographic Algorithms from"
+echo "$CONFIG_FILE"
+CIPHERS_LINE="Ciphers -chacha20-poly1305@openssh.com"
+MACS_LINE="MACs -umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com"
+                  
+# Function to check and append if necessary
+append_if_missing() {
+    local description="$1"
+    local line="$2"
+    local config="$3"
+    if ! grep -Fxq "$line" "$config"; then
+        echo "" >> "$config"
+        echo "# $description" >> "$config"
+        echo "$line" >> "$config"
+        echo "✅ Appended in $config:"
+        echo "$line"
+    else
+        echo "✅ Already exists in $config:"
+        echo "$line"
+    fi
+}
+
+# Run the checks
+append_if_missing "Disable Ciphers List" "$CIPHERS_LINE" "$CONFIG_FILE"
+append_if_missing "Enable MACs List" "$MACS_LINE" "$CONFIG_FILE"
+
+#Verify current SSH Ciphers and Macs
+echo "Current ssh algorithms:"
+sshd -T | grep '^macs ' | cut -d' ' -f2 | tr ',' '\n'
+          </code></pre>
+            </div>
+          </section>
+          <section>
+            <h3 id="Ubuntu.4">
+              Setup remote repository for website deployment.
+            </h3>
+            <div class="datetime">
+              <time datetime="2026-9-4"></time>
+            </div>
+            <div class="content">
+              <p>
+                First, install
+                <a href="https://git-scm.com/install/linux">git</a>.
+                <span class="command">sudo apt update</span>
+                <span class="command">sudo apt install git </span>
+              </p>
+              <p>
+                Then, install <a href="https://nginx.org/">Nginx</a
+                ><span class="command">sudo apt install nginx</span>
+              </p>
+              <p>
+                Start Nginx and enable on startup via:
+                <span class="command">sudo systemctl start nginx</span>
+                <span class="command">sudo systemctl enable nginx</span>
+              </p>
+              <p>
+                Allow the neccessary port in the firewall via:
+                <span class="command">sudo ufw allow 'Nginx Full'</span>
+              </p>
+              <p>
+                Permit Nginx to read my file by adding Nginx user
+                <span class="inline">www-data</span> to my group
+                <span class="inline">btypoon</span>.
+                <span class="command">sudo usermod -aG btypoon www-data</span>
+              </p>
+              <p>
+                Create a custom site configuration file and includes its
+                absolute path in
+                <span class="inline">/etc/nginx/nginx.conf</span> http block.
+              </p>
+              <pre><b>/etc/nginx/nginx.conf</b><code class="language-bash">
+http {
+  ...
+  include /etc/nginx/conf.d/*.conf;
+  include /etc/nginx/sites-enabled/*;
+  include /path/to/custom/site/configuration/file;
+}
+              </code></pre>
+              <p>
+                After modification, validate the configuration file and restart
+                the server via: <span class="command">sudo nginx -t</span
+                ><span class="command">sudo systemctl restart nginx</span>
+              </p>
+              <p>
+                Now, you may test the website on any browser by visiting your
+                own public ip.
+              </p>
+              <p>
+                Enable HTTPS by first intalling
+                <span class="inline">Certbot</span>:
+                <span class="command"
+                  >sudo apt install certbot python3-certbot-nginx</span
+                >
+              </p>
+              <p>
+                Remove all code in the custom site configuration file
+                <span class="inline">managed by Certbot</span> before enabling
+                HTTPS. Enable HTTPS via:
+                <span class="command">sudo certbot --nginx</span>
+              </p>
+              <p>
+                Create a normal repository in the local compuer
+                <span class="command">git init /path/to/working-directory</span>
+              </p>
+              <p>
+                Create a bare repository in the remote computer.
+                <span class="command"
+                  >git init --bare
+                  /path/to/working-directory/bare-repo.git</span
+                >
+              </p>
+              <pre><b>File structure</b><code class="language-bash">
+Local PC: Normal repository
+Working_Directory/
+├── .git/ ← repository
+└── myfile
+
+  git push
+      |
+      v
+
+Remote PC: Bare repository
+Working_Directory/
+├── bare-repo.git/ ← repository
+└── deployed files ← updated by post-receive hook
+              </code></pre>
+              <p>
+                Next, link the remote repository to the local repository by
+                command:
+                <span class="command"
+                  >git remote add origin
+                  ssh://user@remote-ip:/path/to/bare-repo.git</span
+                >
+              </p>
+
+              <p>
+                To check the current link, use:
+                <span class="command">git remote -v</span>
+              </p>
+              <p>
+                Force push files to the remote repository once:
+                <span class="command">git push --force origin main</span>
               </p>
             </div>
           </section>
