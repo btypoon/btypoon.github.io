@@ -53,9 +53,8 @@
               <li><a href="#2.7"></a></li>
               <li><a href="#2.8"></a></li>
               <li><a href="#2.9"></a></li>
-              <li><a href="#repo"></a></li>
+              <li><a href="#VM"></a></li>
               <li><a href="#php_win"></a></li>
-              <li><a href="#php_nginx"></a></li>
             </ol>
           </li>
           <li>
@@ -84,8 +83,12 @@
             <ol class="sub-toc">
               <li><a href="#Ubuntu.1"></a></li>
               <li><a href="#Ubuntu.2"></a></li>
-              <li><a href="#Ubuntu.3"></a></li>
+              <li><a href="#ssh"></a></li>
+              <li><a href="#nginx"></a></li>
               <li><a href="#Ubuntu.4"></a></li>
+              <li><a href="#php2"></a></li>
+              <li><a href="#php3"></a></li>
+              <li><a href="#chrome_remote_desktop"></a></li>
             </ol>
           </li>
         </ol>
@@ -1254,6 +1257,7 @@ def print_html(text):
               <time datetime="2026-9-3"></time>
             </div>
             <div class="content">
+              <p>Steps to setup a Virtual Machine.</p>
               <ol>
                 <li>Install <span class="inline">VirtaulBox</span></li>
                 <li>Download the latest version of Ubuntu ISO</li>
@@ -1268,9 +1272,8 @@ def print_html(text):
                 <li>Create a Shared Folder for file transfer</li>
                 <li>
                   Or use SSH File Transfer Protocol (SFTP) in WinSCP for easy
-                  file transfer. (Require installation of SSH on the Virtual
-                  Machine)
-                  <span class="command">sudo apt install openssh-server</span>
+                  file transfer. (Require installation of
+                  <a href="#ssh">SSH</a> on the Virtual Machine)
                 </li>
               </ol>
               <p>To Enable bidirectional copying and pasting</p>
@@ -1310,80 +1313,6 @@ def print_html(text):
                 Finally, download any php live server extension in the VSCode
                 marketplace. And serve the php file in your browser.
               </p>
-            </div>
-          </section>
-          <section>
-            <h3 id="php_nginx">PHP in Nginx</h3>
-            <div class="datetime">
-              <time datetime="11-9-2025"></time>
-            </div>
-            <div class="content">
-              <p>
-                To enable PHP, a server-side scripting language, in the Nginx
-                website, first install the
-                <span class="inline">php8.4-fpm</span> package.
-              </p>
-              <p>
-                Because Ubuntu's official repository does not provide the latest
-                version of PHP, we will be using
-                <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php"
-                  >Ondřej Surý</a
-                >'s personal package archive to install the latest version of
-                PHP.
-
-                <span class="command"
-                  >sudo add-apt-repository ppa:ondrej/php</span
-                ><span class="command">sudo apt update</span>
-                <span class="command">sudo apt install php8.4-fpm</span>
-                <span class="command">sudo systemctl enable php8.4-fpm</span>
-                <span class="command">sudo systemctl start php8.4-fpm</span>
-                <span class="command">sudo systemctl status php8.4-fpm</span>
-              </p>
-
-              <figure>
-                <blockquote class="blockquote1" cite="">
-                  <p style="font-style: italic">
-                    A common mistake is to install the PHP, not PHP-FPM package.
-                    The problem with this approach is that unlike PHP-FPM, the
-                    PHP package installs the Apache HTTP server and its httpd
-                    process, which conflicts with Nginx.
-                  </p>
-                </blockquote>
-                <figcaption>
-                  <em
-                    >How to setup PHP on Nginx with fastCGI (PHP-FPM) example
-                    (<a
-                      href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example"
-                      >source</a
-                    >)</em
-                  >
-                </figcaption>
-              </figure>
-              <p>
-                Next, uncomment the PHP location block in the default file from
-                Nginx. It tells Nginx to pass the any URL ending with .php
-                request to the php executable. Serving the php file to the
-                browser.
-              </p>
-              <pre><b>default</b><code class="language-shell">
-location ~ \.php$ {
-    include snippets/fastcgi-php.conf;
-    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
-    fastcgi_param SCRIPT_FILENAME "$myroot_path/Files$fastcgi_script_name";
-}
-              </code></pre>
-              <p>
-                Validate and reload the Nginx configuration file.
-                <span class="command">sudo nginx -t</span>
-                <span class="command">sudo systemctl restart nginx</span>
-              </p>
-
-              <p>Test if PHP is working by serving the following test file.</p>
-              <pre><b>test.php</b><code class="language-php">
-&lt;?php
-  phpinfo();
-?&gt;
-              </code></pre>
             </div>
           </section>
         </div>
@@ -1541,7 +1470,9 @@ httpd.serve_forever()
               </p>
               <p>
                 Locate <span class="inline">.gitconfig</span> via
-                <span class="command">git config --global --list</span>
+                <span class="command"
+                  >git config --global --list --show-origin</span
+                >
               </p>
               <pre><b>.gitconfig</b><code class="language-plaintext">
 [core]
@@ -1962,15 +1893,12 @@ echo "✅ Screen blanking disabled."
             </div>
           </section>
           <section>
-            <h3 id="Ubuntu.3">Setup SSH</h3>
+            <h3 id="ssh">Setup SSH</h3>
             <div class="datetime">
               <time datetime="2026-9-4"></time>
             </div>
             <div class="content">
-              <p>
-                Install OpenSSH to enable SFTP or SSH services.
-                <span class="command">sudo apt install openssh-server</span>
-              </p>
+              <p>Install OpenSSH to enable SFTP or SSH services.</p>
               <pre><b id="ssh_setup">ssh_setup.sh</b><code class="language-bash">
 #!/bin/bash
 
@@ -2046,30 +1974,67 @@ append_if_missing "Enable MACs List" "$MACS_LINE" "$CONFIG_FILE"
 echo "Current ssh algorithms:"
 sshd -T | grep '^macs ' | cut -d' ' -f2 | tr ',' '\n'
           </code></pre>
+              <p>
+                To create a passwordless connection, we need to use SSH key.
+              </p>
+              <p>
+                Generate on Windows the ssh key via
+                <span class="command">ssh-keygen -t rsa</span>
+              </p>
+              <p>
+                A pair of public and private key should be created in your user
+                .ssh folder.
+              </p>
+              <pre><b>SSH key</b><code class="language-bash">
+Local PC: 
+%USERPROFILE%\.ssh\
+├── id_rsa      ← private key
+└── id_rsa.pub  ← public key
+
+Remote PC: 
+~/.ssh/
+└── authorized_keys 
+              </code></pre>
+              <p>
+                Next, manually copy the content of the local public key and
+                paste onto the remote
+                <span class="inline">authorized_keys</span> file.
+              </p>
+              <p>Afterwards, open <span class="inline">PuTTYgen</span>.</p>
+              <p>Load the local private key.</p>
+              <p>
+                Save as PuTTY private key file
+                <span class="inline">putty_rsa.ppk</span>.
+              </p>
+              <p>
+                Go back to <span class="inline">PuTTY</span>, navigate to
+                Connection → SSH → Auth → Credentials.
+              </p>
+              <p>
+                Under "Private key file for authentication", load the PuTTY
+                private key file <span class="inline">putty_rsa.ppk</span>.
+              </p>
+              <p>
+                From now on, SSH connection to the server no longer require a
+                password.
+              </p>
             </div>
           </section>
           <section>
-            <h3 id="Ubuntu.4">
-              Setup remote repository for website deployment.
-            </h3>
+            <h3 id="nginx">Setup Nginx</h3>
             <div class="datetime">
-              <time datetime="2026-9-4"></time>
+              <time datetime="2026-9-9"></time>
             </div>
             <div class="content">
               <p>
                 First, install
-                <a href="https://git-scm.com/install/linux">git</a>.
+                <a href="https://nginx.org/">Nginx</a>.
                 <span class="command">sudo apt update</span>
-                <span class="command">sudo apt install git </span>
-              </p>
-              <p>
-                Then, install <a href="https://nginx.org/">Nginx</a
-                ><span class="command">sudo apt install nginx</span>
+                <span class="command">sudo apt install -y nginx</span>
               </p>
               <p>
                 Start Nginx and enable on startup via:
-                <span class="command">sudo systemctl start nginx</span>
-                <span class="command">sudo systemctl enable nginx</span>
+                <span class="command">sudo systemctl enable --now nginx</span>
               </p>
               <p>
                 Allow the neccessary port in the firewall via:
@@ -2082,8 +2047,8 @@ sshd -T | grep '^macs ' | cut -d' ' -f2 | tr ',' '\n'
                 <span class="command">sudo usermod -aG btypoon www-data</span>
               </p>
               <p>
-                Create a custom site configuration file and includes its
-                absolute path in
+                Create a custom site configuration file and include its absolute
+                path in
                 <span class="inline">/etc/nginx/nginx.conf</span> http block.
               </p>
               <pre><b>/etc/nginx/nginx.conf</b><code class="language-bash">
@@ -2096,7 +2061,7 @@ http {
               </code></pre>
               <p>
                 After modification, validate the configuration file and restart
-                the server via: <span class="command">sudo nginx -t</span
+                the web server via: <span class="command">sudo nginx -t</span
                 ><span class="command">sudo systemctl restart nginx</span>
               </p>
               <p>
@@ -2111,17 +2076,66 @@ http {
                 >
               </p>
               <p>
-                Remove all code in the custom site configuration file
+                Remove all code in the custom site configuration file that was
+                previously
                 <span class="inline">managed by Certbot</span> before enabling
-                HTTPS. Enable HTTPS via:
-                <span class="command">sudo certbot --nginx</span>
+                HTTPS.
               </p>
               <p>
-                Create a normal repository in the local compuer
+                Enable HTTPS via:
+                <span class="command">sudo certbot --nginx</span>
+              </p>
+              <p>Follow the prompts to finish HTTPS setup.</p>
+            </div>
+          </section>
+          <section>
+            <h3 id="Git">
+              Setup Git remote repository for website deployment.
+            </h3>
+            <div class="datetime">
+              <time datetime="2026-9-4"></time>
+            </div>
+            <div class="content">
+              <p>
+                First, install
+                <a href="https://git-scm.com/install/linux">Git</a> on both
+                Windows and Linux computers.
+              </p>
+              <p>On Windows, install via the executable file.</p>
+              <p>
+                By default, Git uses its own SSH client in:
+                <span class="command">path\to\Git\usr\bin\ssh.exe</span>
+              </p>
+              <p>
+                We need to tell Git to use OpenSSH manually via:
+                <span class="command"
+                  >git config --global core.sshCommand
+                  C:/Windows/System32/OpenSSH/ssh.exe</span
+                >
+              </p>
+              <p>
+                Locate <span class="inline">.gitconfig</span> via one of the
+                following commands:
+                <span class="command"
+                  >git config --global --list --show-origin</span
+                >
+                <span class="command">git config --global --edit</span>
+              </p>
+              <pre><b>%USERPROFILE%\.gitconfig</b><code class="language-plaintext">
+[core]
+  sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+              </code></pre>
+              <p>
+                On Linux, run:<span class="command">sudo apt update</span>
+                <span class="command">sudo apt install -y git</span>
+              </p>
+              <p>
+                Create a normal repository in the local computer. Run on
+                Windows:
                 <span class="command">git init /path/to/working-directory</span>
               </p>
               <p>
-                Create a bare repository in the remote computer.
+                Create a bare repository in the remote computer. Run on Linux:
                 <span class="command"
                   >git init --bare
                   /path/to/working-directory/bare-repo.git</span
@@ -2143,22 +2157,210 @@ Working_Directory/
 └── deployed files ← updated by post-receive hook
               </code></pre>
               <p>
-                Next, link the remote repository to the local repository by
-                command:
+                Next, on local computer, link the remote repository to the local
+                repository. Run on Windows:
+                <span class="command">cd /path/to/working-directory</span>
                 <span class="command"
                   >git remote add origin
                   ssh://user@remote-ip:/path/to/bare-repo.git</span
-                >
-              </p>
-
-              <p>
-                To check the current link, use:
-                <span class="command">git remote -v</span>
+                ><span class="command">git remote -v</span>
               </p>
               <p>
                 Force push files to the remote repository once:
                 <span class="command">git push --force origin main</span>
               </p>
+              <p>Afterwards, Source Control in VS Code will handle the rest.</p>
+            </div>
+          </section>
+
+          <section>
+            <h3 id="php2">PHP in Nginx</h3>
+            <div class="datetime">
+              <time datetime="11-9-2025"></time>
+            </div>
+            <div class="content">
+              <p>
+                To enable PHP, a server-side scripting language, in the Nginx
+                website, first install the
+                <span class="inline">php-fpm</span> package.
+              </p>
+              <p>
+                Because Ubuntu's official repository does not provide the latest
+                version of PHP, we will be using
+                <a href="https://launchpad.net/~ondrej/+archive/ubuntu/php"
+                  >Ondřej Surý</a
+                >'s personal package archive to install the latest version of
+                PHP.
+
+                <span class="command"
+                  >sudo add-apt-repository ppa:ondrej/php</span
+                ><span class="command">sudo apt update</span>
+                <span class="command">sudo apt install -y php8.4-fpm</span>
+                <span class="command">sudo systemctl enable php8.4-fpm</span>
+                <span class="command">sudo systemctl start php8.4-fpm</span>
+                <span class="command">sudo systemctl status php8.4-fpm</span>
+              </p>
+
+              <figure>
+                <blockquote class="blockquote1" cite="">
+                  <p style="font-style: italic">
+                    A common mistake is to install the PHP, not PHP-FPM package.
+                    The problem with this approach is that unlike PHP-FPM, the
+                    PHP package installs the Apache HTTP server and its httpd
+                    process, which conflicts with Nginx.
+                  </p>
+                </blockquote>
+                <figcaption>
+                  <em
+                    >How to setup PHP on Nginx with fastCGI (PHP-FPM) example
+                    (<a
+                      href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Nginx-PHP-FPM-config-example"
+                      >source</a
+                    >)</em
+                  >
+                </figcaption>
+              </figure>
+              <p>
+                Next, uncomment the PHP location block in the default file from
+                Nginx. It tells Nginx to pass the any URL ending with .php
+                request to the php executable. Serving the php file to the
+                browser.
+              </p>
+              <pre><b>default</b><code class="language-shell">
+location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME "$myroot_path/Files$fastcgi_script_name";
+}
+              </code></pre>
+              <p>
+                Validate and reload the Nginx configuration file.
+                <span class="command">sudo nginx -t</span>
+                <span class="command">sudo systemctl restart nginx</span>
+              </p>
+
+              <p>
+                Test if PHP is working by serving the following test php site.
+              </p>
+              <pre><b>test.php</b><code class="language-php">
+&lt;?php
+  phpinfo();
+?&gt;
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h3 id="php3">PHP in Ubuntu 26.04</h3>
+            <div class="datetime">
+              <time datetime="2026-9-8"></time>
+            </div>
+            <div class="content">
+              <p>
+                In Ubuntu 26.04 Resolute, the official package repository
+                support the latest PHP. So, we do not need to use Onjery's
+                repository anymore.
+              </p>
+              <figure>
+                <blockquote class="blockquote1" cite="">
+                  <p style="font-style: italic">
+                    For Ubuntu Resolute, https://packages.sury.org/php/ is the
+                    canonical way of getting PHP packages. You can still use
+                    this repository for Ubuntu Jammy and Ubuntu Noble.
+                  </p>
+                </blockquote>
+                <figcaption>
+                  <em
+                    >Ondřej Surý's repository (<a
+                      href="https://launchpad.net/~ondrej/+archive/ubuntu/php"
+                      >source</a
+                    >)</em
+                  >
+                </figcaption>
+              </figure>
+              <p>
+                Install via
+                <span class="command">sudo apt update</span>
+                <span class="command">sudo apt install -y php-fpm</span>
+              </p>
+              <p>
+                Beware,
+                <span class="inline">systemctl enable --now php-fpm</span> will
+                not works as <span class="inline">php-fpm</span> is not the
+                correct service name. We need to find out the real service name
+                via
+                <span class="command"
+                  >systemctl list-unit-files | grep "fpm"</span
+                >
+              </p>
+              <p>
+                In our case, the service name is
+                <span class="inline">php8.5-fpm.service </span>
+              </p>
+              <p>
+                Enable it via
+                <span class="command"
+                  >sudo systemctl enable --now php8.5-fpm</span
+                >
+                <span class="command">sudo systemctl status php8.5-fpm</span>
+              </p>
+              <p>
+                Goes into the <span class="inline">default.conf</span>. Update
+                every instance of <span class="inline">php8.x</span> to
+                <span class="inline">php8.5</span>.
+              </p>
+              <pre><b>default.conf</b><code class="language-shell">
+ location ~ \.php$ {
+    ...
+    fastcgi_pass unix:/run/php/php8.5-fpm.sock;
+    ...
+}
+              </code></pre>
+              <p>
+                Validate and reload the Nginx configuration file.
+                <span class="command">sudo nginx -t</span>
+                <span class="command">sudo systemctl restart nginx</span>
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3 id="chrome_remote_desktop">
+              Setup Chrome Remote Desktop in Ubuntu
+            </h3>
+            <div class="datetime">
+              <time datetime="2026-9-8"></time>
+            </div>
+            <div class="content">
+              <p>
+                Go to
+                <a href="https://remotedesktop.google.com/headless"
+                  >Chrome Remote Desktop</a
+                >
+              </p>
+              <p>Follow the steps in "Set up via SSH"</p>
+              <p>
+                Since Ubuntu 26.04, X11 is removed leaving only Wayland being
+                supported. Therefore, upon entering Chrome remote desktop and
+                selecting "launch the default XSession". The app crashes and
+                disconnects the user.
+              </p>
+              <p>So, we need to manually install a third-party XSession.</p>
+              <p>
+                Install <span class="inline">Xfce4</span> via:
+                <span class="command"
+                  >sudo apt install -y xfce4 xfce4-goodies</span
+                >
+              </p>
+              <p>
+                Set Chrome remote desktop to use xfce by:
+                <span class="command"
+                  >echo "exec /usr/bin/xfce4-session" >
+                  ~/.chrome-remote-desktop-session</span
+                >
+              </p>
+              <p>
+                Afterwards, make sure all GUI users are logout from the system.
+              </p>
+              <p>Chrome remote desktop should work from now on.</p>
             </div>
           </section>
         </div>
